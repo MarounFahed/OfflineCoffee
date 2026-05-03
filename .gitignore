@@ -1,0 +1,21 @@
+# Unzipped design source — the canonical archive is `_design-source/Offline v2.zip`.
+# Files extracted at working time only; not tracked.
+_design-source/Offline Home.html
+_design-source/Offline Collection.html
+_design-source/assets/
+_design-source/uploads/
+_design-source/tweaks-app.jsx
+_design-source/tweaks-panel.jsx
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.log
+
+# Shopify CLI
+.shopifyignore
+.shopify/
