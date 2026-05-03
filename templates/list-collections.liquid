@@ -1,0 +1,52 @@
+{%- comment -%}
+  /collections route. Lists all collections in a 3-up grid that
+  matches the home blends-row treatment. Each card shows the
+  collection's title, product count, and a roast-color background
+  pulled from a metafield (offline.roast_color) when present.
+{%- endcomment -%}
+
+<section class="page-head">
+  <h1>{{ 'collections.general.all' | t | default: 'All collections' }}</h1>
+</section>
+
+<section class="blends-row">
+  {%- for collection in collections -%}
+    {%- if collection.handle == 'frontpage' or collection.handle == 'all' -%}{%- continue -%}{%- endif -%}
+    {%- assign roast_color = collection.metafields.offline.roast_color.value | default: '--paper-2' -%}
+    <a class="blend-card" href="{{ collection.url }}" style="--blend: var({{ roast_color }});">
+      <div class="blend-art" style="background: var({{ roast_color }});">
+        {%- if collection.image != blank -%}
+          {% render 'responsive-image',
+            image: collection.image,
+            sizes: '(min-width: 990px) 33vw, 100vw',
+            widths: '400, 600, 800, 1200',
+            alt: collection.title %}
+        {%- else -%}
+          <div class="bag" style="width: 56%; height: 70%;">
+            <div class="bag-top">
+              <span>{{ collection.products_count }} {% if collection.products_count == 1 %}item{% else %}items{% endif %}</span>
+            </div>
+            <div>
+              <div class="bag-name">{{ collection.title | newline_to_br }}</div>
+            </div>
+            <div class="bag-bottom">
+              <span>Steeped</span>
+              <span>Browse →</span>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="blend-meta">
+        <span>{{ collection.products_count }} {% if collection.products_count == 1 %}product{% else %}products{% endif %}</span>
+        <span>Browse</span>
+      </div>
+      <div class="blend-name-row">
+        <div class="blend-name">{{ collection.title }}</div>
+      </div>
+      <div class="blend-foot">
+        <span>{{ collection.description | strip_html | truncatewords: 8 }}</span>
+        <span>→</span>
+      </div>
+    </a>
+  {%- endfor -%}
+</section>
