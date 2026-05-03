@@ -11,15 +11,15 @@
     {%- endif -%}
 
     {%- comment -%}
-      Fonts. TODO §11.3: self-host (subset Latin + Latin-Extended) and
-      replace this Google Fonts link. Gulfs Display is self-hosted via
-      @font-face in theme.css; licensing must be confirmed before
-      public launch (sourced from freefontdownload.org, no license file).
+      Fonts: self-hosted under /assets/, subset to Latin
+      and Latin-Extended per brief §11.3. Preload only the two
+      above-the-fold faces (display 400 + Fraunces 400 latin) to
+      stay inside the LCP budget.
+      Gulfs Display licensing: unverified (freefontdownload.org).
+      Confirm before public launch.
     {%- endcomment -%}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="font" href="{{ 'gulfs-display.ttf' | asset_url }}" type="font/ttf" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="font" href="{{ 'fraunces-latin.woff2' | asset_url }}" type="font/woff2" crossorigin>
 
     <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
 
