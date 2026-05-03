@@ -1,0 +1,42 @@
+<section style="background: var(--paper); border-block: 1px solid var(--rule);">
+  <div class="wrap quote-wrap">
+    {%- if section.settings.show_topo_above -%}
+      {% render 'topo-line', variant: 'a' %}
+    {%- endif -%}
+    <p class="quote">{{ section.settings.quote | escape }}</p>
+    {%- if section.settings.attribution != blank -%}
+      <div class="quote-attr">{{ section.settings.attribution }}</div>
+    {%- endif -%}
+    {%- if section.settings.show_topo_below -%}
+      <div style="margin-top: var(--s-7);">
+        {% render 'topo-line', variant: 'b' %}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Pull quote",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "\"You can drink coffee with two bars of signal, or no bars at all. The coffee doesn't care. Maybe you don't either.\""
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "Attribution",
+      "default": "— From the manifesto · Vol. 01"
+    },
+    { "type": "checkbox", "id": "show_topo_above", "label": "Show topo line above", "default": true },
+    { "type": "checkbox", "id": "show_topo_below", "label": "Show topo line below", "default": true }
+  ],
+  "presets": [
+    { "name": "Pull quote" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,20 @@
+{%- comment -%}
+  Signal bars indicate a blend's roast intensity.
+  Params: bars (1–4), label_count_total (default 4),
+  paper (bool — invert for dark backgrounds), aria_label.
+  Convention: light roast = 1, medium = 2, dark = 3, decaf = 0.
+{%- endcomment -%}
+{%- liquid
+  assign bars = bars | default: 0
+  assign total = label_count_total | default: 4
+  assign label = aria_label | default: bars | append: ' of ' | append: total
+  assign cls = 'bars'
+  if paper
+    assign cls = 'bars bars--paper'
+  endif
+-%}
+<span class="{{ cls }}" role="img" aria-label="{{ label | escape }}">
+  {%- for i in (1..total) -%}
+    {%- if i <= bars -%}<i></i>{%- else -%}<i class="off"></i>{%- endif -%}
+  {%- endfor -%}
+</span>

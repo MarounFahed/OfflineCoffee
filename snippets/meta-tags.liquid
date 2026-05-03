@@ -1,0 +1,48 @@
+{%- comment -%}
+  Open Graph / Twitter / JSON-LD. Shopify auto-injects Product,
+  Organization, BreadcrumbList JSON-LD via content_for_header.
+  We add Article JSON-LD on article pages.
+{%- endcomment -%}
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title | escape }}">
+{%- if page_description -%}
+  <meta property="og:description" content="{{ page_description | escape }}">
+{%- endif -%}
+
+{%- if template.name == 'product' and product -%}
+  <meta property="og:type" content="product">
+  {%- if product.featured_image -%}
+    <meta property="og:image" content="https:{{ product.featured_image | image_url: width: 1200 }}">
+  {%- endif -%}
+{%- elsif template.name == 'article' and article -%}
+  <meta property="og:type" content="article">
+  {%- if article.image -%}
+    <meta property="og:image" content="https:{{ article.image | image_url: width: 1200 }}">
+  {%- endif -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": {{ article.title | json }},
+      "datePublished": {{ article.published_at | date: '%FT%T%:z' | json }},
+      "dateModified": {{ article.updated_at | date: '%FT%T%:z' | json }},
+      "author": { "@type": "Person", "name": {{ article.author | json }} },
+      "image": {{ article.image | image_url: width: 1600 | prepend: 'https:' | json }},
+      "publisher": { "@type": "Organization", "name": {{ shop.name | json }} },
+      "mainEntityOfPage": { "@type": "WebPage", "@id": {{ canonical_url | json }} },
+      "description": {{ article.excerpt_or_content | strip_html | truncatewords: 40 | json }}
+    }
+  </script>
+{%- else -%}
+  <meta property="og:type" content="website">
+  {%- if settings.logo_wordmark != blank -%}
+    <meta property="og:image" content="https:{{ settings.logo_wordmark | image_url: width: 1200 }}">
+  {%- endif -%}
+{%- endif -%}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title | escape }}">
+{%- if page_description -%}
+  <meta name="twitter:description" content="{{ page_description | escape }}">
+{%- endif -%}

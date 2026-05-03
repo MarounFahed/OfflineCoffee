@@ -1,0 +1,25 @@
+{%- comment -%}
+  Button. Params:
+    label (required), href (anchor) OR type (button), style
+    (primary/secondary/link), arrow (bool), full (bool), aria_label.
+{%- endcomment -%}
+{%- liquid
+  assign style = style | default: 'primary'
+  assign cls = 'btn'
+  if style == 'secondary'
+    assign cls = 'btn btn-secondary'
+  elsif style == 'link'
+    assign cls = 'btn-link'
+  endif
+  if arrow
+    assign cls = cls | append: ' btn-arrow'
+  endif
+  if full
+    assign cls = cls | append: ' btn-full'
+  endif
+-%}
+{%- if href -%}
+  <a class="{{ cls }}" href="{{ href }}"{% if aria_label %} aria-label="{{ aria_label | escape }}"{% endif %}>{{ label }}</a>
+{%- else -%}
+  <button class="{{ cls }}" type="{{ type | default: 'button' }}"{% if aria_label %} aria-label="{{ aria_label | escape }}"{% endif %}>{{ label }}</button>
+{%- endif -%}

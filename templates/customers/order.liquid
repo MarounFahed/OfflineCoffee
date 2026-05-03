@@ -1,0 +1,40 @@
+<section class="account">
+  <div class="account-head">
+    <h1>{{ 'customer.account.orders.order_number' | t: number: order.name }}</h1>
+    <a class="btn-link" href="{{ routes.account_url }}">← {{ 'customer.account.title' | t }}</a>
+  </div>
+
+  <div class="account-grid">
+    <div>
+      <table class="order-table">
+        <thead>
+          <tr><th>Item</th><th>Qty</th><th>Total</th></tr>
+        </thead>
+        <tbody>
+          {%- for line_item in order.line_items -%}
+            <tr>
+              <td>
+                <strong>{{ line_item.title }}</strong>
+                {%- if line_item.fulfillment -%}<br><span class="mono ink-soft" style="font-size:10px;">Fulfilled {{ line_item.fulfillment.created_at | date: '%d %b' }}</span>{%- endif -%}
+              </td>
+              <td>{{ line_item.quantity }}</td>
+              <td>{{ line_item.final_line_price | money }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+        <tfoot>
+          <tr><td colspan="2" style="text-align:right;">{{ 'customer.order.subtotal' | t }}</td><td>{{ order.subtotal_price | money }}</td></tr>
+          <tr><td colspan="2" style="text-align:right;">{{ 'customer.order.shipping' | t }}</td><td>{{ order.shipping_price | money }}</td></tr>
+          <tr><td colspan="2" style="text-align:right;">{{ 'customer.order.tax' | t }}</td><td>{{ order.tax_price | money }}</td></tr>
+          <tr><td colspan="2" style="text-align:right;"><strong>{{ 'customer.order.total' | t }}</strong></td><td><strong>{{ order.total_price | money }}</strong></td></tr>
+        </tfoot>
+      </table>
+    </div>
+    <aside>
+      <h3 class="mono" style="margin-bottom:var(--s-3);">{{ 'customer.order.shipping_address' | t }}</h3>
+      {{ order.shipping_address | format_address }}
+      <h3 class="mono" style="margin: var(--s-5) 0 var(--s-3);">{{ 'customer.order.billing_address' | t }}</h3>
+      {{ order.billing_address | format_address }}
+    </aside>
+  </div>
+</section>

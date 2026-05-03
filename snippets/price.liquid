@@ -1,0 +1,23 @@
+{%- comment -%}
+  Price snippet. Handles compare-at, sale state, sold-out.
+  Params: product (required), variant (optional — for PDP),
+  use_variant (bool), show_compare_at (default true).
+{%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product.selected_or_first_available_variant
+  assign compare_at = target.compare_at_price
+  assign price = target.price
+  assign on_sale = false
+  if compare_at and compare_at > price
+    assign on_sale = true
+  endif
+-%}
+<span class="price">
+  {%- if on_sale -%}
+    <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+    <span class="price-sale">{{ price | money }}</span>
+    <s class="price-compare">{{ compare_at | money }}</s>
+  {%- else -%}
+    {{ price | money }}
+  {%- endif -%}
+</span>

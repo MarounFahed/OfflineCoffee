@@ -1,0 +1,130 @@
+<section class="section" aria-label="{{ section.settings.heading | default: 'Blends' | strip_html }}">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="lbl">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      <div class="meta">{{ section.settings.meta | newline_to_br }}</div>
+    </div>
+  </div>
+
+  <div class="blends-row">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign card_product = nil
+        if block.settings.product != blank
+          assign card_product = all_products[block.settings.product]
+        endif
+      -%}
+
+      {% render 'product-card',
+        product: card_product,
+        variant: 'home',
+        ph_name: block.settings.placeholder_name,
+        ph_price: block.settings.placeholder_price,
+        ph_blend_number: block.settings.placeholder_blend_number,
+        ph_roast_color: block.settings.placeholder_roast_color,
+        ph_roast_label: block.settings.placeholder_roast_label,
+        ph_region_short: block.settings.placeholder_region_short,
+        ph_region: block.settings.placeholder_region,
+        ph_bars: block.settings.placeholder_bars,
+        ph_tags: block.settings.placeholder_tags,
+        ph_footnote: block.settings.placeholder_footnote,
+        ph_url: block.settings.placeholder_link %}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured blends",
+  "tag": "section",
+  "class": "featured-blends",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ 01 — The Pack" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Three blends.\nPick a mood." },
+    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "Roasted weekly\nShips in 2 days" }
+  ],
+  "blocks": [
+    {
+      "type": "blend",
+      "name": "Blend",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product (optional — uses placeholder if empty)" },
+        { "type": "header", "content": "Placeholder fallback" },
+        { "type": "text", "id": "placeholder_name", "label": "Name", "default": "Aspen Morning" },
+        { "type": "text", "id": "placeholder_price", "label": "Price", "default": "$24" },
+        { "type": "text", "id": "placeholder_blend_number", "label": "Blend number", "default": "Blend 01" },
+        {
+          "type": "select",
+          "id": "placeholder_roast_color",
+          "label": "Roast color",
+          "options": [
+            { "value": "--amber", "label": "Amber (light)" },
+            { "value": "--ember", "label": "Ember (medium)" },
+            { "value": "--pine", "label": "Pine (dark)" },
+            { "value": "--paper-2", "label": "Paper-2 (decaf)" }
+          ],
+          "default": "--amber"
+        },
+        { "type": "text", "id": "placeholder_roast_label", "label": "Roast label", "default": "Light roast" },
+        { "type": "text", "id": "placeholder_region_short", "label": "Region (short, on bag)", "default": "Light · Ethiopia" },
+        { "type": "text", "id": "placeholder_region", "label": "Region (long)", "default": "Yirgacheffe · 1,950m" },
+        { "type": "range", "id": "placeholder_bars", "label": "Signal bars", "min": 0, "max": 4, "step": 1, "default": 1 },
+        { "type": "text", "id": "placeholder_tags", "label": "Tasting tags (comma-separated)", "default": "Honey, Stone fruit, Citrus" },
+        { "type": "text", "id": "placeholder_footnote", "label": "Footnote", "default": "Yirgacheffe · 1,950m" },
+        { "type": "url", "id": "placeholder_link", "label": "Card link" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Featured blends",
+      "blocks": [
+        {
+          "type": "blend",
+          "settings": {
+            "placeholder_name": "Aspen Morning",
+            "placeholder_blend_number": "Blend 01",
+            "placeholder_roast_color": "--amber",
+            "placeholder_roast_label": "Light roast",
+            "placeholder_region_short": "Light · Ethiopia",
+            "placeholder_region": "Yirgacheffe · 1,950m",
+            "placeholder_bars": 1,
+            "placeholder_tags": "Honey, Stone fruit, Citrus",
+            "placeholder_footnote": "Yirgacheffe · 1,950m"
+          }
+        },
+        {
+          "type": "blend",
+          "settings": {
+            "placeholder_name": "Desert Ember",
+            "placeholder_blend_number": "Blend 02",
+            "placeholder_roast_color": "--ember",
+            "placeholder_roast_label": "Medium roast",
+            "placeholder_region_short": "Medium · Colombia",
+            "placeholder_region": "Huila · 1,700m",
+            "placeholder_bars": 2,
+            "placeholder_tags": "Cocoa, Caramel, Plum",
+            "placeholder_footnote": "Huila · 1,700m"
+          }
+        },
+        {
+          "type": "blend",
+          "settings": {
+            "placeholder_name": "Pine Hollow",
+            "placeholder_blend_number": "Blend 03",
+            "placeholder_roast_color": "--pine",
+            "placeholder_roast_label": "Dark roast",
+            "placeholder_region_short": "Dark · Sumatra",
+            "placeholder_region": "Aceh · 1,400m",
+            "placeholder_bars": 3,
+            "placeholder_tags": "Dark cocoa, Cedar, Molasses",
+            "placeholder_footnote": "Aceh · 1,400m"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

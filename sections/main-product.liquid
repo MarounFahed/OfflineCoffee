@@ -1,0 +1,239 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign mood_color = '--pine'
+  assign roast = product.metafields.offline.roast.value | downcase | default: section.settings.fallback_mood
+  if roast == 'light'
+    assign mood_color = '--amber'
+    assign bars = 1
+  elsif roast == 'medium'
+    assign mood_color = '--ember'
+    assign bars = 2
+  elsif roast == 'dark'
+    assign mood_color = '--pine'
+    assign bars = 3
+  elsif roast == 'decaf'
+    assign mood_color = '--paper-2'
+    assign bars = 0
+  else
+    assign bars = 0
+  endif
+-%}
+
+<article class="pdp" itemscope itemtype="https://schema.org/Product">
+  <meta itemprop="name" content="{{ product.title | escape }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+
+  <div class="pdp-gallery" style="--mood: var({{ mood_color }});">
+    {%- if product.featured_image != blank -%}
+      {% render 'responsive-image',
+        image: product.featured_image,
+        sizes: '(min-width: 990px) 50vw, 100vw',
+        widths: '600, 900, 1200, 1600, 2400',
+        loading: 'eager',
+        fetchpriority: 'high',
+        alt: product.featured_image.alt | default: product.title %}
+    {%- else -%}
+      {% render 'bag-mockup',
+        blend_name: product.title,
+        blend_number: product.metafields.offline.blend_number.value | default: '',
+        bars: bars,
+        region: product.metafields.offline.region_short.value | default: product.vendor,
+        paper: true %}
+    {%- endif -%}
+    {%- if product.images.size > 1 -%}
+      <div class="pdp-gallery-thumbs" aria-hidden="true">
+        {%- for image in product.images limit: 4 -%}
+          <span>{{ image.alt | default: 'View' | upcase | truncate: 16 }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="pdp-info">
+    <div class="pdp-eyebrow">{{ product.metafields.offline.eyebrow.value | default: product.type | default: section.settings.fallback_eyebrow }}</div>
+    <h1 class="pdp-title" itemprop="name">{{ product.title }}</h1>
+
+    {%- if product.description != blank -%}
+      <div class="pdp-desc" itemprop="description">{{ product.description }}</div>
+    {%- endif -%}
+
+    <div class="pdp-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+      <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.0 }}">
+      <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+      <meta itemprop="availability" content="https://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+      <span class="pdp-price">{% render 'price', product: product, variant: current_variant %}</span>
+      {%- if settings.show_signal_bars -%}
+        {% render 'signal-bars', bars: bars %}
+      {%- endif -%}
+    </div>
+
+    {%- form 'product', product, class: 'product-form' -%}
+      {%- comment -%}
+        Stub variant selector: a no-frills <select> per option until
+        a JS-driven picker lands in the next design round. Keeps the
+        form submission contract simple (one hidden variant id).
+      {%- endcomment -%}
+      {%- unless product.has_only_default_variant -%}
+        <fieldset class="pdp-variants">
+          <legend>{{ 'products.product.purchase_type.label' | t | default: 'Options' }}</legend>
+          <div style="display:flex; flex-direction:column; gap: var(--s-3);">
+            <select name="id" id="ProductVariant" style="font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; padding:10px 14px; min-height:44px; border:1px solid var(--rule-strong); background:transparent;">
+              {%- for variant in product.variants -%}
+                <option value="{{ variant.id }}" {% if variant == current_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+                  {{ variant.title }} — {{ variant.price | money }}{% unless variant.available %} · {{ 'products.product.sold_out' | t }}{% endunless %}
+                </option>
+              {%- endfor -%}
+            </select>
+          </div>
+        </fieldset>
+      {%- else -%}
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+      {%- endunless -%}
+
+      <div class="pdp-toggle" data-pdp-toggle role="group" aria-label="{{ 'products.product.purchase_type.label' | t }}">
+        <button type="button" aria-pressed="true">{{ 'products.product.purchase_type.one_time' | t }}</button>
+        <button type="button" aria-pressed="false">{{ 'products.product.purchase_type.subscription' | t }}</button>
+      </div>
+
+      <div class="pdp-quantity">
+        <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+        <div class="qty-stepper" data-qty>
+          <button type="button" data-qty-minus aria-label="{{ 'products.product.decrease_quantity' | t }}">−</button>
+          <input type="number" id="Quantity" name="quantity" value="1" min="1" inputmode="numeric">
+          <button type="button" data-qty-plus aria-label="{{ 'products.product.increase_quantity' | t }}">+</button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-full" {% unless current_variant.available %}disabled{% endunless %}>
+        {%- if current_variant.available -%}
+          {{ 'products.product.add_to_cart' | t }}
+        {%- else -%}
+          {{ 'products.product.sold_out' | t }}
+        {%- endif -%}
+      </button>
+    {%- endform -%}
+
+    <div class="accordion">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'accordion' -%}
+          {% render 'accordion-item',
+            label: block.settings.label,
+            body: block.settings.body,
+            open: block.settings.open %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</article>
+
+{%- comment -%}
+  Brew strip on PDP is added as a separate section in product.json
+  so the merchant edits one record. (Earlier draft used a static
+  {% section %} which would have created a second persisted record
+  out of sync with the home page's brew-strip.)
+{%- endcomment -%}
+
+{%- if section.settings.show_tasting -%}
+  <section class="section">
+    <div class="wrap">
+      <div class="tasting-eyebrow" style="padding-bottom: var(--s-5);">{{ 'products.product.tasting.label' | t }} — {{ product.title | upcase }}</div>
+      <div class="tasting">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tasting_col' -%}
+            <div class="tasting-col" {{ block.shopify_attributes }}>
+              <div class="tasting-eyebrow">{{ block.settings.label }}</div>
+              {%- if block.settings.tags != blank -%}
+                <div class="tasting-tags">
+                  {%- assign tlist = block.settings.tags | split: ',' -%}
+                  {%- for t in tlist -%}<span>{{ t | strip }}</span>{%- endfor -%}
+                </div>
+              {%- endif -%}
+              <p class="tasting-body">{{ block.settings.body }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{%- if section.settings.show_related -%}
+  {%- assign related = collections[product.collections.first.handle].products | default: collections.all.products -%}
+  {%- if related.size > 1 -%}
+    <section class="section" style="background: var(--paper-2);">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="lbl">§ {{ 'products.product.related' | t | upcase }}</div>
+          <h2>{{ 'products.product.related' | t }}</h2>
+          <div class="meta">All blends</div>
+        </div>
+      </div>
+      <div class="blends-row">
+        {%- assign count = 0 -%}
+        {%- for p in related -%}
+          {%- if p.id != product.id and count < 3 -%}
+            {% render 'product-card', product: p, variant: 'home' %}
+            {%- assign count = count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </section>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Product info",
+  "settings": [
+    {
+      "type": "select",
+      "id": "fallback_mood",
+      "label": "Fallback roast (when no metafield)",
+      "options": [
+        { "value": "light", "label": "Light (amber)" },
+        { "value": "medium", "label": "Medium (ember)" },
+        { "value": "dark", "label": "Dark (pine)" },
+        { "value": "decaf", "label": "Decaf (paper-2)" }
+      ],
+      "default": "medium"
+    },
+    { "type": "text", "id": "fallback_eyebrow", "label": "Fallback eyebrow", "default": "Specialty steeped coffee" },
+    { "type": "checkbox", "id": "show_tasting", "label": "Show tasting card", "default": true },
+    { "type": "checkbox", "id": "show_related", "label": "Show related products", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion item",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Brew perfectly" },
+        { "type": "richtext", "id": "body", "label": "Body" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    },
+    {
+      "type": "tasting_col",
+      "name": "Tasting column",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Aroma" },
+        { "type": "text", "id": "tags", "label": "Tags (comma-separated)", "default": "Honey, Stone fruit, Citrus" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Light and floral up front. Like opening a window." }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Product info",
+      "blocks": [
+        { "type": "accordion", "settings": { "label": "Brew perfectly", "body": "<p>200°F water, 4-minute steep, gentle stir at 2:30. Don't squeeze the sachet — let it drip dry over the cup before composting.</p>" } },
+        { "type": "accordion", "settings": { "label": "What's inside", "body": "<p>Single-origin beans, roasted in small batches, ground the same week. Plant-fiber filter sachet, plant-based corn-starch wrapper.</p>" } },
+        { "type": "accordion", "settings": { "label": "Ships when", "body": "<p>Orders out the door in 2 business days. Flat $5 shipping; free over $40.</p>" } },
+        { "type": "tasting_col", "settings": { "label": "Aroma", "tags": "Honey, Floral, Citrus", "body": "Light and floral up front. Like opening a window." } },
+        { "type": "tasting_col", "settings": { "label": "Palate", "tags": "Stone fruit, Tea, Lemon zest", "body": "Bright, juicy, easy to drink without milk." } },
+        { "type": "tasting_col", "settings": { "label": "Finish", "tags": "Clean, Crisp, Lingering", "body": "Dries off without bitterness. Asks for another." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

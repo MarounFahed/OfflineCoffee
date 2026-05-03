@@ -1,0 +1,142 @@
+{%- comment -%}
+  Product card. Used on home blends row + collection grid.
+  Params:
+    product — Shopify product OR null (uses placeholder)
+    variant — 'home' (default) or 'grid' (collection)
+
+  Placeholder params (used when product is blank):
+    ph_name, ph_price, ph_url, ph_blend_number,
+    ph_roast_color (--amber/--ember/--pine/--paper-2),
+    ph_roast_label, ph_region_short, ph_region,
+    ph_bars (0–4), ph_tags (comma-separated string),
+    ph_footnote, ph_badge, ph_format
+{%- endcomment -%}
+{%- liquid
+  assign variant = variant | default: 'home'
+
+  assign p_url = '#'
+  assign p_name = ''
+  assign p_price = ''
+  assign p_blend_number = ''
+  assign p_roast_color = '--amber'
+  assign p_roast_label = ''
+  assign p_region_short = ''
+  assign p_region_long = ''
+  assign p_bars = 0
+  assign p_tags_string = ''
+  assign p_footnote = ''
+  assign p_badge = ''
+  assign p_image = blank
+  assign p_format = '12 oz · Steeped'
+
+  if product
+    assign p_url = product.url
+    assign p_name = product.title
+    assign p_price = product.price | money
+    assign p_image = product.featured_image
+    assign p_blend_number = product.metafields.offline.blend_number.value | default: ''
+    assign roast_meta = product.metafields.offline.roast.value | downcase
+    if roast_meta == 'light'
+      assign p_roast_color = '--amber'
+      assign p_roast_label = 'Light roast'
+      assign p_bars = 1
+    elsif roast_meta == 'medium'
+      assign p_roast_color = '--ember'
+      assign p_roast_label = 'Medium roast'
+      assign p_bars = 2
+    elsif roast_meta == 'dark'
+      assign p_roast_color = '--pine'
+      assign p_roast_label = 'Dark roast'
+      assign p_bars = 3
+    elsif roast_meta == 'decaf'
+      assign p_roast_color = '--paper-2'
+      assign p_roast_label = 'Decaf'
+      assign p_bars = 0
+    endif
+    assign p_region_short = product.metafields.offline.region_short.value | default: product.vendor
+    assign p_region_long = product.metafields.offline.region.value | default: ''
+    assign tag_meta = product.metafields.offline.tasting_tags.value
+    if tag_meta
+      assign p_tags_string = tag_meta | join: ', '
+    endif
+    assign p_footnote = product.metafields.offline.footnote.value | default: p_region_long
+    assign p_badge = product.metafields.offline.badge.value
+  endif
+
+  assign p_url = ph_url | default: p_url
+  assign p_name = ph_name | default: p_name
+  assign p_price = ph_price | default: p_price
+  assign p_blend_number = ph_blend_number | default: p_blend_number
+  assign p_roast_color = ph_roast_color | default: p_roast_color
+  assign p_roast_label = ph_roast_label | default: p_roast_label
+  assign p_region_short = ph_region_short | default: p_region_short
+  assign p_region_long = ph_region | default: p_region_long
+  if ph_bars
+    assign p_bars = ph_bars
+  endif
+  assign p_tags_string = ph_tags | default: p_tags_string
+  assign p_footnote = ph_footnote | default: p_footnote
+  assign p_badge = ph_badge | default: p_badge
+  assign p_format = ph_format | default: p_format
+
+  if variant == 'grid'
+    assign card_class = 'pcard'
+    assign art_class = 'pcard-art'
+    assign meta_class = 'pcard-meta'
+    assign name_row_class = 'pcard-name-row'
+    assign name_class = 'pcard-name'
+    assign price_class = 'pcard-price'
+    assign tags_class = 'pcard-tags'
+    assign foot_class = 'pcard-foot'
+  else
+    assign card_class = 'blend-card'
+    assign art_class = 'blend-art'
+    assign meta_class = 'blend-meta'
+    assign name_row_class = 'blend-name-row'
+    assign name_class = 'blend-name'
+    assign price_class = 'blend-price'
+    assign tags_class = 'blend-tags'
+    assign foot_class = 'blend-foot'
+  endif
+
+  assign tag_list = p_tags_string | split: ','
+-%}
+
+<a class="{{ card_class }}" href="{{ p_url }}" style="--blend: var({{ p_roast_color }});">
+  <div class="{{ art_class }}" style="background: var({{ p_roast_color }});">
+    {%- if p_badge != blank -%}<div class="badge">{{ p_badge }}</div>{%- endif -%}
+    {%- if p_image != blank -%}
+      {% render 'responsive-image',
+        image: p_image,
+        sizes: '(min-width: 990px) 33vw, 100vw',
+        widths: '400, 600, 800, 1200',
+        alt: p_name,
+        class: 'pcard-photo' %}
+    {%- else -%}
+      {% render 'bag-mockup',
+        blend_name: p_name,
+        blend_number: p_blend_number,
+        bars: p_bars,
+        region: p_region_short %}
+    {%- endif -%}
+  </div>
+  <div class="{{ meta_class }}">
+    <span>{{ p_roast_label }}</span>
+    <span>{{ p_format }}</span>
+  </div>
+  <div class="{{ name_row_class }}">
+    <div class="{{ name_class }}">{{ p_name }}</div>
+    <div class="{{ price_class }}">{{ p_price }}</div>
+  </div>
+  {%- if settings.show_tasting_tags and tag_list.size > 0 -%}
+    <div class="{{ tags_class }}">
+      {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+    </div>
+  {%- endif -%}
+  <div class="{{ foot_class }}">
+    <span>{{ p_footnote }}</span>
+    {%- if settings.show_signal_bars -%}
+      {% render 'signal-bars', bars: p_bars %}
+    {%- endif -%}
+  </div>
+</a>

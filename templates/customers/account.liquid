@@ -1,0 +1,52 @@
+<section class="account">
+  <div class="account-head">
+    <h1>{{ 'customer.account.title' | t }}</h1>
+    <a class="btn-link" href="{{ routes.account_logout_url }}">{{ 'customer.account.logout' | t }}</a>
+  </div>
+
+  <div class="account-grid">
+    <div>
+      <h2 class="serif-h2" style="margin-bottom:var(--s-5);">{{ 'customer.account.orders.title' | t }}</h2>
+      {%- if customer.orders.size > 0 -%}
+        {%- paginate customer.orders by 20 -%}
+          <table class="order-table">
+            <thead>
+              <tr>
+                <th>{{ 'customer.account.orders.order_number' | t: number: '' }}</th>
+                <th>{{ 'customer.account.orders.date' | t }}</th>
+                <th>{{ 'customer.account.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.account.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.account.orders.total' | t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for order in customer.orders -%}
+                <tr>
+                  <td><a href="{{ order.customer_url }}">{{ order.name }}</a></td>
+                  <td>{{ order.created_at | date: '%d %b %Y' }}</td>
+                  <td>{{ order.financial_status_label }}</td>
+                  <td>{{ order.fulfillment_status_label }}</td>
+                  <td>{{ order.total_price | money }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+          {%- if paginate.pages > 1 -%}
+            <nav style="margin-top:var(--s-5); display:flex; gap:var(--s-5); font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">
+              {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">← {{ 'general.pagination.previous' | t }}</a>{%- endif -%}
+              {%- if paginate.next -%}<a href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }} →</a>{%- endif -%}
+            </nav>
+          {%- endif -%}
+        {%- endpaginate -%}
+      {%- else -%}
+        <p class="mono ink-soft">{{ 'customer.account.orders.none' | t }}</p>
+      {%- endif -%}
+    </div>
+
+    <aside>
+      <h3 class="mono" style="margin-bottom:var(--s-3);">{{ 'customer.account.details' | t }}</h3>
+      {{ customer.default_address | format_address }}
+      <a class="btn-link" style="margin-top:var(--s-4); display:inline-block;" href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t: count: customer.addresses_count }}</a>
+    </aside>
+  </div>
+</section>

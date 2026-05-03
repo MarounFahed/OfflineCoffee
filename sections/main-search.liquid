@@ -1,0 +1,66 @@
+<section class="search-page">
+  <h1>{{ section.settings.heading | default: 'Search.' }}</h1>
+
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}" autofocus>
+    <input type="hidden" name="type" value="product,article,page">
+    <button type="submit">{{ 'general.search.submit' | t }}</button>
+  </form>
+
+  {%- if search.performed -%}
+    {%- if search.results_count > 0 -%}
+      <div class="mono ink-soft" style="margin-bottom: var(--s-7);">
+        {{ 'general.search.results_for' | t: terms: search.terms }} — {{ 'general.search.results_count' | t: count: search.results_count }}
+      </div>
+
+      <div class="search-results">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            {% render 'product-card', product: item, variant: 'grid' %}
+          {%- elsif item.object_type == 'article' -%}
+            <a class="journal-card" href="{{ item.url }}">
+              <div class="journal-art">
+                {%- if item.image != blank -%}
+                  {% render 'responsive-image',
+                    image: item.image,
+                    sizes: '(min-width: 990px) 33vw, 100vw',
+                    widths: '400, 600, 900, 1200',
+                    alt: item.title %}
+                {%- else -%}
+                  <span class="lbl">[ {{ item.title | upcase | truncate: 24 }} ]</span>
+                {%- endif -%}
+              </div>
+              <div class="journal-meta">Article · {{ item.published_at | date: '%d %b' }}</div>
+              <h3 class="journal-title">{{ item.title }}</h3>
+              <p class="journal-dek">{{ item.excerpt_or_content | strip_html | truncatewords: 24 }}</p>
+            </a>
+          {%- elsif item.object_type == 'page' -%}
+            <a class="journal-card" href="{{ item.url }}">
+              <div class="journal-art"><span class="lbl">[ PAGE · {{ item.title | upcase | truncate: 24 }} ]</span></div>
+              <div class="journal-meta">Page</div>
+              <h3 class="journal-title">{{ item.title }}</h3>
+              <p class="journal-dek">{{ item.content | strip_html | truncatewords: 24 }}</p>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="search-empty">{{ 'general.search.no_results' | t }}</p>
+      <div class="search-results" style="margin-top:var(--s-8);">
+        {%- assign suggested = collections.all.products | sort: 'best_selling' -%}
+        {%- for p in suggested limit: 3 -%}
+          {% render 'product-card', product: p, variant: 'grid' %}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Search." }
+  ]
+}
+{% endschema %}

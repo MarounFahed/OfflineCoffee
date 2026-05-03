@@ -1,0 +1,38 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "fallback_mood": "medium",
+        "fallback_eyebrow": "Specialty steeped coffee",
+        "show_tasting": true,
+        "show_related": true
+      },
+      "blocks": {
+        "acc1": { "type": "accordion", "settings": { "label": "Brew perfectly", "body": "<p>200°F water, 4-minute steep, gentle stir at 2:30. Don't squeeze the sachet — let it drip dry over the cup before composting.</p>" } },
+        "acc2": { "type": "accordion", "settings": { "label": "What's inside", "body": "<p>Single-origin beans, roasted in small batches, ground the same week. Plant-fiber filter sachet, plant-based corn-starch wrapper.</p>" } },
+        "acc3": { "type": "accordion", "settings": { "label": "Ships when", "body": "<p>Orders out the door in 2 business days. Flat $5 shipping; free over $40.</p>" } },
+        "tc1": { "type": "tasting_col", "settings": { "label": "Aroma", "tags": "Honey, Floral, Citrus", "body": "Light and floral up front. Like opening a window." } },
+        "tc2": { "type": "tasting_col", "settings": { "label": "Palate", "tags": "Stone fruit, Tea, Lemon zest", "body": "Bright, juicy, easy to drink without milk." } },
+        "tc3": { "type": "tasting_col", "settings": { "label": "Finish", "tags": "Clean, Crisp, Lingering", "body": "Dries off without bitterness. Asks for another." } }
+      },
+      "block_order": ["acc1", "acc2", "acc3", "tc1", "tc2", "tc3"]
+    },
+    "brew": {
+      "type": "brew-strip",
+      "settings": {
+        "eyebrow": "§ How to brew",
+        "heading": "Four minutes.\nThat's it.",
+        "meta": "No machine\nNo grinder"
+      },
+      "blocks": {
+        "s0": { "type": "step", "settings": { "number": "00", "title": "Boil.", "body": "Fresh water, just off the boil. Around 200°F. A kettle whistle works fine.", "footnote": "200° F · 93° C" } },
+        "s1": { "type": "step", "settings": { "number": "01", "title": "Drop.", "body": "Place a sachet in your mug. Tag out, like tea. Don't squeeze it.", "footnote": "1 sachet · 1 mug" } },
+        "s2": { "type": "step", "settings": { "number": "02", "title": "Pour.", "body": "Fill to the brim. The steam counts. Watch the bloom for ten seconds.", "footnote": "10 oz · 295 ml" } },
+        "s3": { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Four minutes. Don't check your phone.", "footnote": "" } }
+      },
+      "block_order": ["s0", "s1", "s2", "s3"]
+    }
+  },
+  "order": ["main", "brew"]
+}

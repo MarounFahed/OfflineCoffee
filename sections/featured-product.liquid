@@ -1,0 +1,71 @@
+<section class="section" aria-label="Featured product">
+  <div class="wrap">
+    {%- liquid
+      assign featured = all_products[section.settings.product]
+    -%}
+    <div class="section-head">
+      <div class="lbl">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      <div class="meta">{{ section.settings.meta }}</div>
+    </div>
+
+    {%- if featured -%}
+      <div class="blends-row" style="grid-template-columns: 1fr;">
+        {% render 'product-card', product: featured, variant: 'home' %}
+      </div>
+    {%- else -%}
+      <div class="blends-row" style="grid-template-columns: 1fr;">
+        {% render 'product-card',
+          variant: 'home',
+          ph_name: section.settings.placeholder_name,
+          ph_price: section.settings.placeholder_price,
+          ph_blend_number: section.settings.placeholder_blend_number,
+          ph_roast_color: section.settings.placeholder_roast_color,
+          ph_roast_label: section.settings.placeholder_roast_label,
+          ph_region_short: section.settings.placeholder_region_short,
+          ph_region: section.settings.placeholder_region,
+          ph_bars: section.settings.placeholder_bars,
+          ph_tags: section.settings.placeholder_tags,
+          ph_footnote: section.settings.placeholder_footnote %}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured product",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ The pick" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Today's pour." },
+    { "type": "text", "id": "meta", "label": "Meta", "default": "Limited" },
+    { "type": "product", "id": "product", "label": "Product (optional)" },
+    { "type": "header", "content": "Placeholder fallback" },
+    { "type": "text", "id": "placeholder_name", "label": "Name", "default": "Pine Hollow" },
+    { "type": "text", "id": "placeholder_price", "label": "Price", "default": "$24" },
+    { "type": "text", "id": "placeholder_blend_number", "label": "Blend number", "default": "Blend 03" },
+    {
+      "type": "select",
+      "id": "placeholder_roast_color",
+      "label": "Roast color",
+      "options": [
+        { "value": "--amber", "label": "Amber" },
+        { "value": "--ember", "label": "Ember" },
+        { "value": "--pine", "label": "Pine" },
+        { "value": "--paper-2", "label": "Paper-2" }
+      ],
+      "default": "--pine"
+    },
+    { "type": "text", "id": "placeholder_roast_label", "label": "Roast label", "default": "Dark roast" },
+    { "type": "text", "id": "placeholder_region_short", "label": "Region (short)", "default": "Dark · Sumatra" },
+    { "type": "text", "id": "placeholder_region", "label": "Region (long)", "default": "Aceh · 1,400m" },
+    { "type": "range", "id": "placeholder_bars", "label": "Signal bars", "min": 0, "max": 4, "step": 1, "default": 3 },
+    { "type": "text", "id": "placeholder_tags", "label": "Tasting tags (comma-separated)", "default": "Dark cocoa, Cedar, Molasses" },
+    { "type": "text", "id": "placeholder_footnote", "label": "Footnote", "default": "Aceh · 1,400m" }
+  ],
+  "presets": [
+    { "name": "Featured product" }
+  ]
+}
+{% endschema %}

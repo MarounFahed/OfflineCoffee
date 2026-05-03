@@ -1,0 +1,15 @@
+<section class="manifesto" aria-label="Manifesto">
+  <h1>{{ section.settings.heading | newline_to_br | default: "We made coffee for the places we'd rather be." }}</h1>
+</section>
+
+{% schema %}
+{
+  "name": "Manifesto",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Manifesto heading", "default": "We made coffee for the places we'd rather be." }
+  ],
+  "presets": [
+    { "name": "Manifesto" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,7 @@
+{%- comment -%}
+  Accordion item. Params: label (required), body (required, can be HTML), open (bool).
+{%- endcomment -%}
+<details{% if open %} open{% endif %}>
+  <summary>{{ label }}</summary>
+  <div class="accordion-body">{{ body }}</div>
+</details>

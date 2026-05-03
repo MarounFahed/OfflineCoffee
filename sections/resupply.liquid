@@ -1,0 +1,72 @@
+<section class="resupply" aria-label="{{ section.settings.heading | default: 'Resupply' | strip_html }}">
+  <div class="resupply-inner">
+    <div class="resupply-head">
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      <p>{{ section.settings.body }}</p>
+    </div>
+
+    <div class="plans" data-plans>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'plan' -%}
+          {%- assign is_active = block.settings.active_by_default -%}
+          <button
+            type="button"
+            class="plan{% if is_active %} active{% endif %}"
+            data-plan="{{ block.settings.handle | default: block.id }}"
+            aria-pressed="{% if is_active %}true{% else %}false{% endif %}"
+            {{ block.shopify_attributes }}>
+            <div class="plan-name">{{ block.settings.name }}</div>
+            <div class="plan-num">{{ block.settings.sachets }}<small>{{ block.settings.unit | default: 'SACHETS' }}</small></div>
+            <div class="plan-detail">{{ block.settings.detail }}</div>
+            <div class="plan-price">{{ block.settings.price }}</div>
+          </button>
+        {%- endif -%}
+      {%- endfor -%}
+      <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="plan-cta">{{ section.settings.cta_text }}</a>
+    </div>
+
+    {%- if section.settings.fine_print != blank -%}
+      <div class="resupply-fine">{{ section.settings.fine_print }}</div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Resupply",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Resupply\nthe pack." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "The trip doesn't end. Subscribe and we ship the next round before you run out. Skip a shipment. Cancel any time. Really." },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Stock the pack →" },
+    { "type": "url", "id": "cta_link", "label": "CTA link" },
+    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "Skip or cancel anytime — really. · No charge for shipping. · Pause for the off-season." },
+    { "type": "paragraph", "content": "Wire to native Subscriptions selling plans once installed." }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Weekly" },
+        { "type": "text", "id": "handle", "label": "Handle (optional)" },
+        { "type": "number", "id": "sachets", "label": "Sachets number", "default": 12 },
+        { "type": "text", "id": "unit", "label": "Unit label", "default": "SACHETS" },
+        { "type": "text", "id": "detail", "label": "Detail line", "default": "A bag every Monday. For everyday people." },
+        { "type": "text", "id": "price", "label": "Price line", "default": "$22 · ships free" },
+        { "type": "checkbox", "id": "active_by_default", "label": "Active by default", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Resupply",
+      "blocks": [
+        { "type": "plan", "settings": { "name": "Weekly", "sachets": 12, "detail": "A bag every Monday. For everyday people.", "price": "$22 · ships free", "active_by_default": true } },
+        { "type": "plan", "settings": { "name": "Bi-weekly", "sachets": 24, "detail": "Two bags every other Monday. Mix any blends.", "price": "$42 · ships free" } },
+        { "type": "plan", "settings": { "name": "Monthly", "sachets": 36, "detail": "Three bags, once a month. The traveler's pack.", "price": "$60 · ships free" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+<section class="account">
+  <div class="account-head">
+    <h1>{{ 'customer.addresses.title' | t }}</h1>
+    <a class="btn-link" href="{{ routes.account_url }}">← {{ 'customer.account.title' | t }}</a>
+  </div>
+
+  <div style="margin-bottom:var(--s-7);">
+    <h3 class="mono" style="margin-bottom:var(--s-4);">{{ 'customer.addresses.add_new' | t }}</h3>
+    {%- form 'customer_address', customer.new_address -%}
+      {%- if form.errors -%}
+        <div class="form-error" role="alert">
+          {%- for field in form.errors -%}<span>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}.</span>{%- endfor -%}
+        </div>
+      {%- endif -%}
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--s-5); max-width: 720px;">
+        <div class="field"><label>{{ 'customer.addresses.first_name' | t }}</label><input type="text" name="address[first_name]" autocomplete="given-name"></div>
+        <div class="field"><label>{{ 'customer.addresses.last_name' | t }}</label><input type="text" name="address[last_name]" autocomplete="family-name"></div>
+        <div class="field"><label>{{ 'customer.addresses.address1' | t }}</label><input type="text" name="address[address1]" autocomplete="address-line1"></div>
+        <div class="field"><label>{{ 'customer.addresses.city' | t }}</label><input type="text" name="address[city]" autocomplete="address-level2"></div>
+        <div class="field"><label>{{ 'customer.addresses.country' | t }}</label><select name="address[country]">{{ all_country_option_tags }}</select></div>
+        <div class="field"><label>{{ 'customer.addresses.zip' | t }}</label><input type="text" name="address[zip]" autocomplete="postal-code"></div>
+        <div class="field"><label>{{ 'customer.addresses.phone' | t }}</label><input type="tel" name="address[phone]" autocomplete="tel"></div>
+      </div>
+      <div style="margin-top:var(--s-5);">
+        <button type="submit" class="btn">{{ 'customer.addresses.save' | t }}</button>
+      </div>
+    {%- endform -%}
+  </div>
+
+  {%- if customer.addresses.size > 0 -%}
+    <h3 class="mono" style="margin-bottom:var(--s-4);">Saved</h3>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--s-5);">
+      {%- for address in customer.addresses -%}
+        <div style="border:1px solid var(--rule); padding: var(--s-5);">
+          {%- if address == customer.default_address -%}<div class="mono ink-soft" style="font-size:10px; margin-bottom:var(--s-3);">{{ 'customer.addresses.default' | t }}</div>{%- endif -%}
+          {{ address | format_address }}
+          <div style="margin-top:var(--s-3); display:flex; gap:var(--s-4); font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase;">
+            <a href="#" data-edit="{{ address.id }}">{{ 'customer.addresses.edit' | t }}</a>
+            <a href="#" data-delete="{{ address.id }}">{{ 'customer.addresses.delete' | t }}</a>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>

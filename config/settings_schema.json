@@ -1,0 +1,195 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Offline",
+    "theme_version": "0.1.0",
+    "theme_author": "Offline Coffee Co.",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Core"
+      },
+      {
+        "type": "color",
+        "id": "color_paper",
+        "label": "Paper (page background)",
+        "default": "#F5F1E8",
+        "info": "The warm oat that covers ~80% of the site."
+      },
+      {
+        "type": "color",
+        "id": "color_paper_2",
+        "label": "Paper 2 (cards / second tier)",
+        "default": "#EFEADC"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink (type, primary CTA)",
+        "default": "#0F0F0F"
+      },
+      {
+        "type": "header",
+        "content": "Roast moods"
+      },
+      {
+        "type": "color",
+        "id": "color_amber",
+        "label": "Amber — light roast",
+        "default": "#D4923A"
+      },
+      {
+        "type": "color",
+        "id": "color_ember",
+        "label": "Ember — medium roast",
+        "default": "#B85C38"
+      },
+      {
+        "type": "color",
+        "id": "color_pine",
+        "label": "Pine — dark roast",
+        "default": "#3D5240"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Display + body fonts are loaded centrally. Gulfs Display ships self-hosted; licensing must be confirmed before public launch."
+      },
+      {
+        "type": "select",
+        "id": "display_font",
+        "label": "Display family",
+        "options": [
+          { "value": "gulfs", "label": "Gulfs Display (default — confirm license)" },
+          { "value": "anton", "label": "Anton (Google Fonts, free)" },
+          { "value": "archivo-black", "label": "Archivo Black (Google Fonts, free)" }
+        ],
+        "default": "gulfs"
+      }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo_character",
+        "label": "Character mark (small icon, header left)"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_wordmark",
+        "label": "Stacked wordmark (light surfaces)"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_wordmark_inverse",
+        "label": "Stacked wordmark (inverted, for dark/roast surfaces)"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon (PNG, 512×512)"
+      },
+      {
+        "type": "text",
+        "id": "default_coord_stamp",
+        "label": "Default coordinate stamp",
+        "default": "N 38°51′ / W 119°57′ — Steeped here"
+      },
+      {
+        "type": "text",
+        "id": "footer_fine_print",
+        "label": "Footer fine-print line",
+        "default": "Roasted in small batches. Steeped wherever you are."
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "max_page_width",
+        "label": "Max page width",
+        "min": 1200,
+        "max": 1600,
+        "step": 40,
+        "unit": "px",
+        "default": 1440
+      },
+      {
+        "type": "select",
+        "id": "section_spacing",
+        "label": "Section spacing scale",
+        "options": [
+          { "value": "compact", "label": "Compact" },
+          { "value": "standard", "label": "Standard" },
+          { "value": "spacious", "label": "Spacious" }
+        ],
+        "default": "standard"
+      }
+    ]
+  },
+  {
+    "name": "Product cards",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_signal_bars",
+        "label": "Show signal bars",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_tasting_tags",
+        "label": "Show tasting note tags",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "max_tasting_tags",
+        "label": "Max tasting tags",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "default": 3
+      }
+    ]
+  },
+  {
+    "name": "Performance",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "lazy_load_images",
+        "label": "Lazy-load images by default",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "preload_hero",
+        "label": "Preload home hero image",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "url", "id": "social_instagram", "label": "Instagram" },
+      { "type": "url", "id": "social_youtube", "label": "YouTube" },
+      { "type": "url", "id": "social_tiktok", "label": "TikTok" },
+      { "type": "text", "id": "social_handle", "label": "Default social handle (display)", "default": "@offlinecoffee" }
+    ]
+  }
+]

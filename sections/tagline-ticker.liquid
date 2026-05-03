@@ -1,0 +1,41 @@
+<div class="tagline-strip" aria-hidden="true">
+  {%- for block in section.blocks -%}
+    <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Tagline ticker",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "A horizontal strip of brand phrases that runs between sections."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "phrase",
+      "name": "Phrase",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Phrase", "default": "No machine" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tagline ticker",
+      "blocks": [
+        { "type": "phrase", "settings": { "text": "No machine" } },
+        { "type": "phrase", "settings": { "text": "No noise" } },
+        { "type": "phrase", "settings": { "text": "Just coffee" } },
+        { "type": "phrase", "settings": { "text": "Four minutes to anywhere" } },
+        { "type": "phrase", "settings": { "text": "The internet can wait" } },
+        { "type": "phrase", "settings": { "text": "Made for the places without WiFi" } },
+        { "type": "phrase", "settings": { "text": "Out of range. On purpose." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

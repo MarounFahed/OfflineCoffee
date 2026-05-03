@@ -1,0 +1,69 @@
+<section class="cart" aria-label="{{ 'cart.general.title' | t }}">
+  {%- if cart.item_count > 0 -%}
+    <div class="cart-head">
+      <h1>{{ section.settings.heading | default: 'Your pack.' }}</h1>
+      <span class="mono">{{ section.settings.subhead | default: 'Ready for the trip' }}</span>
+    </div>
+
+    <form action="{{ routes.cart_url }}" method="post" id="cart-form">
+      <div class="cart-grid">
+        <div class="cart-items">
+          {%- for item in cart.items -%}
+            <div class="cart-row">
+              <a class="cart-row-img" href="{{ item.product.url }}" aria-hidden="true" tabindex="-1">
+                {%- if item.image != blank -%}
+                  {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100, 200, 300', sizes: '100px', alt: item.title }}
+                {%- else -%}
+                  <span class="mono">{{ item.product.title | slice: 0, 1 | upcase }}</span>
+                {%- endif -%}
+              </a>
+              <div>
+                <a href="{{ item.product.url }}" class="cart-row-title">{{ item.product.title }}</a>
+                {%- unless item.product.has_only_default_variant -%}
+                  <div class="cart-row-meta">{{ item.variant.title }}</div>
+                {%- endunless -%}
+                {%- if item.selling_plan_allocation -%}
+                  <div class="cart-row-meta">{{ item.selling_plan_allocation.selling_plan.name }}</div>
+                {%- endif -%}
+                <a href="{{ item.url_to_remove }}" class="cart-row-remove">{{ 'cart.general.remove' | t }}</a>
+              </div>
+              <div class="qty-stepper" data-qty>
+                <button type="button" data-qty-minus aria-label="{{ 'products.product.decrease_quantity' | t }}">−</button>
+                <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}">
+                <button type="button" data-qty-plus aria-label="{{ 'products.product.increase_quantity' | t }}">+</button>
+              </div>
+              <div class="cart-row-price">{{ item.final_line_price | money }}</div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <aside class="cart-summary" aria-label="Order summary">
+          <div class="cart-summary-row">
+            <span>{{ 'cart.general.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <div class="cart-shipping-note">{{ section.settings.shipping_note | default: 'Ships in 2 days · Flat $5 · Free over $40' }}</div>
+          <button type="submit" name="update" class="btn-secondary btn">{{ 'cart.general.update' | t }}</button>
+          <button type="submit" name="checkout" class="btn btn-full">{{ 'cart.general.checkout' | t }}</button>
+          <p class="mono ink-soft" style="opacity:.6; font-size: 10px;">{{ 'cart.general.taxes_included' | t }}</p>
+        </aside>
+      </div>
+    </form>
+  {%- else -%}
+    <div class="cart-empty">
+      <h1>{{ 'cart.general.empty' | t }}</h1>
+      <a class="btn btn-arrow" href="{{ routes.all_products_collection_url }}">{{ 'cart.general.browse' | t }}</a>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your pack." },
+    { "type": "text", "id": "subhead", "label": "Subhead (mono)", "default": "Ready for the trip" },
+    { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Ships in 2 days · Flat $5 · Free over $40" }
+  ]
+}
+{% endschema %}

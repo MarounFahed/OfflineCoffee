@@ -1,0 +1,32 @@
+<div class="form-stack">
+  <h1>{{ 'customer.login.title' | t }}</h1>
+
+  {%- form 'customer_login', novalidate: 'novalidate' -%}
+    {%- if form.errors -%}
+      <div class="form-error" role="alert">
+        {%- for field in form.errors -%}
+          <span>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}.</span>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="field">
+      <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
+      <input type="email" id="CustomerEmail" name="customer[email]" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+    </div>
+
+    <div class="field">
+      <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
+      <input type="password" id="CustomerPassword" name="customer[password]" autocomplete="current-password" required>
+    </div>
+
+    <div style="display:flex; gap:var(--s-4); flex-wrap:wrap;">
+      <button type="submit" class="btn">{{ 'customer.login.submit' | t }}</button>
+      <a class="btn-link" href="{{ routes.account_recover_url }}">{{ 'customer.login.forgot_password' | t }}</a>
+    </div>
+  {%- endform -%}
+
+  <hr style="margin: var(--s-7) 0;">
+  <p class="mono ink-soft" style="margin-bottom: var(--s-3);">No account yet?</p>
+  <a class="btn-secondary btn" href="{{ routes.account_register_url }}">{{ 'customer.login.create_account' | t }}</a>
+</div>

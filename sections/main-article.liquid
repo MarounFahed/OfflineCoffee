@@ -1,0 +1,93 @@
+<article itemscope itemtype="https://schema.org/Article">
+  <header class="article-hero" style="--mood: var({{ section.settings.hero_mood | default: '--ember' }});">
+    {%- if article.image != blank -%}
+      {% render 'responsive-image',
+        image: article.image,
+        sizes: '100vw',
+        widths: '600, 900, 1200, 1600, 2400',
+        loading: 'eager',
+        fetchpriority: 'high',
+        alt: article.image.alt | default: article.title %}
+    {%- endif -%}
+    <div>
+      <div class="article-meta" itemprop="articleSection">{{ article.tags | first | default: 'Journal' | upcase }} · {{ article.published_at | date: '%d %b %Y' }}</div>
+      <h1 itemprop="headline">{{ article.title }}</h1>
+    </div>
+  </header>
+
+  <div class="article-body" itemprop="articleBody">
+    {{ article.content }}
+  </div>
+
+  <footer class="article-foot">
+    <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+      <span itemprop="name">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+    </span>
+    <span>
+      {%- if article.metafields.offline.read_minutes -%}
+        {{ 'blogs.article.read_time' | t: minutes: article.metafields.offline.read_minutes }}
+      {%- else -%}
+        {%- assign words = article.content | strip_html | split: ' ' | size -%}
+        {%- assign mins = words | divided_by: 200 -%}
+        {%- if mins < 1 -%}{%- assign mins = 1 -%}{%- endif -%}
+        {{ 'blogs.article.read_time' | t: minutes: mins }}
+      {%- endif -%}
+    </span>
+    <span><a href="{{ blog.url }}">{{ 'blogs.article.back' | t }}</a></span>
+  </footer>
+</article>
+
+{%- if blog.articles.size > 1 -%}
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="lbl">§ More</div>
+        <h2>{{ 'blogs.article.more' | t }}</h2>
+        <div class="meta">{{ blog.title }}</div>
+      </div>
+      <div class="journal">
+        {%- assign related_count = 0 -%}
+        {%- for a in blog.articles -%}
+          {%- if a.id != article.id and related_count < 3 -%}
+            <a class="journal-card" href="{{ a.url }}">
+              <div class="journal-art">
+                {%- if a.image != blank -%}
+                  {% render 'responsive-image',
+                    image: a.image,
+                    sizes: '(min-width: 990px) 33vw, 100vw',
+                    widths: '400, 600, 900, 1200',
+                    alt: a.title %}
+                {%- else -%}
+                  <span class="lbl">[ {{ a.title | upcase | truncate: 24 }} ]</span>
+                {%- endif -%}
+              </div>
+              <div class="journal-meta">{{ a.published_at | date: '%d %b' }} · {{ a.tags | first | default: 'Journal' }}</div>
+              <h3 class="journal-title">{{ a.title }}</h3>
+              <p class="journal-dek">{{ a.excerpt_or_content | strip_html | truncatewords: 24 }}</p>
+            </a>
+            {%- assign related_count = related_count | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": [
+    {
+      "type": "select",
+      "id": "hero_mood",
+      "label": "Hero mood (when no image)",
+      "options": [
+        { "value": "--amber", "label": "Amber" },
+        { "value": "--ember", "label": "Ember" },
+        { "value": "--pine", "label": "Pine" }
+      ],
+      "default": "--ember"
+    }
+  ]
+}
+{% endschema %}

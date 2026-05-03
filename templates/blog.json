@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "settings": {
+        "heading": "The Journal.",
+        "subhead": "Field notes, brew logs, occasional opinions.",
+        "show_featured": true,
+        "posts_per_page": 12
+      }
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,24 @@
+{%- comment -%}
+  Responsive image. All <img> in the theme route through this.
+  Params: image (required), sizes, widths, class, alt, loading,
+  fetchpriority, aspect_ratio.
+{%- endcomment -%}
+{%- liquid
+  assign widths = widths | default: '400, 600, 800, 1200, 1600, 2400'
+  assign sizes = sizes | default: '(min-width: 990px) 50vw, 100vw'
+  assign loading = loading | default: 'lazy'
+  if settings.lazy_load_images == false
+    assign loading = 'eager'
+  endif
+  assign alt_text = alt | default: image.alt | default: ''
+-%}
+{%- if image != blank -%}
+  {{ image | image_url: width: 2400 | image_tag:
+    loading: loading,
+    fetchpriority: fetchpriority,
+    widths: widths,
+    sizes: sizes,
+    alt: alt_text,
+    class: class
+  }}
+{%- endif -%}

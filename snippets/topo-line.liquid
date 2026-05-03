@@ -1,0 +1,18 @@
+{%- comment -%}
+  Hand-drawn-feeling contour line, like a topo map.
+  Params: variant (a / b — different curve), opacity (0–1), color.
+{%- endcomment -%}
+{%- liquid
+  assign variant = variant | default: 'a'
+  assign opacity = opacity | default: 0.4
+  assign color = color | default: 'currentColor'
+-%}
+{%- if variant == 'b' -%}
+  <svg class="topo" viewBox="0 0 1200 32" preserveAspectRatio="none" aria-hidden="true" style="opacity: {{ opacity }}; color: {{ color }};">
+    <path d="M0 16 Q 60 28 120 14 T 240 18 T 360 10 T 480 22 T 600 12 T 720 20 T 840 8 T 960 22 T 1080 14 T 1200 18" fill="none" stroke="currentColor" stroke-width="1"/>
+  </svg>
+{%- else -%}
+  <svg class="topo" viewBox="0 0 1200 32" preserveAspectRatio="none" aria-hidden="true" style="opacity: {{ opacity }}; color: {{ color }};">
+    <path d="M0 24 Q 60 4 120 18 T 240 16 T 360 22 T 480 8 T 600 20 T 720 14 T 840 24 T 960 10 T 1080 18 T 1200 16" fill="none" stroke="currentColor" stroke-width="1"/>
+  </svg>
+{%- endif -%}

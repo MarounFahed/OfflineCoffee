@@ -1,0 +1,37 @@
+<section class="compost{% if section.settings.background == 'amber' %} compost--amber{% elsif section.settings.background == 'ember' %} compost--ember{% elsif section.settings.background == 'paper' %} compost--paper{% endif %}">
+  <div class="compost-inner">
+    <div>
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      {%- if section.settings.tag != blank -%}
+        <span class="compost-tag">{{ section.settings.tag }}</span>
+      {%- endif -%}
+    </div>
+    <p>{{ section.settings.body }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Compost callout",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Background",
+      "options": [
+        { "value": "pine", "label": "Pine (default)" },
+        { "value": "ember", "label": "Ember" },
+        { "value": "amber", "label": "Amber" },
+        { "value": "paper", "label": "Paper-2 (light)" }
+      ],
+      "default": "pine"
+    },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Compostable.\nNot just recyclable." },
+    { "type": "text", "id": "tag", "label": "Tag (callout)", "default": "100% Plant-based filter · OK for your backyard compost" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "The sachet is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring." }
+  ],
+  "presets": [
+    { "name": "Compost callout" }
+  ]
+}
+{% endschema %}

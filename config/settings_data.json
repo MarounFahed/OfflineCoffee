@@ -1,0 +1,31 @@
+{
+  "current": {
+    "color_paper": "#F5F1E8",
+    "color_paper_2": "#EFEADC",
+    "color_ink": "#0F0F0F",
+    "color_amber": "#D4923A",
+    "color_ember": "#B85C38",
+    "color_pine": "#3D5240",
+    "display_font": "gulfs",
+    "default_coord_stamp": "N 38°51′ / W 119°57′ — Steeped here",
+    "footer_fine_print": "Roasted in small batches. Steeped wherever you are.",
+    "max_page_width": 1440,
+    "section_spacing": "standard",
+    "show_signal_bars": true,
+    "show_tasting_tags": true,
+    "max_tasting_tags": 3,
+    "lazy_load_images": true,
+    "preload_hero": true,
+    "social_handle": "@offlinecoffee"
+  },
+  "presets": {
+    "Offline (default)": {
+      "color_paper": "#F5F1E8",
+      "color_paper_2": "#EFEADC",
+      "color_ink": "#0F0F0F",
+      "color_amber": "#D4923A",
+      "color_ember": "#B85C38",
+      "color_pine": "#3D5240"
+    }
+  }
+}

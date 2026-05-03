@@ -1,0 +1,18 @@
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "announcement_text": "Steeped. Not instant. — Free shipping over $40",
+        "show_character": true,
+        "brand_subline": "COFFEE · EST. NOWHERE",
+        "menu": "main-menu",
+        "show_search": true,
+        "show_account": true
+      }
+    }
+  },
+  "order": ["header"]
+}

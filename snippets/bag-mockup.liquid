@@ -1,0 +1,34 @@
+{%- comment -%}
+  The on-bag visual used until real product photography lands.
+  Params:
+    blend_name (required) — e.g. "Aspen Morning"
+    blend_number (required) — e.g. "Blend 01"
+    bars (1–4) — signal-bar count
+    region — e.g. "Light · Ethiopia · Yirgacheffe"
+    sachets — e.g. "12 sachets"
+    brew — e.g. "200°F · 4 min"
+    paper (bool) — invert bars for dark backgrounds
+{%- endcomment -%}
+{%- liquid
+  assign bars = bars | default: 0
+  assign region = region | default: ''
+  assign sachets = sachets | default: '12 sachets'
+  assign brew = brew | default: '200°F · 4 min'
+  assign blend_number = blend_number | default: ''
+-%}
+<div class="bag">
+  <div class="bag-top">
+    <span>{{ blend_number }}</span>
+    {% render 'signal-bars', bars: bars, paper: paper %}
+  </div>
+  <div>
+    <div class="bag-name">{{ blend_name }}</div>
+    {%- if region != blank -%}
+      <div class="bag-region">{{ region }}</div>
+    {%- endif -%}
+  </div>
+  <div class="bag-bottom">
+    <span>{{ sachets }}</span>
+    <span>{{ brew }}</span>
+  </div>
+</div>

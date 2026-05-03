@@ -1,0 +1,10 @@
+{%- comment -%}
+  Coordinate stamp. Param: text (string).
+  If empty, falls back to settings.default_coord_stamp.
+{%- endcomment -%}
+{%- liquid
+  assign text = text | default: settings.default_coord_stamp
+-%}
+{%- if text != blank -%}
+  <span class="coord-stamp">{{ text }}</span>
+{%- endif -%}

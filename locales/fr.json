@@ -1,0 +1,27 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Aller au contenu",
+      "open_menu": "Ouvrir le menu",
+      "close_menu": "Fermer le menu",
+      "search": "Rechercher",
+      "account": "Compte",
+      "cart": "Panier"
+    },
+    "transitions": {
+      "going_offline": "Hors-ligne…"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Ajouter au sac"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Votre sac",
+      "empty": "Le sac est vide.",
+      "checkout": "Commander"
+    }
+  }
+}

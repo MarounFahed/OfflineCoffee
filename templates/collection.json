@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection",
+      "settings": {
+        "eyebrow": "§ The Pack — All blends · Three roasts · One ritual",
+        "description": "Single-origin specialty coffee, ground fresh, sealed in compostable filter sachets. Hot water in. Coffee out. No machine, no grinder, no signal required.",
+        "show_meta": true,
+        "meta_1": "3 blends",
+        "meta_2": "+ 2 packs",
+        "meta_3": "Ships in 2 days",
+        "products_per_page": 12,
+        "show_foot": true,
+        "foot_center": "— Hand-roasted weekly —",
+        "foot_link_text": "Subscribe to restock notes",
+        "foot_link_url": "/pages/about"
+      },
+      "blocks": {
+        "editorial1": {
+          "type": "editorial_break",
+          "settings": {
+            "after_product_n": 3,
+            "eyebrow": "§ Field note · 12 Aug",
+            "quote": "\"The best coffee on a four-day backpacking trip is the one you don't have to think about. Steep. Wait. Drink. Pack out the sachet.\"",
+            "attribution": "— From the journal · Vol. 03",
+            "stamp": "N 44°25′ / W 110°35′",
+            "label": "[ EDITORIAL · 1200 × 1200 ]"
+          }
+        },
+        "bundle1": {
+          "type": "bundle_promo",
+          "settings": {
+            "after_product_n": 6,
+            "eyebrow": "§ Resupply — Subscribe & save",
+            "heading": "Stock the pack.\nSave 15%.",
+            "body": "Pick a frequency. Pick your blends. Skip a shipment, swap roasts, or cancel any time. The pack restocks itself before you run out.",
+            "from_label": "From",
+            "price": "$20",
+            "price_unit": "/ MO",
+            "savings": "Save 15% on every shipment",
+            "cta_text": "Resupply →",
+            "cta_link": "/collections/all"
+          }
+        }
+      },
+      "block_order": ["editorial1", "bundle1"]
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,141 @@
+<div class="announce">
+  {%- if section.settings.announcement_link != blank -%}
+    <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_text }}</a>
+  {%- else -%}
+    {{ section.settings.announcement_text }}
+  {%- endif -%}
+</div>
+
+<header class="header" id="siteHeader" role="banner">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      {%- if section.settings.show_character and settings.logo_character != blank -%}
+        {{ settings.logo_character | image_url: width: 96 | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          widths: '48, 96, 144',
+          sizes: '48px',
+          alt: shop.name,
+          class: 'brand-character' }}
+      {%- endif -%}
+      <span class="brand-text">
+        OFFLINE
+        {%- if section.settings.brand_subline != blank -%}
+          <span class="brand-sub">{{ section.settings.brand_subline }}</span>
+        {%- endif -%}
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="{{ 'general.accessibility.open_menu' | t }}">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="header-right">
+      {%- if section.settings.show_search -%}
+        <a href="{{ routes.search_url }}" class="ghost" aria-label="{{ 'general.accessibility.search' | t }}">{{ 'general.accessibility.search' | t }}</a>
+      {%- endif -%}
+      {%- if section.settings.show_account -%}
+        <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="ghost" aria-label="{{ 'general.accessibility.account' | t }}">{{ 'general.accessibility.account' | t }}</a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="cart-pill" aria-label="{{ 'general.accessibility.cart' | t }}">
+        Pack <span style="opacity:.6" aria-hidden="true">·</span> <span data-cart-count>{{ cart.item_count }}</span>
+      </a>
+      <button class="menu-btn cart-pill" aria-label="{{ 'general.accessibility.open_menu' | t }}" aria-controls="mobileMenu" aria-expanded="false" data-menu-open type="button">Menu</button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-head">
+    <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      <span class="brand-text">OFFLINE</span>
+    </a>
+    <button class="mobile-menu-close" data-menu-close aria-label="{{ 'general.accessibility.close_menu' | t }}" type="button">Close</button>
+  </div>
+  <ul class="mobile-menu-list" role="list">
+    {%- for link in section.settings.menu.links -%}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {%- endfor -%}
+  </ul>
+  <div class="mobile-menu-foot">
+    <ul role="list">
+      <li><a href="{{ routes.search_url }}">{{ 'general.accessibility.search' | t }}</a></li>
+      <li><a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">{{ 'general.accessibility.account' | t }}</a></li>
+      <li><a href="{{ routes.cart_url }}">{{ 'general.accessibility.cart' | t }} ({{ cart.item_count }})</a></li>
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "div",
+  "class": "header-wrap",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Text",
+      "default": "Steeped. Not instant. — Free shipping over $40"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Link (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Brand"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_character",
+      "label": "Show character mark next to wordmark",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "brand_subline",
+      "label": "Wordmark subline",
+      "default": "COFFEE · EST. NOWHERE"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Primary menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "header",
+      "content": "Header actions"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account link",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_paper.rgb | default: '#F5F1E8' }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32 }}">
+    {%- endif -%}
+
+    {%- comment -%}
+      Fonts. TODO §11.3: self-host (subset Latin + Latin-Extended) and
+      replace this Google Fonts link. Gulfs Display is self-hosted via
+      @font-face in theme.css; licensing must be confirmed before
+      public launch (sourced from freefontdownload.org, no license file).
+    {%- endcomment -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="font" href="{{ 'gulfs-display.ttf' | asset_url }}" type="font/ttf" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+
+    {%- comment -%}
+      Hero LCP preload. The hero section adds a `<link rel="preload">`
+      via section.settings inside hero.liquid when a background image
+      is configured (see hero.liquid). Layout-level can't iterate
+      sections, so the per-section approach is correct here.
+    {%- endcomment -%}
+
+    <style>
+      :root {
+        --paper: {{ settings.color_paper | default: '#F5F1E8' }};
+        --paper-2: {{ settings.color_paper_2 | default: '#EFEADC' }};
+        --ink: {{ settings.color_ink | default: '#0F0F0F' }};
+        --amber: {{ settings.color_amber | default: '#D4923A' }};
+        --ember: {{ settings.color_ember | default: '#B85C38' }};
+        --pine: {{ settings.color_pine | default: '#3D5240' }};
+      }
+    </style>
+
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+    {{ content_for_header }}
+
+    <title>
+      {{ page_title }}{% if current_tags %} &mdash; {{ 'general.meta.tagged' | t }}: {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &mdash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &mdash; {{ shop.name }}{% endunless %}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {% render 'meta-tags' %}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+  </head>
+
+  <body class="template-{{ template.name | handle }}{% if template.suffix %} template-{{ template.name | handle }}--{{ template.suffix | handle }}{% endif %}">
+    <a class="skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+
+    {% sections 'header-group' %}
+
+    <main id="MainContent" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% sections 'footer-group' %}
+
+    <div class="cursor-coord" id="cursorCoord" aria-hidden="true">N 0°00′ / W 0°00′</div>
+    <div class="going-offline" id="goingOffline" aria-hidden="true">{{ 'general.transitions.going_offline' | t }}</div>
+  </body>
+</html>
