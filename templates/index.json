@@ -4,11 +4,11 @@
       "type": "hero",
       "settings": {
         "mood": "pine",
-        "eyebrow": "Blend № 03 · Pine Hollow · Dark roast",
+        "eyebrow": "Blend № 03 · Cedar Peak · Dark roast",
         "heading": "Out of range.\nOn purpose.",
         "lead": "Specialty coffee in a compostable filter sachet. Hot water. Four minutes. The cabin doesn't need WiFi to make a good cup.",
         "cta_primary_text": "Shop the blends",
-        "cta_primary_link": "/collections/all",
+        "cta_primary_link": "/collections/all-blends",
         "cta_secondary_text": "Read the why",
         "cta_secondary_link": "/pages/about",
         "show_character": true,
@@ -45,8 +45,9 @@
         "aspen": {
           "type": "blend",
           "settings": {
-            "placeholder_name": "Aspen Morning",
-            "placeholder_price": "$24",
+            "product": "pine-grove-bag",
+            "placeholder_name": "Pine Grove",
+            "placeholder_price": "$10",
             "placeholder_blend_number": "Blend 01",
             "placeholder_roast_color": "--amber",
             "placeholder_roast_label": "Light roast",
@@ -60,8 +61,9 @@
         "ember": {
           "type": "blend",
           "settings": {
-            "placeholder_name": "Desert Ember",
-            "placeholder_price": "$24",
+            "product": "juniper-valley-bag",
+            "placeholder_name": "Juniper Valley",
+            "placeholder_price": "$10",
             "placeholder_blend_number": "Blend 02",
             "placeholder_roast_color": "--ember",
             "placeholder_roast_label": "Medium roast",
@@ -75,8 +77,9 @@
         "pine": {
           "type": "blend",
           "settings": {
-            "placeholder_name": "Pine Hollow",
-            "placeholder_price": "$24",
+            "product": "cedar-peak-bag",
+            "placeholder_name": "Cedar Peak",
+            "placeholder_price": "$10",
             "placeholder_blend_number": "Blend 03",
             "placeholder_roast_color": "--pine",
             "placeholder_roast_label": "Dark roast",
@@ -134,7 +137,7 @@
         "heading": "Resupply\nthe pack.",
         "body": "The trip doesn't end. Subscribe and we ship the next round before you run out. Skip a shipment. Cancel any time. Really.",
         "cta_text": "Stock the pack →",
-        "cta_link": "/collections/all",
+        "cta_link": "/collections/all-blends",
         "fine_print": "Skip or cancel anytime — really. · No charge for shipping. · Pause for the off-season."
       },
       "blocks": {
