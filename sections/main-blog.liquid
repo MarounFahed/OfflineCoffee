@@ -16,7 +16,7 @@
             sizes: '(min-width: 990px) 60vw, 100vw',
             widths: '600, 900, 1200, 1600, 2400',
             loading: 'eager',
-            alt: featured.title }}
+            alt: featured.title %}
         {%- else -%}
           <span class="lbl">[ FEATURED · {{ featured.title | upcase | truncate: 24 }} ]</span>
         {%- endif -%}

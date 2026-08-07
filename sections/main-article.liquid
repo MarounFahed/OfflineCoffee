@@ -1,13 +1,14 @@
 <article itemscope itemtype="https://schema.org/Article">
   <header class="article-hero" style="--mood: var({{ section.settings.hero_mood | default: '--ember' }});">
     {%- if article.image != blank -%}
+      {%- assign img_alt = article.image.alt | default: article.title -%}
       {% render 'responsive-image',
         image: article.image,
         sizes: '100vw',
         widths: '600, 900, 1200, 1600, 2400',
         loading: 'eager',
         fetchpriority: 'high',
-        alt: article.image.alt | default: article.title %}
+        alt: img_alt %}
     {%- endif -%}
     <div>
       <div class="article-meta" itemprop="articleSection">{{ article.tags | first | default: 'Journal' | upcase }} · {{ article.published_at | date: '%d %b %Y' }}</div>

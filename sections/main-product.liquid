@@ -25,19 +25,22 @@
 
   <div class="pdp-gallery" style="--mood: var({{ mood_color }});">
     {%- if product.featured_image != blank -%}
+      {%- assign img_alt = product.featured_image.alt | default: product.title -%}
       {% render 'responsive-image',
         image: product.featured_image,
         sizes: '(min-width: 990px) 50vw, 100vw',
         widths: '600, 900, 1200, 1600, 2400',
         loading: 'eager',
         fetchpriority: 'high',
-        alt: product.featured_image.alt | default: product.title %}
+        alt: img_alt %}
     {%- else -%}
+      {%- assign blend_num = product.metafields.offline.blend_number.value | default: '' -%}
+      {%- assign region_short = product.metafields.offline.region_short.value | default: product.vendor -%}
       {% render 'bag-mockup',
         blend_name: product.title,
-        blend_number: product.metafields.offline.blend_number.value | default: '',
+        blend_number: blend_num,
         bars: bars,
-        region: product.metafields.offline.region_short.value | default: product.vendor,
+        region: region_short,
         paper: true %}
     {%- endif -%}
     {%- if product.images.size > 1 -%}
