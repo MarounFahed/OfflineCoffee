@@ -325,7 +325,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   min-height: min(720px, 92vh);
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: var(--gutter);
-  padding-block: clamp(18px, 3.5vh, 40px) clamp(48px, 8vh, 96px);
+  padding-block: clamp(4px, 0.9vh, 10px) clamp(48px, 8vh, 96px);
   overflow: hidden;
 }
 .hero-image {
