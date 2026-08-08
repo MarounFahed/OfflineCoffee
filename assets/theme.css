@@ -97,6 +97,8 @@
   --amber: #D4923A;
   --ember: #B85C38;
   --pine: #3D5240;
+  --cherry: #B23A2E;
+  --gold: #8F6B18;
 
   --mood: var(--pine);
   --mood-wash: rgba(61, 82, 64, 0.08);

@@ -21,8 +21,8 @@
         "scroll_cue_text": "Keep reading"
       },
       "blocks": {
-        "v1": { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "cta_primary_link": "/products/pine-grove-bag" } },
-        "v2": { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "cta_primary_link": "/products/juniper-valley-bag" } },
+        "v1": { "type": "variant", "settings": { "mood_color": "--cherry", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "cta_primary_link": "/products/pine-grove-bag" } },
+        "v2": { "type": "variant", "settings": { "mood_color": "--gold", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "cta_primary_link": "/products/juniper-valley-bag" } },
         "v3": { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "cta_primary_link": "/products/cedar-peak-bag" } }
       },
       "block_order": ["v1", "v2", "v3"]
