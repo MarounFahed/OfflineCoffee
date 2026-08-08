@@ -49,21 +49,6 @@
   }
 
   /* ----- Plan tabs (Resupply) ----- */
-  function planTabs() {
-    const list = document.querySelectorAll('[data-plans] [data-plan]');
-    if (!list.length) return;
-    list.forEach((plan) => {
-      plan.addEventListener('click', () => {
-        list.forEach((p) => {
-          p.classList.remove('active');
-          p.setAttribute('aria-pressed', 'false');
-        });
-        plan.classList.add('active');
-        plan.setAttribute('aria-pressed', 'true');
-      });
-    });
-  }
-
   /* ----- Brew timer (4 minutes, mono digits, no sound) ----- */
   function brewTimer() {
     const pill = document.getElementById('timerPill');
@@ -191,19 +176,6 @@
     });
   }
 
-  /* ----- PDP one-time / resupply toggle ----- */
-  function pdpToggle() {
-    document.querySelectorAll('[data-pdp-toggle]').forEach((group) => {
-      const buttons = group.querySelectorAll('button');
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          buttons.forEach((b) => b.setAttribute('aria-pressed', 'false'));
-          btn.setAttribute('aria-pressed', 'true');
-        });
-      });
-    });
-  }
-
   /* ----- Random coordinate stamp (404, etc.) ----- */
   function randomCoord() {
     document.querySelectorAll('[data-random-coord]').forEach((el) => {
@@ -221,13 +193,11 @@
   function init() {
     header();
     mobileMenu();
-    planTabs();
     brewTimer();
     cursorCoord();
     goingOffline();
     filterPills();
     qtyStepper();
-    pdpToggle();
     randomCoord();
   }
 

@@ -72,16 +72,6 @@
       },
       "block_order": ["tent", "train", "hotel"]
     },
-    "resupply": {
-      "type": "resupply",
-      "settings": { "heading": "Resupply\nthe pack.", "body": "The trip doesn't end. Subscribe and we ship the next round before you run out. Skip a shipment. Cancel any time. Really.", "cta_text": "Stock the pack →", "cta_link": "/collections/all-blends", "fine_print": "Skip or cancel anytime — really. · No charge for shipping. · Pause for the off-season." },
-      "blocks": {
-        "weekly": { "type": "plan", "settings": { "name": "Weekly", "sachets": 12, "detail": "A bag every Monday. For everyday people.", "price": "$22 · ships free", "active_by_default": true } },
-        "biweekly": { "type": "plan", "settings": { "name": "Bi-weekly", "sachets": 24, "detail": "Two bags every other Monday. Mix any blends.", "price": "$42 · ships free" } },
-        "monthly": { "type": "plan", "settings": { "name": "Monthly", "sachets": 36, "detail": "Three bags, once a month. The traveler's pack.", "price": "$60 · ships free" } }
-      },
-      "block_order": ["weekly", "biweekly", "monthly"]
-    },
     "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The sachet is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring." } },
     "journal-preview": {
       "type": "journal-preview",
@@ -94,5 +84,5 @@
       "block_order": ["p1", "p2", "p3"]
     }
   },
-  "order": ["hero", "tagline-ticker", "featured-blends", "brew-strip", "pull-quote", "places", "resupply", "compost", "journal-preview"]
+  "order": ["hero", "tagline-ticker", "featured-blends", "brew-strip", "pull-quote", "places", "compost", "journal-preview"]
 }

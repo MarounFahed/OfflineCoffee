@@ -3,7 +3,6 @@
   assign sort_by = collection.sort_by | default: collection.default_sort_by
 
   assign editorial_blocks = section.blocks | where: 'type', 'editorial_break'
-  assign bundle_blocks = section.blocks | where: 'type', 'bundle_promo'
 -%}
 
 <section class="coll-header">
@@ -66,11 +65,6 @@
         <button class="pill" type="button" aria-pressed="false">2 Bars</button>
         <button class="pill" type="button" aria-pressed="false">3 Bars</button>
       </div>
-      <div class="filter-group" data-filter-group>
-        <span class="filter-group-label">{{ 'collections.general.filter.plan' | t }}</span>
-        <button class="pill" type="button" aria-pressed="false">One-time</button>
-        <button class="pill" type="button" aria-pressed="false">Resupply</button>
-      </div>
     {%- endif -%}
 
     <div class="filter-spacer"></div>
@@ -123,32 +117,6 @@
             </div>
           {%- endif -%}
         {%- endfor -%}
-
-        {%- comment -%} Inject bundle promos at configured product index. {%- endcomment -%}
-        {%- for bd in bundle_blocks -%}
-          {%- if bd.settings.after_product_n == idx -%}
-            <div class="bundle" {{ bd.shopify_attributes }}>
-              <div class="bundle-art">
-                <div class="stack">
-                  <div><span>01</span><span>Light</span></div>
-                  <div><span>02</span><span>Medium</span></div>
-                  <div><span>03</span><span>Dark</span></div>
-                </div>
-              </div>
-              <div>
-                <div class="bundle-eyebrow">{{ bd.settings.eyebrow }}</div>
-                <h3>{{ bd.settings.heading | newline_to_br }}</h3>
-                <p>{{ bd.settings.body }}</p>
-              </div>
-              <div class="bundle-cta">
-                <span class="bundle-eyebrow" style="margin-bottom:0;">{{ bd.settings.from_label | default: 'From' }}</span>
-                <span class="price">{{ bd.settings.price }}<span style="font-family:var(--mono);font-size:14px;letter-spacing:.1em;opacity:.7;margin-left:6px;">{{ bd.settings.price_unit | default: '/ MO' }}</span></span>
-                {%- if bd.settings.savings != blank -%}<span class="save">{{ bd.settings.savings }}</span>{%- endif -%}
-                <a href="{{ bd.settings.cta_link | default: '#' }}" class="btn-light">{{ bd.settings.cta_text }}</a>
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
       {%- endfor -%}
     </section>
 
@@ -194,7 +162,7 @@
     { "type": "header", "content": "Footer (below grid)" },
     { "type": "checkbox", "id": "show_foot", "label": "Show foot row", "default": true },
     { "type": "text", "id": "foot_center", "label": "Center note", "default": "— Hand-roasted weekly —" },
-    { "type": "text", "id": "foot_link_text", "label": "Right link text", "default": "Subscribe to restock notes" },
+    { "type": "text", "id": "foot_link_text", "label": "Right link text", "default": "How to brew" },
     { "type": "url", "id": "foot_link_url", "label": "Right link URL" }
   ],
   "blocks": [
@@ -209,22 +177,6 @@
         { "type": "image_picker", "id": "image", "label": "Image" },
         { "type": "text", "id": "stamp", "label": "Stamp", "default": "N 44°25′ / W 110°35′" },
         { "type": "text", "id": "label", "label": "Bottom-right label", "default": "[ EDITORIAL · 1200 × 1200 ]" }
-      ]
-    },
-    {
-      "type": "bundle_promo",
-      "name": "Bundle promo",
-      "settings": [
-        { "type": "range", "id": "after_product_n", "label": "After product #", "min": 1, "max": 24, "step": 1, "default": 6 },
-        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ Resupply — Subscribe & save" },
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Stock the pack.\nSave 15%." },
-        { "type": "textarea", "id": "body", "label": "Body", "default": "Pick a frequency. Pick your blends. Skip a shipment, swap roasts, or cancel any time. The pack restocks itself before you run out." },
-        { "type": "text", "id": "from_label", "label": "From label", "default": "From" },
-        { "type": "text", "id": "price", "label": "Price (display)", "default": "$20" },
-        { "type": "text", "id": "price_unit", "label": "Price unit", "default": "/ MO" },
-        { "type": "text", "id": "savings", "label": "Savings line", "default": "Save 15% on every shipment" },
-        { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Resupply →" },
-        { "type": "url", "id": "cta_link", "label": "CTA link" }
       ]
     }
   ],

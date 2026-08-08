@@ -93,11 +93,6 @@
         <input type="hidden" name="id" value="{{ current_variant.id }}">
       {%- endunless -%}
 
-      <div class="pdp-toggle" data-pdp-toggle role="group" aria-label="{{ 'products.product.purchase_type.label' | t }}">
-        <button type="button" aria-pressed="true">{{ 'products.product.purchase_type.one_time' | t }}</button>
-        <button type="button" aria-pressed="false">{{ 'products.product.purchase_type.subscription' | t }}</button>
-      </div>
-
       <div class="pdp-quantity">
         <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
         <div class="qty-stepper" data-qty>

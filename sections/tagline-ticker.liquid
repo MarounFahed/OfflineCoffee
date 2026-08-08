@@ -1,7 +1,13 @@
-<div class="tagline-strip" aria-hidden="true">
-  {%- for block in section.blocks -%}
-    <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
-  {%- endfor -%}
+<div class="tagline-strip">
+  <div class="tagline-track">
+    {%- for i in (1..2) -%}
+      <div class="tagline-set" aria-hidden="{% if i == 2 %}true{% else %}false{% endif %}">
+        {%- for block in section.blocks -%}
+          <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
 </div>
 
 {% schema %}

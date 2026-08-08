@@ -12,8 +12,8 @@
         "products_per_page": 12,
         "show_foot": true,
         "foot_center": "— Hand-roasted weekly —",
-        "foot_link_text": "Subscribe to restock notes",
-        "foot_link_url": "/pages/about"
+        "foot_link_text": "How to brew",
+        "foot_link_url": "/pages/the-brew"
       },
       "blocks": {
         "editorial1": {
@@ -26,24 +26,9 @@
             "stamp": "N 44°25′ / W 110°35′",
             "label": "[ EDITORIAL · 1200 × 1200 ]"
           }
-        },
-        "bundle1": {
-          "type": "bundle_promo",
-          "settings": {
-            "after_product_n": 6,
-            "eyebrow": "§ Resupply — Subscribe & save",
-            "heading": "Stock the pack.\nSave 15%.",
-            "body": "Pick a frequency. Pick your blends. Skip a shipment, swap roasts, or cancel any time. The pack restocks itself before you run out.",
-            "from_label": "From",
-            "price": "$20",
-            "price_unit": "/ MO",
-            "savings": "Save 15% on every shipment",
-            "cta_text": "Resupply →",
-            "cta_link": "/collections/all-blends"
-          }
         }
       },
-      "block_order": ["editorial1", "bundle1"]
+      "block_order": ["editorial1"]
     }
   },
   "order": ["main"]

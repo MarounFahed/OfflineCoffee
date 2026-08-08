@@ -51,11 +51,6 @@
       "decrease_quantity": "Decrease quantity",
       "increase_quantity": "Increase quantity",
       "vendor": "By {{ vendor }}",
-      "purchase_type": {
-        "label": "Purchase type",
-        "one_time": "One-time",
-        "subscription": "Resupply"
-      },
       "accordion": {
         "brew": "Brew perfectly",
         "inside": "What's inside",
@@ -76,8 +71,7 @@
       "filter_by": "Filter by",
       "filter": {
         "roast": "Roast",
-        "intensity": "Intensity",
-        "plan": "Plan"
+        "intensity": "Intensity"
       },
       "sort_by": "Sort",
       "sort": {
