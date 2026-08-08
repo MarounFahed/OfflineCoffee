@@ -4,7 +4,7 @@
       "type": "hero",
       "settings": {
         "mood": "pine",
-        "eyebrow": "Blend № 03 · Cedar Peak · Dark roast",
+        "eyebrow": "Blend № 01 · Pine Grove · Light roast",
         "heading": "Out of range.\nOn purpose.",
         "lead": "Specialty coffee in a compostable filter sachet. Hot water. Four minutes. The cabin doesn't need WiFi to make a good cup.",
         "cta_primary_text": "Shop the blends",
@@ -19,7 +19,13 @@
         "stamp_text": "Steeped here\nN 38°51′ / W 119°57′\n14 Aug · 06:42",
         "show_scroll_cue": true,
         "scroll_cue_text": "Keep reading"
-      }
+      },
+      "blocks": {
+        "v1": { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "cta_primary_link": "/products/pine-grove-bag" } },
+        "v2": { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "cta_primary_link": "/products/juniper-valley-bag" } },
+        "v3": { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "cta_primary_link": "/products/cedar-peak-bag" } }
+      },
+      "block_order": ["v1", "v2", "v3"]
     },
     "tagline-ticker": {
       "type": "tagline-ticker",
@@ -36,70 +42,17 @@
     },
     "featured-blends": {
       "type": "featured-blends",
-      "settings": {
-        "eyebrow": "§ 01 — The Pack",
-        "heading": "Three blends.\nPick a mood.",
-        "meta": "Roasted weekly\nShips in 2 days"
-      },
+      "settings": { "eyebrow": "§ 01 — The Pack", "heading": "Three blends.\nPick a mood.", "meta": "Roasted weekly\nShips in 2 days" },
       "blocks": {
-        "aspen": {
-          "type": "blend",
-          "settings": {
-            "product": "pine-grove-bag",
-            "placeholder_name": "Pine Grove",
-            "placeholder_price": "$10",
-            "placeholder_blend_number": "Blend 01",
-            "placeholder_roast_color": "--amber",
-            "placeholder_roast_label": "Light roast",
-            "placeholder_region_short": "Light · Ethiopia",
-            "placeholder_region": "Yirgacheffe · 1,950m",
-            "placeholder_bars": 1,
-            "placeholder_tags": "Honey, Stone fruit, Citrus",
-            "placeholder_footnote": "Yirgacheffe · 1,950m"
-          }
-        },
-        "ember": {
-          "type": "blend",
-          "settings": {
-            "product": "juniper-valley-bag",
-            "placeholder_name": "Juniper Valley",
-            "placeholder_price": "$10",
-            "placeholder_blend_number": "Blend 02",
-            "placeholder_roast_color": "--ember",
-            "placeholder_roast_label": "Medium roast",
-            "placeholder_region_short": "Medium · Colombia",
-            "placeholder_region": "Huila · 1,700m",
-            "placeholder_bars": 2,
-            "placeholder_tags": "Cocoa, Caramel, Plum",
-            "placeholder_footnote": "Huila · 1,700m"
-          }
-        },
-        "pine": {
-          "type": "blend",
-          "settings": {
-            "product": "cedar-peak-bag",
-            "placeholder_name": "Cedar Peak",
-            "placeholder_price": "$10",
-            "placeholder_blend_number": "Blend 03",
-            "placeholder_roast_color": "--pine",
-            "placeholder_roast_label": "Dark roast",
-            "placeholder_region_short": "Dark · Sumatra",
-            "placeholder_region": "Aceh · 1,400m",
-            "placeholder_bars": 3,
-            "placeholder_tags": "Dark cocoa, Cedar, Molasses",
-            "placeholder_footnote": "Aceh · 1,400m"
-          }
-        }
+        "aspen": { "type": "blend", "settings": { "product": "pine-grove-bag", "placeholder_name": "Pine Grove", "placeholder_price": "$10", "placeholder_blend_number": "Blend 01", "placeholder_roast_color": "--amber", "placeholder_roast_label": "Light roast", "placeholder_region_short": "Light · Ethiopia", "placeholder_region": "Yirgacheffe · 1,950m", "placeholder_bars": 1, "placeholder_tags": "Honey, Stone fruit, Citrus", "placeholder_footnote": "Yirgacheffe · 1,950m" } },
+        "ember": { "type": "blend", "settings": { "product": "juniper-valley-bag", "placeholder_name": "Juniper Valley", "placeholder_price": "$10", "placeholder_blend_number": "Blend 02", "placeholder_roast_color": "--ember", "placeholder_roast_label": "Medium roast", "placeholder_region_short": "Medium · Colombia", "placeholder_region": "Huila · 1,700m", "placeholder_bars": 2, "placeholder_tags": "Cocoa, Caramel, Plum", "placeholder_footnote": "Huila · 1,700m" } },
+        "pine": { "type": "blend", "settings": { "product": "cedar-peak-bag", "placeholder_name": "Cedar Peak", "placeholder_price": "$10", "placeholder_blend_number": "Blend 03", "placeholder_roast_color": "--pine", "placeholder_roast_label": "Dark roast", "placeholder_region_short": "Dark · Sumatra", "placeholder_region": "Aceh · 1,400m", "placeholder_bars": 3, "placeholder_tags": "Dark cocoa, Cedar, Molasses", "placeholder_footnote": "Aceh · 1,400m" } }
       },
       "block_order": ["aspen", "ember", "pine"]
     },
     "brew-strip": {
       "type": "brew-strip",
-      "settings": {
-        "eyebrow": "§ 02 — The Brew",
-        "heading": "Four minutes.\nThat's it.",
-        "meta": "No machine\nNo grinder"
-      },
+      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Four minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
       "blocks": {
         "s0": { "type": "step", "settings": { "number": "00", "title": "Boil.", "body": "Fresh water, just off the boil. Around 200°F. A kettle whistle works fine.", "footnote": "200° F · 93° C" } },
         "s1": { "type": "step", "settings": { "number": "01", "title": "Drop.", "body": "Place a sachet in your mug. Tag out, like tea. Don't squeeze it.", "footnote": "1 sachet · 1 mug" } },
@@ -108,22 +61,10 @@
       },
       "block_order": ["s0", "s1", "s2", "s3"]
     },
-    "pull-quote": {
-      "type": "pull-quote",
-      "settings": {
-        "quote": "\"You can drink coffee with two bars of signal, or no bars at all. The coffee doesn't care. Maybe you don't either.\"",
-        "attribution": "— From the manifesto · Vol. 01",
-        "show_topo_above": true,
-        "show_topo_below": true
-      }
-    },
+    "pull-quote": { "type": "pull-quote", "settings": { "quote": "\"You can drink coffee with two bars of signal, or no bars at all. The coffee doesn't care. Maybe you don't either.\"", "attribution": "— From the manifesto · Vol. 01", "show_topo_above": true, "show_topo_below": true } },
     "places": {
       "type": "editorial-grid",
-      "settings": {
-        "eyebrow": "§ 03 — Where it goes",
-        "heading": "Made for the places\nwithout good coffee.",
-        "meta": "A balcony\ncounts too"
-      },
+      "settings": { "eyebrow": "§ 03 — Where it goes", "heading": "Made for the places\nwithout good coffee.", "meta": "A balcony\ncounts too" },
       "blocks": {
         "tent": { "type": "card", "settings": { "stamp": "N 44°25′ / W 110°35′", "label": "[ TENT · 06:14 AM ]", "title": "Two-person tent, Yellowstone backcountry.", "meta_left": "Site #14", "meta_right": "Aug" } },
         "train": { "type": "card", "settings": { "stamp": "N 40°45′ / W 73°59′", "label": "[ TRAIN · 07:02 AM ]", "title": "Northbound Amtrak, somewhere past Poughkeepsie.", "meta_left": "Car 7", "meta_right": "Sept" } },
@@ -133,13 +74,7 @@
     },
     "resupply": {
       "type": "resupply",
-      "settings": {
-        "heading": "Resupply\nthe pack.",
-        "body": "The trip doesn't end. Subscribe and we ship the next round before you run out. Skip a shipment. Cancel any time. Really.",
-        "cta_text": "Stock the pack →",
-        "cta_link": "/collections/all-blends",
-        "fine_print": "Skip or cancel anytime — really. · No charge for shipping. · Pause for the off-season."
-      },
+      "settings": { "heading": "Resupply\nthe pack.", "body": "The trip doesn't end. Subscribe and we ship the next round before you run out. Skip a shipment. Cancel any time. Really.", "cta_text": "Stock the pack →", "cta_link": "/collections/all-blends", "fine_print": "Skip or cancel anytime — really. · No charge for shipping. · Pause for the off-season." },
       "blocks": {
         "weekly": { "type": "plan", "settings": { "name": "Weekly", "sachets": 12, "detail": "A bag every Monday. For everyday people.", "price": "$22 · ships free", "active_by_default": true } },
         "biweekly": { "type": "plan", "settings": { "name": "Bi-weekly", "sachets": 24, "detail": "Two bags every other Monday. Mix any blends.", "price": "$42 · ships free" } },
@@ -147,23 +82,10 @@
       },
       "block_order": ["weekly", "biweekly", "monthly"]
     },
-    "compost": {
-      "type": "compost-callout",
-      "settings": {
-        "background": "pine",
-        "heading": "Compostable.\nNot just recyclable.",
-        "tag": "100% Plant-based filter · OK for your backyard compost",
-        "body": "The sachet is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring."
-      }
-    },
+    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The sachet is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring." } },
     "journal-preview": {
       "type": "journal-preview",
-      "settings": {
-        "eyebrow": "§ 04 — The Journal",
-        "heading": "Field notes.\nBrew logs.",
-        "meta": "Updated\nevery Thursday",
-        "posts_count": 3
-      },
+      "settings": { "eyebrow": "§ 04 — The Journal", "heading": "Field notes.\nBrew logs.", "meta": "Updated\nevery Thursday", "posts_count": 3 },
       "blocks": {
         "p1": { "type": "post", "settings": { "meta": "14 Aug · 6 min · Brewing", "title": "A kettle is the only thing you need.", "dek": "An argument against bringing the AeroPress, the grinder, the scale, and the bean canister to a four-day backpacking trip." } },
         "p2": { "type": "post", "settings": { "meta": "07 Aug · 4 min · Origins", "title": "Why we steep instead of drip.", "dek": "Drip needs gear. Steeping needs hot water and patience. We chose the second one for reasons that became obvious in a tent." } },
@@ -172,15 +94,5 @@
       "block_order": ["p1", "p2", "p3"]
     }
   },
-  "order": [
-    "hero",
-    "tagline-ticker",
-    "featured-blends",
-    "brew-strip",
-    "pull-quote",
-    "places",
-    "resupply",
-    "compost",
-    "journal-preview"
-  ]
+  "order": ["hero", "tagline-ticker", "featured-blends", "brew-strip", "pull-quote", "places", "resupply", "compost", "journal-preview"]
 }

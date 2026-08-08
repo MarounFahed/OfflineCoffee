@@ -1,145 +1,184 @@
+{%- comment -%}
+  Hero with sequential blend rotation.
+
+  Merchant configures N "variant" blocks in this section (default: 3 —
+  Pine Grove, Juniper Valley, Cedar Peak). Each variant defines its own
+  mood color + eyebrow + optional primary CTA link.
+
+  On each page load, an inline script advances a localStorage counter
+  (offline_hero_v) and sets html[data-hero-active] so CSS reveals the
+  matching variant. First visit shows variant 0, no flash. Subsequent
+  visits switch server-rendered variant → active variant before paint.
+{%- endcomment -%}
+
 {%- liquid
-  assign mood = section.settings.mood
-  assign mood_color = '--pine'
-  if mood == 'amber'
-    assign mood_color = '--amber'
-  elsif mood == 'ember'
-    assign mood_color = '--ember'
-  elsif mood == 'pine'
-    assign mood_color = '--pine'
-  endif
+  assign variants = section.blocks | where: 'type', 'variant'
+  assign vcount = variants.size
 -%}
 
-{%- comment -%}
-  LCP signal: the hero <img> uses loading="eager" + fetchpriority="high"
-  which the browser treats as a preload hint. Avoids the layout-level
-  `<link rel="preload">` ordering issues per brief §11.2.
-{%- endcomment -%}
-<section class="hero" style="--mood: var({{ mood_color }});" aria-label="Hero">
-  {%- if section.settings.background_image != blank -%}
-    {% render 'responsive-image',
-      image: section.settings.background_image,
-      sizes: '100vw',
-      widths: '600, 900, 1200, 1600, 2400',
-      loading: 'eager',
-      fetchpriority: 'high',
-      alt: '',
-      class: 'hero-image' %}
-  {%- endif -%}
+{%- if vcount > 1 -%}
+  <script>
+    (function(){
+      var n = {{ vcount }};
+      try {
+        var key = 'offline_hero_v';
+        var raw = parseInt(localStorage.getItem(key) || '0', 10);
+        var i = ((isNaN(raw) ? 0 : raw) % n + n) % n;
+        localStorage.setItem(key, (i + 1) % n);
+        document.documentElement.setAttribute('data-hero-active', i);
+      } catch(e) {}
+    })();
+  </script>
+  <style>
+    [data-hero-variant] { display: none !important; }
+    [data-hero-variant="0"] { display: flex !important; }
+    html[data-hero-active="0"] [data-hero-variant] { display: none !important; }
+    html[data-hero-active="0"] [data-hero-variant="0"] { display: flex !important; }
+    html[data-hero-active="1"] [data-hero-variant] { display: none !important; }
+    html[data-hero-active="1"] [data-hero-variant="1"] { display: flex !important; }
+    html[data-hero-active="2"] [data-hero-variant] { display: none !important; }
+    html[data-hero-active="2"] [data-hero-variant="2"] { display: flex !important; }
+    html[data-hero-active="3"] [data-hero-variant] { display: none !important; }
+    html[data-hero-active="3"] [data-hero-variant="3"] { display: flex !important; }
+  </style>
+{%- endif -%}
 
-  {%- if section.settings.show_coord_marks -%}
-    <div class="hero-coord-marks" aria-hidden="true">
-      {%- if section.settings.coord_mark_1 != blank -%}<span>{{ section.settings.coord_mark_1 }}</span>{%- endif -%}
-      {%- if section.settings.coord_mark_2 != blank -%}<span>{{ section.settings.coord_mark_2 }}</span>{%- endif -%}
-      {%- if section.settings.coord_mark_3 != blank -%}<span>{{ section.settings.coord_mark_3 }}</span>{%- endif -%}
-    </div>
-  {%- endif -%}
+{%- if vcount > 0 -%}
+  {%- for block in variants -%}
+    {%- liquid
+      assign mood = block.settings.mood_color | default: '--pine'
+      assign eyebrow = block.settings.eyebrow
+      assign primary_link = block.settings.cta_primary_link | default: section.settings.cta_primary_link
+      assign heading = block.settings.heading | default: section.settings.heading
+      assign lead = block.settings.lead | default: section.settings.lead
+    -%}
 
-  {%- if section.settings.stamp_text != blank -%}
-    <div class="hero-stamp">{{ section.settings.stamp_text | newline_to_br }}</div>
-  {%- endif -%}
-
-  {%- if section.settings.show_character and settings.logo_character != blank -%}
-    {{ settings.logo_character | image_url: width: 1200 | image_tag:
-      loading: 'eager',
-      widths: '600, 900, 1200',
-      sizes: '50vw',
-      alt: '',
-      class: 'hero-character' }}
-  {%- endif -%}
-
-  {%- if section.settings.eyebrow != blank -%}
-    <div class="hero-eyebrow">{{ section.settings.eyebrow }}</div>
-  {%- endif -%}
-
-  <h1>{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
-
-  {%- if section.settings.lead != blank -%}
-    <p class="lead">{{ section.settings.lead }}</p>
-  {%- endif -%}
-
-  {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
-    <div class="hero-ctas">
-      {%- if section.settings.cta_primary_text != blank -%}
-        <a class="btn btn-arrow" href="{{ section.settings.cta_primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
+    <section class="hero" data-hero-variant="{{ forloop.index0 }}" style="--mood: var({{ mood }});" aria-label="Hero" {{ block.shopify_attributes }}>
+      {%- if section.settings.show_coord_marks -%}
+        <div class="hero-coord-marks" aria-hidden="true">
+          {%- if section.settings.coord_mark_1 != blank -%}<span>{{ section.settings.coord_mark_1 }}</span>{%- endif -%}
+          {%- if section.settings.coord_mark_2 != blank -%}<span>{{ section.settings.coord_mark_2 }}</span>{%- endif -%}
+          {%- if section.settings.coord_mark_3 != blank -%}<span>{{ section.settings.coord_mark_3 }}</span>{%- endif -%}
+        </div>
       {%- endif -%}
-      {%- if section.settings.cta_secondary_text != blank -%}
-        <a class="btn btn-secondary" href="{{ section.settings.cta_secondary_link | default: '#' }}">{{ section.settings.cta_secondary_text }}</a>
-      {%- endif -%}
-    </div>
-  {%- endif -%}
 
-  {%- if section.settings.show_scroll_cue -%}
-    <div class="scroll-cue" aria-hidden="true">{{ section.settings.scroll_cue_text | default: 'Keep reading' }}</div>
-  {%- endif -%}
-</section>
+      {%- if section.settings.stamp_text != blank -%}
+        <div class="hero-stamp">{{ section.settings.stamp_text | newline_to_br }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.show_character and settings.logo_character != blank -%}
+        {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
+      {%- endif -%}
+
+      {%- if eyebrow != blank -%}
+        <div class="hero-eyebrow">{{ eyebrow }}</div>
+      {%- endif -%}
+
+      <h1>{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+
+      {%- if lead != blank -%}
+        <p class="lead">{{ lead }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
+        <div class="hero-ctas">
+          {%- if section.settings.cta_primary_text != blank -%}
+            <a class="btn btn-arrow" href="{{ primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
+          {%- endif -%}
+          {%- if section.settings.cta_secondary_text != blank -%}
+            <a class="btn btn-secondary" href="{{ section.settings.cta_secondary_link | default: '#' }}">{{ section.settings.cta_secondary_text }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_scroll_cue -%}
+        <div class="scroll-cue" aria-hidden="true">{{ section.settings.scroll_cue_text | default: 'Keep reading' }}</div>
+      {%- endif -%}
+    </section>
+  {%- endfor -%}
+{%- else -%}
+  {%- assign mood_color = '--pine' -%}
+  {%- if section.settings.mood == 'amber' -%}{%- assign mood_color = '--amber' -%}
+  {%- elsif section.settings.mood == 'ember' -%}{%- assign mood_color = '--ember' -%}{%- endif -%}
+
+  <section class="hero" style="--mood: var({{ mood_color }});" aria-label="Hero">
+    {%- if section.settings.show_coord_marks -%}
+      <div class="hero-coord-marks" aria-hidden="true">
+        {%- if section.settings.coord_mark_1 != blank -%}<span>{{ section.settings.coord_mark_1 }}</span>{%- endif -%}
+        {%- if section.settings.coord_mark_2 != blank -%}<span>{{ section.settings.coord_mark_2 }}</span>{%- endif -%}
+        {%- if section.settings.coord_mark_3 != blank -%}<span>{{ section.settings.coord_mark_3 }}</span>{%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.stamp_text != blank -%}
+      <div class="hero-stamp">{{ section.settings.stamp_text | newline_to_br }}</div>
+    {%- endif -%}
+    {%- if section.settings.show_character and settings.logo_character != blank -%}
+      {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
+    {%- endif -%}
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="hero-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    <h1>{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+    {%- if section.settings.lead != blank -%}
+      <p class="lead">{{ section.settings.lead }}</p>
+    {%- endif -%}
+    {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
+      <div class="hero-ctas">
+        {%- if section.settings.cta_primary_text != blank -%}
+          <a class="btn btn-arrow" href="{{ section.settings.cta_primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
+        {%- endif -%}
+        {%- if section.settings.cta_secondary_text != blank -%}
+          <a class="btn btn-secondary" href="{{ section.settings.cta_secondary_link | default: '#' }}">{{ section.settings.cta_secondary_text }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.show_scroll_cue -%}
+      <div class="scroll-cue" aria-hidden="true">{{ section.settings.scroll_cue_text | default: 'Keep reading' }}</div>
+    {%- endif -%}
+  </section>
+{%- endif -%}
 
 {% schema %}
 {
   "name": "Hero",
   "tag": "section",
   "settings": [
-    {
-      "type": "select",
-      "id": "mood",
-      "label": "Roast mood (background)",
-      "options": [
-        { "value": "amber", "label": "Amber (light roast)" },
-        { "value": "ember", "label": "Ember (medium roast)" },
-        { "value": "pine", "label": "Pine (dark roast)" }
-      ],
-      "default": "pine"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image (overrides mood color)",
-      "info": "If set, image fills the hero with the mood color blending over it."
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow text",
-      "default": "Blend № 03 · Pine Hollow · Dark roast"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Headline",
-      "default": "Out of range.\nOn purpose.",
-      "info": "Use line breaks to control wrapping."
-    },
-    {
-      "type": "textarea",
-      "id": "lead",
-      "label": "Sub-copy",
-      "default": "Specialty coffee in a compostable filter sachet. Hot water. Four minutes. The cabin doesn't need WiFi to make a good cup."
-    },
-    {
-      "type": "header",
-      "content": "Call-to-action"
-    },
+    { "type": "paragraph", "content": "Add 'Blend variant' blocks below to rotate mood + eyebrow on each page load." },
+    { "type": "select", "id": "mood", "label": "Fallback mood (when no variant blocks)", "options": [ { "value": "amber", "label": "Amber" }, { "value": "ember", "label": "Ember" }, { "value": "pine", "label": "Pine" } ], "default": "pine" },
+    { "type": "text", "id": "eyebrow", "label": "Fallback eyebrow", "default": "Blend № 03 · Cedar Peak · Dark roast" },
+    { "type": "text", "id": "heading", "label": "Shared headline", "default": "Out of range.\nOn purpose." },
+    { "type": "textarea", "id": "lead", "label": "Shared sub-copy", "default": "Specialty coffee in a compostable filter sachet. Hot water. Four minutes." },
+    { "type": "header", "content": "CTAs" },
     { "type": "text", "id": "cta_primary_text", "label": "Primary CTA text", "default": "Shop the blends" },
-    { "type": "url", "id": "cta_primary_link", "label": "Primary CTA link" },
+    { "type": "url", "id": "cta_primary_link", "label": "Primary CTA fallback link" },
     { "type": "text", "id": "cta_secondary_text", "label": "Secondary CTA text", "default": "Read the why" },
     { "type": "url", "id": "cta_secondary_link", "label": "Secondary CTA link" },
-    {
-      "type": "header",
-      "content": "Decorations"
-    },
+    { "type": "header", "content": "Decorations" },
     { "type": "checkbox", "id": "show_character", "label": "Show character mark", "default": true },
-    { "type": "checkbox", "id": "show_coord_marks", "label": "Show coordinate marks (top-left)", "default": true },
-    { "type": "text", "id": "coord_mark_1", "label": "Coord mark 1", "default": "N 38°51′" },
-    { "type": "text", "id": "coord_mark_2", "label": "Coord mark 2", "default": "W 119°57′" },
-    { "type": "text", "id": "coord_mark_3", "label": "Coord mark 3", "default": "EL 6,224 FT" },
-    { "type": "textarea", "id": "stamp_text", "label": "Stamp (top-right, supports line breaks)", "default": "Steeped here\nN 38°51′ / W 119°57′\n14 Aug · 06:42" },
+    { "type": "checkbox", "id": "show_coord_marks", "label": "Show coord marks", "default": true },
+    { "type": "text", "id": "coord_mark_1", "label": "Coord 1", "default": "N 38°51′" },
+    { "type": "text", "id": "coord_mark_2", "label": "Coord 2", "default": "W 119°57′" },
+    { "type": "text", "id": "coord_mark_3", "label": "Coord 3", "default": "EL 6,224 FT" },
+    { "type": "textarea", "id": "stamp_text", "label": "Stamp (top-right)", "default": "Steeped here\nN 38°51′ / W 119°57′\n14 Aug · 06:42" },
     { "type": "checkbox", "id": "show_scroll_cue", "label": "Show scroll cue", "default": true },
     { "type": "text", "id": "scroll_cue_text", "label": "Scroll cue text", "default": "Keep reading" }
   ],
+  "blocks": [
+    { "type": "variant", "name": "Blend variant", "settings": [
+      { "type": "select", "id": "mood_color", "label": "Mood color", "options": [ { "value": "--amber", "label": "Amber" }, { "value": "--ember", "label": "Ember" }, { "value": "--pine", "label": "Pine" } ], "default": "--pine" },
+      { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Blend № 01 · Pine Grove · Light roast" },
+      { "type": "text", "id": "heading", "label": "Heading override" },
+      { "type": "textarea", "id": "lead", "label": "Sub-copy override" },
+      { "type": "url", "id": "cta_primary_link", "label": "Primary CTA link override" }
+    ] }
+  ],
+  "max_blocks": 4,
   "presets": [
-    {
-      "name": "Hero"
-    }
+    { "name": "Hero", "blocks": [
+      { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "cta_primary_link": "/products/pine-grove-bag" } },
+      { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "cta_primary_link": "/products/juniper-valley-bag" } },
+      { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "cta_primary_link": "/products/cedar-peak-bag" } }
+    ] }
   ]
 }
 {% endschema %}
