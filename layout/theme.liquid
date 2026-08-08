@@ -6,8 +6,16 @@
     <meta name="theme-color" content="{{ settings.color_paper.rgb | default: '#F5F1E8' }}">
     <link rel="canonical" href="{{ canonical_url }}">
 
+    {%- comment -%}
+      Favicon. Uses settings.favicon when set (Theme > Customize > Brand),
+      otherwise falls back to the character-mark asset shipped with the theme.
+    {%- endcomment -%}
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32 }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180 }}">
+    {%- else -%}
+      <link rel="icon" type="image/png" href="{{ 'logo-character.png' | asset_url }}">
+      <link rel="apple-touch-icon" href="{{ 'logo-character.png' | asset_url }}">
     {%- endif -%}
 
     {%- comment -%}
