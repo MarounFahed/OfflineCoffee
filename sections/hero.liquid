@@ -84,7 +84,10 @@
       {%- endif -%}
 
       {%- if eyebrow != blank -%}
-        <div class="hero-eyebrow">{{ eyebrow }}</div>
+        {%- assign eyebrow_parts = eyebrow | split: ' · ' -%}
+        <div class="hero-eyebrow">
+          {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
+        </div>
       {%- endif -%}
 
       <h1>{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
@@ -138,7 +141,10 @@
       {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
     {%- endif -%}
     {%- if section.settings.eyebrow != blank -%}
-      <div class="hero-eyebrow">{{ section.settings.eyebrow }}</div>
+      {%- assign eyebrow_parts = section.settings.eyebrow | split: ' · ' -%}
+      <div class="hero-eyebrow">
+        {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
+      </div>
     {%- endif -%}
     <h1>{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
     {%- if section.settings.lead != blank -%}

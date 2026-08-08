@@ -352,6 +352,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   letter-spacing: 0.16em; text-transform: uppercase;
   margin-bottom: var(--s-5); opacity: 0.85;
 }
+.hero-eyebrow span:not(:last-child)::after { content: " · "; }
 .hero h1 {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(64px, 13vw, 200px);
@@ -400,7 +401,9 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 @media (max-width: 700px) {
   .hero-character { width: 88vw; right: -10vw; bottom: -10vw; opacity: 0.13; }
   .hero-coord-marks { display: none; }
-  .hero-stamp { display: none; }
+  .hero-eyebrow span { display: block; }
+  .hero-eyebrow span:not(:last-child)::after { content: none; }
+  .hero-eyebrow span:not(:last-child) { margin-bottom: 2px; }
 }
 
 /* ------------------------------------------------------------
