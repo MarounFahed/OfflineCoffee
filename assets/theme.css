@@ -998,11 +998,12 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   background: var(--paper);
   min-height: 600px;
   display: flex; align-items: center; justify-content: center;
-  position: relative; padding: var(--s-8);
+  position: relative;
   border-right: 1px solid var(--rule);
+  overflow: hidden;
 }
 @media (max-width: 900px) { .pdp-gallery { border-right: none; border-bottom: 1px solid var(--rule); aspect-ratio: 1; min-height: 0; } }
-.pdp-gallery img { max-width: 70%; max-height: 100%; object-fit: contain; }
+.pdp-gallery img { width: 100%; height: 100%; object-fit: cover; }
 .pdp-gallery-thumbs {
   position: absolute; left: var(--s-5); bottom: var(--s-5);
   display: flex; gap: var(--s-3);
