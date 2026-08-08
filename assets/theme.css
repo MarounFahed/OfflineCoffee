@@ -325,7 +325,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   min-height: min(720px, 92vh);
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: var(--gutter);
-  padding-block: clamp(72px, 14vh, 160px) clamp(48px, 8vh, 96px);
+  padding-block: clamp(18px, 3.5vh, 40px) clamp(48px, 8vh, 96px);
   overflow: hidden;
 }
 .hero-image {
@@ -381,11 +381,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .scroll-cue::before { content: "↓"; }
 .hero-coord-marks {
-  position: absolute; left: var(--gutter); top: var(--s-7);
   font-family: var(--mono); font-size: 10px;
   letter-spacing: 0.18em; opacity: 0.7;
   display: flex; gap: var(--s-5);
-  z-index: 2; color: var(--paper);
+  margin-bottom: var(--s-4);
+  color: var(--paper);
 }
 .hero-character {
   position: absolute; right: -2vw; bottom: -2vw;
