@@ -322,10 +322,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   position: relative;
   background: var(--mood);
   color: var(--paper);
-  min-height: min(720px, 92vh);
+  min-height: min(180px, 23vh);
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: var(--gutter);
-  padding-block: clamp(4px, 0.9vh, 10px) clamp(48px, 8vh, 96px);
+  padding-block: clamp(1px, 0.2vh, 3px) clamp(48px, 8vh, 96px);
   overflow: hidden;
 }
 .hero-image {
