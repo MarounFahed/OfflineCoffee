@@ -62,8 +62,21 @@
         </div>
       {%- endif -%}
 
-      {%- if section.settings.stamp_text != blank -%}
-        <div class="hero-stamp">{{ section.settings.stamp_text | newline_to_br }}</div>
+      {%- liquid
+        assign stamp_coord = block.settings.stamp_coord
+        assign stamp_lines = ''
+        if section.settings.stamp_label != blank
+          assign stamp_lines = section.settings.stamp_label
+        endif
+        if stamp_coord != blank
+          assign stamp_lines = stamp_lines | append: '<br>' | append: stamp_coord
+        endif
+        if section.settings.stamp_date != blank
+          assign stamp_lines = stamp_lines | append: '<br>' | append: section.settings.stamp_date
+        endif
+      -%}
+      {%- if stamp_lines != blank -%}
+        <div class="hero-stamp">{{ stamp_lines }}</div>
       {%- endif -%}
 
       {%- if section.settings.show_character and settings.logo_character != blank -%}
@@ -109,8 +122,17 @@
         {%- if section.settings.coord_mark_3 != blank -%}<span>{{ section.settings.coord_mark_3 }}</span>{%- endif -%}
       </div>
     {%- endif -%}
-    {%- if section.settings.stamp_text != blank -%}
-      <div class="hero-stamp">{{ section.settings.stamp_text | newline_to_br }}</div>
+    {%- liquid
+      assign stamp_lines = ''
+      if section.settings.stamp_label != blank
+        assign stamp_lines = section.settings.stamp_label
+      endif
+      if section.settings.stamp_date != blank
+        assign stamp_lines = stamp_lines | append: '<br>' | append: section.settings.stamp_date
+      endif
+    -%}
+    {%- if stamp_lines != blank -%}
+      <div class="hero-stamp">{{ stamp_lines }}</div>
     {%- endif -%}
     {%- if section.settings.show_character and settings.logo_character != blank -%}
       {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
@@ -159,7 +181,9 @@
     { "type": "text", "id": "coord_mark_1", "label": "Coord 1", "default": "N 38°51′" },
     { "type": "text", "id": "coord_mark_2", "label": "Coord 2", "default": "W 119°57′" },
     { "type": "text", "id": "coord_mark_3", "label": "Coord 3", "default": "EL 6,224 FT" },
-    { "type": "textarea", "id": "stamp_text", "label": "Stamp (top-right)", "default": "Steeped here\nN 38°51′ / W 119°57′\n14 Aug · 06:42" },
+    { "type": "header", "content": "Stamp (top-right)" },
+    { "type": "text", "id": "stamp_label", "label": "Stamp label", "default": "Steeped here" },
+    { "type": "text", "id": "stamp_date", "label": "Stamp date/time", "default": "14 Aug · 06:42" },
     { "type": "checkbox", "id": "show_scroll_cue", "label": "Show scroll cue", "default": true },
     { "type": "text", "id": "scroll_cue_text", "label": "Scroll cue text", "default": "Keep reading" }
   ],
@@ -167,6 +191,7 @@
     { "type": "variant", "name": "Blend variant", "settings": [
       { "type": "select", "id": "mood_color", "label": "Mood color", "options": [ { "value": "--ember", "label": "Ember (light roast)" }, { "value": "--amber", "label": "Amber (medium roast)" }, { "value": "--pine", "label": "Pine (dark roast)" } ], "default": "--pine" },
       { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Blend № 01 · Pine Grove · Light roast" },
+      { "type": "text", "id": "stamp_coord", "label": "Stamp coordinates", "default": "N 38°51′ / W 119°57′" },
       { "type": "text", "id": "heading", "label": "Heading override" },
       { "type": "textarea", "id": "lead", "label": "Sub-copy override" },
       { "type": "url", "id": "cta_primary_link", "label": "Primary CTA link override" }
@@ -175,9 +200,9 @@
   "max_blocks": 4,
   "presets": [
     { "name": "Hero", "blocks": [
-      { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "cta_primary_link": "/products/pine-grove-bag" } },
-      { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "cta_primary_link": "/products/juniper-valley-bag" } },
-      { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "cta_primary_link": "/products/cedar-peak-bag" } }
+      { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "stamp_coord": "N 33°34′ / E 35°34′", "cta_primary_link": "/products/pine-grove-bag" } },
+      { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "stamp_coord": "N 34°17′ / E 35°38′", "cta_primary_link": "/products/juniper-valley-bag" } },
+      { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "stamp_coord": "N 34°14′ / E 36°02′", "cta_primary_link": "/products/cedar-peak-bag" } }
     ] }
   ]
 }

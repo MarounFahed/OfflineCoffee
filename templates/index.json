@@ -16,14 +16,15 @@
         "coord_mark_1": "N 38°51′",
         "coord_mark_2": "W 119°57′",
         "coord_mark_3": "EL 6,224 FT",
-        "stamp_text": "Steeped here\nN 38°51′ / W 119°57′\n14 Aug · 06:42",
+        "stamp_label": "Steeped here",
+        "stamp_date": "14 Aug · 06:42",
         "show_scroll_cue": true,
         "scroll_cue_text": "Keep reading"
       },
       "blocks": {
-        "v1": { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "cta_primary_link": "/products/pine-grove-bag" } },
-        "v2": { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "cta_primary_link": "/products/juniper-valley-bag" } },
-        "v3": { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "cta_primary_link": "/products/cedar-peak-bag" } }
+        "v1": { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "stamp_coord": "N 33°34′ / E 35°34′", "cta_primary_link": "/products/pine-grove-bag" } },
+        "v2": { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "stamp_coord": "N 34°17′ / E 35°38′", "cta_primary_link": "/products/juniper-valley-bag" } },
+        "v3": { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "stamp_coord": "N 34°14′ / E 36°02′", "cta_primary_link": "/products/cedar-peak-bag" } }
       },
       "block_order": ["v1", "v2", "v3"]
     },
