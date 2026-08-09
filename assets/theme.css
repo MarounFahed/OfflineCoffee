@@ -832,10 +832,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .tagline-track {
   display: flex; width: max-content;
-  animation: tagline-scroll 32s linear infinite;
+  animation: tagline-scroll 44s linear infinite;
 }
 .tagline-set { display: flex; gap: var(--s-7); flex-shrink: 0; padding-right: var(--s-7); }
-.tagline-strip span { display: inline-flex; gap: var(--s-7); align-items: center; opacity: 0.75; }
+.tagline-strip span { display: inline-flex; align-items: center; opacity: 0.75; }
 .tagline-strip span::after { content: "✕"; opacity: 0.5; margin-left: var(--s-7); }
 .tagline-strip span:last-child::after { content: none; }
 .tagline-strip:hover .tagline-track { animation-play-state: paused; }

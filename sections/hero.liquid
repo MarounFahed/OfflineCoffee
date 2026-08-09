@@ -64,19 +64,13 @@
 
       {%- liquid
         assign stamp_coord = block.settings.stamp_coord
-        assign stamp_lines = ''
-        if section.settings.stamp_label != blank
-          assign stamp_lines = section.settings.stamp_label
-        endif
-        if stamp_coord != blank
-          assign stamp_lines = stamp_lines | append: '<br>' | append: stamp_coord
-        endif
-        if section.settings.stamp_date != blank
-          assign stamp_lines = stamp_lines | append: '<br>' | append: section.settings.stamp_date
-        endif
       -%}
-      {%- if stamp_lines != blank -%}
-        <div class="hero-stamp">{{ stamp_lines }}</div>
+      {%- if section.settings.stamp_label != blank or stamp_coord != blank -%}
+        <div class="hero-stamp">
+          {%- if section.settings.stamp_label != blank -%}{{ section.settings.stamp_label }}<br>{%- endif -%}
+          {%- if stamp_coord != blank -%}{{ stamp_coord }}<br>{%- endif -%}
+          <span class="hero-clock" data-live-clock>{{ 'now' | date: '%d %b · %H:%M:%S' }}</span>
+        </div>
       {%- endif -%}
 
       {%- if section.settings.show_character and settings.logo_character != blank -%}
@@ -125,17 +119,11 @@
         {%- if section.settings.coord_mark_3 != blank -%}<span>{{ section.settings.coord_mark_3 }}</span>{%- endif -%}
       </div>
     {%- endif -%}
-    {%- liquid
-      assign stamp_lines = ''
-      if section.settings.stamp_label != blank
-        assign stamp_lines = section.settings.stamp_label
-      endif
-      if section.settings.stamp_date != blank
-        assign stamp_lines = stamp_lines | append: '<br>' | append: section.settings.stamp_date
-      endif
-    -%}
-    {%- if stamp_lines != blank -%}
-      <div class="hero-stamp">{{ stamp_lines }}</div>
+    {%- if section.settings.stamp_label != blank -%}
+      <div class="hero-stamp">
+        {{ section.settings.stamp_label }}<br>
+        <span class="hero-clock" data-live-clock>{{ 'now' | date: '%d %b · %H:%M:%S' }}</span>
+      </div>
     {%- endif -%}
     {%- if section.settings.show_character and settings.logo_character != blank -%}
       {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
@@ -189,7 +177,7 @@
     { "type": "text", "id": "coord_mark_3", "label": "Coord 3", "default": "EL 6,224 FT" },
     { "type": "header", "content": "Stamp (top-right)" },
     { "type": "text", "id": "stamp_label", "label": "Stamp label", "default": "Steeped here" },
-    { "type": "text", "id": "stamp_date", "label": "Stamp date/time", "default": "14 Aug · 06:42" },
+    { "type": "paragraph", "content": "The line under the label is a live clock (updates every second in the visitor's browser) — not editable here." },
     { "type": "checkbox", "id": "show_scroll_cue", "label": "Show scroll cue", "default": true },
     { "type": "text", "id": "scroll_cue_text", "label": "Scroll cue text", "default": "Keep reading" }
   ],

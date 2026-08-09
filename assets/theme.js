@@ -176,6 +176,22 @@
     });
   }
 
+  /* ----- Live clock (hero stamp) ----- */
+  function heroClock() {
+    const els = document.querySelectorAll('[data-live-clock]');
+    if (!els.length) return;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const pad = (n) => String(n).padStart(2, '0');
+    const tick = () => {
+      const d = new Date();
+      const text = pad(d.getDate()) + ' ' + months[d.getMonth()] + ' · ' +
+        pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+      els.forEach((el) => { el.textContent = text; });
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+
   /* ----- Random coordinate stamp (404, etc.) ----- */
   function randomCoord() {
     document.querySelectorAll('[data-random-coord]').forEach((el) => {
@@ -199,6 +215,7 @@
     filterPills();
     qtyStepper();
     randomCoord();
+    heroClock();
   }
 
   if (document.readyState === 'loading') {
