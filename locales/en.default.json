@@ -196,7 +196,8 @@
     "signup": "Or get notified when we open.",
     "email_placeholder": "your.email@here",
     "send": "Send",
-    "signup_success": "Thanks. We'll be in touch."
+    "signup_success": "Thanks. We'll be in touch.",
+    "admin_label": "Store owner?"
   },
   "404": {
     "heading": "You've gone offline.",
