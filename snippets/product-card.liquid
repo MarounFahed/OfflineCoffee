@@ -37,11 +37,11 @@
     assign p_blend_number = product.metafields.offline.blend_number.value | default: ''
     assign roast_meta = product.metafields.offline.roast.value | downcase
     if roast_meta == 'light'
-      assign p_roast_color = '--amber'
+      assign p_roast_color = '--ember'
       assign p_roast_label = 'Light roast'
       assign p_bars = 2
     elsif roast_meta == 'medium'
-      assign p_roast_color = '--ember'
+      assign p_roast_color = '--amber'
       assign p_roast_label = 'Medium roast'
       assign p_bars = 3
     elsif roast_meta == 'dark'

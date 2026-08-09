@@ -3,10 +3,10 @@
   assign mood_color = '--pine'
   assign roast = product.metafields.offline.roast.value | downcase | default: section.settings.fallback_mood
   if roast == 'light'
-    assign mood_color = '--amber'
+    assign mood_color = '--ember'
     assign bars = 2
   elsif roast == 'medium'
-    assign mood_color = '--ember'
+    assign mood_color = '--amber'
     assign bars = 3
   elsif roast == 'dark'
     assign mood_color = '--pine'
