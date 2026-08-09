@@ -158,13 +158,14 @@
   }
 
   /* ----- Product form: AJAX add-to-cart + separate checkout button ----- */
-  function updateCartCount() {
-    fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
+  function updateCartCount(checkoutBtn) {
+    return fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
       .then((res) => res.json())
       .then((cart) => {
         document.querySelectorAll('[data-cart-count]').forEach((el) => {
           el.textContent = cart.item_count;
         });
+        if (checkoutBtn && cart.item_count > 0) checkoutBtn.hidden = false;
       })
       .catch(() => {});
   }
@@ -191,17 +192,16 @@
       e.preventDefault();
       if (addBtn) addBtn.disabled = true;
       addToCart()
-        .then(() => updateCartCount())
+        .then(() => updateCartCount(checkoutBtn))
         .catch(() => {})
         .finally(() => { if (addBtn) addBtn.disabled = false; });
     });
 
     if (checkoutBtn) {
       checkoutBtn.addEventListener('click', () => {
-        checkoutBtn.disabled = true;
-        addToCart()
-          .then(() => { window.location.href = '/checkout'; })
-          .catch(() => { checkoutBtn.disabled = false; });
+        // Cart already has items by the time this button is visible --
+        // just go there, don't add the on-page quantity again.
+        window.location.href = '/checkout';
       });
     }
   }

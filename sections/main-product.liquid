@@ -110,9 +110,7 @@
             {{ 'products.product.sold_out' | t }}
           {%- endif -%}
         </button>
-        {%- if current_variant.available -%}
-          <button type="button" class="btn btn-secondary" data-checkout-now>{{ 'products.product.checkout_now' | t }}</button>
-        {%- endif -%}
+        <button type="button" class="btn btn-secondary" data-checkout-now {% if cart.item_count == 0 %}hidden{% endif %}>{{ 'products.product.checkout_now' | t }}</button>
       </div>
     {%- endform -%}
 
