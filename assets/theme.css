@@ -628,6 +628,55 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 
 /* ------------------------------------------------------------
+   BREW SPEC BAND
+   ------------------------------------------------------------ */
+.spec-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+@media (max-width: 900px) { .spec-row { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .spec-row { grid-template-columns: 1fr; } }
+.spec-item {
+  padding: var(--s-6) var(--s-5);
+  border-right: 1px solid var(--rule);
+}
+.spec-item:last-child { border-right: none; }
+.spec-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  opacity: 0.6; margin-bottom: var(--s-3);
+}
+.spec-value { font-family: var(--serif); font-weight: 600; font-size: 19px; line-height: 1.3; }
+
+/* ------------------------------------------------------------
+   BREW GUIDE (long-form, alternating rows)
+   ------------------------------------------------------------ */
+.guide-list { border-top: 1px solid var(--rule); }
+.guide-row {
+  display: grid; grid-template-columns: 140px 1fr; gap: var(--s-6);
+  padding: var(--s-8) 0;
+  border-bottom: 1px solid var(--rule);
+}
+@media (max-width: 700px) { .guide-row { grid-template-columns: 1fr; gap: var(--s-4); } }
+.guide-num {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(40px, 4.5vw, 64px);
+  letter-spacing: -0.02em; color: var(--ink); opacity: 0.9;
+}
+.guide-title { font-family: var(--serif); font-weight: 600; font-size: clamp(22px, 2.4vw, 28px); margin-bottom: var(--s-4); }
+.guide-body { font-family: var(--serif); font-size: 17px; line-height: 1.65; max-width: 62ch; margin-bottom: var(--s-4); }
+.guide-tip {
+  font-family: var(--mono); font-size: 12px; line-height: 1.7; letter-spacing: 0.01em;
+  max-width: 62ch; opacity: 0.75; padding-left: var(--s-4); border-left: 2px solid var(--rule-strong);
+}
+.guide-tip span { text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
+
+/* ------------------------------------------------------------
+   BREW FAQ
+   ------------------------------------------------------------ */
+.brew-faq .accordion { max-width: 720px; }
+
+/* ------------------------------------------------------------
    PULL QUOTE
    ------------------------------------------------------------ */
 .quote-wrap { padding-block: clamp(64px, 9vw, 128px); }

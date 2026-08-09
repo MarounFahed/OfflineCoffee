@@ -3,25 +3,114 @@
     "head": {
       "type": "page-head",
       "settings": {
-        "eyebrow": "§ The ritual",
-        "heading": "One method.\nEvery time.",
-        "lead": "No machine, no grinder, no guesswork. Just a filter, hot water, and five minutes — wherever you are."
+        "eyebrow": "§ The brew guide",
+        "heading": "How to actually\nget this right.",
+        "lead": "The short version is on every bag: tear, soak, wait, lift. This is the long version — what each step is doing, why it matters, and what to do if the cup still isn't right."
       }
     },
-    "brew": {
-      "type": "brew-strip",
+    "specs": {
+      "type": "brew-spec-band",
+      "settings": { "heading": "§ The variables" },
+      "blocks": {
+        "temp": { "type": "stat", "settings": { "label": "Water temp", "value": "93°C — just off the boil" } },
+        "ratio": { "type": "stat", "settings": { "label": "Ratio", "value": "1 filter : 350ml water" } },
+        "time": { "type": "stat", "settings": { "label": "Time", "value": "5 minutes, no more" } },
+        "water": { "type": "stat", "settings": { "label": "Water", "value": "Filtered tastes best" } }
+      },
+      "block_order": ["temp", "ratio", "time", "water"]
+    },
+    "guide": {
+      "type": "brew-guide",
       "settings": {
-        "eyebrow": "§ How to brew",
-        "heading": "Five minutes.\nThat's it.",
-        "meta": "No machine\nNo grinder"
+        "eyebrow": "§ Step by step",
+        "heading": "The long version.",
+        "meta": "Read once\nBrew from memory after"
       },
       "blocks": {
-        "s0": { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Open the notch and tear straight across. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
-        "s1": { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Hang the tab over the rim of your mug and pour hot water through the filter until it's fully submerged.", "footnote": "93° C" } },
-        "s2": { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Five minutes. Don't check your phone. We wrote a timer in case you need one.", "footnote": "5 MINUTES", "show_timer": true, "timer_seconds": 300, "timer_label_start": "Start brew", "timer_label_running": "Brewing…", "timer_label_done": "Ready." } },
-        "s3": { "type": "step", "settings": { "number": "04", "title": "Lift.", "body": "Lift the filter out, give it one gentle press against the mug, and sip.", "footnote": "Compostable · Backyard-safe" } }
+        "s0": {
+          "type": "guide_step",
+          "settings": {
+            "number": "01",
+            "title": "Tear.",
+            "body": "Open the notch at the top and tear straight across in one clean motion. No scissors, no sawing back and forth.",
+            "tip": "A single clean tear keeps the filter's side seams intact. Ragged tears can weaken the paper lower down and let grounds sift into your cup later."
+          }
+        },
+        "s1": {
+          "type": "guide_step",
+          "settings": {
+            "number": "02",
+            "title": "Soak.",
+            "body": "Hang the paper tab over the rim of your mug so the filter hangs freely inside it, then pour hot water through until the bag is fully submerged. Give it 10–15 seconds to bloom before topping off.",
+            "tip": "Water that's genuinely off the boil — around 93°C — extracts the coffee's sugars without scorching them into bitterness. Water that's too cool under-extracts and tastes thin."
+          }
+        },
+        "s2": {
+          "type": "guide_step",
+          "settings": {
+            "number": "03",
+            "title": "Wait.",
+            "body": "Five minutes, start to finish. Don't stir it, don't press it, don't peek early — set a timer and walk away.",
+            "tip": "The filter does slow, even extraction the whole time. Pull it early and you get a thin, sour cup; leave it in longer and you start pulling out bitter compounds."
+          }
+        },
+        "s3": {
+          "type": "guide_step",
+          "settings": {
+            "number": "04",
+            "title": "Lift.",
+            "body": "Lift the filter out by the tab, give it one gentle press against the side of the mug to catch the last drops, then set it aside to compost.",
+            "tip": "Squeezing hard forces bitter tannins out along with the coffee. One gentle press is enough — a hard wring is where a lot of bitterness complaints actually come from."
+          }
+        }
       },
       "block_order": ["s0", "s1", "s2", "s3"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "settings": {
+        "eyebrow": "§ If it's not right",
+        "heading": "Fix the cup.",
+        "meta": "Common problems\nQuick fixes"
+      },
+      "blocks": {
+        "weak": {
+          "type": "item",
+          "settings": {
+            "question": "It tastes weak",
+            "answer": "<p>You probably pulled the filter early, or the water wasn't hot enough. Give it the full five minutes with water just off the boil (93°C), and make sure the filter was fully submerged the whole time — not just floating on top.</p>"
+          }
+        },
+        "bitter": {
+          "type": "item",
+          "settings": {
+            "question": "It tastes bitter",
+            "answer": "<p>Usually over-steeped, or the filter got squeezed too hard on the way out. Stick to five minutes exactly, and give it one gentle press against the mug instead of a wring.</p>"
+          }
+        },
+        "sour": {
+          "type": "item",
+          "settings": {
+            "question": "It tastes sour or thin",
+            "answer": "<p>That's almost always water that's too cool, or a rushed steep. Off-the-boil water (93°C) and the full five minutes fixes it nearly every time.</p>"
+          }
+        },
+        "sediment": {
+          "type": "item",
+          "settings": {
+            "question": "There's sediment in my cup",
+            "answer": "<p>The filter likely tore during the pour. Tear along the notch in one clean motion at the start, and avoid squeezing the bag once it's out of the water.</p>"
+          }
+        },
+        "restep": {
+          "type": "item",
+          "settings": {
+            "question": "Can I re-steep the same filter?",
+            "answer": "<p>You can, but the second cup will be noticeably weaker. We'd rather you use a fresh filter and compost the first one — that's exactly what they're built for.</p>"
+          }
+        }
+      },
+      "block_order": ["weak", "bitter", "sour", "sediment", "restep"]
     },
     "compost": {
       "type": "compost-callout",
@@ -33,5 +122,5 @@
       }
     }
   },
-  "order": ["head", "brew", "compost"]
+  "order": ["head", "specs", "guide", "faq", "compost"]
 }
