@@ -10,7 +10,7 @@
         "meta_2": "10 coffee bags",
         "meta_3": "Weekly roasted",
         "products_per_page": 12,
-        "show_foot": true,
+        "show_foot": false,
         "foot_center": "— Hand-roasted weekly —",
         "foot_link_text": "How to brew",
         "foot_link_url": "/pages/the-brew"
