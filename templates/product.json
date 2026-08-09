@@ -23,13 +23,14 @@
       "settings": {
         "eyebrow": "§ How to brew",
         "heading": "Five minutes.\nThat's it.",
-        "meta": "No machine\nNo grinder"
+        "meta": "No machine\nNo grinder",
+        "enjoy_text": "Enjoy."
       },
       "blocks": {
-        "s0": { "type": "step", "settings": { "number": "00", "title": "Boil.", "body": "Fresh water, just off the boil. Around 93°C. A kettle whistle works fine.", "footnote": "93° C" } },
-        "s1": { "type": "step", "settings": { "number": "01", "title": "Drop.", "body": "Place a filter in your mug. Tag out, like tea. Don't squeeze it.", "footnote": "1 filter · 1 mug" } },
-        "s2": { "type": "step", "settings": { "number": "02", "title": "Pour.", "body": "Fill to the brim. The steam counts. Watch the bloom for ten seconds.", "footnote": "10 oz · 295 ml" } },
-        "s3": { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Five minutes. Don't check your phone.", "footnote": "" } }
+        "s0": { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Open the notch and tear straight across. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
+        "s1": { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Hang the tab over the rim of your mug and pour hot water through the filter until it's fully submerged.", "footnote": "93° C" } },
+        "s2": { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Five minutes. Don't check your phone. We wrote a timer in case you need one.", "show_timer": true, "timer_seconds": 300, "timer_label_start": "Start brew", "timer_label_running": "Brewing…", "timer_label_done": "Ready." } },
+        "s3": { "type": "step", "settings": { "number": "04", "title": "Lift.", "body": "Lift the filter out, give it one gentle press against the mug, and sip.", "footnote": "Compostable · Backyard-safe" } }
       },
       "block_order": ["s0", "s1", "s2", "s3"]
     }
