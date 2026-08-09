@@ -52,7 +52,7 @@
     },
     "brew-strip": {
       "type": "brew-strip",
-      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder", "enjoy_text": "Enjoy." },
+      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
       "blocks": {
         "s0": { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Open the notch and tear straight across. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
         "s1": { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Hang the tab over the rim of your mug and pour hot water through the filter until it's fully submerged.", "footnote": "93° C" } },

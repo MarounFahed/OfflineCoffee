@@ -33,10 +33,6 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
-
-    {%- if section.settings.enjoy_text != blank -%}
-      <div class="brew-enjoy">{{ section.settings.enjoy_text }}</div>
-    {%- endif -%}
   </div>
 </section>
 
@@ -47,8 +43,7 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ 02 — The Brew" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Five minutes.\nThat's it." },
-    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "No machine\nNo grinder" },
-    { "type": "text", "id": "enjoy_text", "label": "Closing line (below the steps)", "default": "Enjoy." }
+    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "No machine\nNo grinder" }
   ],
   "blocks": [
     {
@@ -72,7 +67,6 @@
   "presets": [
     {
       "name": "Brew strip",
-      "settings": { "enjoy_text": "Enjoy." },
       "blocks": [
         { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Open the notch and tear straight across. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
         { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Hang the tab over the rim of your mug and pour hot water through the filter until it's fully submerged.", "footnote": "93° C" } },

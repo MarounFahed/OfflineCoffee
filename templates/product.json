@@ -23,8 +23,7 @@
       "settings": {
         "eyebrow": "§ How to brew",
         "heading": "Five minutes.\nThat's it.",
-        "meta": "No machine\nNo grinder",
-        "enjoy_text": "Enjoy."
+        "meta": "No machine\nNo grinder"
       },
       "blocks": {
         "s0": { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Open the notch and tear straight across. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
