@@ -737,8 +737,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    ROAST SPECTRUM
    ------------------------------------------------------------ */
 .spectrum { display: grid; grid-template-columns: 1fr 1fr 1fr; height: 8px; }
-.spectrum i:nth-child(1) { background: var(--amber); }
-.spectrum i:nth-child(2) { background: var(--ember); }
+.spectrum i:nth-child(1) { background: var(--ember); }
+.spectrum i:nth-child(2) { background: var(--amber); }
 .spectrum i:nth-child(3) { background: var(--pine); }
 .spectrum-labels {
   display: grid; grid-template-columns: 1fr 1fr 1fr;
