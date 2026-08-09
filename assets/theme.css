@@ -546,10 +546,9 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 @media (max-width: 900px) { .brew { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .brew { grid-template-columns: 1fr; } }
 .brew-step {
-  padding: var(--s-7) var(--s-5);
+  padding: var(--s-6) var(--s-5);
   border-right: 1px solid var(--rule);
-  display: flex; flex-direction: column; gap: var(--s-4);
-  min-height: 280px;
+  display: flex; flex-direction: column; gap: var(--s-3);
 }
 .brew-step:last-child { border-right: none; }
 .brew-num {
@@ -561,14 +560,14 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .brew-title { font-family: var(--serif); font-weight: 600; font-size: 22px; }
 .brew-body { font-family: var(--serif); font-size: 16px; line-height: 1.5; max-width: 28ch; }
 .brew-foot {
-  margin-top: auto;
+  margin-top: var(--s-4);
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
   opacity: 0.6;
-  padding-top: var(--s-4);
+  padding-top: var(--s-3);
   border-top: 1px solid var(--rule);
 }
 .timer-pill {
-  margin-top: var(--s-7);
+  margin-top: var(--s-2);
   display: inline-flex; gap: var(--s-3); align-items: center;
   padding: 12px 18px;
   border: 1px solid var(--ink);
@@ -585,11 +584,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .brew-enjoy {
   text-align: center;
-  margin-top: var(--s-8);
-  font-family: var(--display); font-weight: 400;
-  font-size: clamp(32px, 5vw, 56px);
-  letter-spacing: -0.01em; text-transform: uppercase;
-  opacity: 0.85;
+  margin-top: var(--s-6);
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: -0.005em;
+  opacity: 0.7;
 }
 
 /* ------------------------------------------------------------
