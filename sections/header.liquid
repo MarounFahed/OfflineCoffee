@@ -9,13 +9,7 @@
 <header class="header" id="siteHeader" role="banner">
   <div class="wrap header-inner">
     <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-      {{ 'logo-full.png' | asset_url | image_tag:
-        loading: 'eager',
-        fetchpriority: 'high',
-        widths: '300, 450, 600',
-        sizes: '(min-width: 900px) 220px, 160px',
-        alt: shop.name,
-        class: 'brand-logo' }}
+      <img src="{{ 'logo-full.png' | asset_url }}" alt="{{ shop.name }}" width="1811" height="713" class="brand-logo" loading="eager" fetchpriority="high">
     </a>
 
     <nav class="nav" aria-label="{{ 'general.accessibility.open_menu' | t }}">
