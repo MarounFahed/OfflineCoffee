@@ -139,25 +139,6 @@
     }, true);
   }
 
-  /* ----- Filter pills (visual layer) ----- */
-  function filterPills() {
-    const groups = document.querySelectorAll('[data-filter-group]');
-    if (!groups.length) return;
-    groups.forEach((group) => {
-      const pills = group.querySelectorAll('.pill');
-      pills.forEach((pill) => {
-        pill.addEventListener('click', () => {
-          pills.forEach((p) => {
-            p.classList.remove('active');
-            p.setAttribute('aria-pressed', 'false');
-          });
-          pill.classList.add('active');
-          pill.setAttribute('aria-pressed', 'true');
-        });
-      });
-    });
-  }
-
   /* ----- Quantity stepper (cart, PDP) ----- */
   function qtyStepper() {
     document.querySelectorAll('[data-qty]').forEach((wrap) => {
@@ -212,7 +193,6 @@
     brewTimer();
     cursorCoord();
     goingOffline();
-    filterPills();
     qtyStepper();
     randomCoord();
     heroClock();

@@ -1,7 +1,5 @@
 {%- liquid
   assign products_per_page = section.settings.products_per_page | default: 12
-  assign sort_by = collection.sort_by | default: collection.default_sort_by
-
   assign editorial_blocks = section.blocks | where: 'type', 'editorial_break'
 -%}
 
@@ -25,64 +23,6 @@
     {%- endif -%}
   </div>
 </section>
-
-<div class="filter-bar">
-  <div class="filter-inner">
-    {%- comment -%}
-      Storefront filters from Shopify Admin > Online Store > Navigation > Collections.
-      Falls back to a visual-only template if no filters are configured yet.
-    {%- endcomment -%}
-    {%- if collection.filters.size > 0 -%}
-      <form id="CollectionFilterForm" method="get">
-        {%- for filter in collection.filters limit: 3 -%}
-          <div class="filter-group" data-filter-group>
-            <span class="filter-group-label">{{ filter.label }}</span>
-            {%- for value in filter.values -%}
-              <button
-                type="button"
-                class="pill{% if value.active %} active{% endif %}"
-                data-filter-url="{{ value.url_to_add | default: value.url_to_remove }}"
-                aria-pressed="{% if value.active %}true{% else %}false{% endif %}"
-                onclick="window.location.href='{{ value.url_to_add | default: value.url_to_remove }}'">
-                {{ value.label }}
-              </button>
-            {%- endfor -%}
-          </div>
-        {%- endfor -%}
-      </form>
-    {%- else -%}
-      {%- comment -%} Visual fallback — wire native filters in Admin to activate. {%- endcomment -%}
-      <div class="filter-group" data-filter-group>
-        <span class="filter-group-label">{{ 'collections.general.filter.roast' | t }}</span>
-        <button class="pill active" type="button" aria-pressed="true">{{ 'collections.general.all' | t }}</button>
-        <button class="pill" type="button" aria-pressed="false">Light</button>
-        <button class="pill" type="button" aria-pressed="false">Medium</button>
-        <button class="pill" type="button" aria-pressed="false">Dark</button>
-      </div>
-      <div class="filter-group" data-filter-group>
-        <span class="filter-group-label">{{ 'collections.general.filter.intensity' | t }}</span>
-        <button class="pill" type="button" aria-pressed="false">1 Bar</button>
-        <button class="pill" type="button" aria-pressed="false">2 Bars</button>
-        <button class="pill" type="button" aria-pressed="false">3 Bars</button>
-      </div>
-    {%- endif -%}
-
-    <div class="filter-spacer"></div>
-
-    <div class="filter-count">
-      {{ 'collections.general.items_with_count' | t: count: collection.products_count }}
-    </div>
-
-    <form method="get" class="filter-sort-form" style="display:flex;align-items:center;gap:var(--s-3);">
-      <label for="SortBy" class="visually-hidden">{{ 'collections.general.sort_by' | t }}</label>
-      <select name="sort_by" id="SortBy" class="filter-sort" onchange="this.form.submit()" style="background:transparent; border:0; cursor:pointer;">
-        {%- for option in collection.sort_options -%}
-          <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name }}</option>
-        {%- endfor -%}
-      </select>
-    </form>
-  </div>
-</div>
 
 {%- paginate collection.products by products_per_page -%}
   {%- if collection.products.size > 0 -%}

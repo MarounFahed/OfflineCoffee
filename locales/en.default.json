@@ -68,26 +68,6 @@
   "collections": {
     "general": {
       "no_matches": "No products yet. Check back after the next roast.",
-      "filter_by": "Filter by",
-      "filter": {
-        "roast": "Roast",
-        "intensity": "Intensity"
-      },
-      "sort_by": "Sort",
-      "sort": {
-        "manual": "Featured",
-        "best_selling": "Best selling",
-        "title_asc": "A → Z",
-        "title_desc": "Z → A",
-        "price_asc": "Price: low to high",
-        "price_desc": "Price: high to low",
-        "created_desc": "Newest",
-        "created_asc": "Oldest"
-      },
-      "items_with_count": {
-        "one": "{{ count }} result",
-        "other": "{{ count }} results"
-      },
       "showing_of": "Showing {{ count }} of {{ total }}",
       "all": "All"
     }
