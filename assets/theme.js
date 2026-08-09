@@ -191,6 +191,40 @@
     });
   }
 
+  /* ----- Quick-add from collection card (hover demo) ----- */
+  function quickAddCards() {
+    document.querySelectorAll('[data-quick-add]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const variantId = el.getAttribute('data-variant-id');
+        if (!variantId || el.hasAttribute('data-added')) return;
+        const formData = new FormData();
+        formData.append('id', variantId);
+        formData.append('quantity', 1);
+        fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData,
+        })
+          .then((res) => {
+            if (!res.ok) return res.json().then((err) => Promise.reject(err));
+            return updateCartCount();
+          })
+          .then(() => {
+            const label = el.textContent;
+            el.setAttribute('data-added', '');
+            el.textContent = 'Added ✓';
+            setTimeout(() => {
+              el.removeAttribute('data-added');
+              el.textContent = label;
+            }, 1600);
+          })
+          .catch(() => {});
+      });
+    });
+  }
+
   /* ----- Live clock (hero stamp) ----- */
   function heroClock() {
     const els = document.querySelectorAll('[data-live-clock]');
@@ -229,6 +263,7 @@
     goingOffline();
     qtyStepper();
     productForm();
+    quickAddCards();
     randomCoord();
     heroClock();
   }

@@ -494,6 +494,45 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .pcard-art .bag { width: 56%; height: 72%; }
 .blend-card:hover .bag, .pcard:hover .pcard-art .bag { transform: translateY(-8px); }
+
+/* ------------------------------------------------------------
+   HOVER DEMO — 3 treatments for comparison (temporary)
+   ------------------------------------------------------------ */
+.pcard-photo { transition: transform 420ms cubic-bezier(.2,.7,.2,1); }
+
+/* Pine Grove — image zoom + mood-color accent line */
+.hover-demo-pine-grove-bag:hover .pcard-photo { transform: scale(1.045); }
+.hover-demo-pine-grove-bag .pcard-art::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px;
+  background: var(--blend); transform: scaleX(0); transform-origin: left;
+  transition: transform 320ms ease; z-index: 2;
+}
+.hover-demo-pine-grove-bag:hover .pcard-art::after { transform: scaleX(1); }
+
+/* Juniper Valley — quick-add reveal */
+.pcard-quickadd {
+  position: absolute; left: var(--s-4); right: var(--s-4); bottom: var(--s-4);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 40px; padding: 0 var(--s-4);
+  background: var(--ink); color: var(--paper);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  opacity: 0; transform: translateY(8px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  cursor: pointer; z-index: 2;
+}
+.hover-demo-juniper-valley-bag:hover .pcard-quickadd { opacity: 1; transform: translateY(0); }
+.pcard-quickadd:hover { background: var(--paper); color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.pcard-quickadd[data-added] { background: var(--pine); color: var(--paper); }
+
+/* Cedar Peak — origin reveal */
+.pcard-origin {
+  position: absolute; left: var(--s-4); right: var(--s-4); bottom: var(--s-4);
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--paper); opacity: 0; transform: translateY(8px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  z-index: 2;
+}
+.hover-demo-cedar-peak-bag:hover .pcard-origin { opacity: 1; transform: translateY(0); }
 .bag-top, .pcard-art .bag-top {
   font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
   display: flex; justify-content: space-between; align-items: start;
