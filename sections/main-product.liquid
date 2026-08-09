@@ -110,7 +110,7 @@
             {{ 'products.product.sold_out' | t }}
           {%- endif -%}
         </button>
-        <button type="button" class="btn btn-secondary" data-checkout-now {% if cart.item_count == 0 %}hidden{% endif %}>{{ 'products.product.checkout_now' | t }}</button>
+        <a href="{{ routes.cart_url }}" class="btn btn-secondary">{{ 'products.product.go_to_cart' | t }}</a>
       </div>
     {%- endform -%}
 

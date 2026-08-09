@@ -41,7 +41,7 @@
   "products": {
     "product": {
       "add_to_cart": "Add to pack",
-      "checkout_now": "Go to checkout",
+      "go_to_cart": "Go to cart",
       "sold_out": "Out of range — back next week.",
       "unavailable": "Unavailable",
       "on_sale": "On sale",

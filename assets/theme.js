@@ -157,15 +157,14 @@
     });
   }
 
-  /* ----- Product form: AJAX add-to-cart + separate checkout button ----- */
-  function updateCartCount(checkoutBtn) {
+  /* ----- Product form: AJAX add-to-cart ----- */
+  function updateCartCount() {
     return fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
       .then((res) => res.json())
       .then((cart) => {
         document.querySelectorAll('[data-cart-count]').forEach((el) => {
           el.textContent = cart.item_count;
         });
-        if (checkoutBtn && cart.item_count > 0) checkoutBtn.hidden = false;
       })
       .catch(() => {});
   }
@@ -174,36 +173,23 @@
     const form = document.querySelector('.product-form');
     if (!form) return;
     const addBtn = form.querySelector('[data-add-to-cart]');
-    const checkoutBtn = form.querySelector('[data-checkout-now]');
-
-    const addToCart = () => {
-      const formData = new FormData(form);
-      return fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: formData,
-      }).then((res) => {
-        if (!res.ok) return res.json().then((err) => Promise.reject(err));
-        return res.json();
-      });
-    };
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (addBtn) addBtn.disabled = true;
-      addToCart()
-        .then(() => updateCartCount(checkoutBtn))
+      const formData = new FormData(form);
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData,
+      })
+        .then((res) => {
+          if (!res.ok) return res.json().then((err) => Promise.reject(err));
+          return updateCartCount();
+        })
         .catch(() => {})
         .finally(() => { if (addBtn) addBtn.disabled = false; });
     });
-
-    if (checkoutBtn) {
-      checkoutBtn.addEventListener('click', () => {
-        // Cart already has items by the time this button is visible --
-        // just go there, don't add the on-page quantity again.
-        window.location.href = '/checkout';
-      });
-    }
   }
 
   /* ----- Live clock (hero stamp) ----- */
