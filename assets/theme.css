@@ -367,6 +367,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .hero .btn:hover { background: transparent; color: var(--paper); border-color: var(--paper); }
 .hero .btn-secondary { background: transparent; color: var(--paper); border-color: var(--paper); }
 .hero .btn-secondary:hover { background: var(--paper); color: var(--ink); }
+.password-hero { padding-top: clamp(64px, 12vh, 140px); }
 .password-lead {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(28px, 4.6vw, 64px);
@@ -374,6 +375,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   max-width: 100%;
   margin-bottom: var(--s-7);
   text-wrap: balance;
+}
+.password-signup-label {
+  display: block;
+  font-family: var(--serif); font-size: clamp(18px, 2.2vw, 24px);
+  margin-bottom: var(--s-4); opacity: 0.92;
 }
 .password-admin {
   margin-top: var(--s-10);
