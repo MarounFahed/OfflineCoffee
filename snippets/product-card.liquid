@@ -102,7 +102,7 @@
   assign tag_list = p_tags_string | split: ','
 -%}
 
-<a class="{{ card_class }}{% if product.handle %} hover-demo-{{ product.handle }}{% endif %}" href="{{ p_url }}" style="--blend: var({{ p_roast_color }});">
+<a class="{{ card_class }}" href="{{ p_url }}" style="--blend: var({{ p_roast_color }});">
   <div class="{{ art_class }}" style="background: var({{ p_roast_color }});">
     {%- if p_badge != blank -%}<div class="badge">{{ p_badge }}</div>{%- endif -%}
     {%- if p_image != blank -%}
@@ -118,12 +118,6 @@
         blend_number: p_blend_number,
         bars: p_bars,
         region: p_region_short %}
-    {%- endif -%}
-    {%- if product.handle == 'juniper-valley-bag' -%}
-      <span class="pcard-quickadd" role="button" tabindex="0" data-quick-add data-variant-id="{{ product.selected_or_first_available_variant.id }}">{{ 'products.product.add_to_cart' | t }}</span>
-    {%- endif -%}
-    {%- if product.handle == 'cedar-peak-bag' and p_region_long != blank -%}
-      <span class="pcard-origin">{{ p_region_long }}</span>
     {%- endif -%}
   </div>
   <div class="{{ meta_class }}">
