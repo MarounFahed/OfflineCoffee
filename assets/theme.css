@@ -266,10 +266,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   font-family: var(--display); font-size: 24px; letter-spacing: -0.01em;
   text-transform: uppercase; padding-left: var(--s-3);
 }
-.brand-sub {
-  font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em;
-  align-self: end; padding-bottom: 4px; white-space: nowrap;
-}
 .nav {
   display: flex; gap: var(--s-7); justify-self: center;
   font-family: var(--mono); font-size: 12px;
@@ -292,7 +288,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   .header-right .ghost { display: none; }
   .menu-btn { display: inline-flex; }
   .brand-text { font-size: 18px; }
-  .brand-sub { display: none; }
   .brand img { height: 32px; }
 }
 

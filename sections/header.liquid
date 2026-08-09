@@ -9,21 +9,13 @@
 <header class="header" id="siteHeader" role="banner">
   <div class="wrap header-inner">
     <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-      {%- if section.settings.show_character and settings.logo_character != blank -%}
-        {{ settings.logo_character | image_url: width: 96 | image_tag:
-          loading: 'eager',
-          fetchpriority: 'high',
-          widths: '48, 96, 144',
-          sizes: '48px',
-          alt: shop.name,
-          class: 'brand-character' }}
-      {%- endif -%}
-      <span class="brand-text">
-        OFFLINE
-        {%- if section.settings.brand_subline != blank -%}
-          <span class="brand-sub">{{ section.settings.brand_subline }}</span>
-        {%- endif -%}
-      </span>
+      {{ 'logo-full.png' | asset_url | image_tag:
+        loading: 'eager',
+        fetchpriority: 'high',
+        widths: '300, 450, 600',
+        sizes: '(min-width: 900px) 220px, 160px',
+        alt: shop.name,
+        class: 'brand-logo' }}
     </a>
 
     <nav class="nav" aria-label="{{ 'general.accessibility.open_menu' | t }}">
@@ -88,22 +80,6 @@
       "type": "url",
       "id": "announcement_link",
       "label": "Link (optional)"
-    },
-    {
-      "type": "header",
-      "content": "Brand"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_character",
-      "label": "Show character mark next to wordmark",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "brand_subline",
-      "label": "Wordmark subline",
-      "default": "COFFEE · EST. NOWHERE"
     },
     {
       "type": "header",
