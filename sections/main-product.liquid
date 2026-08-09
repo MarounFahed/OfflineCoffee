@@ -4,13 +4,13 @@
   assign roast = product.metafields.offline.roast.value | downcase | default: section.settings.fallback_mood
   if roast == 'light'
     assign mood_color = '--amber'
-    assign bars = 1
+    assign bars = 2
   elsif roast == 'medium'
     assign mood_color = '--ember'
-    assign bars = 2
+    assign bars = 3
   elsif roast == 'dark'
     assign mood_color = '--pine'
-    assign bars = 3
+    assign bars = 4
   elsif roast == 'decaf'
     assign mood_color = '--paper-2'
     assign bars = 0
@@ -102,13 +102,18 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-full" {% unless current_variant.available %}disabled{% endunless %}>
+      <div class="pdp-cta-row">
+        <button type="submit" class="btn" data-add-to-cart {% unless current_variant.available %}disabled{% endunless %}>
+          {%- if current_variant.available -%}
+            {{ 'products.product.add_to_cart' | t }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </button>
         {%- if current_variant.available -%}
-          {{ 'products.product.add_to_cart' | t }}
-        {%- else -%}
-          {{ 'products.product.sold_out' | t }}
+          <button type="button" class="btn btn-secondary" data-checkout-now>{{ 'products.product.checkout_now' | t }}</button>
         {%- endif -%}
-      </button>
+      </div>
     {%- endform -%}
 
     <div class="accordion">

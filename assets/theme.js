@@ -157,6 +157,55 @@
     });
   }
 
+  /* ----- Product form: AJAX add-to-cart + separate checkout button ----- */
+  function updateCartCount() {
+    fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
+      .then((res) => res.json())
+      .then((cart) => {
+        document.querySelectorAll('[data-cart-count]').forEach((el) => {
+          el.textContent = cart.item_count;
+        });
+      })
+      .catch(() => {});
+  }
+
+  function productForm() {
+    const form = document.querySelector('.product-form');
+    if (!form) return;
+    const addBtn = form.querySelector('[data-add-to-cart]');
+    const checkoutBtn = form.querySelector('[data-checkout-now]');
+
+    const addToCart = () => {
+      const formData = new FormData(form);
+      return fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData,
+      }).then((res) => {
+        if (!res.ok) return res.json().then((err) => Promise.reject(err));
+        return res.json();
+      });
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (addBtn) addBtn.disabled = true;
+      addToCart()
+        .then(() => updateCartCount())
+        .catch(() => {})
+        .finally(() => { if (addBtn) addBtn.disabled = false; });
+    });
+
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', () => {
+        checkoutBtn.disabled = true;
+        addToCart()
+          .then(() => { window.location.href = '/checkout'; })
+          .catch(() => { checkoutBtn.disabled = false; });
+      });
+    }
+  }
+
   /* ----- Live clock (hero stamp) ----- */
   function heroClock() {
     const els = document.querySelectorAll('[data-live-clock]');
@@ -194,6 +243,7 @@
     cursorCoord();
     goingOffline();
     qtyStepper();
+    productForm();
     randomCoord();
     heroClock();
   }
