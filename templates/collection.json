@@ -4,7 +4,7 @@
       "type": "main-collection",
       "settings": {
         "eyebrow": "§ The Pack — All blends · Three roasts · One ritual",
-        "description": "Single-origin specialty coffee, ground fresh, sealed in compostable filter sachets. Hot water in. Coffee out. No machine, no grinder, no signal required.",
+        "description": "Single-origin specialty coffee, ground fresh, sealed in a compostable filter. Hot water in. Coffee out. No machine, no grinder, no signal required.",
         "show_meta": true,
         "meta_1": "3 blends",
         "meta_2": "+ 2 packs",
@@ -21,7 +21,7 @@
           "settings": {
             "after_product_n": 3,
             "eyebrow": "§ Field note · 12 Aug",
-            "quote": "\"The best coffee on a four-day backpacking trip is the one you don't have to think about. Steep. Wait. Drink. Pack out the sachet.\"",
+            "quote": "\"The best coffee on a four-day backpacking trip is the one you don't have to think about. Steep. Wait. Drink. Pack out the filter.\"",
             "attribution": "— From the journal · Vol. 03",
             "stamp": "N 44°25′ / W 110°35′",
             "label": "[ EDITORIAL · 1200 × 1200 ]"

@@ -20,12 +20,12 @@
               <button class="timer-pill"
                 id="timerPill"
                 type="button"
-                data-seconds="{{ block.settings.timer_seconds | default: 240 }}"
+                data-seconds="{{ block.settings.timer_seconds | default: 300 }}"
                 data-label-start="{{ block.settings.timer_label_start | default: 'Start brew' | escape }}"
                 data-label-running="{{ block.settings.timer_label_running | default: 'Brewing…' | escape }}"
                 data-label-resume="{{ 'Resume' | escape }}"
                 data-label-done="{{ block.settings.timer_label_done | default: 'Ready.' | escape }}">
-                <span class="timer-digits" id="timerDigits">04:00</span>
+                <span class="timer-digits" id="timerDigits">05:00</span>
                 <span id="timerLabel">{{ block.settings.timer_label_start | default: 'Start brew' }}</span>
               </button>
             {%- endif -%}
@@ -42,7 +42,7 @@
   "tag": "section",
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ 02 — The Brew" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Four minutes.\nThat's it." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Five minutes.\nThat's it." },
     { "type": "text", "id": "meta", "label": "Meta (right)", "default": "No machine\nNo grinder" }
   ],
   "blocks": [
@@ -52,11 +52,11 @@
       "settings": [
         { "type": "text", "id": "number", "label": "Number", "default": "00" },
         { "type": "text", "id": "title", "label": "Title", "default": "Boil." },
-        { "type": "textarea", "id": "body", "label": "Body", "default": "Fresh water, just off the boil. Around 200°F. A kettle whistle works fine." },
-        { "type": "text", "id": "footnote", "label": "Footnote (mono)", "default": "200° F · 93° C" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Fresh water, just off the boil. Around 93°C. A kettle whistle works fine." },
+        { "type": "text", "id": "footnote", "label": "Footnote (mono)", "default": "93° C" },
         { "type": "header", "content": "Timer (only on the last step usually)" },
         { "type": "checkbox", "id": "show_timer", "label": "Show timer button", "default": false },
-        { "type": "number", "id": "timer_seconds", "label": "Timer seconds", "default": 240 },
+        { "type": "number", "id": "timer_seconds", "label": "Timer seconds", "default": 300 },
         { "type": "text", "id": "timer_label_start", "label": "Label — start", "default": "Start brew" },
         { "type": "text", "id": "timer_label_running", "label": "Label — running", "default": "Brewing…" },
         { "type": "text", "id": "timer_label_done", "label": "Label — done", "default": "Ready." }
@@ -69,8 +69,8 @@
       "name": "Brew strip",
       "blocks": [
         { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Tear along the top and drop the bag straight into your mug. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
-        { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Pour hot water over the bag until it's fully submerged. Water just off the boil does the job.", "footnote": "200° F · 93° C" } },
-        { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Four minutes. Don't check your phone. We wrote a timer in case you need one.", "footnote": "", "show_timer": true } },
+        { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Pour hot water over the bag until it's fully submerged. Water just off the boil does the job.", "footnote": "93° C" } },
+        { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Five minutes. Don't check your phone. We wrote a timer in case you need one.", "footnote": "", "show_timer": true } },
         { "type": "step", "settings": { "number": "04", "title": "Lift.", "body": "Lift the bag out, give it a second to drip dry, then toss it in the compost.", "footnote": "Compostable · Backyard-safe" } }
       ]
     }

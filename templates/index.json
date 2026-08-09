@@ -6,7 +6,7 @@
         "mood": "pine",
         "eyebrow": "Blend № 01 · Pine Grove · Light roast",
         "heading": "Out of range.\nOn purpose.",
-        "lead": "Specialty coffee in a compostable filter sachet. Hot water. Four minutes. The cabin doesn't need WiFi to make a good cup.",
+        "lead": "Specialty coffee in a compostable filter. Hot water. Five minutes. The cabin doesn't need WiFi to make a good cup.",
         "cta_primary_text": "Shop the blends",
         "cta_primary_link": "/collections/all-blends",
         "cta_secondary_text": "Read the why",
@@ -33,7 +33,7 @@
         "p1": { "type": "phrase", "settings": { "text": "No machine" } },
         "p2": { "type": "phrase", "settings": { "text": "No noise" } },
         "p3": { "type": "phrase", "settings": { "text": "Just coffee" } },
-        "p4": { "type": "phrase", "settings": { "text": "Four minutes to anywhere" } },
+        "p4": { "type": "phrase", "settings": { "text": "Five minutes to anywhere" } },
         "p5": { "type": "phrase", "settings": { "text": "The internet can wait" } },
         "p6": { "type": "phrase", "settings": { "text": "Made for the places without WiFi" } },
         "p7": { "type": "phrase", "settings": { "text": "Out of range. On purpose." } }
@@ -52,11 +52,11 @@
     },
     "brew-strip": {
       "type": "brew-strip",
-      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Four minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
+      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
       "blocks": {
         "s0": { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Tear along the top and drop the bag straight into your mug. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
-        "s1": { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Pour hot water over the bag until it's fully submerged. Water just off the boil does the job.", "footnote": "200° F · 93° C" } },
-        "s2": { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Four minutes. Don't check your phone. We wrote a timer in case you need one.", "show_timer": true, "timer_seconds": 240, "timer_label_start": "Start brew", "timer_label_running": "Brewing…", "timer_label_done": "Ready." } },
+        "s1": { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Pour hot water over the bag until it's fully submerged. Water just off the boil does the job.", "footnote": "93° C" } },
+        "s2": { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Five minutes. Don't check your phone. We wrote a timer in case you need one.", "show_timer": true, "timer_seconds": 300, "timer_label_start": "Start brew", "timer_label_running": "Brewing…", "timer_label_done": "Ready." } },
         "s3": { "type": "step", "settings": { "number": "04", "title": "Lift.", "body": "Lift the bag out, give it a second to drip dry, then toss it in the compost.", "footnote": "Compostable · Backyard-safe" } }
       },
       "block_order": ["s0", "s1", "s2", "s3"]
@@ -72,7 +72,7 @@
       },
       "block_order": ["tent", "train", "hotel"]
     },
-    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The sachet is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring." } },
+    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring." } },
     "journal-preview": {
       "type": "journal-preview",
       "settings": { "eyebrow": "§ 04 — The Journal", "heading": "Field notes.\nBrew logs.", "meta": "Updated\nevery Thursday", "posts_count": 3 },

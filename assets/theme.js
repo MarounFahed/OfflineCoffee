@@ -48,14 +48,13 @@
     drawer.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
   }
 
-  /* ----- Plan tabs (Resupply) ----- */
-  /* ----- Brew timer (4 minutes, mono digits, no sound) ----- */
+  /* ----- Brew timer (5 minutes, mono digits, no sound) ----- */
   function brewTimer() {
     const pill = document.getElementById('timerPill');
     const digits = document.getElementById('timerDigits');
     const label = document.getElementById('timerLabel');
     if (!pill || !digits || !label) return;
-    const total = Number(pill.dataset.seconds || 240);
+    const total = Number(pill.dataset.seconds || 300);
     let remaining = total;
     let intv = null;
     let running = false;
