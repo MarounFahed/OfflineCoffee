@@ -3,32 +3,20 @@
     "main": {
       "type": "main-collection",
       "settings": {
-        "eyebrow": "§ The Pack — All blends · Three roasts · One ritual",
-        "description": "Single-origin specialty coffee, ground fresh, sealed in a compostable filter. Hot water in. Coffee out. No machine, no grinder, no signal required.",
+        "eyebrow": "",
+        "description": "Specialty coffee blends, ground fresh, sealed in a compostable filter. Hot water in. Coffee out. No machine, no grinder, no signal required.",
         "show_meta": true,
         "meta_1": "3 blends",
-        "meta_2": "+ 2 packs",
-        "meta_3": "Ships in 2 days",
+        "meta_2": "10 coffee bags",
+        "meta_3": "Weekly roasted",
         "products_per_page": 12,
         "show_foot": true,
         "foot_center": "— Hand-roasted weekly —",
         "foot_link_text": "How to brew",
         "foot_link_url": "/pages/the-brew"
       },
-      "blocks": {
-        "editorial1": {
-          "type": "editorial_break",
-          "settings": {
-            "after_product_n": 3,
-            "eyebrow": "§ Field note · 12 Aug",
-            "quote": "\"The best coffee on a four-day backpacking trip is the one you don't have to think about. Steep. Wait. Drink. Pack out the filter.\"",
-            "attribution": "— From the journal · Vol. 03",
-            "stamp": "N 44°25′ / W 110°35′",
-            "label": "[ EDITORIAL · 1200 × 1200 ]"
-          }
-        }
-      },
-      "block_order": ["editorial1"]
+      "blocks": {},
+      "block_order": []
     }
   },
   "order": ["main"]

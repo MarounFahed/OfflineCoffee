@@ -5,7 +5,9 @@
 
 <section class="coll-header">
   <div>
-    <div class="coll-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="coll-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
     <h1 class="coll-title">{{ collection.title | default: section.settings.title_override | default: 'The shop.' }}</h1>
   </div>
   <div>
@@ -91,7 +93,7 @@
 {
   "name": "Collection grid",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ The Pack — All blends · Three roasts · One ritual" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "" },
     { "type": "text", "id": "title_override", "label": "Title override (uses collection title if blank)" },
     { "type": "textarea", "id": "description", "label": "Description override (uses collection description if blank)" },
     { "type": "checkbox", "id": "show_meta", "label": "Show meta line", "default": true },
