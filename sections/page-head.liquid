@@ -1,0 +1,23 @@
+<section class="page-head">
+  {%- if section.settings.eyebrow != blank -%}
+    <div class="coll-eyebrow">{{ section.settings.eyebrow }}</div>
+  {%- endif -%}
+  <h1>{{ section.settings.heading | newline_to_br | default: page.title }}</h1>
+  {%- if section.settings.lead != blank -%}
+    <p class="page-head-lead">{{ section.settings.lead }}</p>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Page head",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "textarea", "id": "heading", "label": "Heading (uses page title if blank)" },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph" }
+  ],
+  "presets": [
+    { "name": "Page head" }
+  ]
+}
+{% endschema %}

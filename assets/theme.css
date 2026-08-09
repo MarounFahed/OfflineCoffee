@@ -1190,6 +1190,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    ------------------------------------------------------------ */
 .page-head { padding: clamp(1px, 0.2vh, 3px) var(--gutter) clamp(48px, 8vh, 96px); max-width: var(--maxw); margin: 0 auto; }
 .page-head h1 { font-family: var(--display); font-weight: 400; font-size: clamp(48px, 7vw, 96px); letter-spacing: -0.02em; line-height: 0.95; text-transform: uppercase; }
+.page-head-lead { font-family: var(--serif); font-size: 18px; max-width: 44ch; line-height: 1.55; margin-top: var(--s-5); opacity: 0.92; }
 .page-body { max-width: 680px; margin: 0 auto; padding: 0 var(--gutter) clamp(64px, 10vw, 128px); font-family: var(--serif); font-size: 18px; line-height: 1.65; }
 .page-body p { margin-bottom: var(--s-5); }
 .page-body h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; margin: var(--s-7) 0 var(--s-4); }
