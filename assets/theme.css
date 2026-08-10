@@ -652,7 +652,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    BREW GUIDE (long-form, alternating rows)
    ------------------------------------------------------------ */
-.brew-guide { padding-top: clamp(16px, 3vh, 32px); }
+.brew-guide { padding-top: clamp(16px, 3vh, 32px); padding-bottom: clamp(16px, 3vh, 32px); }
 .guide-list { border-top: 1px solid var(--rule); }
 .guide-row {
   display: grid; grid-template-columns: 140px 1fr; gap: var(--s-6);
@@ -676,6 +676,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    BREW FAQ
    ------------------------------------------------------------ */
+.brew-faq { padding-top: clamp(16px, 3vh, 32px); }
 .brew-faq .accordion { max-width: 720px; }
 
 /* ------------------------------------------------------------

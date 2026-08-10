@@ -13,13 +13,13 @@
       "settings": {
         "eyebrow": "§ Step by step",
         "heading": "The long version.",
-        "meta": "Read once\nBrew from memory after"
+        "meta": "Read once"
       },
       "blocks": {
         "temp": { "type": "stat", "settings": { "label": "Water temp", "value": "93°C — just off the boil" } },
-        "ratio": { "type": "stat", "settings": { "label": "Ratio", "value": "1 filter : 350ml water" } },
-        "time": { "type": "stat", "settings": { "label": "Time", "value": "5 minutes, no more" } },
-        "water": { "type": "stat", "settings": { "label": "Water", "value": "Filtered tastes best" } },
+        "ratio": { "type": "stat", "settings": { "label": "Ratio", "value": "1 filter : 240ml water" } },
+        "time": { "type": "stat", "settings": { "label": "Time", "value": "5 minutes" } },
+        "water": { "type": "stat", "settings": { "label": "Water", "value": "Start cold. Filtered if you've got it." } },
         "s0": {
           "type": "guide_step",
           "settings": {
@@ -64,7 +64,7 @@
       "settings": {
         "eyebrow": "§ If it's not right",
         "heading": "Fix the cup.",
-        "meta": "Common problems\nQuick fixes"
+        "meta": "Common problems"
       },
       "blocks": {
         "weak": {

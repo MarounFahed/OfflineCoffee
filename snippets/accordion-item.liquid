@@ -1,7 +1,8 @@
 {%- comment -%}
-  Accordion item. Params: label (required), body (required, can be HTML), open (bool).
+  Accordion item. Params: label (required), body (required, can be HTML), open (bool),
+  group (optional — shared name makes items in the group mutually exclusive).
 {%- endcomment -%}
-<details{% if open %} open{% endif %}>
+<details{% if group != blank %} name="{{ group }}"{% endif %}{% if open %} open{% endif %}>
   <summary>{{ label }}</summary>
   <div class="accordion-body">{{ body }}</div>
 </details>
