@@ -5,10 +5,11 @@
       <h2>{{ section.settings.heading | newline_to_br }}</h2>
       <div class="meta">{{ section.settings.meta | newline_to_br }}</div>
     </div>
+    {%- liquid assign faq_group = 'faq-' | append: section.id -%}
     <div class="accordion">
       {%- for block in section.blocks -%}
         {%- if block.type == 'item' -%}
-          {% render 'accordion-item', label: block.settings.question, body: block.settings.answer, open: block.settings.open, group: 'faq-' | append: section.id %}
+          {% render 'accordion-item', label: block.settings.question, body: block.settings.answer, open: block.settings.open, group: faq_group %}
         {%- endif -%}
       {%- endfor -%}
     </div>
