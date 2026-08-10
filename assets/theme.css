@@ -636,10 +636,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   border-bottom: 1px solid var(--ink);
 }
 .spec-row--compact { margin-bottom: var(--s-4); }
-.spec-foot {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: var(--s-4); margin-bottom: var(--s-8);
-}
 .spec-item {
   padding: var(--s-6) var(--s-5);
   border-right: 1px solid var(--rule);
@@ -652,7 +648,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .spec-value { font-family: var(--serif); font-weight: 600; font-size: 19px; line-height: 1.3; }
 .spec-note {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
-  opacity: 0.6;
+  opacity: 0.6; margin-bottom: var(--s-8);
 }
 
 /* ------------------------------------------------------------
@@ -665,11 +661,13 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   border-bottom: 1px solid var(--rule);
 }
 @media (max-width: 700px) { .guide-row { grid-template-columns: 1fr; gap: var(--s-4); } }
+.guide-visual { display: flex; flex-direction: column; gap: var(--s-5); }
 .guide-num {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(40px, 4.5vw, 64px);
   letter-spacing: -0.02em; color: var(--ink); opacity: 0.9;
 }
+.guide-icon svg { width: 56px; height: 56px; color: var(--ink); opacity: 0.7; }
 .guide-title { font-family: var(--serif); font-weight: 600; font-size: clamp(22px, 2.4vw, 28px); margin-bottom: var(--s-4); }
 .guide-body { font-family: var(--serif); font-size: 17px; line-height: 1.65; max-width: 62ch; margin-bottom: var(--s-4); }
 .guide-tip {
@@ -1321,18 +1319,4 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     scroll-behavior: auto !important;
   }
   .blend-card:hover .bag, .pcard:hover .pcard-art .bag { transform: none; }
-}
-
-/* ------------------------------------------------------------
-   PRINT — condensed quick-reference card (Brew page)
-   ------------------------------------------------------------ */
-@media print {
-  #siteHeader, .footer, .spectrum, .mobile-menu, .brew-faq, .compost,
-  .page-head-lead, .guide-body, .guide-tip, .timer-pill, .print-trigger,
-  [data-going-offline], [data-cart-count] { display: none !important; }
-  .brew-guide { padding: 0; }
-  .guide-row { padding: var(--s-2) 0; grid-template-columns: 48px 1fr; gap: var(--s-3); }
-  .guide-num { font-size: 22px; }
-  .guide-title { font-size: 16px; margin-bottom: 0; }
-  body { background: #fff; color: #000; }
 }

@@ -156,13 +156,6 @@
     });
   }
 
-  /* ----- Print trigger (Brew page quick card) ----- */
-  function printTrigger() {
-    document.querySelectorAll('[data-print-trigger]').forEach((btn) => {
-      btn.addEventListener('click', () => window.print());
-    });
-  }
-
   /* ----- Product form: AJAX add-to-cart ----- */
   function updateCartCount() {
     return fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
@@ -307,7 +300,6 @@
     qtyStepper();
     productForm();
     animatedAccordions();
-    printTrigger();
     randomCoord();
     heroClock();
   }
