@@ -191,6 +191,62 @@
     });
   }
 
+  /* ----- Smooth accordion open/close ----- */
+  function animatedAccordions() {
+    const openDetails = (details, body) => {
+      details.setAttribute('open', '');
+      const target = body.scrollHeight;
+      body.style.overflow = 'hidden';
+      body.style.height = '0px';
+      body.style.transition = 'height 260ms cubic-bezier(.2,.7,.2,1)';
+      requestAnimationFrame(() => { body.style.height = target + 'px'; });
+      body.addEventListener('transitionend', function done() {
+        body.style.height = '';
+        body.style.overflow = '';
+        body.style.transition = '';
+        body.removeEventListener('transitionend', done);
+      });
+    };
+
+    const closeDetails = (details, body) => {
+      const start = body.scrollHeight;
+      body.style.overflow = 'hidden';
+      body.style.height = start + 'px';
+      body.style.transition = 'height 220ms cubic-bezier(.2,.7,.2,1)';
+      requestAnimationFrame(() => { body.style.height = '0px'; });
+      body.addEventListener('transitionend', function done() {
+        details.removeAttribute('open');
+        body.style.height = '';
+        body.style.overflow = '';
+        body.style.transition = '';
+        body.removeEventListener('transitionend', done);
+      });
+    };
+
+    document.querySelectorAll('.accordion details').forEach((details) => {
+      const summary = details.querySelector('summary');
+      const body = details.querySelector('.accordion-body');
+      if (!summary || !body) return;
+
+      summary.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (details.hasAttribute('open')) {
+          closeDetails(details, body);
+          return;
+        }
+        const groupName = details.getAttribute('name');
+        if (groupName) {
+          document.querySelectorAll('details[name="' + groupName + '"][open]').forEach((other) => {
+            if (other === details) return;
+            const otherBody = other.querySelector('.accordion-body');
+            if (otherBody) closeDetails(other, otherBody);
+          });
+        }
+        openDetails(details, body);
+      });
+    });
+  }
+
   /* ----- Live clock (hero stamp) ----- */
   function heroClock() {
     const els = document.querySelectorAll('[data-live-clock]');
@@ -229,6 +285,7 @@
     goingOffline();
     qtyStepper();
     productForm();
+    animatedAccordions();
     randomCoord();
     heroClock();
   }
