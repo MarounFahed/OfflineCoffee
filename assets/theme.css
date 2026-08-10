@@ -628,7 +628,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 
 /* ------------------------------------------------------------
-   BREW SPEC BAND
+   SPEC ROW (variables strip, used inside brew-guide)
    ------------------------------------------------------------ */
 .spec-row {
   display: grid; grid-template-columns: repeat(4, 1fr);
@@ -637,6 +637,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 @media (max-width: 900px) { .spec-row { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .spec-row { grid-template-columns: 1fr; } }
+.spec-row--compact { margin-bottom: var(--s-8); }
 .spec-item {
   padding: var(--s-6) var(--s-5);
   border-right: 1px solid var(--rule);
@@ -651,6 +652,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    BREW GUIDE (long-form, alternating rows)
    ------------------------------------------------------------ */
+.brew-guide { padding-top: clamp(16px, 3vh, 32px); }
 .guide-list { border-top: 1px solid var(--rule); }
 .guide-row {
   display: grid; grid-template-columns: 140px 1fr; gap: var(--s-6);
@@ -1237,7 +1239,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    PAGE / ABOUT (manifesto, origin-story)
    ------------------------------------------------------------ */
-.page-head { padding: clamp(1px, 0.2vh, 3px) var(--gutter) clamp(48px, 8vh, 96px); max-width: var(--maxw); margin: 0 auto; }
+.page-head { padding: clamp(1px, 0.2vh, 3px) var(--gutter) clamp(12px, 2vh, 24px); max-width: var(--maxw); margin: 0 auto; }
 .page-head h1 { font-family: var(--display); font-weight: 400; font-size: clamp(48px, 7vw, 96px); letter-spacing: -0.02em; line-height: 0.95; text-transform: uppercase; }
 .page-head-lead { font-family: var(--serif); font-size: 18px; max-width: 44ch; line-height: 1.55; margin-top: var(--s-5); opacity: 0.92; }
 .page-body { max-width: 680px; margin: 0 auto; padding: 0 var(--gutter) clamp(64px, 10vw, 128px); font-family: var(--serif); font-size: 18px; line-height: 1.65; }

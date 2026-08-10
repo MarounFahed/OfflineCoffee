@@ -3,21 +3,10 @@
     "head": {
       "type": "page-head",
       "settings": {
-        "eyebrow": "§ The brew guide",
+        "eyebrow": "",
         "heading": "How to actually\nget this right.",
         "lead": "The short version is on every bag: tear, soak, wait, lift. This is the long version — what each step is doing, why it matters, and what to do if the cup still isn't right."
       }
-    },
-    "specs": {
-      "type": "brew-spec-band",
-      "settings": { "heading": "§ The variables" },
-      "blocks": {
-        "temp": { "type": "stat", "settings": { "label": "Water temp", "value": "93°C — just off the boil" } },
-        "ratio": { "type": "stat", "settings": { "label": "Ratio", "value": "1 filter : 350ml water" } },
-        "time": { "type": "stat", "settings": { "label": "Time", "value": "5 minutes, no more" } },
-        "water": { "type": "stat", "settings": { "label": "Water", "value": "Filtered tastes best" } }
-      },
-      "block_order": ["temp", "ratio", "time", "water"]
     },
     "guide": {
       "type": "brew-guide",
@@ -27,6 +16,10 @@
         "meta": "Read once\nBrew from memory after"
       },
       "blocks": {
+        "temp": { "type": "stat", "settings": { "label": "Water temp", "value": "93°C — just off the boil" } },
+        "ratio": { "type": "stat", "settings": { "label": "Ratio", "value": "1 filter : 350ml water" } },
+        "time": { "type": "stat", "settings": { "label": "Time", "value": "5 minutes, no more" } },
+        "water": { "type": "stat", "settings": { "label": "Water", "value": "Filtered tastes best" } },
         "s0": {
           "type": "guide_step",
           "settings": {
@@ -64,7 +57,7 @@
           }
         }
       },
-      "block_order": ["s0", "s1", "s2", "s3"]
+      "block_order": ["temp", "ratio", "time", "water", "s0", "s1", "s2", "s3"]
     },
     "faq": {
       "type": "faq-accordion",
@@ -122,5 +115,5 @@
       }
     }
   },
-  "order": ["head", "specs", "guide", "faq", "compost"]
+  "order": ["head", "guide", "faq", "compost"]
 }
