@@ -631,12 +631,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    SPEC ROW (variables strip, used inside brew-guide)
    ------------------------------------------------------------ */
 .spec-row {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
-@media (max-width: 900px) { .spec-row { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .spec-row { grid-template-columns: 1fr; } }
 .spec-row--compact { margin-bottom: var(--s-8); }
 .spec-item {
   padding: var(--s-6) var(--s-5);

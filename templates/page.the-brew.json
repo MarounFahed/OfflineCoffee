@@ -19,7 +19,6 @@
         "temp": { "type": "stat", "settings": { "label": "Water temp", "value": "93°C — just off the boil" } },
         "ratio": { "type": "stat", "settings": { "label": "Ratio", "value": "1 filter : 240ml water" } },
         "time": { "type": "stat", "settings": { "label": "Time", "value": "5 minutes" } },
-        "water": { "type": "stat", "settings": { "label": "Water", "value": "Start cold. Filtered if you've got it." } },
         "s0": {
           "type": "guide_step",
           "settings": {
@@ -57,7 +56,7 @@
           }
         }
       },
-      "block_order": ["temp", "ratio", "time", "water", "s0", "s1", "s2", "s3"]
+      "block_order": ["temp", "ratio", "time", "s0", "s1", "s2", "s3"]
     },
     "faq": {
       "type": "faq-accordion",

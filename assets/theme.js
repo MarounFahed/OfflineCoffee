@@ -193,56 +193,70 @@
 
   /* ----- Smooth accordion open/close ----- */
   function animatedAccordions() {
+    // Each details tracks its own in-flight animation so rapid clicks
+    // can't stack transitionend listeners or race each other.
+    const state = new WeakMap();
+
+    const clearAnim = (details, body) => {
+      const s = state.get(details);
+      if (s && s.onEnd) body.removeEventListener('transitionend', s.onEnd);
+      body.style.height = '';
+      body.style.overflow = '';
+      body.style.transition = '';
+      state.set(details, null);
+    };
+
     const openDetails = (details, body) => {
+      clearAnim(details, body);
       details.setAttribute('open', '');
       const target = body.scrollHeight;
       body.style.overflow = 'hidden';
       body.style.height = '0px';
       body.style.transition = 'height 260ms cubic-bezier(.2,.7,.2,1)';
       requestAnimationFrame(() => { body.style.height = target + 'px'; });
-      body.addEventListener('transitionend', function done() {
-        body.style.height = '';
-        body.style.overflow = '';
-        body.style.transition = '';
-        body.removeEventListener('transitionend', done);
-      });
+      const onEnd = (e) => { if (e.propertyName === 'height') clearAnim(details, body); };
+      body.addEventListener('transitionend', onEnd);
+      state.set(details, { onEnd });
     };
 
     const closeDetails = (details, body) => {
+      clearAnim(details, body);
       const start = body.scrollHeight;
       body.style.overflow = 'hidden';
       body.style.height = start + 'px';
       body.style.transition = 'height 220ms cubic-bezier(.2,.7,.2,1)';
       requestAnimationFrame(() => { body.style.height = '0px'; });
-      body.addEventListener('transitionend', function done() {
+      const onEnd = (e) => {
+        if (e.propertyName !== 'height') return;
         details.removeAttribute('open');
-        body.style.height = '';
-        body.style.overflow = '';
-        body.style.transition = '';
-        body.removeEventListener('transitionend', done);
-      });
+        clearAnim(details, body);
+      };
+      body.addEventListener('transitionend', onEnd);
+      state.set(details, { onEnd });
     };
 
-    document.querySelectorAll('.accordion details').forEach((details) => {
-      const summary = details.querySelector('summary');
-      const body = details.querySelector('.accordion-body');
-      if (!summary || !body) return;
+    document.querySelectorAll('.accordion').forEach((accordion) => {
+      const exclusive = accordion.hasAttribute('data-exclusive');
+      accordion.querySelectorAll('details').forEach((details) => {
+        const summary = details.querySelector('summary');
+        const body = details.querySelector('.accordion-body');
+        if (!summary || !body) return;
 
-      summary.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (details.hasAttribute('open')) {
-          closeDetails(details, body);
-          return;
-        }
-        const groupName = details.getAttribute('name');
-        if (groupName) {
-          document.querySelectorAll('details[name="' + groupName + '"][open]').forEach((other) => {
-            if (other === details) return;
-            const otherBody = other.querySelector('.accordion-body');
-            if (otherBody) closeDetails(other, otherBody);
-          });
-        }
-        openDetails(details, body);
+        summary.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (details.hasAttribute('open')) {
+            closeDetails(details, body);
+            return;
+          }
+          if (exclusive) {
+            accordion.querySelectorAll('details[open]').forEach((other) => {
+              if (other === details) return;
+              const otherBody = other.querySelector('.accordion-body');
+              if (otherBody) closeDetails(other, otherBody);
+            });
+          }
+          openDetails(details, body);
+        });
       });
     });
   }
