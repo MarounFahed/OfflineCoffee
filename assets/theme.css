@@ -677,6 +677,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    ------------------------------------------------------------ */
 .brew-faq { padding-top: clamp(16px, 3vh, 32px); }
 .brew-faq .accordion { max-width: 720px; }
+.brew-faq .accordion details:first-child { border-top: none; }
 
 /* ------------------------------------------------------------
    PULL QUOTE
