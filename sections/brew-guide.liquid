@@ -13,6 +13,10 @@
           </div>
         {%- endfor -%}
       </div>
+      <div class="spec-foot">
+        {%- if section.settings.note != blank -%}<p class="spec-note">{{ section.settings.note }}</p>{%- endif -%}
+        <button type="button" class="btn-link print-trigger" data-print-trigger>Print the quick card ↓</button>
+      </div>
     {%- endif -%}
 
     <div class="section-head">
@@ -31,6 +35,19 @@
             {%- if block.settings.tip != blank -%}
               <p class="guide-tip"><span>Why it matters —</span> {{ block.settings.tip }}</p>
             {%- endif -%}
+            {%- if block.settings.show_timer -%}
+              <button class="timer-pill"
+                id="timerPill"
+                type="button"
+                data-seconds="{{ block.settings.timer_seconds | default: 300 }}"
+                data-label-start="{{ block.settings.timer_label_start | default: 'Start brew' | escape }}"
+                data-label-running="{{ block.settings.timer_label_running | default: 'Brewing…' | escape }}"
+                data-label-resume="{{ 'Resume' | escape }}"
+                data-label-done="{{ block.settings.timer_label_done | default: 'Ready.' | escape }}">
+                <span class="timer-digits" id="timerDigits">05:00</span>
+                <span id="timerLabel">{{ block.settings.timer_label_start | default: 'Start brew' }}</span>
+              </button>
+            {%- endif -%}
           </div>
         </div>
       {%- endfor -%}
@@ -45,7 +62,8 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "The long version." },
-    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "Read once\nBrew from memory after" }
+    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "Read once\nBrew from memory after" },
+    { "type": "text", "id": "note", "label": "Note under the variables (optional)" }
   ],
   "blocks": [
     {
@@ -63,7 +81,13 @@
         { "type": "text", "id": "number", "label": "Number", "default": "01" },
         { "type": "text", "id": "title", "label": "Title", "default": "Tear." },
         { "type": "textarea", "id": "body", "label": "Body" },
-        { "type": "textarea", "id": "tip", "label": "Why it matters" }
+        { "type": "textarea", "id": "tip", "label": "Why it matters" },
+        { "type": "header", "content": "Timer (only on the Wait step usually)" },
+        { "type": "checkbox", "id": "show_timer", "label": "Show timer button", "default": false },
+        { "type": "number", "id": "timer_seconds", "label": "Timer seconds", "default": 300 },
+        { "type": "text", "id": "timer_label_start", "label": "Label — start", "default": "Start brew" },
+        { "type": "text", "id": "timer_label_running", "label": "Label — running", "default": "Brewing…" },
+        { "type": "text", "id": "timer_label_done", "label": "Label — done", "default": "Ready." }
       ]
     }
   ],

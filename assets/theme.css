@@ -635,7 +635,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
 }
-.spec-row--compact { margin-bottom: var(--s-8); }
+.spec-row--compact { margin-bottom: var(--s-4); }
+.spec-foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--s-4); margin-bottom: var(--s-8);
+}
 .spec-item {
   padding: var(--s-6) var(--s-5);
   border-right: 1px solid var(--rule);
@@ -646,6 +650,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   opacity: 0.6; margin-bottom: var(--s-3);
 }
 .spec-value { font-family: var(--serif); font-weight: 600; font-size: 19px; line-height: 1.3; }
+.spec-note {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  opacity: 0.6;
+}
 
 /* ------------------------------------------------------------
    BREW GUIDE (long-form, alternating rows)
@@ -794,6 +802,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   border: 1px solid currentColor; padding: 8px 12px;
   display: inline-block; margin-top: var(--s-5);
 }
+.compost-cta { margin-top: var(--s-6); }
+.compost .btn-secondary { color: var(--paper); border-color: var(--paper); }
+.compost .btn-secondary:hover { background: var(--paper); color: var(--ink); }
+.compost--paper .btn-secondary { color: var(--ink); border-color: var(--ink); }
+.compost--paper .btn-secondary:hover { background: var(--ink); color: var(--paper); }
 
 /* ------------------------------------------------------------
    ROAST SPECTRUM
@@ -1241,6 +1254,12 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .page-head { padding: clamp(1px, 0.2vh, 3px) var(--gutter) clamp(12px, 2vh, 24px); max-width: var(--maxw); margin: 0 auto; }
 .page-head h1 { font-family: var(--display); font-weight: 400; font-size: clamp(48px, 7vw, 96px); letter-spacing: -0.02em; line-height: 0.95; text-transform: uppercase; }
 .page-head-lead { font-family: var(--serif); font-size: 18px; max-width: 44ch; line-height: 1.55; margin-top: var(--s-5); opacity: 0.92; }
+.page-head-quickstart {
+  display: inline-flex; align-items: center;
+  margin-top: var(--s-6); padding: 10px 16px;
+  border: 1px solid var(--ink);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+}
 .page-body { max-width: 680px; margin: 0 auto; padding: 0 var(--gutter) clamp(64px, 10vw, 128px); font-family: var(--serif); font-size: 18px; line-height: 1.65; }
 .page-body p { margin-bottom: var(--s-5); }
 .page-body h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; margin: var(--s-7) 0 var(--s-4); }
@@ -1302,4 +1321,18 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     scroll-behavior: auto !important;
   }
   .blend-card:hover .bag, .pcard:hover .pcard-art .bag { transform: none; }
+}
+
+/* ------------------------------------------------------------
+   PRINT — condensed quick-reference card (Brew page)
+   ------------------------------------------------------------ */
+@media print {
+  #siteHeader, .footer, .spectrum, .mobile-menu, .brew-faq, .compost,
+  .page-head-lead, .guide-body, .guide-tip, .timer-pill, .print-trigger,
+  [data-going-offline], [data-cart-count] { display: none !important; }
+  .brew-guide { padding: 0; }
+  .guide-row { padding: var(--s-2) 0; grid-template-columns: 48px 1fr; gap: var(--s-3); }
+  .guide-num { font-size: 22px; }
+  .guide-title { font-size: 16px; margin-bottom: 0; }
+  body { background: #fff; color: #000; }
 }

@@ -6,6 +6,12 @@
   {%- if section.settings.lead != blank -%}
     <p class="page-head-lead">{{ section.settings.lead }}</p>
   {%- endif -%}
+  {%- if section.settings.quickstart != blank -%}
+    <div class="page-head-quickstart">
+      {%- assign qs_words = section.settings.quickstart | split: ',' -%}
+      {%- for word in qs_words -%}{{ word | strip }}{% unless forloop.last %} → {% endunless %}{%- endfor -%}
+    </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -14,7 +20,8 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
     { "type": "textarea", "id": "heading", "label": "Heading (uses page title if blank)" },
-    { "type": "textarea", "id": "lead", "label": "Lead paragraph" }
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph" },
+    { "type": "text", "id": "quickstart", "label": "Quick-start words (comma-separated, optional)", "info": "e.g. Tear, Soak, Wait, Lift" }
   ],
   "presets": [
     { "name": "Page head" }
