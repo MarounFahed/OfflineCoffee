@@ -1272,9 +1272,27 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   letter-spacing: -0.025em; line-height: 0.9; text-transform: uppercase;
   text-wrap: balance; max-width: 14ch; margin: 0 auto;
 }
+.manifesto-body {
+  font-family: var(--serif); font-size: 19px; line-height: 1.6;
+  max-width: 52ch; margin: var(--s-7) auto 0; opacity: 0.85;
+}
 
 .origin-story { padding: clamp(64px, 10vw, 128px) var(--gutter); max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8); align-items: center; }
 @media (max-width: 800px) { .origin-story { grid-template-columns: 1fr; } }
+
+/* ------------------------------------------------------------
+   FOUNDER NOTE
+   ------------------------------------------------------------ */
+.founder-note { padding: clamp(64px, 9vw, 128px) var(--gutter); max-width: var(--maxw); margin: 0 auto; }
+.founder-note-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+.founder-note .coll-eyebrow { justify-content: center; }
+.founder-note-body { font-family: var(--serif); font-size: 19px; line-height: 1.7; opacity: 0.92; }
+.founder-note-body p { margin-bottom: var(--s-4); }
+.founder-note-body p:last-child { margin-bottom: 0; }
+.founder-note-sign {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  opacity: 0.55; margin-top: var(--s-6);
+}
 .origin-story .img { aspect-ratio: 4/5; background: var(--paper-2); position: relative; overflow: hidden; }
 .origin-story .img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .origin-story .img .stamp { position: absolute; top: var(--s-4); left: var(--s-4); border: 1px solid var(--ink); padding: 4px 8px; background: var(--paper); font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; z-index: 1; }
