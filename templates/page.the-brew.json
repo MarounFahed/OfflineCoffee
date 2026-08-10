@@ -13,7 +13,7 @@
       "settings": {
         "eyebrow": "§ Step by step",
         "heading": "The long version.",
-        "meta": "Read once"
+        "meta": "Read once\nBrew from memory after"
       },
       "blocks": {
         "temp": { "type": "stat", "settings": { "label": "Water temp", "value": "93°C — just off the boil" } },
