@@ -348,7 +348,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   margin-bottom: var(--s-5); opacity: 0.85;
 }
 .hero-eyebrow span:not(:last-child)::after { content: " · "; }
-.hero h1 {
+.hero-heading {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(64px, 13vw, 200px);
   letter-spacing: -0.025em; line-height: 0.88;

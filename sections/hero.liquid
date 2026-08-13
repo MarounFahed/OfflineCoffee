@@ -84,7 +84,17 @@
         </div>
       {%- endif -%}
 
-      <h1>{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+      {%- comment -%}
+        Only the first variant renders as an actual <h1> — all variants are
+        present in the server-rendered markup at once (CSS/JS just toggles
+        which one is visible), so giving every one an <h1> would put multiple
+        duplicate H1s in the page source.
+      {%- endcomment -%}
+      {%- if forloop.first -%}
+        <h1 class="hero-heading">{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+      {%- else -%}
+        <div class="hero-heading">{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</div>
+      {%- endif -%}
 
       {%- if lead != blank -%}
         <p class="lead">{{ lead }}</p>
@@ -134,7 +144,7 @@
         {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
       </div>
     {%- endif -%}
-    <h1>{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+    <h1 class="hero-heading">{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
     {%- if section.settings.lead != blank -%}
       <p class="lead">{{ section.settings.lead }}</p>
     {%- endif -%}
