@@ -637,7 +637,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    ------------------------------------------------------------ */
 .brew {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  border-bottom: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
 }
 @media (max-width: 900px) { .brew { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .brew { grid-template-columns: 1fr; } }
@@ -647,6 +647,9 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   display: flex; flex-direction: column; gap: var(--s-3);
 }
 .brew-step:last-child { border-right: none; }
+@media (max-width: 600px) {
+  .brew-step { border-right: none; }
+}
 .brew-num {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(56px, 7vw, 96px);
