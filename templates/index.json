@@ -71,7 +71,7 @@
       },
       "block_order": ["tent", "train", "hotel"]
     },
-    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring." } }
+    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "image": "shopify://shop_images/compost-soil-seedlings.jpg", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring." } }
   },
   "order": ["hero", "tagline-ticker", "featured-blends", "brew-strip", "pull-quote", "places", "compost"]
 }
