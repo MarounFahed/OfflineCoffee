@@ -649,7 +649,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .brew-step:last-child { border-right: none; }
 @media (max-width: 600px) {
-  .brew-step { border-right: none; border-bottom: 1px solid var(--rule); }
+  .brew-step { border-right: none; border-bottom: 1px solid var(--rule); padding-top: var(--s-4); }
   .brew-step:last-child { border-bottom: none; }
 }
 .brew-num {
