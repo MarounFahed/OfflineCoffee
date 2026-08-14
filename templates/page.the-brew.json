@@ -6,10 +6,10 @@
         "eyebrow": "§ The full method",
         "heading": "How to actually\nget this right.",
         "lead": "The short version is on every bag: tear, soak, wait, lift. This is the long version — what each step is doing, why it matters, and what to do if the cup still isn't right.",
-        "quickstart": "Tear, Soak, Wait, Lift",
+        "quickstart": "",
         "cta_text": "Shop the blends",
         "cta_url": "/collections/all-blends",
-        "show_roast_spectrum": true
+        "show_roast_spectrum": false
       }
     },
     "guide": {
@@ -30,6 +30,7 @@
           "settings": {
             "number": "01",
             "title": "Tear.",
+            "image": "shopify://shop_images/brew-step-01-tear.jpg",
             "body": "Open the notch at the top and tear straight across in one clean motion. No scissors, no sawing back and forth.",
             "tip": "A single clean tear keeps the filter's side seams intact. Ragged tears can weaken the paper lower down and let grounds sift into your cup later."
           }
@@ -39,6 +40,7 @@
           "settings": {
             "number": "02",
             "title": "Soak.",
+            "image": "shopify://shop_images/brew-step-02-soak.jpg",
             "body": "Hang the paper tab over the rim of your mug so the filter hangs freely inside it, then pour hot water through until the bag is fully submerged. Give it 10–15 seconds to bloom before topping off.",
             "tip": "Water that's genuinely off the boil — around 93°C — extracts the coffee's sugars without scorching them into bitterness. Water that's too cool under-extracts and tastes thin."
           }
@@ -48,6 +50,7 @@
           "settings": {
             "number": "03",
             "title": "Wait.",
+            "image": "shopify://shop_images/brew-step-03-wait.jpg",
             "body": "Five minutes, start to finish. Don't stir it, don't press it, don't peek early — set a timer and walk away.",
             "tip": "The filter does slow, even extraction the whole time. Pull it early and you get a thin, sour cup; leave it in longer and you start pulling out bitter compounds.",
             "show_timer": true,
@@ -62,6 +65,7 @@
           "settings": {
             "number": "04",
             "title": "Lift.",
+            "image": "shopify://shop_images/brew-step-04-lift.jpg",
             "body": "Lift the filter out by the tab, give it one gentle press against the side of the mug to catch the last drops, then set it aside to compost.",
             "tip": "Squeezing hard forces bitter tannins out along with the coffee. One gentle press is enough — a hard wring is where a lot of bitterness complaints actually come from."
           }

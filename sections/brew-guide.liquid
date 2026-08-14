@@ -44,32 +44,38 @@
         <div class="guide-row" id="step-{{ block.settings.number }}" {{ block.shopify_attributes }}>
           <div class="guide-visual">
             <div class="guide-num">{{ block.settings.number }}</div>
-            <div class="guide-icon" aria-hidden="true">
-              {%- case block.settings.number -%}
-                {%- when '01' -%}
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 10h20v26a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V10z"/>
-                    <path d="M14 16l4-2 4 3 4-3 4 3 4-3"/>
-                  </svg>
-                {%- when '02' -%}
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 18h22v14a8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8V18z"/>
-                    <path d="M32 22h4a5 5 0 0 1 0 10h-4"/>
-                    <path d="M18 12v6M24 10v8"/>
-                  </svg>
-                {%- when '03' -%}
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 8h20M14 40h20"/>
-                    <path d="M16 8v3a8 8 0 0 0 4 7l4 2 4-2a8 8 0 0 0 4-7V8"/>
-                    <path d="M16 40v-3a8 8 0 0 1 4-7l4-2 4 2a8 8 0 0 1 4 7v3"/>
-                  </svg>
-                {%- when '04' -%}
-                  <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 26h28v6a8 8 0 0 1-8 8h-12a8 8 0 0 1-8-8v-6z"/>
-                    <path d="M22 22V10M22 10l-5 5M22 10l5 5"/>
-                  </svg>
-              {%- endcase -%}
-            </div>
+            {%- if block.settings.image != blank -%}
+              <div class="guide-photo">
+                {% render 'responsive-image', image: block.settings.image, sizes: '160px', widths: '160, 240, 320', alt: block.settings.title, class: 'guide-photo-img' %}
+              </div>
+            {%- else -%}
+              <div class="guide-icon" aria-hidden="true">
+                {%- case block.settings.number -%}
+                  {%- when '01' -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 10h20v26a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V10z"/>
+                      <path d="M14 16l4-2 4 3 4-3 4 3 4-3"/>
+                    </svg>
+                  {%- when '02' -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M10 18h22v14a8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8V18z"/>
+                      <path d="M32 22h4a5 5 0 0 1 0 10h-4"/>
+                      <path d="M18 12v6M24 10v8"/>
+                    </svg>
+                  {%- when '03' -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 8h20M14 40h20"/>
+                      <path d="M16 8v3a8 8 0 0 0 4 7l4 2 4-2a8 8 0 0 0 4-7V8"/>
+                      <path d="M16 40v-3a8 8 0 0 1 4-7l4-2 4 2a8 8 0 0 1 4 7v3"/>
+                    </svg>
+                  {%- when '04' -%}
+                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M10 26h28v6a8 8 0 0 1-8 8h-12a8 8 0 0 1-8-8v-6z"/>
+                      <path d="M22 22V10M22 10l-5 5M22 10l5 5"/>
+                    </svg>
+                {%- endcase -%}
+              </div>
+            {%- endif -%}
           </div>
           <div class="guide-content">
             <h3 class="guide-title">{{ block.settings.title }}</h3>
@@ -150,6 +156,7 @@
       "settings": [
         { "type": "text", "id": "number", "label": "Number", "default": "01" },
         { "type": "text", "id": "title", "label": "Title", "default": "Tear." },
+        { "type": "image_picker", "id": "image", "label": "Step photo (optional — shows instead of the line icon)" },
         { "type": "textarea", "id": "body", "label": "Body" },
         { "type": "textarea", "id": "tip", "label": "Why it matters" },
         { "type": "header", "content": "Timer (only on the Wait step usually)" },
