@@ -44,14 +44,11 @@
     {%- for link in section.settings.menu.links -%}
       <li><a href="{{ link.url }}">{{ link.title }}</a></li>
     {%- endfor -%}
-  </ul>
-  <div class="mobile-menu-foot">
-    <ul role="list">
-      <li><a href="{{ routes.search_url }}">{{ 'general.accessibility.search' | t }}</a></li>
+    {%- if section.settings.show_account -%}
       <li><a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">{{ 'general.accessibility.account' | t }}</a></li>
-      <li><a href="{{ routes.cart_url }}">{{ 'general.accessibility.cart' | t }} ({{ cart.item_count }})</a></li>
-    </ul>
-  </div>
+    {%- endif -%}
+    <li><a href="{{ routes.cart_url }}">{{ 'general.accessibility.cart' | t }} ({{ cart.item_count }})</a></li>
+  </ul>
 </div>
 
 {% schema %}

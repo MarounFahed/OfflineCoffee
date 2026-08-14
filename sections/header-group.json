@@ -8,7 +8,7 @@
         "announcement_text": "Steeped. Not instant. — Free shipping over $40",
         "menu": "main-menu",
         "show_search": false,
-        "show_account": false
+        "show_account": true
       }
     }
   },

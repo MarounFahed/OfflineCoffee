@@ -286,6 +286,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 @media (max-width: 900px) {
   .nav { display: none; }
   .header-right .ghost { display: none; }
+  .header-right .cart-pill:not(.menu-btn) { display: none; }
   .menu-btn { display: inline-flex; }
   .brand-text { font-size: 18px; }
   .brand img { height: 48px; }
@@ -307,8 +308,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   font-family: var(--display); font-size: clamp(40px, 9vw, 64px);
   text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.95;
 }
-.mobile-menu-foot { margin-top: auto; padding-top: var(--s-7); border-top: 1px solid var(--rule); }
-.mobile-menu-foot ul { list-style: none; display: flex; flex-direction: column; gap: var(--s-3); font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
 
 /* ------------------------------------------------------------
    HERO
