@@ -24,6 +24,13 @@
       {%- if section.settings.note != blank -%}
         <p class="spec-note">{{ section.settings.note }}</p>
       {%- endif -%}
+      {%- if section.settings.show_roast_swatches -%}
+        <div class="roast-swatches">
+          <span class="roast-swatch"><i style="background: var(--ember);"></i>Light</span>
+          <span class="roast-swatch"><i style="background: var(--amber);"></i>Medium</span>
+          <span class="roast-swatch"><i style="background: var(--pine);"></i>Dark</span>
+        </div>
+      {%- endif -%}
     {%- endif -%}
 
     <div class="section-head">
@@ -125,7 +132,8 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "The long version." },
     { "type": "text", "id": "meta", "label": "Meta (right)", "default": "Read once\nBrew from memory after" },
-    { "type": "text", "id": "note", "label": "Note under the variables (optional)" }
+    { "type": "text", "id": "note", "label": "Note under the variables (optional)" },
+    { "type": "checkbox", "id": "show_roast_swatches", "label": "Show light/medium/dark color swatches under the note", "default": true }
   ],
   "blocks": [
     {

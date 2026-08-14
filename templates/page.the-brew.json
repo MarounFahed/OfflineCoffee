@@ -17,7 +17,8 @@
         "eyebrow": "§ Step by step",
         "heading": "The long version.",
         "meta": "Read once\nBrew from memory after",
-        "note": "Same method for every blend and roast — light, medium, or dark. Nothing to adjust."
+        "note": "Same method for every blend and roast — light, medium, or dark. Nothing to adjust.",
+        "show_roast_swatches": true
       },
       "blocks": {
         "temp": { "type": "stat", "settings": { "label": "Water temp", "value": "93°C — just off the boil" } },
