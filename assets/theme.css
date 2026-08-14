@@ -638,7 +638,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .brew {
   display: grid; grid-template-columns: repeat(4, 1fr);
   padding-bottom: var(--s-7);
-  border-bottom: 1px solid var(--rule);
 }
 @media (max-width: 900px) { .brew { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .brew { grid-template-columns: 1fr; } }
