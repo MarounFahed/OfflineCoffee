@@ -663,18 +663,20 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    ------------------------------------------------------------ */
 .brew-guide { padding-top: clamp(16px, 3vh, 32px); padding-bottom: clamp(16px, 3vh, 32px); }
 .guide-row {
-  display: grid; grid-template-columns: 140px 1fr; gap: var(--s-6);
+  display: grid; grid-template-columns: 140px 1fr 140px; gap: var(--s-6);
+  align-items: start;
   padding: var(--s-8) 0;
   border-bottom: 1px solid var(--rule);
 }
+@media (max-width: 900px) { .guide-row { grid-template-columns: 100px 1fr; } .guide-icon { display: none; } }
 @media (max-width: 700px) { .guide-row { grid-template-columns: 1fr; gap: var(--s-4); } }
-.guide-visual { display: flex; flex-direction: column; gap: var(--s-5); }
 .guide-num {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(40px, 4.5vw, 64px);
   letter-spacing: -0.02em; color: var(--ink); opacity: 0.9;
 }
-.guide-icon svg { width: 56px; height: 56px; color: var(--ink); opacity: 0.7; }
+.guide-icon { display: flex; justify-content: flex-end; }
+.guide-icon svg { width: 96px; height: 96px; color: var(--ink); opacity: 0.55; }
 .guide-title { font-family: var(--serif); font-weight: 600; font-size: clamp(22px, 2.4vw, 28px); margin-bottom: var(--s-4); }
 .guide-body { font-family: var(--serif); font-size: 17px; line-height: 1.65; max-width: 62ch; margin-bottom: var(--s-4); }
 .guide-tip {
