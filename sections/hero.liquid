@@ -104,7 +104,7 @@
       {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
         <div class="hero-ctas">
           {%- if section.settings.cta_primary_text != blank -%}
-            <a class="btn btn-arrow" href="{{ primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
+            <a class="btn" href="{{ primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
           {%- endif -%}
           {%- if section.settings.cta_secondary_text != blank -%}
             <a class="btn btn-secondary" href="{{ section.settings.cta_secondary_link | default: '#' }}">{{ section.settings.cta_secondary_text }}</a>
@@ -170,7 +170,7 @@
     {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
       <div class="hero-ctas">
         {%- if section.settings.cta_primary_text != blank -%}
-          <a class="btn btn-arrow" href="{{ section.settings.cta_primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
+          <a class="btn" href="{{ section.settings.cta_primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
         {%- endif -%}
         {%- if section.settings.cta_secondary_text != blank -%}
           <a class="btn btn-secondary" href="{{ section.settings.cta_secondary_link | default: '#' }}">{{ section.settings.cta_secondary_text }}</a>
