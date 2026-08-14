@@ -1268,7 +1268,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    PAGE / ABOUT (manifesto, origin-story)
    ------------------------------------------------------------ */
-.page-head { padding: clamp(1px, 0.2vh, 3px) var(--gutter) clamp(12px, 2vh, 24px); max-width: var(--maxw); margin: 0 auto; }
+.page-head { padding: clamp(20px, 3vh, 36px) var(--gutter) clamp(12px, 2vh, 24px); max-width: var(--maxw); margin: 0 auto; }
 .page-head h1 { font-family: var(--display); font-weight: 400; font-size: clamp(48px, 7vw, 96px); letter-spacing: -0.02em; line-height: 0.95; text-transform: uppercase; }
 .page-head-lead { font-family: var(--serif); font-size: 18px; max-width: 44ch; line-height: 1.55; margin-top: var(--s-5); opacity: 0.92; }
 .page-head-quickstart {
