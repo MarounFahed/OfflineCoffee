@@ -47,7 +47,11 @@
     {{ content_for_header }}
 
     <title>
-      {{ page_title }}{% if current_tags %} &mdash; {{ 'general.meta.tagged' | t }}: {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &mdash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &mdash; {{ shop.name }}{% endunless %}
+      {%- if request.page_type == 'index' -%}
+        {{ shop.name | upcase }}
+      {%- else -%}
+        {{ page_title }}{% if current_tags %} &mdash; {{ 'general.meta.tagged' | t }}: {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &mdash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &mdash; {{ shop.name | upcase }}{% endunless %}
+      {%- endif -%}
     </title>
 
     {%- if page_description -%}
