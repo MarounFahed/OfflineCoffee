@@ -767,6 +767,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .quote-wrap.has-topo-below { padding-bottom: clamp(4px, 0.5625vw, 8px); }
 .quote-wrap svg.topo { width: 100%; height: 32px; opacity: 0.4; margin-bottom: var(--s-7); }
 .quote-wrap svg.topo + .quote { margin-top: 0; }
+.quote-wrap > div:last-child svg.topo { margin-bottom: 0; }
 .quote {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: clamp(28px, 4vw, 56px);
