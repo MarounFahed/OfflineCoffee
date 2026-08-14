@@ -207,7 +207,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .blends-section { padding-top: clamp(32px, 5vw, 64px); padding-bottom: 0; }
 .brew-strip-section { padding-top: clamp(32px, 5vw, 64px); padding-bottom: 0; }
 .places-section { padding-top: clamp(32px, 5vw, 64px); }
-.places-section .section-head h2 { font-size: clamp(24px, 3.4vw, 48px); }
+.places-section .section-head h2 { font-size: clamp(28px, 4vw, 64px); }
 .blends-section .section-head { border-bottom: none; margin-bottom: 0; }
 .section-tight { padding-block: clamp(48px, 7vw, 96px); }
 .hairline { border-top: 1px solid var(--rule); }

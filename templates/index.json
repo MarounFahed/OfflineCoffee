@@ -63,7 +63,7 @@
     "pull-quote": { "type": "pull-quote", "settings": { "quote": "\"You can drink coffee with two bars of signal, or no bars at all. The coffee doesn't care. Maybe you don't either.\"", "attribution": "", "show_topo_above": true, "show_topo_below": true } },
     "places": {
       "type": "editorial-grid",
-      "settings": { "eyebrow": "§ 03 — Where it goes", "heading": "Made for the places\nwithout good coffee.", "meta": "A balcony\ncounts too" },
+      "settings": { "eyebrow": "§ 03 — Where it goes", "heading": "Made for the places\nwithout good\ncoffee.", "meta": "A balcony\ncounts too" },
       "blocks": {
         "tent": { "type": "card", "settings": { "stamp": "N 44°25′ / W 110°35′", "label": "[ TENT · 06:14 AM ]", "title": "Two-person tent, Yellowstone backcountry.", "meta_left": "Site #14", "meta_right": "Aug" } },
         "train": { "type": "card", "settings": { "stamp": "N 40°45′ / W 73°59′", "label": "[ TRAIN · 07:02 AM ]", "title": "Northbound Amtrak, somewhere past Poughkeepsie.", "meta_left": "Car 7", "meta_right": "Sept" } },
