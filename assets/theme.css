@@ -651,6 +651,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 @media (max-width: 600px) {
   .brew-step { border-right: none; border-bottom: 1px solid var(--rule); padding-top: var(--s-4); }
   .brew-step:last-child { border-bottom: none; }
+  .brew-strip-section .section-head { margin-bottom: var(--s-5); }
 }
 .brew-num {
   font-family: var(--display); font-weight: 400;
