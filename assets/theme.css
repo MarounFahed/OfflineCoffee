@@ -763,6 +763,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    PULL QUOTE
    ------------------------------------------------------------ */
 .quote-wrap { padding-block: clamp(64px, 9vw, 128px); }
+.quote-wrap.has-topo-above { padding-top: clamp(16px, 2.25vw, 32px); }
 .quote-wrap svg.topo { width: 100%; height: 32px; opacity: 0.4; margin-bottom: var(--s-7); }
 .quote-wrap svg.topo + .quote { margin-top: 0; }
 .quote {

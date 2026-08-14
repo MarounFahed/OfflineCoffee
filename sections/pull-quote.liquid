@@ -1,5 +1,5 @@
 <section style="background: var(--paper); border-bottom: 1px solid var(--rule);">
-  <div class="wrap quote-wrap">
+  <div class="wrap quote-wrap{% if section.settings.show_topo_above %} has-topo-above{% endif %}">
     {%- if section.settings.show_topo_above -%}
       {% render 'topo-line', variant: 'a' %}
     {%- endif -%}
