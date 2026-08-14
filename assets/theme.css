@@ -437,6 +437,29 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   .hero-eyebrow span:not(:last-child) { margin-bottom: 2px; }
 }
 
+/* Hero — text/product split */
+.hero-split { display: grid; grid-template-columns: 1.5fr 1fr; }
+.hero-split .hero { grid-column: 1; grid-row: 1; min-width: 0; }
+.hero-showcase {
+  grid-column: 2; grid-row: 1;
+  background: var(--paper-2);
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--gutter);
+}
+.hero-showcase-inner { display: flex; flex-direction: column; gap: var(--s-4); width: 100%; max-width: 360px; }
+.hero-bag { aspect-ratio: 5 / 2; padding: 12px; }
+.hero-bag .bag {
+  width: 100%; height: 100%;
+  background: var(--paper);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 14px 16px;
+  box-shadow: inset 0 0 0 1px rgba(15,15,15,0.06);
+}
+@media (max-width: 900px) {
+  .hero-split { grid-template-columns: 1fr; }
+  .hero-showcase { grid-row: 2; padding: clamp(32px, 6vw, 56px) var(--gutter); }
+}
+
 /* ------------------------------------------------------------
    SECTION HEAD
    ------------------------------------------------------------ */

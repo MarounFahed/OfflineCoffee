@@ -44,6 +44,7 @@
 {%- endif -%}
 
 {%- if vcount > 0 -%}
+  <div class="hero-split">
   {%- for block in variants -%}
     {%- liquid
       assign mood = block.settings.mood_color | default: '--pine'
@@ -116,6 +117,20 @@
       {%- endif -%}
     </section>
   {%- endfor -%}
+    <div class="hero-showcase" aria-hidden="true">
+      <div class="hero-showcase-inner">
+        <div class="hero-bag" style="background: var(--ember);">
+          {% render 'bag-mockup', blend_name: 'Pine Grove', blend_number: 'Blend 01', bars: 2, region: 'Light roast' %}
+        </div>
+        <div class="hero-bag" style="background: var(--amber);">
+          {% render 'bag-mockup', blend_name: 'Juniper Valley', blend_number: 'Blend 02', bars: 3, region: 'Medium roast' %}
+        </div>
+        <div class="hero-bag" style="background: var(--pine);">
+          {% render 'bag-mockup', blend_name: 'Cedar Peak', blend_number: 'Blend 03', bars: 4, region: 'Dark roast' %}
+        </div>
+      </div>
+    </div>
+  </div>
 {%- else -%}
   {%- assign mood_color = '--pine' -%}
   {%- if section.settings.mood == 'amber' -%}{%- assign mood_color = '--amber' -%}
