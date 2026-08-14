@@ -12,6 +12,14 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
+    {%- if section.settings.fallback_text != blank -%}
+      <p class="faq-fallback">
+        {{ section.settings.fallback_text }}
+        {%- if section.settings.fallback_email != blank -%}
+          <a href="mailto:{{ section.settings.fallback_email }}">{{ section.settings.fallback_email }}</a>
+        {%- endif -%}
+      </p>
+    {%- endif -%}
   </div>
 </section>
 
@@ -22,7 +30,10 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ If it's not right" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Fix the cup." },
-    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "Common problems" }
+    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "Common problems" },
+    { "type": "header", "content": "Fallback (optional)" },
+    { "type": "text", "id": "fallback_text", "label": "Fallback text", "default": "Still stuck? Email us at" },
+    { "type": "text", "id": "fallback_email", "label": "Fallback email", "default": "hello@offline-coffee.com" }
   ],
   "blocks": [
     {

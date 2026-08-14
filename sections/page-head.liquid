@@ -12,6 +12,11 @@
       {%- for word in qs_words -%}{{ word | strip }}{% unless forloop.last %} → {% endunless %}{%- endfor -%}
     </div>
   {%- endif -%}
+  {%- if section.settings.cta_text != blank and section.settings.cta_url != blank -%}
+    <div class="page-head-cta">
+      <a class="btn-link" href="{{ section.settings.cta_url }}">{{ section.settings.cta_text }}<span class="btn-arrow"></span></a>
+    </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -21,7 +26,10 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
     { "type": "textarea", "id": "heading", "label": "Heading (uses page title if blank)" },
     { "type": "textarea", "id": "lead", "label": "Lead paragraph" },
-    { "type": "text", "id": "quickstart", "label": "Quick-start words (comma-separated, optional)", "info": "e.g. Tear, Soak, Wait, Lift" }
+    { "type": "text", "id": "quickstart", "label": "Quick-start words (comma-separated, optional)", "info": "e.g. Tear, Soak, Wait, Lift" },
+    { "type": "header", "content": "CTA (optional)" },
+    { "type": "text", "id": "cta_text", "label": "CTA text" },
+    { "type": "url", "id": "cta_url", "label": "CTA link" }
   ],
   "presets": [
     { "name": "Page head" }
