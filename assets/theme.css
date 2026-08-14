@@ -204,7 +204,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    ------------------------------------------------------------ */
 .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); width: 100%; }
 .section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
-.blends-section { padding-top: clamp(32px, 5vw, 64px); }
+.blends-section { padding-top: clamp(32px, 5vw, 64px); padding-bottom: 0; }
 .brew-strip-section { padding-top: clamp(32px, 5vw, 64px); }
 .blends-section .section-head { border-bottom: none; margin-bottom: 0; }
 .section-tight { padding-block: clamp(48px, 7vw, 96px); }
