@@ -35,10 +35,9 @@
         "p3": { "type": "phrase", "settings": { "text": "Just coffee" } },
         "p4": { "type": "phrase", "settings": { "text": "Five minutes to anywhere" } },
         "p5": { "type": "phrase", "settings": { "text": "The internet can wait" } },
-        "p6": { "type": "phrase", "settings": { "text": "Made for the places without WiFi" } },
-        "p7": { "type": "phrase", "settings": { "text": "Out of range. On purpose." } }
+        "p6": { "type": "phrase", "settings": { "text": "Made for the places without WiFi" } }
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6", "p7"]
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"]
     },
     "featured-blends": {
       "type": "featured-blends",
