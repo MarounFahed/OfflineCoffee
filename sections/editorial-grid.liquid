@@ -16,6 +16,13 @@
                 sizes: '(min-width: 990px) 33vw, 100vw',
                 widths: '400, 600, 800, 1200',
                 alt: block.settings.title %}
+            {%- elsif block.settings.image_url != blank -%}
+              <img
+                src="{{ block.settings.image_url }}&width=800"
+                srcset="{{ block.settings.image_url }}&width=400 400w, {{ block.settings.image_url }}&width=600 600w, {{ block.settings.image_url }}&width=800 800w, {{ block.settings.image_url }}&width=1200 1200w"
+                sizes="(min-width: 990px) 33vw, 100vw"
+                alt="{{ block.settings.title | escape }}"
+                loading="lazy">
             {%- endif -%}
             {%- if block.settings.stamp != blank -%}
               <div class="stamp">{{ block.settings.stamp }}</div>
@@ -50,6 +57,7 @@
       "name": "Card",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_url", "label": "Image URL (fallback, advanced)" },
         { "type": "text", "id": "stamp", "label": "Coordinate stamp", "default": "N 44°25′ / W 110°35′" },
         { "type": "text", "id": "label", "label": "Bottom-right label", "default": "[ TENT · 06:14 AM ]" },
         { "type": "text", "id": "title", "label": "Title", "default": "Two-person tent, Yellowstone backcountry." },
