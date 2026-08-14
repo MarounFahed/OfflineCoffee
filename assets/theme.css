@@ -359,6 +359,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   max-width: 12ch;
   margin-bottom: var(--s-6);
 }
+.hero-split .hero-heading { font-size: clamp(48px, 8vw, 128px); }
 .hero p.lead {
   font-family: var(--serif);
   font-size: clamp(16px, 1.4vw, 19px);
