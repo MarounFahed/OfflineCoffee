@@ -65,9 +65,9 @@
       "type": "editorial-grid",
       "settings": { "eyebrow": "§ 03 — Where it goes", "heading": "Made for the\nplaces without\ngood coffee.", "meta": "A balcony\ncounts too" },
       "blocks": {
-        "tent": { "type": "card", "settings": { "stamp": "N 44°25′ / W 110°35′", "label": "[ TENT · 06:14 AM ]", "title": "Two-person tent, Yellowstone backcountry.", "meta_left": "Site #14", "meta_right": "Aug" } },
-        "train": { "type": "card", "settings": { "stamp": "N 40°45′ / W 73°59′", "label": "[ TRAIN · 07:02 AM ]", "title": "Northbound Amtrak, somewhere past Poughkeepsie.", "meta_left": "Car 7", "meta_right": "Sept" } },
-        "hotel": { "type": "card", "settings": { "stamp": "N 35°41′ / E 139°41′", "label": "[ HOTEL · 05:48 AM ]", "title": "Business hotel, Shibuya. Kettle in the closet.", "meta_left": "Room 1402", "meta_right": "Oct" } }
+        "tent": { "type": "card", "settings": { "image": "shopify://shop_images/places-tent-camp-kettle.jpg", "stamp": "N 44°25′ / W 110°35′", "label": "[ TENT · 06:14 AM ]", "title": "Two-person tent, Yellowstone backcountry.", "meta_left": "Site #14", "meta_right": "Aug" } },
+        "train": { "type": "card", "settings": { "image": "shopify://shop_images/places-desk-workspace-coffee.jpg", "stamp": "N 40°45′ / W 73°59′", "label": "[ TRAIN · 07:02 AM ]", "title": "Northbound Amtrak, somewhere past Poughkeepsie.", "meta_left": "Car 7", "meta_right": "Sept" } },
+        "hotel": { "type": "card", "settings": { "image": "shopify://shop_images/places-hotel-tea-tray.jpg", "stamp": "N 35°41′ / E 139°41′", "label": "[ HOTEL · 05:48 AM ]", "title": "Business hotel, Shibuya. Kettle in the closet.", "meta_left": "Room 1402", "meta_right": "Oct" } }
       },
       "block_order": ["tent", "train", "hotel"]
     },
