@@ -116,34 +116,24 @@
         <div class="scroll-cue" aria-hidden="true">{{ section.settings.scroll_cue_text | default: 'Keep reading' }}</div>
       {%- endif -%}
     </section>
-  {%- endfor -%}
+
     {%- liquid
-      assign showcase_p1 = all_products['pine-grove-bag']
-      assign showcase_p2 = all_products['juniper-valley-bag']
-      assign showcase_p3 = all_products['cedar-peak-bag']
+      assign showcase_product = blank
+      if mood == '--ember'
+        assign showcase_product = all_products['pine-grove-bag']
+      elsif mood == '--amber'
+        assign showcase_product = all_products['juniper-valley-bag']
+      elsif mood == '--pine'
+        assign showcase_product = all_products['cedar-peak-bag']
+      endif
     -%}
-    <div class="hero-showcase" aria-hidden="true">
-      <div class="hero-showcase-inner">
-        {%- if showcase_p1 and showcase_p1.featured_image -%}
-          {%- assign p1_alt = showcase_p1.featured_image.alt | default: showcase_p1.title -%}
-          <div class="hero-bag-photo" style="--mood-line: var(--ember);">
-            {% render 'responsive-image', image: showcase_p1.featured_image, sizes: '(min-width: 900px) 160px, 30vw', widths: '160, 240, 320', alt: p1_alt, class: 'hero-bag-img' %}
-          </div>
-        {%- endif -%}
-        {%- if showcase_p2 and showcase_p2.featured_image -%}
-          {%- assign p2_alt = showcase_p2.featured_image.alt | default: showcase_p2.title -%}
-          <div class="hero-bag-photo" style="--mood-line: var(--amber);">
-            {% render 'responsive-image', image: showcase_p2.featured_image, sizes: '(min-width: 900px) 160px, 30vw', widths: '160, 240, 320', alt: p2_alt, class: 'hero-bag-img' %}
-          </div>
-        {%- endif -%}
-        {%- if showcase_p3 and showcase_p3.featured_image -%}
-          {%- assign p3_alt = showcase_p3.featured_image.alt | default: showcase_p3.title -%}
-          <div class="hero-bag-photo" style="--mood-line: var(--pine);">
-            {% render 'responsive-image', image: showcase_p3.featured_image, sizes: '(min-width: 900px) 160px, 30vw', widths: '160, 240, 320', alt: p3_alt, class: 'hero-bag-img' %}
-          </div>
-        {%- endif -%}
+    {%- if showcase_product and showcase_product.featured_image -%}
+      {%- assign showcase_alt = showcase_product.featured_image.alt | default: showcase_product.title -%}
+      <div class="hero-showcase" data-hero-variant="{{ forloop.index0 }}" aria-hidden="true">
+        {% render 'responsive-image', image: showcase_product.featured_image, sizes: '(min-width: 900px) 40vw, 100vw', widths: '400, 600, 900, 1200', alt: showcase_alt, class: 'hero-showcase-img' %}
       </div>
-    </div>
+    {%- endif -%}
+  {%- endfor -%}
   </div>
 {%- else -%}
   {%- assign mood_color = '--pine' -%}
