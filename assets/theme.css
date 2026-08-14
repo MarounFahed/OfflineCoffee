@@ -280,10 +280,13 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .header-right a, .header-right button { min-height: 44px; display: inline-flex; align-items: center; }
 .cart-pill {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 14px; border: 1px solid var(--ink);
 }
-.menu-btn { display: none; }
+.menu-btn {
+  display: none;
+  width: 44px; height: 44px; justify-content: center; flex: none;
+}
 @media (max-width: 900px) {
+  .header-inner { grid-template-columns: 1fr auto; }
   .nav { display: none; }
   .header-right .ghost { display: none; }
   .header-right .cart-pill:not(.menu-btn) { display: none; }
