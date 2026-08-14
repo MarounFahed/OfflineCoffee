@@ -8,7 +8,8 @@
         "lead": "The short version is on every bag: tear, soak, wait, lift. This is the long version — what each step is doing, why it matters, and what to do if the cup still isn't right.",
         "quickstart": "Tear, Soak, Wait, Lift",
         "cta_text": "Shop the blends",
-        "cta_url": "/collections/all-blends"
+        "cta_url": "/collections/all-blends",
+        "show_roast_spectrum": true
       }
     },
     "guide": {

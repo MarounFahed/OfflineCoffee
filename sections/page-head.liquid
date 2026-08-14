@@ -1,3 +1,8 @@
+{%- if section.settings.show_roast_spectrum -%}
+  <div class="spectrum" aria-hidden="true">
+    <i></i><i></i><i></i>
+  </div>
+{%- endif -%}
 <section class="page-head">
   {%- if section.settings.eyebrow != blank -%}
     <div class="coll-eyebrow">{{ section.settings.eyebrow }}</div>
@@ -29,7 +34,8 @@
     { "type": "text", "id": "quickstart", "label": "Quick-start words (comma-separated, optional)", "info": "e.g. Tear, Soak, Wait, Lift" },
     { "type": "header", "content": "CTA (optional)" },
     { "type": "text", "id": "cta_text", "label": "CTA text" },
-    { "type": "url", "id": "cta_url", "label": "CTA link" }
+    { "type": "url", "id": "cta_url", "label": "CTA link" },
+    { "type": "checkbox", "id": "show_roast_spectrum", "label": "Show full-width roast color strip above heading", "default": false }
   ],
   "presets": [
     { "name": "Page head" }
