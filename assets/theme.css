@@ -1268,7 +1268,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .manifesto h1 {
   font-family: var(--display); font-weight: 400;
-  font-size: clamp(56px, 11vw, 168px);
+  font-size: clamp(48px, 7vw, 108px);
   letter-spacing: -0.025em; line-height: 0.9; text-transform: uppercase;
   text-wrap: balance; max-width: 14ch; margin: 0 auto;
 }
