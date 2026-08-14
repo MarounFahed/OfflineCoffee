@@ -459,9 +459,12 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     margin-bottom: var(--s-5);
     font-size: 9px;
   }
-  .hero-split .hero .hero-stamp::before { margin-left: 0; }
+  .hero-split .hero .hero-stamp::before { margin-left: 0; margin-bottom: 18px; opacity: 0.8; }
   .hero-split .hero-eyebrow { font-size: 9px; }
-  .hero-split .hero-heading { font-size: clamp(40px, 11vw, 100px); }
+  .hero-split .hero-heading { font-size: clamp(36px, 10vw, 100px); }
+  .hero-split .hero p.lead { font-size: 14px; }
+  .hero-split .hero-ctas { flex-wrap: nowrap; }
+  .hero-split .hero-ctas .btn { flex: 1 1 0; text-align: center; padding-inline: var(--s-3); }
   .hero-split .scroll-cue { display: none; }
 }
 @media (max-width: 600px) {
