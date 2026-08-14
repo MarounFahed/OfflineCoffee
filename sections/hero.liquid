@@ -117,17 +117,31 @@
       {%- endif -%}
     </section>
   {%- endfor -%}
+    {%- liquid
+      assign showcase_p1 = all_products['pine-grove-bag']
+      assign showcase_p2 = all_products['juniper-valley-bag']
+      assign showcase_p3 = all_products['cedar-peak-bag']
+    -%}
     <div class="hero-showcase" aria-hidden="true">
       <div class="hero-showcase-inner">
-        <div class="hero-bag" style="background: var(--ember);">
-          {% render 'bag-mockup', blend_name: 'Pine Grove', blend_number: 'Blend 01', bars: 2, region: 'Light roast' %}
-        </div>
-        <div class="hero-bag" style="background: var(--amber);">
-          {% render 'bag-mockup', blend_name: 'Juniper Valley', blend_number: 'Blend 02', bars: 3, region: 'Medium roast' %}
-        </div>
-        <div class="hero-bag" style="background: var(--pine);">
-          {% render 'bag-mockup', blend_name: 'Cedar Peak', blend_number: 'Blend 03', bars: 4, region: 'Dark roast' %}
-        </div>
+        {%- if showcase_p1 and showcase_p1.featured_image -%}
+          {%- assign p1_alt = showcase_p1.featured_image.alt | default: showcase_p1.title -%}
+          <div class="hero-bag-photo" style="--mood-line: var(--ember);">
+            {% render 'responsive-image', image: showcase_p1.featured_image, sizes: '(min-width: 900px) 160px, 30vw', widths: '160, 240, 320', alt: p1_alt, class: 'hero-bag-img' %}
+          </div>
+        {%- endif -%}
+        {%- if showcase_p2 and showcase_p2.featured_image -%}
+          {%- assign p2_alt = showcase_p2.featured_image.alt | default: showcase_p2.title -%}
+          <div class="hero-bag-photo" style="--mood-line: var(--amber);">
+            {% render 'responsive-image', image: showcase_p2.featured_image, sizes: '(min-width: 900px) 160px, 30vw', widths: '160, 240, 320', alt: p2_alt, class: 'hero-bag-img' %}
+          </div>
+        {%- endif -%}
+        {%- if showcase_p3 and showcase_p3.featured_image -%}
+          {%- assign p3_alt = showcase_p3.featured_image.alt | default: showcase_p3.title -%}
+          <div class="hero-bag-photo" style="--mood-line: var(--pine);">
+            {% render 'responsive-image', image: showcase_p3.featured_image, sizes: '(min-width: 900px) 160px, 30vw', widths: '160, 240, 320', alt: p3_alt, class: 'hero-bag-img' %}
+          </div>
+        {%- endif -%}
       </div>
     </div>
   </div>
