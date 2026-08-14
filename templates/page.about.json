@@ -18,6 +18,7 @@
     "origin": {
       "type": "origin-story",
       "settings": {
+        "image": "shopify://shop_images/origin-story-coffee-cherries.jpg",
         "stamp": "N 06°08′ / E 38°12′",
         "heading": "Sourcing\nthe slow way."
       },
