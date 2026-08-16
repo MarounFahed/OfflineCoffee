@@ -1,7 +1,7 @@
 {%- liquid
   assign sampler_product = blank
   if section.settings.product != blank
-    assign sampler_product = section.settings.product
+    assign sampler_product = all_products[section.settings.product]
   endif
 -%}
 
