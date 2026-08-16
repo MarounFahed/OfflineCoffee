@@ -1,5 +1,6 @@
 {
   "sections": {
+    "sampler-strip": { "type": "sampler-strip", "settings": { "product": "try-all-three", "eyebrow": "§ Bonus round", "heading": "Can't decide?\nTry all three.", "body": "One full bag of each roast. The easiest way to find out which one's yours.", "show_price": true, "cta_text": "Shop the full set" } },
     "main": {
       "type": "main-collection",
       "settings": {
@@ -19,5 +20,5 @@
       "block_order": []
     }
   },
-  "order": ["main"]
+  "order": ["sampler-strip", "main"]
 }
