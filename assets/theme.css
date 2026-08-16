@@ -1373,7 +1373,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .page-body h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; margin: var(--s-7) 0 var(--s-4); }
 
 .manifesto {
-  padding: clamp(1px, 0.2vh, 3px) var(--gutter) clamp(128px, 20vh, 256px);
+  padding: clamp(1px, 0.2vh, 3px) var(--gutter) 0;
   text-align: center; max-width: var(--maxw); margin: 0 auto;
 }
 .manifesto h1 {
