@@ -3,15 +3,10 @@
     {%- if section.settings.show_topo_above -%}
       {% render 'topo-line', variant: 'a' %}
     {%- endif -%}
-    <div class="quote-row">
-      <div class="quote-spine" aria-hidden="true"></div>
-      <div>
-        <p class="quote">{{ section.settings.quote | escape }}</p>
-        {%- if section.settings.attribution != blank -%}
-          <div class="quote-attr">{{ section.settings.attribution }}</div>
-        {%- endif -%}
-      </div>
-    </div>
+    <p class="quote">{{ section.settings.quote | escape }}</p>
+    {%- if section.settings.attribution != blank -%}
+      <div class="quote-attr">{{ section.settings.attribution }}</div>
+    {%- endif -%}
     {%- if section.settings.show_topo_below -%}
       <div style="margin-top: var(--s-7);">
         {% render 'topo-line', variant: 'b' %}

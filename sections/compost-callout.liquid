@@ -5,6 +5,9 @@
       {%- if section.settings.tag != blank -%}
         <span class="compost-tag">{{ section.settings.tag }}</span>
       {%- endif -%}
+      {%- if section.settings.cta_text != blank and section.settings.cta_url != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="btn btn-secondary compost-cta">{{ section.settings.cta_text }}</a>
+      {%- endif -%}
     </div>
     <div class="compost-body">
       {%- if section.settings.image != blank -%}
@@ -24,9 +27,6 @@
           class="compost-image">
       {%- endif -%}
       <p>{{ section.settings.body }}</p>
-      {%- if section.settings.cta_text != blank and section.settings.cta_url != blank -%}
-        <a href="{{ section.settings.cta_url }}" class="btn btn-secondary compost-cta">{{ section.settings.cta_text }}</a>
-      {%- endif -%}
     </div>
   </div>
 </section>
