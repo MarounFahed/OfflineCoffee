@@ -26,6 +26,18 @@
   </div>
 </section>
 
+{%- if section.settings.show_sampler_band and section.settings.sampler_product != blank -%}
+  <section class="sampler-band" aria-label="{{ section.settings.sampler_heading | default: 'The Full Set' | strip_html }}">
+    {% render 'sampler-band',
+      product_handle: section.settings.sampler_product,
+      eyebrow: section.settings.sampler_eyebrow,
+      heading: section.settings.sampler_heading,
+      body: section.settings.sampler_body,
+      show_price: section.settings.sampler_show_price,
+      cta_text: section.settings.sampler_cta_text %}
+  </section>
+{%- endif -%}
+
 {%- paginate collection.products by products_per_page -%}
   {%- if collection.products.size > 0 -%}
     <section class="coll-grid" id="ProductGrid">
@@ -101,6 +113,14 @@
     { "type": "text", "id": "meta_2", "label": "Meta 2", "default": "+ 2 packs" },
     { "type": "text", "id": "meta_3", "label": "Meta 3", "default": "Ships in 2 days" },
     { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 6, "max": 36, "step": 3, "default": 12 },
+    { "type": "header", "content": "Full Set band (between header and grid)" },
+    { "type": "checkbox", "id": "show_sampler_band", "label": "Show Full Set band", "default": false },
+    { "type": "product", "id": "sampler_product", "label": "Product" },
+    { "type": "text", "id": "sampler_eyebrow", "label": "Eyebrow", "default": "§ Bonus round" },
+    { "type": "text", "id": "sampler_heading", "label": "Heading", "default": "Can't decide?\nTry all three." },
+    { "type": "textarea", "id": "sampler_body", "label": "Body", "default": "One full bag of each roast. The easiest way to find out which one's yours." },
+    { "type": "checkbox", "id": "sampler_show_price", "label": "Show price", "default": true },
+    { "type": "text", "id": "sampler_cta_text", "label": "CTA text", "default": "Shop the full set" },
     { "type": "header", "content": "Footer (below grid)" },
     { "type": "checkbox", "id": "show_foot", "label": "Show foot row", "default": true },
     { "type": "text", "id": "foot_center", "label": "Center note", "default": "— Hand-roasted weekly —" },

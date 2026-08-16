@@ -1,40 +1,11 @@
-{%- liquid
-  assign sampler_product = blank
-  if section.settings.product != blank
-    assign sampler_product = all_products[section.settings.product]
-  endif
--%}
-
 <section class="sampler-band" aria-label="{{ section.settings.heading | default: 'The Full Set' | strip_html }}">
-  <div class="sampler-band-img">
-    {%- if sampler_product and sampler_product.featured_image -%}
-      {% render 'responsive-image',
-        image: sampler_product.featured_image,
-        sizes: '(min-width: 800px) 40vw, 100vw',
-        widths: '400, 600, 900, 1200',
-        alt: sampler_product.title %}
-    {%- endif -%}
-  </div>
-  <div class="sampler-band-body">
-    {%- if section.settings.eyebrow != blank -%}
-      <div class="lbl">{{ section.settings.eyebrow }}</div>
-    {%- endif -%}
-    <h2>{{ section.settings.heading | newline_to_br }}</h2>
-    {%- if section.settings.body != blank -%}
-      <p>{{ section.settings.body }}</p>
-    {%- endif -%}
-    {%- if sampler_product and section.settings.show_price -%}
-      <div class="sampler-band-price">
-        {%- if sampler_product.compare_at_price > sampler_product.price -%}
-          <span class="compare-price">{{ sampler_product.compare_at_price | money }}</span>
-        {%- endif -%}
-        {{ sampler_product.price | money }}
-      </div>
-    {%- endif -%}
-    {%- if sampler_product -%}
-      <a class="btn" href="{{ sampler_product.url }}">{{ section.settings.cta_text | default: 'Shop the full set' }}</a>
-    {%- endif -%}
-  </div>
+  {% render 'sampler-band',
+    product_handle: section.settings.product,
+    eyebrow: section.settings.eyebrow,
+    heading: section.settings.heading,
+    body: section.settings.body,
+    show_price: section.settings.show_price,
+    cta_text: section.settings.cta_text %}
 </section>
 
 {% schema %}
