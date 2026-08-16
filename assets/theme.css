@@ -581,7 +581,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   display: flex; justify-content: space-between;
 }
 .pcard-art .badge {
-  position: absolute; top: 12px; left: 12px;
+  position: absolute; top: 12px; left: 12px; z-index: 2;
   background: var(--paper); color: var(--ink);
   border: 1px solid var(--ink);
   padding: 4px 8px;
