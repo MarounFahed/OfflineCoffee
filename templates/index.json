@@ -45,11 +45,11 @@
       "blocks": {
         "aspen": { "type": "blend", "settings": { "product": "pine-grove-bag", "placeholder_name": "Pine Grove", "placeholder_price": "$10", "placeholder_blend_number": "Blend 01", "placeholder_roast_color": "--ember", "placeholder_roast_label": "Light roast", "placeholder_region_short": "Light · Ethiopia", "placeholder_region": "Yirgacheffe · 1,950m", "placeholder_bars": 1, "placeholder_tags": "Honey, Stone fruit, Citrus", "placeholder_footnote": "Yirgacheffe · 1,950m" } },
         "ember": { "type": "blend", "settings": { "product": "juniper-valley-bag", "placeholder_name": "Juniper Valley", "placeholder_price": "$10", "placeholder_blend_number": "Blend 02", "placeholder_roast_color": "--amber", "placeholder_roast_label": "Medium roast", "placeholder_region_short": "Medium · Colombia", "placeholder_region": "Huila · 1,700m", "placeholder_bars": 2, "placeholder_tags": "Cocoa, Caramel, Plum", "placeholder_footnote": "Huila · 1,700m" } },
-        "pine": { "type": "blend", "settings": { "product": "cedar-peak-bag", "placeholder_name": "Cedar Peak", "placeholder_price": "$10", "placeholder_blend_number": "Blend 03", "placeholder_roast_color": "--pine", "placeholder_roast_label": "Dark roast", "placeholder_region_short": "Dark · Sumatra", "placeholder_region": "Aceh · 1,400m", "placeholder_bars": 3, "placeholder_tags": "Dark cocoa, Cedar, Molasses", "placeholder_footnote": "Aceh · 1,400m" } },
-        "sampler": { "type": "blend", "settings": { "product": "try-all-three", "placeholder_name": "Try All Three", "placeholder_price": "$27", "placeholder_blend_number": "The Sampler", "placeholder_roast_color": "--paper-2", "placeholder_roast_label": "All three roasts", "placeholder_region_short": "3 roasts · 3 origins", "placeholder_region": "One of each", "placeholder_bars": 4, "placeholder_tags": "Hazelnut, Wild berries, Chocolate", "placeholder_footnote": "3 blends · 1 box", "placeholder_format": "3 bags · One of each" } }
+        "pine": { "type": "blend", "settings": { "product": "cedar-peak-bag", "placeholder_name": "Cedar Peak", "placeholder_price": "$10", "placeholder_blend_number": "Blend 03", "placeholder_roast_color": "--pine", "placeholder_roast_label": "Dark roast", "placeholder_region_short": "Dark · Sumatra", "placeholder_region": "Aceh · 1,400m", "placeholder_bars": 3, "placeholder_tags": "Dark cocoa, Cedar, Molasses", "placeholder_footnote": "Aceh · 1,400m" } }
       },
-      "block_order": ["aspen", "ember", "pine", "sampler"]
+      "block_order": ["aspen", "ember", "pine"]
     },
+    "sampler-strip": { "type": "sampler-strip", "settings": { "product": "try-all-three", "eyebrow": "§ Bonus round", "heading": "Can't decide?\nTry all three.", "body": "One bag of each roast, one box. The easiest way to find out which one's yours.", "show_price": true, "cta_text": "Shop the sampler" } },
     "brew-strip": {
       "type": "brew-strip",
       "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
@@ -74,5 +74,5 @@
     },
     "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/compost-soil-seedlings.jpg?v=1786738003", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring.", "cta_text": "Shop the blends — 15% off your first order", "cta_url": "/collections/all-blends" } }
   },
-  "order": ["hero", "tagline-ticker", "featured-blends", "brew-strip", "pull-quote", "places", "compost"]
+  "order": ["hero", "tagline-ticker", "featured-blends", "sampler-strip", "brew-strip", "pull-quote", "places", "compost"]
 }
