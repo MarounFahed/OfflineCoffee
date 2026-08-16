@@ -1373,7 +1373,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .page-body h2 { font-family: var(--serif); font-weight: 600; font-size: 28px; margin: var(--s-7) 0 var(--s-4); }
 
 .manifesto {
-  padding: clamp(1px, 0.2vh, 3px) var(--gutter) var(--s-7);
+  padding: clamp(1px, 0.2vh, 3px) var(--gutter) var(--s-5);
   text-align: center; max-width: var(--maxw); margin: 0 auto;
 }
 .manifesto h1 {
@@ -1393,7 +1393,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    FOUNDER NOTE
    ------------------------------------------------------------ */
-.founder-note { padding: var(--s-6) var(--gutter) clamp(64px, 9vw, 128px); max-width: var(--maxw); margin: 0 auto; border-top: 1px solid var(--rule); }
+.founder-note { padding: var(--s-5) var(--gutter) clamp(64px, 9vw, 128px); max-width: var(--maxw); margin: 0 auto; }
 .founder-note-inner { max-width: 640px; margin: 0 auto; text-align: center; }
 .founder-note .coll-eyebrow { justify-content: center; }
 .founder-note-body { font-family: var(--serif); font-size: 19px; line-height: 1.7; opacity: 0.92; }
