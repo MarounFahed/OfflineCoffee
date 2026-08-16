@@ -878,7 +878,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .compost-image { width: 100%; max-width: 38ch; max-height: clamp(114px, 15vw, 228px); aspect-ratio: 4 / 3; object-fit: cover; object-position: center 40%; display: block; margin-bottom: var(--s-5); }
 .compost-tag {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-  border: 1px solid currentColor; padding: 8px 12px;
+  opacity: 0.75;
   display: inline-block; margin-top: var(--s-5);
 }
 .compost-cta {
