@@ -763,6 +763,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    PULL QUOTE
    ------------------------------------------------------------ */
+.quote-band {
+  background: linear-gradient(30deg, var(--ember) 0%, var(--ember) 33%, var(--amber) 33%, var(--amber) 66%, var(--pine) 66%, var(--pine) 100%);
+  color: var(--paper);
+}
 .quote-wrap { padding-block: clamp(64px, 9vw, 128px); }
 .quote-wrap.has-topo-above { padding-top: clamp(1px, 0.140625vw, 2px); }
 .quote-wrap.has-topo-below { padding-bottom: clamp(4px, 0.5625vw, 8px); }
