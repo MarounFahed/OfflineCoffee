@@ -1,7 +1,11 @@
 <section style="background: var(--paper);">
+  {%- liquid
+    assign topo_grad_above = 'topo-grad-above-' | append: section.id
+    assign topo_grad_below = 'topo-grad-below-' | append: section.id
+  -%}
   <div class="wrap quote-wrap{% if section.settings.show_topo_above %} has-topo-above{% endif %}{% if section.settings.show_topo_below %} has-topo-below{% endif %}">
     {%- if section.settings.show_topo_above -%}
-      {% render 'topo-line', variant: 'a', gradient_id: 'topo-grad-above-' | append: section.id, opacity: 0.7 %}
+      {% render 'topo-line', variant: 'a', gradient_id: topo_grad_above, opacity: 0.7 %}
     {%- endif -%}
     <p class="quote">{{ section.settings.quote | escape }}</p>
     {%- if section.settings.attribution != blank -%}
@@ -9,7 +13,7 @@
     {%- endif -%}
     {%- if section.settings.show_topo_below -%}
       <div style="margin-top: var(--s-7);">
-        {% render 'topo-line', variant: 'b', gradient_id: 'topo-grad-below-' | append: section.id, opacity: 0.7 %}
+        {% render 'topo-line', variant: 'b', gradient_id: topo_grad_below, opacity: 0.7 %}
       </div>
     {%- endif -%}
   </div>
