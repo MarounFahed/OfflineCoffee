@@ -66,12 +66,12 @@
       "settings": { "eyebrow": "§ 03 — Where it goes", "heading": "Made for the\nplaces without\ngood coffee.", "meta": "A balcony\ncounts too" },
       "blocks": {
         "tent": { "type": "card", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/places-tent-camp-kettle.jpg?v=1786737186", "stamp": "N 44°25′ / W 110°35′", "label": "[ TENT · 06:14 AM ]", "title": "Two-person tent, Yellowstone backcountry.", "meta_left": "Site #14", "meta_right": "Aug" } },
-        "train": { "type": "card", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/places-desk-workspace-coffee.jpg?v=1786737185", "stamp": "N 40°45′ / W 73°59′", "label": "[ TRAIN · 07:02 AM ]", "title": "Northbound Amtrak, somewhere past Poughkeepsie.", "meta_left": "Car 7", "meta_right": "Sept" } },
+        "train": { "type": "card", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/places-desk-workspace-coffee.jpg?v=1786737185", "stamp": "N 40°45′ / W 73°59′", "label": "[ DESK · 08:30 AM ]", "title": "Home office, second monitor still booting up.", "meta_left": "Desk 2", "meta_right": "Sept" } },
         "hotel": { "type": "card", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/places-hotel-tea-tray.jpg?v=1786737186", "stamp": "N 35°41′ / E 139°41′", "label": "[ HOTEL · 05:48 AM ]", "title": "Business hotel, Shibuya. Kettle in the closet.", "meta_left": "Room 1402", "meta_right": "Oct" } }
       },
       "block_order": ["tent", "train", "hotel"]
     },
-    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/compost-soil-seedlings.jpg?v=1786738003", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring." } }
+    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/compost-soil-seedlings.jpg?v=1786738003", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring.", "cta_text": "Shop the blends — 15% off your first order", "cta_url": "/collections/all-blends" } }
   },
   "order": ["hero", "tagline-ticker", "featured-blends", "brew-strip", "pull-quote", "places", "compost"]
 }
