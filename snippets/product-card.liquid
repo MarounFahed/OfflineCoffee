@@ -9,7 +9,7 @@
     ph_roast_color (--amber/--ember/--pine/--paper-2),
     ph_roast_label, ph_region_short, ph_region,
     ph_bars (0–4), ph_tags (comma-separated string),
-    ph_footnote, ph_badge, ph_format
+    ph_footnote, ph_badge, ph_format, ph_compare_price
 {%- endcomment -%}
 {%- liquid
   assign variant = variant | default: 'home'
@@ -17,6 +17,7 @@
   assign p_url = '#'
   assign p_name = ''
   assign p_price = ''
+  assign p_compare_price = ''
   assign p_blend_number = ''
   assign p_roast_color = '--amber'
   assign p_roast_label = ''
@@ -33,6 +34,9 @@
     assign p_url = product.url
     assign p_name = product.title
     assign p_price = product.price | money
+    if product.compare_at_price > product.price
+      assign p_compare_price = product.compare_at_price | money
+    endif
     assign p_image = product.featured_image
     assign p_blend_number = product.metafields.offline.blend_number.value | default: ''
     assign roast_meta = product.metafields.offline.roast.value | downcase
@@ -66,6 +70,7 @@
   assign p_url = ph_url | default: p_url
   assign p_name = ph_name | default: p_name
   assign p_price = ph_price | default: p_price
+  assign p_compare_price = ph_compare_price | default: p_compare_price
   assign p_blend_number = ph_blend_number | default: p_blend_number
   assign p_roast_color = ph_roast_color | default: p_roast_color
   assign p_roast_label = ph_roast_label | default: p_roast_label
@@ -127,7 +132,10 @@
   </div>
   <div class="{{ name_row_class }}">
     <div class="{{ name_class }}">{{ p_name }}</div>
-    <div class="{{ price_class }}">{{ p_price }}</div>
+    <div class="{{ price_class }}">
+      {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
+      {{ p_price }}
+    </div>
   </div>
   {%- if settings.show_tasting_tags and tag_list.size > 0 -%}
     <div class="{{ tags_class }}">

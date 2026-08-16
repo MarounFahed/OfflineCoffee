@@ -606,6 +606,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .pcard-name { font-size: 22px; }
 .blend-price, .pcard-price { font-family: var(--mono); font-size: 13px; letter-spacing: 0.04em; flex-shrink: 0; }
+.compare-price { opacity: 0.5; text-decoration: line-through; margin-right: var(--s-2); }
 .blend-tags, .pcard-tags {
   padding: var(--s-2) var(--s-5) var(--s-5);
   display: flex; gap: var(--s-2); flex-wrap: wrap;
