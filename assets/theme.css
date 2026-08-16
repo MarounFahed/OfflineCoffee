@@ -763,27 +763,29 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    PULL QUOTE
    ------------------------------------------------------------ */
-.quote-band {
-  background: linear-gradient(30deg, var(--ember) 0%, var(--ember) 33%, var(--amber) 33%, var(--amber) 66%, var(--pine) 66%, var(--pine) 100%);
-  color: var(--paper);
-}
 .quote-wrap { padding-block: clamp(64px, 9vw, 128px); }
 .quote-wrap.has-topo-above { padding-top: clamp(1px, 0.140625vw, 2px); }
 .quote-wrap.has-topo-below { padding-bottom: clamp(4px, 0.5625vw, 8px); }
 .quote-wrap svg.topo { width: 100%; height: 32px; opacity: 0.4; margin-bottom: var(--s-7); }
-.quote-wrap svg.topo + .quote { margin-top: 0; }
+.quote-wrap svg.topo + .quote-row { margin-top: 0; }
 .quote-wrap > div:last-child svg.topo { margin-bottom: 0; }
+.quote-row {
+  display: flex; align-items: stretch; gap: var(--s-5);
+  margin-left: clamp(0px, 8vw, 120px);
+}
+.quote-spine {
+  width: 4px; flex-shrink: 0;
+  background: linear-gradient(var(--ember), var(--ember) 33%, var(--amber) 33%, var(--amber) 66%, var(--pine) 66%, var(--pine) 100%);
+}
 .quote {
   font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: clamp(28px, 4vw, 56px);
   line-height: 1.18; letter-spacing: -0.01em;
   max-width: 22ch;
-  margin-left: clamp(0px, 8vw, 120px);
   text-wrap: balance;
 }
 .quote-attr {
   margin-top: var(--s-7);
-  margin-left: clamp(0px, 8vw, 120px);
   font-family: var(--mono); font-size: 11px;
   letter-spacing: 0.14em; text-transform: uppercase;
   opacity: 0.7;

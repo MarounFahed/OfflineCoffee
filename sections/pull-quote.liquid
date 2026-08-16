@@ -1,15 +1,20 @@
-<section class="quote-band">
+<section style="background: var(--paper);">
   <div class="wrap quote-wrap{% if section.settings.show_topo_above %} has-topo-above{% endif %}{% if section.settings.show_topo_below %} has-topo-below{% endif %}">
     {%- if section.settings.show_topo_above -%}
-      {% render 'topo-line', variant: 'a', color: 'var(--paper)', opacity: 0.5 %}
+      {% render 'topo-line', variant: 'a' %}
     {%- endif -%}
-    <p class="quote">{{ section.settings.quote | escape }}</p>
-    {%- if section.settings.attribution != blank -%}
-      <div class="quote-attr">{{ section.settings.attribution }}</div>
-    {%- endif -%}
+    <div class="quote-row">
+      <div class="quote-spine" aria-hidden="true"></div>
+      <div>
+        <p class="quote">{{ section.settings.quote | escape }}</p>
+        {%- if section.settings.attribution != blank -%}
+          <div class="quote-attr">{{ section.settings.attribution }}</div>
+        {%- endif -%}
+      </div>
+    </div>
     {%- if section.settings.show_topo_below -%}
       <div style="margin-top: var(--s-7);">
-        {% render 'topo-line', variant: 'b', color: 'var(--paper)', opacity: 0.5 %}
+        {% render 'topo-line', variant: 'b' %}
       </div>
     {%- endif -%}
   </div>
