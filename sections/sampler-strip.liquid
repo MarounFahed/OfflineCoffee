@@ -5,7 +5,7 @@
   endif
 -%}
 
-<section class="sampler-band" aria-label="{{ section.settings.heading | default: 'Sampler' | strip_html }}">
+<section class="sampler-band" aria-label="{{ section.settings.heading | default: 'The Full Set' | strip_html }}">
   <div class="sampler-band-img">
     {%- if sampler_product and sampler_product.featured_image -%}
       {% render 'responsive-image',
@@ -32,25 +32,25 @@
       </div>
     {%- endif -%}
     {%- if sampler_product -%}
-      <a class="btn" href="{{ sampler_product.url }}">{{ section.settings.cta_text | default: 'Shop the sampler' }}</a>
+      <a class="btn" href="{{ sampler_product.url }}">{{ section.settings.cta_text | default: 'Shop the full set' }}</a>
     {%- endif -%}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Sampler strip",
+  "name": "The Full Set strip",
   "tag": "section",
   "settings": [
     { "type": "product", "id": "product", "label": "Product" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ Bonus round" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Can't decide?\nTry all three." },
-    { "type": "textarea", "id": "body", "label": "Body", "default": "One bag of each roast, one box. The easiest way to find out which one's yours." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "One full bag of each roast. The easiest way to find out which one's yours." },
     { "type": "checkbox", "id": "show_price", "label": "Show price", "default": true },
-    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Shop the sampler" }
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Shop the full set" }
   ],
   "presets": [
-    { "name": "Sampler strip" }
+    { "name": "The Full Set strip" }
   ]
 }
 {% endschema %}
