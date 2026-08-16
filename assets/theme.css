@@ -874,7 +874,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   text-wrap: balance;
 }
 .compost p { font-family: var(--serif); font-size: 18px; opacity: 0.9; max-width: 38ch; }
-.compost-image { width: 100%; max-width: 38ch; aspect-ratio: 4 / 3; object-fit: cover; display: block; margin-bottom: var(--s-5); }
+.compost-image { width: 100%; max-width: 38ch; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; display: block; margin-bottom: var(--s-5); }
 .compost-tag {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
   border: 1px solid currentColor; padding: 8px 12px;
