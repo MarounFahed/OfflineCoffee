@@ -881,7 +881,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   border: 1px solid currentColor; padding: 8px 12px;
   display: inline-block; margin-top: var(--s-5);
 }
-.compost-cta { margin-top: var(--s-6); }
+.compost-cta {
+  margin-top: var(--s-5);
+  font-size: 11px; letter-spacing: 0.14em;
+  padding: 8px 12px; min-height: 0;
+}
 .compost .btn-secondary { color: var(--paper); border-color: var(--paper); }
 .compost .btn-secondary:hover { background: var(--paper); color: var(--ink); }
 .compost--paper .btn-secondary { color: var(--ink); border-color: var(--ink); }
