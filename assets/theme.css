@@ -1387,13 +1387,13 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   max-width: 52ch; margin: var(--s-7) auto 0; opacity: 0.85;
 }
 
-.origin-story { padding: clamp(64px, 10vw, 128px) var(--gutter); max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8); align-items: center; }
+.origin-story { padding: var(--s-5) var(--gutter) clamp(64px, 10vw, 128px); max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8); align-items: center; }
 @media (max-width: 800px) { .origin-story { grid-template-columns: 1fr; } }
 
 /* ------------------------------------------------------------
    FOUNDER NOTE
    ------------------------------------------------------------ */
-.founder-note { padding: var(--s-5) var(--gutter) clamp(64px, 9vw, 128px); max-width: var(--maxw); margin: 0 auto; }
+.founder-note { padding: var(--s-5) var(--gutter); max-width: var(--maxw); margin: 0 auto; }
 .founder-note-inner { max-width: 640px; margin: 0 auto; text-align: center; }
 .founder-note .coll-eyebrow { justify-content: center; }
 .founder-note-body { font-family: var(--serif); font-size: 19px; line-height: 1.7; opacity: 0.92; }
