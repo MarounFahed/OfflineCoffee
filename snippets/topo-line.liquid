@@ -1,18 +1,32 @@
 {%- comment -%}
   Hand-drawn-feeling contour line, like a topo map.
-  Params: variant (a / b — different curve), opacity (0–1), color.
+  Params: variant (a / b — different curve), opacity (0–1), color, gradient_id (optional — renders a 3-color brand gradient instead of a flat color; must be unique per instance on the page).
 {%- endcomment -%}
 {%- liquid
   assign variant = variant | default: 'a'
   assign opacity = opacity | default: 0.4
   assign color = color | default: 'currentColor'
+  assign gradient_id = gradient_id | default: ''
+
+  if variant == 'b'
+    assign path_d = 'M0 16 Q 60 28 120 14 T 240 18 T 360 10 T 480 22 T 600 12 T 720 20 T 840 8 T 960 22 T 1080 14 T 1200 18'
+  else
+    assign path_d = 'M0 24 Q 60 4 120 18 T 240 16 T 360 22 T 480 8 T 600 20 T 720 14 T 840 24 T 960 10 T 1080 18 T 1200 16'
+  endif
 -%}
-{%- if variant == 'b' -%}
-  <svg class="topo" viewBox="0 0 1200 32" preserveAspectRatio="none" aria-hidden="true" style="opacity: {{ opacity }}; color: {{ color }};">
-    <path d="M0 16 Q 60 28 120 14 T 240 18 T 360 10 T 480 22 T 600 12 T 720 20 T 840 8 T 960 22 T 1080 14 T 1200 18" fill="none" stroke="currentColor" stroke-width="1"/>
+{%- if gradient_id != blank -%}
+  <svg class="topo" viewBox="0 0 1200 32" preserveAspectRatio="none" aria-hidden="true" style="opacity: {{ opacity }};">
+    <defs>
+      <linearGradient id="{{ gradient_id }}" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="var(--ember)"/>
+        <stop offset="50%" stop-color="var(--amber)"/>
+        <stop offset="100%" stop-color="var(--pine)"/>
+      </linearGradient>
+    </defs>
+    <path d="{{ path_d }}" fill="none" stroke="url(#{{ gradient_id }})" stroke-width="1.5"/>
   </svg>
 {%- else -%}
   <svg class="topo" viewBox="0 0 1200 32" preserveAspectRatio="none" aria-hidden="true" style="opacity: {{ opacity }}; color: {{ color }};">
-    <path d="M0 24 Q 60 4 120 18 T 240 16 T 360 22 T 480 8 T 600 20 T 720 14 T 840 24 T 960 10 T 1080 18 T 1200 16" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="{{ path_d }}" fill="none" stroke="currentColor" stroke-width="1"/>
   </svg>
 {%- endif -%}
