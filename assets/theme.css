@@ -923,9 +923,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   font-family: var(--display); font-weight: 400;
   font-size: clamp(28px, 3.4vw, 40px);
   line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase;
-  margin-bottom: var(--s-2);
 }
-.footer-news p { font-family: var(--serif); font-size: 16px; opacity: 0.8; max-width: 32ch; line-height: 1.5; margin-bottom: var(--s-3); }
+.footer-news p { font-family: var(--serif); font-size: 16px; opacity: 0.8; max-width: 32ch; line-height: 1.5; }
 .news-input { display: flex; border: 1px solid var(--paper); }
 .news-input input {
   flex: 1; background: transparent; border: 0; color: var(--paper);
