@@ -73,14 +73,6 @@
       },
       "block_order": ["temp", "ratio", "time", "s0", "s1", "s2", "s3"]
     },
-    "rationale": {
-      "type": "brew-rationale",
-      "settings": {
-        "eyebrow": "§ Why paper",
-        "heading": "Not a metal mesh.\nNot a pod.",
-        "body": "Metal filters need washing you won't do in a tent. Pods need a machine you can't pack. A paper filter needs five minutes and a mug — then it's gone, not something you're scrubbing at a campsite sink or storing in a drawer with the others you keep meaning to clean."
-      }
-    },
     "faq": {
       "type": "faq-accordion",
       "settings": {
@@ -155,5 +147,5 @@
       }
     }
   },
-  "order": ["head", "guide", "rationale", "faq", "compost"]
+  "order": ["head", "guide", "faq", "compost"]
 }
