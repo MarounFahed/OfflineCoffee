@@ -108,44 +108,61 @@
   assign p_alt = p_image.alt | default: p_name
 -%}
 
-<a class="{{ card_class }}" href="{{ p_url }}" style="--blend: var({{ p_roast_color }});">
-  <div class="{{ art_class }}" style="background: var({{ p_roast_color }});">
-    {%- if p_badge != blank -%}<div class="badge">{{ p_badge }}</div>{%- endif -%}
-    {%- if p_image != blank -%}
-      {% render 'responsive-image',
-        image: p_image,
-        sizes: '(min-width: 990px) 33vw, 100vw',
-        widths: '400, 600, 800, 1200',
-        alt: p_alt,
-        class: 'pcard-photo' %}
-    {%- else -%}
-      {% render 'bag-mockup',
-        blend_name: p_name,
-        blend_number: p_blend_number,
-        bars: p_bars,
-        region: p_region_short %}
+<div class="{{ card_class }}" style="--blend: var({{ p_roast_color }});">
+  <a class="card-link" href="{{ p_url }}">
+    <div class="{{ art_class }}" style="background: var({{ p_roast_color }});">
+      {%- if p_badge != blank -%}<div class="badge">{{ p_badge }}</div>{%- endif -%}
+      {%- if p_image != blank -%}
+        {% render 'responsive-image',
+          image: p_image,
+          sizes: '(min-width: 990px) 33vw, 100vw',
+          widths: '400, 600, 800, 1200',
+          alt: p_alt,
+          class: 'pcard-photo' %}
+      {%- else -%}
+        {% render 'bag-mockup',
+          blend_name: p_name,
+          blend_number: p_blend_number,
+          bars: p_bars,
+          region: p_region_short %}
+      {%- endif -%}
+    </div>
+    <div class="{{ meta_class }}">
+      <span>{{ p_roast_label }}</span>
+      <span>{{ p_format }}</span>
+    </div>
+    <div class="{{ name_row_class }}">
+      <div class="{{ name_class }}">{{ p_name }}</div>
+      <div class="{{ price_class }}">
+        {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
+        {{ p_price }}
+      </div>
+    </div>
+    {%- if settings.show_tasting_tags and tag_list.size > 0 -%}
+      <div class="{{ tags_class }}">
+        {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+      </div>
     {%- endif -%}
-  </div>
-  <div class="{{ meta_class }}">
-    <span>{{ p_roast_label }}</span>
-    <span>{{ p_format }}</span>
-  </div>
-  <div class="{{ name_row_class }}">
-    <div class="{{ name_class }}">{{ p_name }}</div>
-    <div class="{{ price_class }}">
-      {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
-      {{ p_price }}
-    </div>
-  </div>
-  {%- if settings.show_tasting_tags and tag_list.size > 0 -%}
-    <div class="{{ tags_class }}">
-      {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
-    </div>
-  {%- endif -%}
+  </a>
   <div class="{{ foot_class }}">
     <span>{{ p_footnote }}</span>
     {%- if settings.show_signal_bars -%}
       {% render 'signal-bars', bars: p_bars %}
     {%- endif -%}
   </div>
-</a>
+  {%- if product -%}
+    <div class="card-add">
+      {%- if product.available -%}
+        <button type="button" class="quick-add-btn" data-quick-add
+          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+          data-product-title="{{ p_name | escape }}"
+          data-label-adding="{{ 'products.product.adding' | t }}"
+          data-label-added="{{ 'products.product.added' | t }}">
+          <span data-quick-add-label>{{ 'products.product.add_to_cart' | t }}</span>
+        </button>
+      {%- else -%}
+        <span class="quick-add-btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>

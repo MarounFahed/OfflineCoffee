@@ -42,7 +42,7 @@
             <span>{{ 'cart.general.subtotal' | t }}</span>
             <span>{{ cart.total_price | money }}</span>
           </div>
-          <div class="cart-shipping-note">{{ section.settings.shipping_note | default: 'Ships in 2 days · Flat $5 · Free over $40' }}</div>
+          <div class="cart-shipping-note">{{ section.settings.shipping_note | default: 'Ships in 2 days · Flat $3 · Free over $40' }}</div>
           <button type="submit" name="update" class="btn-secondary btn">{{ 'cart.general.update' | t }}</button>
           <button type="submit" name="checkout" class="btn btn-full">{{ 'cart.general.checkout' | t }}</button>
           <p class="mono ink-soft" style="opacity:.6; font-size: 10px;">{{ 'cart.general.taxes_included' | t }}</p>
@@ -63,7 +63,7 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Your pack." },
     { "type": "text", "id": "subhead", "label": "Subhead (mono)", "default": "Ready for the trip" },
-    { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Ships in 2 days · Flat $5 · Free over $40" }
+    { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Ships in 2 days · Flat $3 · Free over $40" }
   ]
 }
 {% endschema %}

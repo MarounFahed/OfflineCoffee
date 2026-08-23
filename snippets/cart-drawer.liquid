@@ -1,0 +1,37 @@
+<div class="cart-drawer" id="cartDrawer" aria-hidden="true"
+  data-label-remove="{{ 'cart.general.remove' | t }}"
+  data-label-quantity="{{ 'products.product.quantity' | t }}"
+  data-label-decrease="{{ 'products.product.decrease_quantity' | t }}"
+  data-label-increase="{{ 'products.product.increase_quantity' | t }}">
+  <div class="cart-drawer-overlay" data-cart-close></div>
+  <div class="cart-drawer-panel" role="dialog" aria-modal="true" aria-label="{{ 'cart.general.title' | t }}">
+    <div class="cart-drawer-head">
+      <div>
+        <h2>{{ 'cart.general.title' | t }}</h2>
+        <span class="mono cart-drawer-count" data-cart-drawer-count-label
+          data-tmpl-one="{{ 'cart.general.bags' | t: count: 1 }}"
+          data-tmpl-other="{{ 'cart.general.bags' | t: count: 2 }}">{{ 'cart.general.bags' | t: count: 0 }}</span>
+      </div>
+      <button type="button" class="cart-drawer-close" data-cart-close aria-label="{{ 'general.accessibility.close_menu' | t }}">{{ 'general.accessibility.close_menu' | t }}</button>
+    </div>
+
+    <div class="cart-drawer-items" data-cart-drawer-items></div>
+
+    <div class="cart-drawer-empty" data-cart-drawer-empty hidden>
+      <p>{{ 'cart.general.empty' | t }}</p>
+      <a class="btn btn-arrow" href="{{ routes.all_products_collection_url }}" data-cart-close>{{ 'cart.general.browse' | t }}</a>
+    </div>
+
+    <div class="cart-drawer-summary" data-cart-drawer-summary>
+      <div class="cart-drawer-summary-row">
+        <span>{{ 'cart.general.subtotal' | t }}</span>
+        <span data-cart-drawer-subtotal>{{ 0 | money }}</span>
+      </div>
+      <div class="cart-drawer-note" data-cart-drawer-note>{{ 'cart.general.shipping_note' | t }}</div>
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <button type="submit" name="checkout" class="btn btn-full">{{ 'cart.general.checkout' | t }}</button>
+      </form>
+      <p class="mono ink-soft cart-drawer-taxes">{{ 'cart.general.taxes_included' | t }}</p>
+    </div>
+  </div>
+</div>

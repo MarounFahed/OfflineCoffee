@@ -41,6 +41,8 @@
   "products": {
     "product": {
       "add_to_cart": "Add to pack",
+      "adding": "Adding…",
+      "added": "Added ✓",
       "go_to_cart": "Go to cart",
       "sold_out": "Out of range — back next week.",
       "unavailable": "Unavailable",
@@ -81,7 +83,11 @@
       "browse": "Browse the blends",
       "subtotal": "Subtotal",
       "shipping_at_checkout": "Shipping calculated at checkout",
-      "shipping_note": "Ships in 2 days · Flat $5 · Free over $40",
+      "shipping_note": "Ships in 2 days · Flat $3 · Free over $40",
+      "bags": {
+        "one": "{{ count }} bag",
+        "other": "{{ count }} bags"
+      },
       "checkout": "Check out",
       "remove": "Remove",
       "update": "Update",
