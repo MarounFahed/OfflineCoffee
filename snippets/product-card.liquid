@@ -5,16 +5,15 @@
     variant — 'home' (default) or 'grid' (collection)
 
   Placeholder params (used when product is blank):
-    ph_name, ph_price, ph_url, ph_blend_number,
+    ph_name, ph_price, ph_blend_number,
     ph_roast_color (--amber/--ember/--pine/--paper-2),
     ph_roast_label, ph_region_short, ph_region,
     ph_bars (0–4), ph_tags (comma-separated string),
-    ph_footnote, ph_badge, ph_format, ph_compare_price
+    ph_badge, ph_format, ph_compare_price
 {%- endcomment -%}
 {%- liquid
   assign variant = variant | default: 'home'
 
-  assign p_url = '#'
   assign p_name = ''
   assign p_price = ''
   assign p_compare_price = ''
@@ -25,13 +24,11 @@
   assign p_region_long = ''
   assign p_bars = 0
   assign p_tags_string = ''
-  assign p_footnote = ''
   assign p_badge = ''
   assign p_image = blank
   assign p_format = '10 × 14g · Coffee bags'
 
   if product
-    assign p_url = product.url
     assign p_name = product.title
     assign p_price = product.price | money
     if product.compare_at_price > product.price
@@ -63,11 +60,9 @@
     if tag_meta
       assign p_tags_string = tag_meta | join: ', '
     endif
-    assign p_footnote = product.metafields.offline.footnote.value | default: p_region_long
     assign p_badge = product.metafields.offline.badge.value
   endif
 
-  assign p_url = ph_url | default: p_url
   assign p_name = ph_name | default: p_name
   assign p_price = ph_price | default: p_price
   assign p_compare_price = ph_compare_price | default: p_compare_price
@@ -80,7 +75,6 @@
     assign p_bars = ph_bars
   endif
   assign p_tags_string = ph_tags | default: p_tags_string
-  assign p_footnote = ph_footnote | default: p_footnote
   assign p_badge = ph_badge | default: p_badge
   assign p_format = ph_format | default: p_format
 
@@ -92,7 +86,6 @@
     assign name_class = 'pcard-name'
     assign price_class = 'pcard-price'
     assign tags_class = 'pcard-tags'
-    assign foot_class = 'pcard-foot'
   else
     assign card_class = 'blend-card'
     assign art_class = 'blend-art'
@@ -101,15 +94,19 @@
     assign name_class = 'blend-name'
     assign price_class = 'blend-price'
     assign tags_class = 'blend-tags'
-    assign foot_class = 'blend-foot'
   endif
 
   assign tag_list = p_tags_string | split: ','
   assign p_alt = p_image.alt | default: p_name
+
+  assign show_tags = false
+  if settings.show_tasting_tags and tag_list.size > 0
+    assign show_tags = true
+  endif
 -%}
 
 <div class="{{ card_class }}" style="--blend: var({{ p_roast_color }});">
-  <a class="card-link" href="{{ p_url }}">
+  <div class="card-body">
     <div class="{{ art_class }}" style="background: var({{ p_roast_color }});">
       {%- if p_badge != blank -%}<div class="badge">{{ p_badge }}</div>{%- endif -%}
       {%- if p_image != blank -%}
@@ -128,7 +125,12 @@
       {%- endif -%}
     </div>
     <div class="{{ meta_class }}">
-      <span>{{ p_roast_label }}</span>
+      <span class="meta-roast">
+        {{ p_roast_label }}
+        {%- if settings.show_signal_bars -%}
+          {% render 'signal-bars', bars: p_bars %}
+        {%- endif -%}
+      </span>
       <span>{{ p_format }}</span>
     </div>
     <div class="{{ name_row_class }}">
@@ -138,31 +140,27 @@
         {{ p_price }}
       </div>
     </div>
-    {%- if settings.show_tasting_tags and tag_list.size > 0 -%}
-      <div class="{{ tags_class }}">
-        {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+    {%- if product or show_tags -%}
+      <div class="card-actions">
+        {%- if product -%}
+          {%- if product.available -%}
+            <button type="button" class="quick-add-btn quick-add-btn--compact" data-quick-add
+              data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+              data-product-title="{{ p_name | escape }}"
+              data-label-adding="{{ 'products.product.adding' | t }}"
+              data-label-added="{{ 'products.product.added' | t }}">
+              <span data-quick-add-label>{{ 'products.product.add_to_cart' | t }}</span>
+            </button>
+          {%- else -%}
+            <span class="quick-add-btn quick-add-btn--compact quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+          {%- endif -%}
+        {%- endif -%}
+        {%- if show_tags -%}
+          <div class="{{ tags_class }}">
+            {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+          </div>
+        {%- endif -%}
       </div>
     {%- endif -%}
-  </a>
-  <div class="{{ foot_class }}">
-    <span>{{ p_footnote }}</span>
-    {%- if settings.show_signal_bars -%}
-      {% render 'signal-bars', bars: p_bars %}
-    {%- endif -%}
   </div>
-  {%- if product -%}
-    <div class="card-add">
-      {%- if product.available -%}
-        <button type="button" class="quick-add-btn" data-quick-add
-          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-          data-product-title="{{ p_name | escape }}"
-          data-label-adding="{{ 'products.product.adding' | t }}"
-          data-label-added="{{ 'products.product.added' | t }}">
-          <span data-quick-add-label>{{ 'products.product.add_to_cart' | t }}</span>
-        </button>
-      {%- else -%}
-        <span class="quick-add-btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
-      {%- endif -%}
-    </div>
-  {%- endif -%}
 </div>
