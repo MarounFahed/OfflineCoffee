@@ -34,6 +34,16 @@
     </div>
   {%- endif -%}
   {%- if sampler_product -%}
-    <a class="btn" href="{{ sampler_product.url }}">{{ cta_text | default: 'Shop the full set' }}</a>
+    {%- if sampler_product.available -%}
+      <button type="button" class="btn" data-quick-add
+        data-variant-id="{{ sampler_product.selected_or_first_available_variant.id }}"
+        data-product-title="{{ sampler_product.title | escape }}"
+        data-label-adding="{{ 'products.product.adding' | t }}"
+        data-label-added="{{ 'products.product.added' | t }}">
+        <span data-quick-add-label>{{ cta_text | default: 'Add to cart' }}</span>
+      </button>
+    {%- else -%}
+      <span class="btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+    {%- endif -%}
   {%- endif -%}
 </div>
