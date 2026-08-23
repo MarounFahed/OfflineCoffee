@@ -951,7 +951,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   font-size: clamp(80px, 22vw, 320px);
   letter-spacing: -0.04em; line-height: 0.85;
   text-align: center;
-  padding-top: var(--s-5); margin-top: var(--s-3);
+  padding-top: var(--s-5);
   white-space: nowrap; overflow: hidden;
 }
 .footer-mark--s { font-size: clamp(48px, 12vw, 160px); }
