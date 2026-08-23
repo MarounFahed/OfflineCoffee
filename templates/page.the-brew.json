@@ -23,7 +23,7 @@
       },
       "blocks": {
         "temp": { "type": "stat", "settings": { "label": "Water temp", "value": "93°C — just off the boil" } },
-        "ratio": { "type": "stat", "settings": { "label": "Ratio", "value": "1 filter : 240ml water" } },
+        "ratio": { "type": "stat", "settings": { "label": "Ratio", "value": "1 filter : 220ml water" } },
         "time": { "type": "stat", "settings": { "label": "Time", "value": "5 minutes" } },
         "s0": {
           "type": "guide_step",
@@ -122,8 +122,8 @@
         "bigger": {
           "type": "item",
           "settings": {
-            "question": "What if my mug is bigger than 240ml?",
-            "answer": "<p>One filter is dialed in for about 240ml — a standard mug. Adding more water to the same filter just dilutes it, so for a bigger mug either top up with a splash of hot water after steeping and accept it's a little lighter, or use a second filter side by side for a full mug or small pot.</p>"
+            "question": "What if my mug is bigger than 220ml?",
+            "answer": "<p>One filter is dialed in for about 220ml — a standard mug. Adding more water to the same filter just dilutes it, so for a bigger mug either top up with a splash of hot water after steeping and accept it's a little lighter, or use a second filter side by side for a full mug or small pot.</p>"
           }
         },
         "why_timer": {
