@@ -40,7 +40,7 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Add to pack",
+      "add_to_cart": "Add to cart",
       "adding": "Adding…",
       "added": "Added ✓",
       "go_to_cart": "Go to cart",
@@ -77,9 +77,9 @@
   },
   "cart": {
     "general": {
-      "title": "Your pack",
+      "title": "Your cart",
       "subtitle": "Ready for the trip",
-      "empty": "Nothing in the pack yet.",
+      "empty": "Nothing in the cart yet.",
       "browse": "Browse the blends",
       "subtotal": "Subtotal",
       "shipping_at_checkout": "Shipping calculated at checkout",

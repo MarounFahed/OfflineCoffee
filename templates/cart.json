@@ -3,7 +3,7 @@
     "main": {
       "type": "main-cart",
       "settings": {
-        "heading": "Your pack.",
+        "heading": "Your cart.",
         "subhead": "Ready for the trip",
         "shipping_note": "Ships in 2 days · Flat $3 · Free over $40"
       }

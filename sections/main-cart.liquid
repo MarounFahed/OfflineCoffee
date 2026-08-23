@@ -1,7 +1,7 @@
 <section class="cart" aria-label="{{ 'cart.general.title' | t }}">
   {%- if cart.item_count > 0 -%}
     <div class="cart-head">
-      <h1>{{ section.settings.heading | default: 'Your pack.' }}</h1>
+      <h1>{{ section.settings.heading | default: 'Your cart.' }}</h1>
       <span class="mono">{{ section.settings.subhead | default: 'Ready for the trip' }}</span>
     </div>
 
@@ -61,7 +61,7 @@
 {
   "name": "Cart",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Your pack." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your cart." },
     { "type": "text", "id": "subhead", "label": "Subhead (mono)", "default": "Ready for the trip" },
     { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Ships in 2 days · Flat $3 · Free over $40" }
   ]
