@@ -106,7 +106,7 @@
 -%}
 
 <div class="{{ card_class }}" style="--blend: var({{ p_roast_color }});">
-  <div class="card-body">
+  <div class="card-body"{% if product %} role="button" tabindex="0" data-quick-view data-quick-view-id="{{ product.id }}" aria-label="{{ 'products.product.quick_view_item' | t: name: p_name }}"{% endif %}>
     <div class="{{ art_class }}" style="background: var({{ p_roast_color }});">
       {%- if p_badge != blank -%}<div class="badge">{{ p_badge }}</div>{%- endif -%}
       {%- if p_image != blank -%}
@@ -142,6 +142,11 @@
     </div>
     {%- if product or show_tags -%}
       <div class="card-actions">
+        {%- if show_tags -%}
+          <div class="{{ tags_class }}">
+            {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+          </div>
+        {%- endif -%}
         {%- if product -%}
           {%- if product.available -%}
             <button type="button" class="quick-add-btn quick-add-btn--compact" data-quick-add
@@ -155,12 +160,70 @@
             <span class="quick-add-btn quick-add-btn--compact quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
           {%- endif -%}
         {%- endif -%}
-        {%- if show_tags -%}
-          <div class="{{ tags_class }}">
-            {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
-          </div>
-        {%- endif -%}
       </div>
     {%- endif -%}
   </div>
+  {%- if product -%}
+    <template data-quick-view-template="{{ product.id }}">
+      <div class="qv-media" style="background: var({{ p_roast_color }});">
+        {%- if p_image != blank -%}
+          {% render 'responsive-image',
+            image: p_image,
+            sizes: '(min-width: 700px) 40vw, 100vw',
+            widths: '400, 600, 800, 1200',
+            alt: p_alt,
+            class: 'qv-photo' %}
+        {%- else -%}
+          {% render 'bag-mockup',
+            blend_name: p_name,
+            blend_number: p_blend_number,
+            bars: p_bars,
+            region: p_region_short %}
+        {%- endif -%}
+      </div>
+      <div class="qv-body">
+        <div class="qv-meta">
+          <span class="meta-roast">
+            {{ p_roast_label }}
+            {%- if settings.show_signal_bars -%}
+              {% render 'signal-bars', bars: p_bars %}
+            {%- endif -%}
+          </span>
+          <span>{{ p_format }}</span>
+        </div>
+        <h2 class="qv-name">{{ p_name }}</h2>
+        <div class="qv-price">
+          {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
+          {{ p_price }}
+        </div>
+        {%- if p_region_long != blank -%}
+          <p class="qv-region">{{ p_region_long }}</p>
+        {%- endif -%}
+        {%- if show_tags -%}
+          <div class="{{ tags_class }} qv-tags">
+            {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+          </div>
+        {%- endif -%}
+        <div class="qv-actions">
+          <div class="qty-stepper" data-qty>
+            <button type="button" data-qty-minus aria-label="{{ 'products.product.decrease_quantity' | t }}">−</button>
+            <input type="number" min="1" value="1" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}">
+            <button type="button" data-qty-plus aria-label="{{ 'products.product.increase_quantity' | t }}">+</button>
+          </div>
+          {%- if product.available -%}
+            <button type="button" class="btn qv-add" data-quick-add data-quick-add-no-drawer
+              data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+              data-product-title="{{ p_name | escape }}"
+              data-label-adding="{{ 'products.product.adding' | t }}"
+              data-label-added="{{ 'products.product.added' | t }}">
+              <span data-quick-add-label>{{ 'products.product.add_to_cart' | t }}</span>
+            </button>
+          {%- else -%}
+            <span class="btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+          {%- endif -%}
+        </div>
+        <p class="qv-in-cart" data-qv-in-cart data-tmpl="{{ 'products.product.in_cart' | t }}" hidden></p>
+      </div>
+    </template>
+  {%- endif -%}
 </div>

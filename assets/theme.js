@@ -141,6 +141,8 @@
   /* ----- Quantity stepper (cart, PDP) ----- */
   function qtyStepper() {
     document.querySelectorAll('[data-qty]').forEach((wrap) => {
+      if (wrap.dataset.bound) return;
+      wrap.dataset.bound = '1';
       const input = wrap.querySelector('input[type="number"]');
       const minus = wrap.querySelector('[data-qty-minus]');
       const plus = wrap.querySelector('[data-qty-plus]');
@@ -230,6 +232,7 @@
       if (subtotalEl) subtotalEl.textContent = formatMoney(cart.total_price);
       if (countEl) countEl.textContent = bagsLabel(cart.item_count);
       document.querySelectorAll('[data-cart-count]').forEach((el) => { el.textContent = cart.item_count; });
+      document.dispatchEvent(new CustomEvent('offline:cart-updated', { detail: cart }));
     }
 
     function refresh() {
@@ -318,10 +321,13 @@
         if (!variantId || btn.disabled) return;
         btn.disabled = true;
         if (labelEl) labelEl.textContent = btn.dataset.labelAdding || defaultLabel;
+        const scope = btn.closest('.quick-view-content') || btn.parentElement;
+        const qtyInput = scope ? scope.querySelector('[data-qty] input[type="number"]') : null;
+        const quantity = qtyInput ? Math.max(1, Number(qtyInput.value || 1)) : 1;
         fetch('/cart/add.js', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ id: variantId, quantity: 1 }),
+          body: JSON.stringify({ id: variantId, quantity: quantity }),
         })
           .then((res) => {
             if (!res.ok) return res.json().then((err) => Promise.reject(err));
@@ -329,7 +335,11 @@
           })
           .then(() => {
             if (labelEl) labelEl.textContent = btn.dataset.labelAdded || defaultLabel;
-            cartDrawer.open();
+            if (btn.hasAttribute('data-quick-add-no-drawer')) {
+              cartDrawer.refresh();
+            } else {
+              cartDrawer.open();
+            }
             setTimeout(() => {
               if (labelEl) labelEl.textContent = defaultLabel;
               btn.disabled = false;
@@ -341,6 +351,122 @@
           });
       });
     });
+  }
+
+  /* ----- Quick view modal ----- */
+  function quickView() {
+    const modal = document.getElementById('quickView');
+    if (!modal) return;
+    const contentEl = modal.querySelector('[data-qv-content]');
+    let currentVariantId = null;
+    let lastFocused = null;
+
+    function updateInCartLabel(cart) {
+      if (!currentVariantId || !contentEl) return;
+      const label = contentEl.querySelector('[data-qv-in-cart]');
+      if (!label) return;
+      const items = (cart && cart.items) || [];
+      const line = items.find((item) => String(item.variant_id) === String(currentVariantId));
+      if (line) {
+        label.hidden = false;
+        const tmpl = label.dataset.tmpl || '__COUNT__ already in your cart';
+        label.textContent = tmpl.replace('__COUNT__', line.quantity);
+      } else {
+        label.hidden = true;
+      }
+    }
+
+    function open(id) {
+      const tmpl = document.querySelector('[data-quick-view-template="' + id + '"]');
+      if (!tmpl || !contentEl) return;
+      contentEl.innerHTML = '';
+      contentEl.appendChild(tmpl.content.cloneNode(true));
+      const addBtn = contentEl.querySelector('[data-quick-add]');
+      currentVariantId = addBtn ? addBtn.dataset.variantId : null;
+      qtyStepper();
+      quickAdd();
+      lastFocused = document.activeElement;
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const closeBtn = modal.querySelector('.quick-view-close');
+      if (closeBtn) closeBtn.focus();
+      fetch('/cart.js', { headers: { Accept: 'application/json' } })
+        .then((res) => res.json())
+        .then(updateInCartLabel)
+        .catch(() => {});
+    }
+
+    function close() {
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    modal.querySelectorAll('[data-qv-close]').forEach((el) => el.addEventListener('click', close));
+    modal.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+    document.addEventListener('offline:cart-updated', (e) => {
+      if (modal.getAttribute('aria-hidden') === 'false') updateInCartLabel(e.detail);
+    });
+
+    document.querySelectorAll('[data-quick-view]').forEach((el) => {
+      const trigger = (e) => {
+        if (e.target.closest('[data-quick-add]')) return;
+        const id = el.dataset.quickViewId;
+        if (id) open(id);
+      };
+      el.addEventListener('click', trigger);
+      el.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        if (e.target.closest('[data-quick-add]')) return;
+        e.preventDefault();
+        trigger(e);
+      });
+    });
+  }
+
+  /* ----- Email signup popup ----- */
+  function emailPopup() {
+    const modal = document.getElementById('emailPopup');
+    if (!modal) return;
+    const STORAGE_KEY = 'offline_email_popup';
+
+    function getState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; }
+    }
+    function setState(patch) {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(Object.assign(getState(), patch))); } catch (e) {}
+    }
+    function open() {
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const closeBtn = modal.querySelector('.email-popup-close');
+      if (closeBtn) closeBtn.focus();
+    }
+    function close(dismissed) {
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (dismissed) setState({ dismissedAt: Date.now() });
+    }
+
+    modal.querySelectorAll('[data-ep-close]').forEach((el) => el.addEventListener('click', () => close(true)));
+    modal.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(true); });
+
+    if (modal.querySelector('[data-ep-posted]')) {
+      setState({ subscribed: true });
+      open();
+      return;
+    }
+
+    const state = getState();
+    if (state.subscribed) return;
+    const cooldownDays = Number(modal.dataset.cooldownDays || 7);
+    if (state.dismissedAt) {
+      const elapsedDays = (Date.now() - state.dismissedAt) / (1000 * 60 * 60 * 24);
+      if (elapsedDays < cooldownDays) return;
+    }
+    const delaySeconds = Number(modal.dataset.delay || 4);
+    window.setTimeout(open, delaySeconds * 1000);
   }
 
   /* ----- Product form: AJAX add-to-cart (PDP) ----- */
@@ -476,6 +602,8 @@
     qtyStepper();
     cartOpeners();
     quickAdd();
+    quickView();
+    emailPopup();
     productForm();
     animatedAccordions();
     randomCoord();

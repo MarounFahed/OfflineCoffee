@@ -1,0 +1,92 @@
+<section class="contact-section">
+  <div class="contact-grid">
+    <div class="contact-form-col">
+      <h2>{{ section.settings.form_heading }}</h2>
+      {%- form 'contact', class: 'contact-form' -%}
+        {%- if form.posted_successfully? -%}
+          <div class="form-success" role="status">{{ 'contact.success' | t }}</div>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <div class="form-error" role="alert">
+            {%- for field in form.errors -%}
+              <span>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}.</span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        <div class="field">
+          <label for="ContactName">{{ 'contact.name' | t }}</label>
+          <input type="text" id="ContactName" name="contact[name]" value="{{ form.name }}" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="ContactEmail">{{ 'contact.email' | t }}</label>
+          <input type="email" id="ContactEmail" name="contact[email]" value="{{ form.email }}" autocomplete="email" required>
+        </div>
+
+        <div class="field">
+          <label for="ContactMessage">{{ 'contact.message' | t }}</label>
+          <textarea id="ContactMessage" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-full">{{ 'contact.submit' | t }}</button>
+      {%- endform -%}
+    </div>
+
+    <div class="contact-info-col">
+      <h2>{{ section.settings.info_heading }}</h2>
+      <ul class="contact-info-list" role="list">
+        {%- if section.settings.email != blank -%}
+          <li>
+            <span class="lbl">{{ 'contact.email' | t }}</span>
+            <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+          </li>
+        {%- endif -%}
+        {%- if section.settings.phone != blank -%}
+          <li>
+            <span class="lbl">{{ 'contact.phone' | t }}</span>
+            <a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone }}</a>
+          </li>
+        {%- endif -%}
+        {%- if section.settings.whatsapp != blank -%}
+          <li>
+            <span class="lbl">WhatsApp</span>
+            <a href="https://wa.me/{{ section.settings.whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener">{{ section.settings.whatsapp }}</a>
+          </li>
+        {%- endif -%}
+        {%- if section.settings.instagram != blank -%}
+          <li>
+            <span class="lbl">Instagram</span>
+            <a href="https://instagram.com/{{ section.settings.instagram | remove: '@' }}" target="_blank" rel="noopener">{{ section.settings.instagram }}</a>
+          </li>
+        {%- endif -%}
+        {%- if section.settings.facebook_url != blank -%}
+          <li>
+            <span class="lbl">Facebook</span>
+            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener">{{ section.settings.facebook_label }}</a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact info",
+  "settings": [
+    { "type": "text", "id": "form_heading", "label": "Form heading", "default": "Send a message" },
+    { "type": "text", "id": "info_heading", "label": "Info heading", "default": "Other ways to reach us" },
+    { "type": "header", "content": "Direct contact details" },
+    { "type": "text", "id": "email", "label": "Email" },
+    { "type": "text", "id": "phone", "label": "Phone (with country code)" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp number (with country code)" },
+    { "type": "text", "id": "instagram", "label": "Instagram handle (with @)" },
+    { "type": "url", "id": "facebook_url", "label": "Facebook page URL" },
+    { "type": "text", "id": "facebook_label", "label": "Facebook display label", "default": "Facebook" }
+  ],
+  "presets": [
+    { "name": "Contact info" }
+  ]
+}
+{% endschema %}

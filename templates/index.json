@@ -72,7 +72,8 @@
       },
       "block_order": ["tent", "train", "hotel"]
     },
-    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/compost-soil-seedlings.jpg?v=1786738003", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring.", "cta_text": "Shop the blends — 15% off your first order", "cta_url": "/collections/all-blends" } }
+    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/compost-soil-seedlings.jpg?v=1786738003", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring.", "cta_text": "Shop the blends — 15% off your first order", "cta_url": "/collections/all-blends" } },
+    "final-cta": { "type": "cta-band", "settings": { "eyebrow": "§ Ready when you are", "heading": "Stop thinking about it.\nStart drinking it.", "body": "Three roasts, one compostable filter, five minutes flat. Try all three or pick your favorite — either way it ships in 2 days.", "full_set_product": "try-all-three", "primary_text": "Add the Full Set to cart", "secondary_text": "Shop all blends", "secondary_url": "/collections/all-blends" } }
   },
-  "order": ["hero", "tagline-ticker", "featured-blends", "sampler-strip", "brew-strip", "pull-quote", "places", "compost"]
+  "order": ["hero", "tagline-ticker", "featured-blends", "sampler-strip", "brew-strip", "pull-quote", "places", "compost", "final-cta"]
 }

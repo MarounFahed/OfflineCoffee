@@ -1,0 +1,26 @@
+{
+  "sections": {
+    "head": {
+      "type": "page-head",
+      "settings": {
+        "eyebrow": "§ Say hello",
+        "heading": "Get in touch.",
+        "lead": "Questions about an order, a blend, or anything else — we read every message."
+      }
+    },
+    "info": {
+      "type": "contact-info",
+      "settings": {
+        "form_heading": "Send a message",
+        "info_heading": "Other ways to reach us",
+        "email": "hello@offline-coffee.com",
+        "phone": "+961 78 948 439",
+        "whatsapp": "+961 78 948 439",
+        "instagram": "@drinkoffline",
+        "facebook_url": "https://www.facebook.com/Drinkoffline",
+        "facebook_label": "Drinkoffline"
+      }
+    }
+  },
+  "order": ["head", "info"]
+}
