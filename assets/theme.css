@@ -917,7 +917,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    BIG CTA BAND
    ------------------------------------------------------------ */
 .cta-band {
-  background: var(--ink); color: var(--paper);
+  background: var(--paper); color: var(--ink);
   padding: clamp(64px, 10vw, 128px) var(--gutter);
   text-align: center;
 }
@@ -934,10 +934,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .cta-band p { font-family: var(--serif); font-size: 17px; opacity: 0.85; max-width: 46ch; margin: 0 auto; }
 .cta-band-actions { display: flex; gap: var(--s-4); flex-wrap: wrap; justify-content: center; margin-top: var(--s-2); }
-.cta-band .btn { background: var(--paper); color: var(--ink); border-color: var(--paper); }
-.cta-band .btn:hover { background: transparent; color: var(--paper); border-color: var(--paper); }
-.cta-band .btn-secondary { background: transparent; color: var(--paper); border-color: var(--paper); }
-.cta-band .btn-secondary:hover { background: var(--paper); color: var(--ink); }
+@media (max-width: 500px) {
+  .cta-band-actions { flex-direction: column; width: 100%; }
+  .cta-band-actions .btn { width: 100%; }
+}
 @media (max-width: 500px) {
   .cta-band-actions { flex-direction: column; width: 100%; }
   .cta-band-actions .btn { width: 100%; }
@@ -1655,6 +1655,15 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .contact-info-list .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.6; }
 .contact-info-list a { font-family: var(--serif); font-size: 19px; }
 .contact-info-list a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.contact-social { display: flex; gap: var(--s-3); margin-top: var(--s-6); }
+.contact-social-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; flex: none;
+  border: 1px solid var(--ink); color: var(--ink);
+  transition: background 160ms ease, color 160ms ease;
+}
+.contact-social-btn svg { width: 22px; height: 22px; }
+.contact-social-btn:hover { background: var(--ink); color: var(--paper); }
 
 /* ------------------------------------------------------------
    REDUCED MOTION

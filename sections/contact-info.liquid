@@ -48,25 +48,36 @@
             <a href="tel:{{ section.settings.phone | remove: ' ' }}">{{ section.settings.phone }}</a>
           </li>
         {%- endif -%}
-        {%- if section.settings.whatsapp != blank -%}
-          <li>
-            <span class="lbl">WhatsApp</span>
-            <a href="https://wa.me/{{ section.settings.whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener">{{ section.settings.whatsapp }}</a>
-          </li>
-        {%- endif -%}
-        {%- if section.settings.instagram != blank -%}
-          <li>
-            <span class="lbl">Instagram</span>
-            <a href="https://instagram.com/{{ section.settings.instagram | remove: '@' }}" target="_blank" rel="noopener">{{ section.settings.instagram }}</a>
-          </li>
-        {%- endif -%}
-        {%- if section.settings.facebook_url != blank -%}
-          <li>
-            <span class="lbl">Facebook</span>
-            <a href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener">{{ section.settings.facebook_label }}</a>
-          </li>
-        {%- endif -%}
       </ul>
+      {%- if section.settings.whatsapp != blank or section.settings.instagram != blank or section.settings.facebook_url != blank -%}
+        <div class="contact-social" role="list">
+          {%- if section.settings.whatsapp != blank -%}
+            <a class="contact-social-btn" href="https://wa.me/{{ section.settings.whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 3a8.5 8.5 0 0 0-7.4 12.7L3 21l5.5-1.5A8.5 8.5 0 1 0 12 3Z" stroke="currentColor" stroke-width="1.6"/>
+                <path d="M8.7 8.4c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.4.2.4.6 1.4.6 1.5.1.1.1.3 0 .4-.1.2-.1.3-.3.4-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.7 1.1 1.5 1.8.9.9 1.7 1.2 2 1.3.3.1.4.1.6-.1.2-.2.7-.8.9-1.1.2-.2.4-.2.6-.1l1.5.7c.2.1.4.2.4.4.1.2.1 1-.2 1.4-.4.6-1.4 1.1-2 1.1-.7.1-1.6.1-4-1-2.9-1.2-4.7-4-4.8-4.2-.1-.2-1-1.3-1-2.5 0-1.2.6-1.8.8-2Z" fill="currentColor"/>
+              </svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.instagram != blank -%}
+            <a class="contact-social-btn" href="https://instagram.com/{{ section.settings.instagram | remove: '@' }}" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4.2"/>
+                <circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          {%- endif -%}
+          {%- if section.settings.facebook_url != blank -%}
+            <a class="contact-social-btn" href="{{ section.settings.facebook_url }}" target="_blank" rel="noopener" aria-label="{{ section.settings.facebook_label }}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M14 8.6h-1.3c-.8 0-1.2.5-1.2 1.3v1.8h2.4l-.3 2.3h-2.1V21"/>
+              </svg>
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </section>
