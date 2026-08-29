@@ -1418,8 +1418,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .quick-view-close {
   position: absolute; top: var(--s-4); right: var(--s-4); z-index: 3;
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: var(--s-3) var(--s-4);
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: var(--s-2) var(--s-4); min-height: 36px;
   border: 1px solid var(--ink); background: var(--paper); color: var(--ink); cursor: pointer;
 }
 .quick-view-close:hover { background: var(--ink); color: var(--paper); }
@@ -1438,11 +1438,16 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .qv-price { font-family: var(--mono); font-size: 18px; letter-spacing: 0.04em; margin-bottom: var(--s-4); }
 .qv-region { font-family: var(--serif); font-size: 15px; opacity: 0.75; margin-bottom: var(--s-4); }
 .qv-tags { padding: 0; margin-bottom: var(--s-5); }
-.qv-actions { display: flex; align-items: stretch; gap: var(--s-4); flex-wrap: wrap; padding-top: var(--s-5); }
+.qv-bottom { margin-top: auto; padding-top: var(--s-5); }
+.qv-actions { display: flex; align-items: stretch; gap: var(--s-4); flex-wrap: wrap; }
 .qv-actions .qty-stepper { height: 48px; }
 .qv-actions .qty-stepper button, .qv-actions .qty-stepper input { height: 48px; min-height: 48px; }
 .qv-add { flex: 1; min-width: 160px; height: 48px; min-height: 48px; padding-block: 0; justify-content: center; }
-.qv-in-cart { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-top: var(--s-4); }
+.qv-in-cart {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  opacity: 0.7; margin-top: var(--s-4); min-height: 1.2em; visibility: hidden;
+}
+.qv-in-cart.is-visible { visibility: visible; }
 
 /* ------------------------------------------------------------
    EMAIL SIGNUP POPUP

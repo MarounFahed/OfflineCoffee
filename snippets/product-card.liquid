@@ -204,25 +204,27 @@
             {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
           </div>
         {%- endif -%}
-        <div class="qv-actions">
-          <div class="qty-stepper" data-qty>
-            <button type="button" data-qty-minus aria-label="{{ 'products.product.decrease_quantity' | t }}">−</button>
-            <input type="number" min="1" value="1" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}">
-            <button type="button" data-qty-plus aria-label="{{ 'products.product.increase_quantity' | t }}">+</button>
+        <div class="qv-bottom">
+          <div class="qv-actions">
+            <div class="qty-stepper" data-qty>
+              <button type="button" data-qty-minus aria-label="{{ 'products.product.decrease_quantity' | t }}">−</button>
+              <input type="number" min="1" value="1" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" data-qty-plus aria-label="{{ 'products.product.increase_quantity' | t }}">+</button>
+            </div>
+            {%- if product.available -%}
+              <button type="button" class="btn qv-add" data-quick-add data-quick-add-no-drawer
+                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                data-product-title="{{ p_name | escape }}"
+                data-label-adding="{{ 'products.product.adding' | t }}"
+                data-label-added="{{ 'products.product.added' | t }}">
+                <span data-quick-add-label>{{ 'products.product.add_to_cart' | t }}</span>
+              </button>
+            {%- else -%}
+              <span class="btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+            {%- endif -%}
           </div>
-          {%- if product.available -%}
-            <button type="button" class="btn qv-add" data-quick-add data-quick-add-no-drawer
-              data-variant-id="{{ product.selected_or_first_available_variant.id }}"
-              data-product-title="{{ p_name | escape }}"
-              data-label-adding="{{ 'products.product.adding' | t }}"
-              data-label-added="{{ 'products.product.added' | t }}">
-              <span data-quick-add-label>{{ 'products.product.add_to_cart' | t }}</span>
-            </button>
-          {%- else -%}
-            <span class="btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
-          {%- endif -%}
+          <p class="qv-in-cart" data-qv-in-cart data-tmpl="{{ 'products.product.in_cart' | t }}"></p>
         </div>
-        <p class="qv-in-cart" data-qv-in-cart data-tmpl="{{ 'products.product.in_cart' | t }}" hidden></p>
       </div>
     </template>
   {%- endif -%}

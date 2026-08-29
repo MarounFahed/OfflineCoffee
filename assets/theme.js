@@ -368,11 +368,11 @@
       const items = (cart && cart.items) || [];
       const line = items.find((item) => String(item.variant_id) === String(currentVariantId));
       if (line) {
-        label.hidden = false;
         const tmpl = label.dataset.tmpl || '__COUNT__ already in your cart';
         label.textContent = tmpl.replace('__COUNT__', line.quantity);
+        label.classList.add('is-visible');
       } else {
-        label.hidden = true;
+        label.classList.remove('is-visible');
       }
     }
 
