@@ -1417,13 +1417,13 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   box-shadow: 0 24px 64px rgba(15, 15, 15, 0.25);
 }
 .quick-view-close {
-  position: sticky; top: 0; float: right; z-index: 2;
+  position: absolute; top: var(--s-4); right: var(--s-4); z-index: 3;
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: var(--s-3) var(--s-4); margin: var(--s-4) var(--s-4) 0 0;
+  padding: var(--s-3) var(--s-4);
   border: 1px solid var(--ink); background: var(--paper); color: var(--ink); cursor: pointer;
 }
 .quick-view-close:hover { background: var(--ink); color: var(--paper); }
-.quick-view-content { display: grid; grid-template-columns: 1fr 1fr; clear: both; min-height: 1px; }
+.quick-view-content { display: grid; grid-template-columns: 1fr 1fr; min-height: 1px; }
 @media (max-width: 700px) { .quick-view-content { grid-template-columns: 1fr; } }
 .qv-media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .qv-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -1437,8 +1437,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .qv-price { font-family: var(--mono); font-size: 18px; letter-spacing: 0.04em; margin-bottom: var(--s-4); }
 .qv-region { font-family: var(--serif); font-size: 15px; opacity: 0.75; margin-bottom: var(--s-4); }
 .qv-tags { padding: 0; margin-bottom: var(--s-5); }
-.qv-actions { display: flex; align-items: center; gap: var(--s-4); flex-wrap: wrap; margin-top: auto; padding-top: var(--s-5); }
-.qv-add { flex: 1; min-width: 160px; }
+.qv-actions { display: flex; align-items: stretch; gap: var(--s-4); flex-wrap: wrap; margin-top: auto; padding-top: var(--s-5); }
+.qv-actions .qty-stepper { height: 48px; }
+.qv-actions .qty-stepper button, .qv-actions .qty-stepper input { height: 48px; min-height: 48px; }
+.qv-add { flex: 1; min-width: 160px; height: 48px; min-height: 48px; padding-block: 0; justify-content: center; }
 .qv-in-cart { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7; margin-top: var(--s-4); }
 
 /* ------------------------------------------------------------

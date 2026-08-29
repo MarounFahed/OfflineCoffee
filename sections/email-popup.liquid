@@ -4,7 +4,7 @@
     data-cooldown-days="{{ section.settings.cooldown_days }}">
     <div class="email-popup-overlay" data-ep-close></div>
     <div class="email-popup-panel" role="dialog" aria-modal="true" aria-label="{{ section.settings.heading | strip_html }}">
-      <button type="button" class="email-popup-close" data-ep-close aria-label="{{ 'general.accessibility.close_menu' | t }}">{{ 'general.accessibility.close_menu' | t }}</button>
+      <button type="button" class="email-popup-close" data-ep-close aria-label="{{ 'general.accessibility.close' | t }}">{{ 'general.accessibility.close' | t }}</button>
       <div class="email-popup-body">
         {%- if section.settings.eyebrow != blank -%}
           <div class="lbl">{{ section.settings.eyebrow }}</div>
