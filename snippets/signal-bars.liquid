@@ -17,4 +17,5 @@
   {%- for i in (1..total) -%}
     {%- if i <= bars -%}<i></i>{%- else -%}<i class="off"></i>{%- endif -%}
   {%- endfor -%}
+  <em aria-hidden="true">{{ bars }}/{{ total }}</em>
 </span>
