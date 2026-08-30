@@ -318,8 +318,9 @@
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         const variantId = btn.dataset.variantId;
-        if (!variantId || btn.disabled) return;
-        btn.disabled = true;
+        if (!variantId || btn.dataset.busy === '1') return;
+        btn.dataset.busy = '1';
+        btn.setAttribute('aria-disabled', 'true');
         if (labelEl) labelEl.textContent = btn.dataset.labelAdding || defaultLabel;
         const scope = btn.closest('.quick-view-content') || btn.parentElement;
         const qtyInput = scope ? scope.querySelector('[data-qty] input[type="number"]') : null;
@@ -342,12 +343,14 @@
             }
             setTimeout(() => {
               if (labelEl) labelEl.textContent = defaultLabel;
-              btn.disabled = false;
+              btn.dataset.busy = '0';
+              btn.removeAttribute('aria-disabled');
             }, 1200);
           })
           .catch(() => {
             if (labelEl) labelEl.textContent = defaultLabel;
-            btn.disabled = false;
+            btn.dataset.busy = '0';
+            btn.removeAttribute('aria-disabled');
           });
       });
     });
