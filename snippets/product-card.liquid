@@ -63,20 +63,22 @@
     assign p_badge = product.metafields.offline.badge.value
   endif
 
-  assign p_name = ph_name | default: p_name
-  assign p_price = ph_price | default: p_price
-  assign p_compare_price = ph_compare_price | default: p_compare_price
-  assign p_blend_number = ph_blend_number | default: p_blend_number
-  assign p_roast_color = ph_roast_color | default: p_roast_color
-  assign p_roast_label = ph_roast_label | default: p_roast_label
-  assign p_region_short = ph_region_short | default: p_region_short
-  assign p_region_long = ph_region | default: p_region_long
-  if ph_bars
-    assign p_bars = ph_bars
+  if product == blank
+    assign p_name = ph_name | default: p_name
+    assign p_price = ph_price | default: p_price
+    assign p_compare_price = ph_compare_price | default: p_compare_price
+    assign p_blend_number = ph_blend_number | default: p_blend_number
+    assign p_roast_color = ph_roast_color | default: p_roast_color
+    assign p_roast_label = ph_roast_label | default: p_roast_label
+    assign p_region_short = ph_region_short | default: p_region_short
+    assign p_region_long = ph_region | default: p_region_long
+    if ph_bars
+      assign p_bars = ph_bars
+    endif
+    assign p_tags_string = ph_tags | default: p_tags_string
+    assign p_badge = ph_badge | default: p_badge
+    assign p_format = ph_format | default: p_format
   endif
-  assign p_tags_string = ph_tags | default: p_tags_string
-  assign p_badge = ph_badge | default: p_badge
-  assign p_format = ph_format | default: p_format
 
   if variant == 'grid'
     assign card_class = 'pcard'
