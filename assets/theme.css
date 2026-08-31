@@ -283,7 +283,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .header-right a, .header-right button { min-height: 44px; display: inline-flex; align-items: center; }
 .cart-pill {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: 4px;
 }
 .menu-btn {
   display: none;
