@@ -15,9 +15,10 @@
   /* ----- Header height publishing + sticky hairline ----- */
   function header() {
     const el = document.getElementById('siteHeader');
+    const wrap = document.querySelector('.header-wrap') || el;
     if (!el) return;
     function setH() {
-      document.documentElement.style.setProperty('--header-h', el.offsetHeight + 'px');
+      document.documentElement.style.setProperty('--header-h', wrap.offsetHeight + 'px');
     }
     setH();
     window.addEventListener('resize', setH, { passive: true });
