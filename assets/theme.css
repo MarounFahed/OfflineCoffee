@@ -360,7 +360,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   font-size: clamp(64px, 13vw, 200px);
   letter-spacing: -0.025em; line-height: 0.88;
   text-transform: uppercase; text-wrap: balance;
-  max-width: 14ch;
   margin-bottom: var(--s-6);
 }
 .hero-split .hero-heading { font-size: clamp(32px, 8vw, 100px); margin-bottom: var(--s-5); }
