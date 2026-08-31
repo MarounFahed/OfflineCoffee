@@ -341,7 +341,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .hero > *:not(.hero-image):not(.hero-character) { position: relative; z-index: 1; }
 .hero-stamp {
-  position: absolute; top: var(--s-7); right: var(--gutter);
+  position: absolute; top: var(--s-5); right: var(--gutter);
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: right; line-height: 1.5;
@@ -356,9 +356,9 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .hero-eyebrow {
   font-family: var(--mono); font-size: 11px;
   letter-spacing: 0.16em; text-transform: uppercase;
-  margin-bottom: var(--s-5); opacity: 0.85;
+  margin-bottom: var(--s-7); opacity: 0.85;
 }
-.hero-eyebrow span:not(:last-child)::after { content: " · "; }
+.hero-eyebrow span { display: block; }
 .hero-heading {
   font-family: var(--display); font-weight: 400;
   font-size: clamp(64px, 13vw, 200px);
@@ -468,7 +468,11 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     font-size: 9px;
   }
   .hero-split .hero .hero-stamp::before { margin-left: 0; margin-top: 0; margin-bottom: 10px; opacity: 0.8; }
-  .hero-split .hero-eyebrow { font-size: 9px; }
+  .hero-split .hero-eyebrow {
+    position: absolute; top: 28px; right: var(--gutter);
+    text-align: right; margin-bottom: 0;
+    font-size: 9px;
+  }
   .hero-split .hero-heading { font-size: clamp(36px, 10vw, 100px); white-space: normal; }
   .hero-split .hero p.lead { font-size: 14px; }
   .hero-split .hero-ctas { flex-wrap: nowrap; }
