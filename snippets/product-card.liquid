@@ -7,7 +7,7 @@
   Placeholder params (used when product is blank):
     ph_name, ph_price, ph_blend_number,
     ph_roast_color (--amber/--ember/--pine/--paper-2),
-    ph_roast_label, ph_region_short, ph_region,
+    ph_roast_label, ph_region_short,
     ph_bars (0–4), ph_tags (comma-separated string),
     ph_badge, ph_format, ph_compare_price
 {%- endcomment -%}
@@ -21,7 +21,6 @@
   assign p_roast_color = '--amber'
   assign p_roast_label = ''
   assign p_region_short = ''
-  assign p_region_long = ''
   assign p_bars = 0
   assign p_tags_string = ''
   assign p_badge = ''
@@ -55,7 +54,6 @@
       assign p_bars = 0
     endif
     assign p_region_short = product.metafields.offline.region_short.value | default: product.vendor
-    assign p_region_long = product.metafields.offline.region.value | default: ''
     assign tag_meta = product.metafields.offline.tasting_tags.value
     if tag_meta
       assign p_tags_string = tag_meta | join: ', '
@@ -71,7 +69,6 @@
     assign p_roast_color = ph_roast_color | default: p_roast_color
     assign p_roast_label = ph_roast_label | default: p_roast_label
     assign p_region_short = ph_region_short | default: p_region_short
-    assign p_region_long = ph_region | default: p_region_long
     if ph_bars
       assign p_bars = ph_bars
     endif
@@ -198,9 +195,6 @@
           {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
           {{ p_price }}
         </div>
-        {%- if p_region_long != blank -%}
-          <p class="qv-region">{{ p_region_long }}</p>
-        {%- endif -%}
         {%- if show_tags -%}
           <div class="{{ tags_class }} qv-tags">
             {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
@@ -225,7 +219,10 @@
               <span class="btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
             {%- endif -%}
           </div>
-          <p class="qv-in-cart" data-qv-in-cart data-tmpl="{{ 'products.product.in_cart' | t }}"></p>
+          <div class="qv-in-cart-wrap" data-qv-in-cart-wrap>
+            <p class="qv-in-cart" data-qv-in-cart data-tmpl="{{ 'products.product.in_cart' | t }}"></p>
+            <a href="{{ routes.cart_url }}" class="qv-go-to-cart">{{ 'products.product.go_to_cart' | t }}</a>
+          </div>
         </div>
       </div>
     </template>

@@ -366,16 +366,17 @@
 
     function updateInCartLabel(cart) {
       if (!currentVariantId || !contentEl) return;
+      const wrap = contentEl.querySelector('[data-qv-in-cart-wrap]');
       const label = contentEl.querySelector('[data-qv-in-cart]');
-      if (!label) return;
+      if (!wrap || !label) return;
       const items = (cart && cart.items) || [];
       const line = items.find((item) => String(item.variant_id) === String(currentVariantId));
       if (line) {
         const tmpl = label.dataset.tmpl || '__COUNT__ already in your cart';
         label.textContent = tmpl.replace('__COUNT__', line.quantity);
-        label.classList.add('is-visible');
+        wrap.classList.add('is-visible');
       } else {
-        label.classList.remove('is-visible');
+        wrap.classList.remove('is-visible');
       }
     }
 
@@ -496,6 +497,32 @@
     });
   }
 
+  function pdpCartButton() {
+    const goToCart = document.querySelector('[data-pdp-go-to-cart]');
+    const form = document.querySelector('.product-form');
+    if (!goToCart || !form) return;
+
+    function currentVariantId() {
+      const select = form.querySelector('#ProductVariant');
+      if (select) return select.value;
+      const hiddenInput = form.querySelector('input[name="id"]');
+      return hiddenInput ? hiddenInput.value : null;
+    }
+
+    function update(cart) {
+      const variantId = currentVariantId();
+      const items = (cart && cart.items) || [];
+      const inCart = variantId && items.some((item) => String(item.variant_id) === String(variantId));
+      goToCart.hidden = !inCart;
+    }
+
+    fetch('/cart.js', { headers: { Accept: 'application/json' } })
+      .then((res) => res.json())
+      .then(update)
+      .catch(() => {});
+    document.addEventListener('offline:cart-updated', (e) => update(e.detail));
+  }
+
   /* ----- Smooth accordion open/close ----- */
   function animatedAccordions() {
     // Each details tracks its own in-flight animation so rapid clicks
@@ -608,6 +635,7 @@
     quickView();
     emailPopup();
     productForm();
+    pdpCartButton();
     animatedAccordions();
     randomCoord();
     heroClock();

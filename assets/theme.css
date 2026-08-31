@@ -535,6 +535,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .card-actions .blend-tags, .card-actions .pcard-tags { padding: 0; }
 .card-actions .quick-add-btn { margin-left: auto; }
+.card-actions:has(> .quick-add-btn:only-child) .quick-add-btn { width: 100%; justify-content: center; margin-left: 0; }
 .quick-add-btn {
   display: inline-flex; align-items: center; justify-content: center;
   font-family: var(--mono); font-size: 11px; font-weight: 500;
@@ -1266,6 +1267,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .pdp-quantity label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
 .pdp-cta-row { display: flex; gap: var(--s-3); flex-wrap: wrap; }
 .pdp-cta-row .btn { flex: 1; min-width: 180px; }
+.pdp-cta-row .btn[hidden] { display: none; }
 .qty-stepper { display: inline-flex; border: 1px solid var(--ink); }
 .qty-stepper button { padding: 10px 14px; min-width: 44px; min-height: 44px; font-family: var(--mono); font-size: 14px; }
 .qty-stepper button:hover { background: var(--ink); color: var(--paper); }
@@ -1442,18 +1444,25 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .qv-name { font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.15; margin-bottom: var(--s-3); }
 .qv-price { font-family: var(--mono); font-size: 18px; letter-spacing: 0.04em; margin-bottom: var(--s-4); }
-.qv-region { font-family: var(--serif); font-size: 15px; opacity: 0.75; margin-bottom: var(--s-4); }
 .qv-tags { padding: 0; margin-bottom: var(--s-5); }
 .qv-bottom { margin-top: auto; padding-top: var(--s-5); }
 .qv-actions { display: flex; align-items: stretch; gap: var(--s-4); flex-wrap: wrap; }
 .qv-actions .qty-stepper { height: 48px; }
 .qv-actions .qty-stepper button, .qv-actions .qty-stepper input { height: 48px; min-height: 48px; }
 .qv-add { flex: 1; min-width: 160px; height: 48px; min-height: 48px; padding-block: 0; justify-content: center; }
+.qv-in-cart-wrap {
+  display: flex; align-items: center; gap: var(--s-4);
+  margin-top: var(--s-4); min-height: 1.2em; visibility: hidden;
+}
+.qv-in-cart-wrap.is-visible { visibility: visible; }
 .qv-in-cart {
   font-family: var(--mono); font-size: 11px; line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase;
-  opacity: 0.7; margin-top: var(--s-4); min-height: 1.2em; visibility: hidden;
+  opacity: 0.7;
 }
-.qv-in-cart.is-visible { visibility: visible; }
+.qv-go-to-cart {
+  font-family: var(--mono); font-size: 11px; line-height: 1.2; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); text-decoration: underline; text-underline-offset: 2px;
+}
 
 /* ------------------------------------------------------------
    EMAIL SIGNUP POPUP
