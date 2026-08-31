@@ -247,6 +247,14 @@
       if (mobileMenuEl && mobileMenuEl.getAttribute('aria-hidden') === 'false') {
         mobileMenuEl.setAttribute('aria-hidden', 'true');
       }
+      const quickViewEl = document.getElementById('quickView');
+      if (quickViewEl && quickViewEl.getAttribute('aria-hidden') === 'false') {
+        quickViewEl.setAttribute('aria-hidden', 'true');
+      }
+      const emailPopupEl = document.querySelector('.email-popup');
+      if (emailPopupEl && emailPopupEl.getAttribute('aria-hidden') === 'false') {
+        emailPopupEl.setAttribute('aria-hidden', 'true');
+      }
       lastFocused = document.activeElement;
       root.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
