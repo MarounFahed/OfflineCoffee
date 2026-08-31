@@ -328,7 +328,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   display: flex; flex-direction: column; justify-content: flex-end;
   padding: var(--gutter);
   padding-block: clamp(1px, 0.2vh, 3px) clamp(48px, 8vh, 96px);
-  overflow: hidden;
 }
 .hero-image {
   position: absolute; inset: 0; z-index: 0;
@@ -362,7 +361,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   text-transform: uppercase; text-wrap: balance;
   margin-bottom: var(--s-6);
 }
-.hero-split .hero-heading { font-size: clamp(32px, 8vw, 100px); margin-bottom: var(--s-5); }
+.hero-split .hero-heading { font-size: clamp(32px, 6.5vw, 84px); white-space: nowrap; margin-bottom: var(--s-5); }
 .hero-split .hero { padding-block: clamp(1px, 0.2vh, 3px) clamp(32px, 5vh, 64px); }
 .hero-split .hero p.lead { margin-bottom: var(--s-6); }
 .hero p.lead {
@@ -465,7 +464,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   }
   .hero-split .hero .hero-stamp::before { margin-left: 0; margin-top: 0; margin-bottom: 10px; opacity: 0.8; }
   .hero-split .hero-eyebrow { font-size: 9px; }
-  .hero-split .hero-heading { font-size: clamp(36px, 10vw, 100px); }
+  .hero-split .hero-heading { font-size: clamp(36px, 10vw, 100px); white-space: normal; }
   .hero-split .hero p.lead { font-size: 14px; }
   .hero-split .hero-ctas { flex-wrap: nowrap; }
   .hero-split .hero-ctas .btn { flex: 1 1 0; text-align: center; padding: 10px var(--s-2); min-height: 0; font-size: 10px; }
