@@ -110,7 +110,7 @@
             {{ 'products.product.sold_out' | t }}
           {%- endif -%}
         </button>
-        <a href="{{ routes.cart_url }}" class="btn btn-secondary" data-pdp-go-to-cart hidden>{{ 'products.product.go_to_cart' | t }}</a>
+        <a href="{{ routes.cart_url }}" class="btn btn-secondary" data-pdp-go-to-cart data-cart-open hidden>{{ 'products.product.go_to_cart' | t }}</a>
       </div>
     {%- endform -%}
 

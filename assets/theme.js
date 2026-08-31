@@ -302,6 +302,8 @@
 
   function cartOpeners() {
     document.querySelectorAll('[data-cart-open]').forEach((el) => {
+      if (el.dataset.bound) return;
+      el.dataset.bound = '1';
       el.addEventListener('click', (e) => {
         e.preventDefault();
         cartDrawer.open();
@@ -389,6 +391,7 @@
       currentVariantId = addBtn ? addBtn.dataset.variantId : null;
       qtyStepper();
       quickAdd();
+      cartOpeners();
       lastFocused = document.activeElement;
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
