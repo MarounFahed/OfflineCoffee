@@ -12,7 +12,7 @@
     "max_page_width": 1440,
     "section_spacing": "standard",
     "show_signal_bars": true,
-    "show_tasting_tags": true,
+    "show_tasting_tags": false,
     "max_tasting_tags": 3,
     "lazy_load_images": true,
     "preload_hero": true,
