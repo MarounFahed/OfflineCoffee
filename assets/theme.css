@@ -1349,8 +1349,12 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    CART DRAWER
    ------------------------------------------------------------ */
-.cart-drawer { position: fixed; inset: 0; z-index: 95; display: none; }
-.cart-drawer[aria-hidden="false"] { display: block; }
+.cart-drawer {
+  position: fixed; inset: 0; z-index: 95;
+  opacity: 0; visibility: hidden;
+  transition: opacity 220ms ease, visibility 0s linear 220ms;
+}
+.cart-drawer[aria-hidden="false"] { opacity: 1; visibility: visible; transition: opacity 220ms ease; }
 .cart-drawer-overlay { position: absolute; inset: 0; background: rgba(15, 15, 15, 0.5); }
 .cart-drawer-panel {
   position: absolute; top: 0; right: 0; bottom: 0;
@@ -1358,7 +1362,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   background: var(--paper);
   display: flex; flex-direction: column;
   box-shadow: -8px 0 24px rgba(15, 15, 15, 0.15);
+  transform: translateX(100%);
+  transition: transform 260ms cubic-bezier(.2,.7,.2,1);
 }
+.cart-drawer[aria-hidden="false"] .cart-drawer-panel { transform: translateX(0); }
 .cart-drawer-head {
   display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s-4);
   padding: var(--s-6) var(--s-5) var(--s-5);
@@ -1414,15 +1421,21 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    ------------------------------------------------------------ */
 .card-body[data-quick-view] { cursor: pointer; }
 .card-body[data-quick-view]:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
-.quick-view { position: fixed; inset: 0; z-index: 96; display: none; }
-.quick-view[aria-hidden="false"] { display: block; }
+.quick-view {
+  position: fixed; inset: 0; z-index: 96;
+  opacity: 0; visibility: hidden;
+  transition: opacity 220ms ease, visibility 0s linear 220ms;
+}
+.quick-view[aria-hidden="false"] { opacity: 1; visibility: visible; transition: opacity 220ms ease; }
 .quick-view-overlay { position: absolute; inset: 0; background: rgba(15, 15, 15, 0.6); }
 .quick-view-panel {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.96);
   width: min(880px, 92vw); max-height: 88vh; overflow-y: auto;
   background: var(--paper);
   box-shadow: 0 24px 64px rgba(15, 15, 15, 0.25);
+  transition: transform 220ms ease;
 }
+.quick-view[aria-hidden="false"] .quick-view-panel { transform: translate(-50%, -50%) scale(1); }
 .quick-view-close {
   position: absolute; top: var(--s-4); right: var(--s-4); z-index: 3;
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
@@ -1467,16 +1480,22 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    EMAIL SIGNUP POPUP
    ------------------------------------------------------------ */
-.email-popup { position: fixed; inset: 0; z-index: 97; display: none; }
-.email-popup[aria-hidden="false"] { display: block; }
+.email-popup {
+  position: fixed; inset: 0; z-index: 97;
+  opacity: 0; visibility: hidden;
+  transition: opacity 220ms ease, visibility 0s linear 220ms;
+}
+.email-popup[aria-hidden="false"] { opacity: 1; visibility: visible; transition: opacity 220ms ease; }
 .email-popup-overlay { position: absolute; inset: 0; background: rgba(15, 15, 15, 0.6); }
 .email-popup-panel {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.96);
   width: min(440px, 92vw); max-height: 88vh; overflow-y: auto;
   background: var(--paper); padding: var(--s-7) var(--s-6);
   box-shadow: 0 24px 64px rgba(15, 15, 15, 0.25);
+  transition: transform 220ms ease;
   text-align: center;
 }
+.email-popup[aria-hidden="false"] .email-popup-panel { transform: translate(-50%, -50%) scale(1); }
 .email-popup-close {
   position: absolute; top: var(--s-4); right: var(--s-4);
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
