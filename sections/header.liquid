@@ -9,21 +9,7 @@
 <header class="header" id="siteHeader" role="banner">
   <div class="wrap header-inner">
     <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-      {%- if section.settings.show_character and settings.logo_character != blank -%}
-        {{ settings.logo_character | image_url: width: 96 | image_tag:
-          loading: 'eager',
-          fetchpriority: 'high',
-          widths: '48, 96, 144',
-          sizes: '48px',
-          alt: shop.name,
-          class: 'brand-character' }}
-      {%- endif -%}
-      <span class="brand-text">
-        OFFLINE
-        {%- if section.settings.brand_subline != blank -%}
-          <span class="brand-sub">{{ section.settings.brand_subline }}</span>
-        {%- endif -%}
-      </span>
+      <img src="{{ 'logo-full.png' | asset_url }}" alt="{{ shop.name }}" width="1811" height="713" class="brand-logo" loading="eager" fetchpriority="high">
     </a>
 
     <nav class="nav" aria-label="{{ 'general.accessibility.open_menu' | t }}">
@@ -39,10 +25,14 @@
       {%- if section.settings.show_account -%}
         <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="ghost" aria-label="{{ 'general.accessibility.account' | t }}">{{ 'general.accessibility.account' | t }}</a>
       {%- endif -%}
-      <a href="{{ routes.cart_url }}" class="cart-pill" aria-label="{{ 'general.accessibility.cart' | t }}">
-        Pack <span style="opacity:.6" aria-hidden="true">·</span> <span data-cart-count>{{ cart.item_count }}</span>
+      <a href="{{ routes.cart_url }}" class="cart-pill" aria-label="{{ 'general.accessibility.cart' | t }}" data-cart-open>
+        Cart <span style="opacity:.6" aria-hidden="true">·</span> <span data-cart-count>{{ cart.item_count }}</span>
       </a>
-      <button class="menu-btn cart-pill" aria-label="{{ 'general.accessibility.open_menu' | t }}" aria-controls="mobileMenu" aria-expanded="false" data-menu-open type="button">Menu</button>
+      <button class="menu-btn cart-pill" aria-label="{{ 'general.accessibility.open_menu' | t }}" aria-controls="mobileMenu" aria-expanded="false" data-menu-open type="button">
+        <svg width="26" height="20" viewBox="0 0 18 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M1 1h16M1 7h16M1 13h16"/>
+        </svg>
+      </button>
     </div>
   </div>
 </header>
@@ -50,7 +40,8 @@
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-head">
     <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-      <span class="brand-text">OFFLINE</span>
+      <img src="{{ 'logo-wordmark.png' | asset_url }}" alt="" width="2000" height="2000" class="mobile-menu-mark">
+      <span class="brand-text">OFFLINE COFFEE</span>
     </a>
     <button class="mobile-menu-close" data-menu-close aria-label="{{ 'general.accessibility.close_menu' | t }}" type="button">Close</button>
   </div>
@@ -58,14 +49,11 @@
     {%- for link in section.settings.menu.links -%}
       <li><a href="{{ link.url }}">{{ link.title }}</a></li>
     {%- endfor -%}
-  </ul>
-  <div class="mobile-menu-foot">
-    <ul role="list">
-      <li><a href="{{ routes.search_url }}">{{ 'general.accessibility.search' | t }}</a></li>
+    {%- if section.settings.show_account -%}
       <li><a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}">{{ 'general.accessibility.account' | t }}</a></li>
-      <li><a href="{{ routes.cart_url }}">{{ 'general.accessibility.cart' | t }} ({{ cart.item_count }})</a></li>
-    </ul>
-  </div>
+    {%- endif -%}
+    <li><a href="{{ routes.cart_url }}" data-cart-open>{{ 'general.accessibility.cart' | t }} (<span data-cart-count>{{ cart.item_count }}</span>)</a></li>
+  </ul>
 </div>
 
 {% schema %}
@@ -88,22 +76,6 @@
       "type": "url",
       "id": "announcement_link",
       "label": "Link (optional)"
-    },
-    {
-      "type": "header",
-      "content": "Brand"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_character",
-      "label": "Show character mark next to wordmark",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "brand_subline",
-      "label": "Wordmark subline",
-      "default": "COFFEE · EST. NOWHERE"
     },
     {
       "type": "header",

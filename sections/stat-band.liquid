@@ -1,0 +1,49 @@
+<section class="section" aria-label="{{ section.settings.heading | default: 'Numbers' | strip_html }}">
+  <div class="wrap">
+    {%- if section.settings.heading != blank -%}
+      <div class="coll-eyebrow">{{ section.settings.heading }}</div>
+    {%- endif -%}
+    <div class="spec-row">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'stat' -%}
+          <div class="spec-item" {{ block.shopify_attributes }}>
+            <div class="spec-label">{{ block.settings.label }}</div>
+            <div class="spec-value">{{ block.settings.value }}</div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Stat band",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Eyebrow", "default": "§ So far" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Roasting since" },
+        { "type": "text", "id": "value", "label": "Value", "default": "2023" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Stat band",
+      "blocks": [
+        { "type": "stat", "settings": { "label": "Roasting since", "value": "2023" } },
+        { "type": "stat", "settings": { "label": "Direct farms", "value": "6" } },
+        { "type": "stat", "settings": { "label": "Countries sourced from", "value": "3" } },
+        { "type": "stat", "settings": { "label": "Filters composted, not landfilled", "value": "100%" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

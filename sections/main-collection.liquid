@@ -1,14 +1,13 @@
 {%- liquid
   assign products_per_page = section.settings.products_per_page | default: 12
-  assign sort_by = collection.sort_by | default: collection.default_sort_by
-
   assign editorial_blocks = section.blocks | where: 'type', 'editorial_break'
-  assign bundle_blocks = section.blocks | where: 'type', 'bundle_promo'
 -%}
 
 <section class="coll-header">
   <div>
-    <div class="coll-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="coll-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
     <h1 class="coll-title">{{ collection.title | default: section.settings.title_override | default: 'The shop.' }}</h1>
   </div>
   <div>
@@ -27,68 +26,17 @@
   </div>
 </section>
 
-<div class="filter-bar">
-  <div class="filter-inner">
-    {%- comment -%}
-      Storefront filters from Shopify Admin > Online Store > Navigation > Collections.
-      Falls back to a visual-only template if no filters are configured yet.
-    {%- endcomment -%}
-    {%- if collection.filters.size > 0 -%}
-      <form id="CollectionFilterForm" method="get">
-        {%- for filter in collection.filters limit: 3 -%}
-          <div class="filter-group" data-filter-group>
-            <span class="filter-group-label">{{ filter.label }}</span>
-            {%- for value in filter.values -%}
-              <button
-                type="button"
-                class="pill{% if value.active %} active{% endif %}"
-                data-filter-url="{{ value.url_to_add | default: value.url_to_remove }}"
-                aria-pressed="{% if value.active %}true{% else %}false{% endif %}"
-                onclick="window.location.href='{{ value.url_to_add | default: value.url_to_remove }}'">
-                {{ value.label }}
-              </button>
-            {%- endfor -%}
-          </div>
-        {%- endfor -%}
-      </form>
-    {%- else -%}
-      {%- comment -%} Visual fallback — wire native filters in Admin to activate. {%- endcomment -%}
-      <div class="filter-group" data-filter-group>
-        <span class="filter-group-label">{{ 'collections.general.filter.roast' | t }}</span>
-        <button class="pill active" type="button" aria-pressed="true">{{ 'collections.general.all' | t }}</button>
-        <button class="pill" type="button" aria-pressed="false">Light</button>
-        <button class="pill" type="button" aria-pressed="false">Medium</button>
-        <button class="pill" type="button" aria-pressed="false">Dark</button>
-      </div>
-      <div class="filter-group" data-filter-group>
-        <span class="filter-group-label">{{ 'collections.general.filter.intensity' | t }}</span>
-        <button class="pill" type="button" aria-pressed="false">1 Bar</button>
-        <button class="pill" type="button" aria-pressed="false">2 Bars</button>
-        <button class="pill" type="button" aria-pressed="false">3 Bars</button>
-      </div>
-      <div class="filter-group" data-filter-group>
-        <span class="filter-group-label">{{ 'collections.general.filter.plan' | t }}</span>
-        <button class="pill" type="button" aria-pressed="false">One-time</button>
-        <button class="pill" type="button" aria-pressed="false">Resupply</button>
-      </div>
-    {%- endif -%}
-
-    <div class="filter-spacer"></div>
-
-    <div class="filter-count">
-      {{ 'collections.general.items_with_count' | t: count: collection.products_count }}
-    </div>
-
-    <form method="get" class="filter-sort-form" style="display:flex;align-items:center;gap:var(--s-3);">
-      <label for="SortBy" class="visually-hidden">{{ 'collections.general.sort_by' | t }}</label>
-      <select name="sort_by" id="SortBy" class="filter-sort" onchange="this.form.submit()" style="background:transparent; border:0; cursor:pointer;">
-        {%- for option in collection.sort_options -%}
-          <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name }}</option>
-        {%- endfor -%}
-      </select>
-    </form>
-  </div>
-</div>
+{%- if section.settings.show_sampler_band and section.settings.sampler_product != blank -%}
+  <section class="sampler-band" aria-label="{{ section.settings.sampler_heading | default: 'The Full Set' | strip_html }}">
+    {% render 'sampler-band',
+      product_handle: section.settings.sampler_product,
+      eyebrow: section.settings.sampler_eyebrow,
+      heading: section.settings.sampler_heading,
+      body: section.settings.sampler_body,
+      show_price: section.settings.sampler_show_price,
+      cta_text: section.settings.sampler_cta_text %}
+  </section>
+{%- endif -%}
 
 {%- paginate collection.products by products_per_page -%}
   {%- if collection.products.size > 0 -%}
@@ -119,32 +67,6 @@
                 {%- endif -%}
                 {%- if ed.settings.stamp != blank -%}<div class="stamp">{{ ed.settings.stamp }}</div>{%- endif -%}
                 {%- if ed.settings.label != blank -%}<span>{{ ed.settings.label }}</span>{%- endif -%}
-              </div>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-
-        {%- comment -%} Inject bundle promos at configured product index. {%- endcomment -%}
-        {%- for bd in bundle_blocks -%}
-          {%- if bd.settings.after_product_n == idx -%}
-            <div class="bundle" {{ bd.shopify_attributes }}>
-              <div class="bundle-art">
-                <div class="stack">
-                  <div><span>01</span><span>Light</span></div>
-                  <div><span>02</span><span>Medium</span></div>
-                  <div><span>03</span><span>Dark</span></div>
-                </div>
-              </div>
-              <div>
-                <div class="bundle-eyebrow">{{ bd.settings.eyebrow }}</div>
-                <h3>{{ bd.settings.heading | newline_to_br }}</h3>
-                <p>{{ bd.settings.body }}</p>
-              </div>
-              <div class="bundle-cta">
-                <span class="bundle-eyebrow" style="margin-bottom:0;">{{ bd.settings.from_label | default: 'From' }}</span>
-                <span class="price">{{ bd.settings.price }}<span style="font-family:var(--mono);font-size:14px;letter-spacing:.1em;opacity:.7;margin-left:6px;">{{ bd.settings.price_unit | default: '/ MO' }}</span></span>
-                {%- if bd.settings.savings != blank -%}<span class="save">{{ bd.settings.savings }}</span>{%- endif -%}
-                <a href="{{ bd.settings.cta_link | default: '#' }}" class="btn-light">{{ bd.settings.cta_text }}</a>
               </div>
             </div>
           {%- endif -%}
@@ -183,7 +105,7 @@
 {
   "name": "Collection grid",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ The Pack — All blends · Three roasts · One ritual" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "title_override", "label": "Title override (uses collection title if blank)" },
     { "type": "textarea", "id": "description", "label": "Description override (uses collection description if blank)" },
     { "type": "checkbox", "id": "show_meta", "label": "Show meta line", "default": true },
@@ -191,10 +113,18 @@
     { "type": "text", "id": "meta_2", "label": "Meta 2", "default": "+ 2 packs" },
     { "type": "text", "id": "meta_3", "label": "Meta 3", "default": "Ships in 2 days" },
     { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 6, "max": 36, "step": 3, "default": 12 },
+    { "type": "header", "content": "Full Set band (between header and grid)" },
+    { "type": "checkbox", "id": "show_sampler_band", "label": "Show Full Set band", "default": false },
+    { "type": "product", "id": "sampler_product", "label": "Product" },
+    { "type": "text", "id": "sampler_eyebrow", "label": "Eyebrow", "default": "§ Bonus round" },
+    { "type": "text", "id": "sampler_heading", "label": "Heading", "default": "Can't decide?\nTry all three." },
+    { "type": "textarea", "id": "sampler_body", "label": "Body", "default": "One full bag of each roast. The easiest way to find out which one's yours." },
+    { "type": "checkbox", "id": "sampler_show_price", "label": "Show price", "default": true },
+    { "type": "text", "id": "sampler_cta_text", "label": "CTA text", "default": "Add to cart" },
     { "type": "header", "content": "Footer (below grid)" },
     { "type": "checkbox", "id": "show_foot", "label": "Show foot row", "default": true },
     { "type": "text", "id": "foot_center", "label": "Center note", "default": "— Hand-roasted weekly —" },
-    { "type": "text", "id": "foot_link_text", "label": "Right link text", "default": "Subscribe to restock notes" },
+    { "type": "text", "id": "foot_link_text", "label": "Right link text", "default": "How to brew" },
     { "type": "url", "id": "foot_link_url", "label": "Right link URL" }
   ],
   "blocks": [
@@ -204,27 +134,11 @@
       "settings": [
         { "type": "range", "id": "after_product_n", "label": "After product #", "min": 1, "max": 24, "step": 1, "default": 3 },
         { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ Field note · 12 Aug" },
-        { "type": "textarea", "id": "quote", "label": "Quote", "default": "\"The best coffee on a four-day backpacking trip is the one you don't have to think about. Steep. Wait. Drink. Pack out the sachet.\"" },
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "\"The best coffee on a four-day backpacking trip is the one you don't have to think about. Steep. Wait. Drink. Pack out the filter.\"" },
         { "type": "text", "id": "attribution", "label": "Attribution", "default": "— From the journal · Vol. 03" },
         { "type": "image_picker", "id": "image", "label": "Image" },
         { "type": "text", "id": "stamp", "label": "Stamp", "default": "N 44°25′ / W 110°35′" },
         { "type": "text", "id": "label", "label": "Bottom-right label", "default": "[ EDITORIAL · 1200 × 1200 ]" }
-      ]
-    },
-    {
-      "type": "bundle_promo",
-      "name": "Bundle promo",
-      "settings": [
-        { "type": "range", "id": "after_product_n", "label": "After product #", "min": 1, "max": 24, "step": 1, "default": 6 },
-        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ Resupply — Subscribe & save" },
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Stock the pack.\nSave 15%." },
-        { "type": "textarea", "id": "body", "label": "Body", "default": "Pick a frequency. Pick your blends. Skip a shipment, swap roasts, or cancel any time. The pack restocks itself before you run out." },
-        { "type": "text", "id": "from_label", "label": "From label", "default": "From" },
-        { "type": "text", "id": "price", "label": "Price (display)", "default": "$20" },
-        { "type": "text", "id": "price_unit", "label": "Price unit", "default": "/ MO" },
-        { "type": "text", "id": "savings", "label": "Savings line", "default": "Save 15% on every shipment" },
-        { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Resupply →" },
-        { "type": "url", "id": "cta_link", "label": "CTA link" }
       ]
     }
   ],

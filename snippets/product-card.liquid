@@ -5,79 +5,77 @@
     variant — 'home' (default) or 'grid' (collection)
 
   Placeholder params (used when product is blank):
-    ph_name, ph_price, ph_url, ph_blend_number,
+    ph_name, ph_price, ph_blend_number,
     ph_roast_color (--amber/--ember/--pine/--paper-2),
-    ph_roast_label, ph_region_short, ph_region,
+    ph_roast_label, ph_region_short,
     ph_bars (0–4), ph_tags (comma-separated string),
-    ph_footnote, ph_badge, ph_format
+    ph_badge, ph_format, ph_compare_price
 {%- endcomment -%}
 {%- liquid
   assign variant = variant | default: 'home'
 
-  assign p_url = '#'
   assign p_name = ''
   assign p_price = ''
+  assign p_compare_price = ''
   assign p_blend_number = ''
   assign p_roast_color = '--amber'
   assign p_roast_label = ''
   assign p_region_short = ''
-  assign p_region_long = ''
   assign p_bars = 0
   assign p_tags_string = ''
-  assign p_footnote = ''
   assign p_badge = ''
   assign p_image = blank
-  assign p_format = '12 oz · Steeped'
+  assign p_format = '10 × 14g · Coffee bags'
 
   if product
-    assign p_url = product.url
     assign p_name = product.title
     assign p_price = product.price | money
+    if product.compare_at_price > product.price
+      assign p_compare_price = product.compare_at_price | money
+    endif
     assign p_image = product.featured_image
     assign p_blend_number = product.metafields.offline.blend_number.value | default: ''
     assign roast_meta = product.metafields.offline.roast.value | downcase
     if roast_meta == 'light'
-      assign p_roast_color = '--amber'
-      assign p_roast_label = 'Light roast'
-      assign p_bars = 1
-    elsif roast_meta == 'medium'
       assign p_roast_color = '--ember'
-      assign p_roast_label = 'Medium roast'
+      assign p_roast_label = 'Light roast'
       assign p_bars = 2
+    elsif roast_meta == 'medium'
+      assign p_roast_color = '--amber'
+      assign p_roast_label = 'Medium roast'
+      assign p_bars = 3
     elsif roast_meta == 'dark'
       assign p_roast_color = '--pine'
       assign p_roast_label = 'Dark roast'
-      assign p_bars = 3
+      assign p_bars = 4
     elsif roast_meta == 'decaf'
       assign p_roast_color = '--paper-2'
       assign p_roast_label = 'Decaf'
       assign p_bars = 0
     endif
     assign p_region_short = product.metafields.offline.region_short.value | default: product.vendor
-    assign p_region_long = product.metafields.offline.region.value | default: ''
     assign tag_meta = product.metafields.offline.tasting_tags.value
     if tag_meta
       assign p_tags_string = tag_meta | join: ', '
     endif
-    assign p_footnote = product.metafields.offline.footnote.value | default: p_region_long
     assign p_badge = product.metafields.offline.badge.value
   endif
 
-  assign p_url = ph_url | default: p_url
-  assign p_name = ph_name | default: p_name
-  assign p_price = ph_price | default: p_price
-  assign p_blend_number = ph_blend_number | default: p_blend_number
-  assign p_roast_color = ph_roast_color | default: p_roast_color
-  assign p_roast_label = ph_roast_label | default: p_roast_label
-  assign p_region_short = ph_region_short | default: p_region_short
-  assign p_region_long = ph_region | default: p_region_long
-  if ph_bars
-    assign p_bars = ph_bars
+  if product == blank
+    assign p_name = ph_name | default: p_name
+    assign p_price = ph_price | default: p_price
+    assign p_compare_price = ph_compare_price | default: p_compare_price
+    assign p_blend_number = ph_blend_number | default: p_blend_number
+    assign p_roast_color = ph_roast_color | default: p_roast_color
+    assign p_roast_label = ph_roast_label | default: p_roast_label
+    assign p_region_short = ph_region_short | default: p_region_short
+    if ph_bars
+      assign p_bars = ph_bars
+    endif
+    assign p_tags_string = ph_tags | default: p_tags_string
+    assign p_badge = ph_badge | default: p_badge
+    assign p_format = ph_format | default: p_format
   endif
-  assign p_tags_string = ph_tags | default: p_tags_string
-  assign p_footnote = ph_footnote | default: p_footnote
-  assign p_badge = ph_badge | default: p_badge
-  assign p_format = ph_format | default: p_format
 
   if variant == 'grid'
     assign card_class = 'pcard'
@@ -87,7 +85,6 @@
     assign name_class = 'pcard-name'
     assign price_class = 'pcard-price'
     assign tags_class = 'pcard-tags'
-    assign foot_class = 'pcard-foot'
   else
     assign card_class = 'blend-card'
     assign art_class = 'blend-art'
@@ -96,47 +93,138 @@
     assign name_class = 'blend-name'
     assign price_class = 'blend-price'
     assign tags_class = 'blend-tags'
-    assign foot_class = 'blend-foot'
   endif
 
   assign tag_list = p_tags_string | split: ','
+  assign p_alt = p_image.alt | default: p_name
+
+  assign show_tags = false
+  if settings.show_tasting_tags and tag_list.size > 0
+    assign show_tags = true
+  endif
 -%}
 
-<a class="{{ card_class }}" href="{{ p_url }}" style="--blend: var({{ p_roast_color }});">
-  <div class="{{ art_class }}" style="background: var({{ p_roast_color }});">
-    {%- if p_badge != blank -%}<div class="badge">{{ p_badge }}</div>{%- endif -%}
-    {%- if p_image != blank -%}
-      {% render 'responsive-image',
-        image: p_image,
-        sizes: '(min-width: 990px) 33vw, 100vw',
-        widths: '400, 600, 800, 1200',
-        alt: p_name,
-        class: 'pcard-photo' %}
-    {%- else -%}
-      {% render 'bag-mockup',
-        blend_name: p_name,
-        blend_number: p_blend_number,
-        bars: p_bars,
-        region: p_region_short %}
-    {%- endif -%}
-  </div>
-  <div class="{{ meta_class }}">
-    <span>{{ p_roast_label }}</span>
-    <span>{{ p_format }}</span>
-  </div>
-  <div class="{{ name_row_class }}">
-    <div class="{{ name_class }}">{{ p_name }}</div>
-    <div class="{{ price_class }}">{{ p_price }}</div>
-  </div>
-  {%- if settings.show_tasting_tags and tag_list.size > 0 -%}
-    <div class="{{ tags_class }}">
-      {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+<div class="{{ card_class }}" style="--blend: var({{ p_roast_color }});">
+  <div class="card-body"{% if product %} role="button" tabindex="0" data-quick-view data-quick-view-id="{{ product.id }}" aria-label="{{ 'products.product.quick_view_item' | t: name: p_name }}"{% endif %}>
+    <div class="{{ art_class }}" style="background: var({{ p_roast_color }});">
+      {%- if p_badge != blank -%}<div class="badge">{{ p_badge }}</div>{%- endif -%}
+      {%- if p_image != blank -%}
+        {% render 'responsive-image',
+          image: p_image,
+          sizes: '(min-width: 990px) 33vw, 100vw',
+          widths: '400, 600, 800, 1200',
+          alt: p_alt,
+          class: 'pcard-photo' %}
+      {%- else -%}
+        {% render 'bag-mockup',
+          blend_name: p_name,
+          blend_number: p_blend_number,
+          bars: p_bars,
+          region: p_region_short %}
+      {%- endif -%}
     </div>
-  {%- endif -%}
-  <div class="{{ foot_class }}">
-    <span>{{ p_footnote }}</span>
-    {%- if settings.show_signal_bars -%}
-      {% render 'signal-bars', bars: p_bars %}
+    <div class="{{ meta_class }}">
+      <span class="meta-roast">
+        {{ p_roast_label }}
+        {%- if settings.show_signal_bars -%}
+          {% render 'signal-bars', bars: p_bars %}
+        {%- endif -%}
+      </span>
+      <span>{{ p_format }}</span>
+    </div>
+    <div class="{{ name_row_class }}">
+      <div class="{{ name_class }}">{{ p_name }}</div>
+      <div class="{{ price_class }}">
+        {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
+        {{ p_price }}
+      </div>
+    </div>
+    {%- if product or show_tags -%}
+      <div class="card-actions">
+        {%- if show_tags -%}
+          <div class="{{ tags_class }}">
+            {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+          </div>
+        {%- endif -%}
+        {%- if product -%}
+          {%- if product.available -%}
+            <button type="button" class="quick-add-btn quick-add-btn--compact" data-quick-add
+              data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+              data-product-title="{{ p_name | escape }}"
+              data-label-adding="{{ 'products.product.adding' | t }}"
+              data-label-added="{{ 'products.product.added' | t }}">
+              <span data-quick-add-label>{{ 'products.product.add_to_cart' | t }}</span>
+            </button>
+          {%- else -%}
+            <span class="quick-add-btn quick-add-btn--compact quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
     {%- endif -%}
   </div>
-</a>
+  {%- if product -%}
+    <template data-quick-view-template="{{ product.id }}">
+      <div class="qv-media" style="background: var({{ p_roast_color }});">
+        {%- if p_image != blank -%}
+          {% render 'responsive-image',
+            image: p_image,
+            sizes: '(min-width: 700px) 40vw, 100vw',
+            widths: '400, 600, 800, 1200',
+            alt: p_alt,
+            class: 'qv-photo' %}
+        {%- else -%}
+          {% render 'bag-mockup',
+            blend_name: p_name,
+            blend_number: p_blend_number,
+            bars: p_bars,
+            region: p_region_short %}
+        {%- endif -%}
+      </div>
+      <div class="qv-body">
+        <div class="qv-meta">
+          <span class="meta-roast">
+            {{ p_roast_label }}
+            {%- if settings.show_signal_bars -%}
+              {% render 'signal-bars', bars: p_bars %}
+            {%- endif -%}
+          </span>
+          <span>{{ p_format }}</span>
+        </div>
+        <h2 class="qv-name">{{ p_name }}</h2>
+        <div class="qv-price">
+          {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
+          {{ p_price }}
+        </div>
+        {%- if show_tags -%}
+          <div class="{{ tags_class }} qv-tags">
+            {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}
+          </div>
+        {%- endif -%}
+        <div class="qv-bottom">
+          <div class="qv-actions">
+            <div class="qty-stepper" data-qty>
+              <button type="button" data-qty-minus aria-label="{{ 'products.product.decrease_quantity' | t }}">−</button>
+              <input type="number" min="1" value="1" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" data-qty-plus aria-label="{{ 'products.product.increase_quantity' | t }}">+</button>
+            </div>
+            {%- if product.available -%}
+              <button type="button" class="btn qv-add" data-quick-add data-quick-add-no-drawer
+                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+                data-product-title="{{ p_name | escape }}"
+                data-label-adding="{{ 'products.product.adding' | t }}"
+                data-label-added="{{ 'products.product.added' | t }}">
+                <span data-quick-add-label>{{ 'products.product.add_to_cart' | t }}</span>
+              </button>
+            {%- else -%}
+              <span class="btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+            {%- endif -%}
+          </div>
+          <div class="qv-in-cart-wrap" data-qv-in-cart-wrap>
+            <p class="qv-in-cart" data-qv-in-cart data-tmpl="{{ 'products.product.in_cart' | t }}"></p>
+            <a href="{{ routes.cart_url }}" class="qv-go-to-cart" data-cart-open>{{ 'products.product.go_to_cart' | t }}</a>
+          </div>
+        </div>
+      </div>
+    </template>
+  {%- endif -%}
+</div>

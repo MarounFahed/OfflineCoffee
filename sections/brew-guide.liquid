@@ -1,0 +1,168 @@
+{%- liquid
+  assign stat_blocks = section.blocks | where: 'type', 'stat'
+  assign step_blocks = section.blocks | where: 'type', 'guide_step'
+
+  assign howto_seconds = 300
+  for block in step_blocks
+    if block.settings.show_timer
+      assign howto_seconds = block.settings.timer_seconds | default: 300
+    endif
+  endfor
+  assign howto_minutes = howto_seconds | divided_by: 60
+-%}
+<section class="section brew-guide" aria-label="{{ section.settings.heading | default: 'Brew guide' | strip_html }}">
+  <div class="wrap">
+    {%- if stat_blocks.size > 0 -%}
+      <div class="spec-row spec-row--compact">
+        {%- for block in stat_blocks -%}
+          <div class="spec-item" {{ block.shopify_attributes }}>
+            <div class="spec-label">{{ block.settings.label }}</div>
+            <div class="spec-value">{{ block.settings.value }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.note != blank -%}
+        <p class="spec-note">{{ section.settings.note }}</p>
+      {%- endif -%}
+      {%- if section.settings.show_roast_swatches -%}
+        <div class="roast-swatches">
+          <span class="roast-swatch"><i style="background: var(--ember);"></i>Light</span>
+          <span class="roast-swatch"><i style="background: var(--amber);"></i>Medium</span>
+          <span class="roast-swatch"><i style="background: var(--pine);"></i>Dark</span>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    <div class="section-head">
+      <div class="lbl">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      <div class="meta">{{ section.settings.meta | newline_to_br }}</div>
+    </div>
+
+    <div class="guide-list">
+      {%- for block in step_blocks -%}
+        <div class="guide-row" id="step-{{ block.settings.number }}" {{ block.shopify_attributes }}>
+          <div class="guide-num">{{ block.settings.number }}</div>
+          <div class="guide-content">
+            <h3 class="guide-title">{{ block.settings.title }}</h3>
+            <p class="guide-body">{{ block.settings.body }}</p>
+            {%- if block.settings.tip != blank -%}
+              <p class="guide-tip"><span>Why it matters —</span> {{ block.settings.tip }}</p>
+            {%- endif -%}
+            {%- if block.settings.show_timer -%}
+              <button class="timer-pill"
+                id="timerPill"
+                type="button"
+                data-seconds="{{ block.settings.timer_seconds | default: 300 }}"
+                data-label-start="{{ block.settings.timer_label_start | default: 'Start brew' | escape }}"
+                data-label-running="{{ block.settings.timer_label_running | default: 'Brewing…' | escape }}"
+                data-label-resume="{{ 'Resume' | escape }}"
+                data-label-done="{{ block.settings.timer_label_done | default: 'Ready.' | escape }}">
+                <span class="timer-digits" id="timerDigits">05:00</span>
+                <span id="timerLabel">{{ block.settings.timer_label_start | default: 'Start brew' }}</span>
+              </button>
+            {%- endif -%}
+          </div>
+          <div class="guide-icon" aria-hidden="true">
+            {%- case block.settings.number -%}
+              {%- when '01' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 10h20v26a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V10z"/>
+                  <path d="M14 16l4-2 4 3 4-3 4 3 4-3"/>
+                </svg>
+              {%- when '02' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 18h22v14a8 8 0 0 1-8 8h-6a8 8 0 0 1-8-8V18z"/>
+                  <path d="M32 22h4a5 5 0 0 1 0 10h-4"/>
+                  <path d="M18 12v6M24 10v8"/>
+                </svg>
+              {%- when '03' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 8h20M14 40h20"/>
+                  <path d="M16 8v3a8 8 0 0 0 4 7l4 2 4-2a8 8 0 0 0 4-7V8"/>
+                  <path d="M16 40v-3a8 8 0 0 1 4-7l4-2 4 2a8 8 0 0 1 4 7v3"/>
+                </svg>
+              {%- when '04' -%}
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 26h28v6a8 8 0 0 1-8 8h-12a8 8 0 0 1-8-8v-6z"/>
+                  <path d="M22 22V10M22 10l-5 5M22 10l5 5"/>
+                </svg>
+            {%- endcase -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- if step_blocks.size > 0 -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": {{ section.settings.heading | strip_html | json }},
+      "description": {{ section.settings.eyebrow | default: 'How to brew Offline Coffee filter bags' | json }},
+      "totalTime": "PT{{ howto_minutes }}M",
+      "supply": [
+        { "@type": "HowToSupply", "name": "Offline Coffee filter bag" },
+        { "@type": "HowToSupply", "name": "Hot water" },
+        { "@type": "HowToSupply", "name": "A mug" }
+      ],
+      "step": [
+        {%- for block in step_blocks -%}
+          {
+            "@type": "HowToStep",
+            "name": {{ block.settings.title | strip_html | json }},
+            "text": {{ block.settings.body | strip_html | json }},
+            "url": {{ canonical_url | append: '#step-' | append: block.settings.number | json }}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Brew guide",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The long version." },
+    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "Read once\nBrew from memory after" },
+    { "type": "text", "id": "note", "label": "Note under the variables (optional)" },
+    { "type": "checkbox", "id": "show_roast_swatches", "label": "Show light/medium/dark color swatches under the note", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Variable",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Water temp" },
+        { "type": "text", "id": "value", "label": "Value", "default": "93°C" }
+      ]
+    },
+    {
+      "type": "guide_step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Tear." },
+        { "type": "image_picker", "id": "image", "label": "Step photo (optional — shows instead of the line icon)" },
+        { "type": "textarea", "id": "body", "label": "Body" },
+        { "type": "textarea", "id": "tip", "label": "Why it matters" },
+        { "type": "header", "content": "Timer (only on the Wait step usually)" },
+        { "type": "checkbox", "id": "show_timer", "label": "Show timer button", "default": false },
+        { "type": "number", "id": "timer_seconds", "label": "Timer seconds", "default": 300 },
+        { "type": "text", "id": "timer_label_start", "label": "Label — start", "default": "Start brew" },
+        { "type": "text", "id": "timer_label_running", "label": "Label — running", "default": "Brewing…" },
+        { "type": "text", "id": "timer_label_done", "label": "Label — done", "default": "Ready." }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    { "name": "Brew guide" }
+  ]
+}
+{% endschema %}

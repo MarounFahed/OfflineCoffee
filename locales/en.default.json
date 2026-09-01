@@ -4,6 +4,7 @@
       "skip_to_content": "Skip to content",
       "open_menu": "Open menu",
       "close_menu": "Close menu",
+      "close": "Close",
       "search": "Search",
       "account": "Account",
       "cart": "Cart",
@@ -40,7 +41,13 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Add to pack",
+      "add_to_cart": "Add to cart",
+      "adding": "Adding…",
+      "added": "Added ✓",
+      "go_to_cart": "Go to cart",
+      "quick_view": "Quick view",
+      "quick_view_item": "Quick view — {{ name }}",
+      "in_cart": "__COUNT__ already in your cart",
       "sold_out": "Out of range — back next week.",
       "unavailable": "Unavailable",
       "on_sale": "On sale",
@@ -51,11 +58,6 @@
       "decrease_quantity": "Decrease quantity",
       "increase_quantity": "Increase quantity",
       "vendor": "By {{ vendor }}",
-      "purchase_type": {
-        "label": "Purchase type",
-        "one_time": "One-time",
-        "subscription": "Resupply"
-      },
       "accordion": {
         "brew": "Brew perfectly",
         "inside": "What's inside",
@@ -73,40 +75,32 @@
   "collections": {
     "general": {
       "no_matches": "No products yet. Check back after the next roast.",
-      "filter_by": "Filter by",
-      "filter": {
-        "roast": "Roast",
-        "intensity": "Intensity",
-        "plan": "Plan"
-      },
-      "sort_by": "Sort",
-      "sort": {
-        "manual": "Featured",
-        "best_selling": "Best selling",
-        "title_asc": "A → Z",
-        "title_desc": "Z → A",
-        "price_asc": "Price: low to high",
-        "price_desc": "Price: high to low",
-        "created_desc": "Newest",
-        "created_asc": "Oldest"
-      },
-      "items_with_count": {
-        "one": "{{ count }} result",
-        "other": "{{ count }} results"
-      },
       "showing_of": "Showing {{ count }} of {{ total }}",
       "all": "All"
     }
   },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "message": "Message",
+    "submit": "Send message",
+    "success": "Thanks — we've got it and will get back to you soon.",
+    "error": "Something went wrong. Please try again."
+  },
   "cart": {
     "general": {
-      "title": "Your pack",
+      "title": "Your cart",
       "subtitle": "Ready for the trip",
-      "empty": "Nothing in the pack yet.",
+      "empty": "Nothing in the cart yet.",
       "browse": "Browse the blends",
       "subtotal": "Subtotal",
       "shipping_at_checkout": "Shipping calculated at checkout",
-      "shipping_note": "Ships in 2 days · Flat $5 · Free over $40",
+      "shipping_note": "Ships in 2 days · Flat $3 · Free over $40",
+      "bags": {
+        "one": "{{ count }} bag",
+        "other": "{{ count }} bags"
+      },
       "checkout": "Check out",
       "remove": "Remove",
       "update": "Update",
@@ -218,10 +212,11 @@
     "eyebrow": "Coming soon",
     "password_placeholder": "Password",
     "enter": "Enter",
-    "signup": "Or get notified when we open.",
+    "signup": "Get notified when we open.",
     "email_placeholder": "your.email@here",
     "send": "Send",
-    "signup_success": "Thanks. We'll be in touch."
+    "signup_success": "Thanks. We'll be in touch.",
+    "admin_label": "Store owner?"
   },
   "404": {
     "heading": "You've gone offline.",

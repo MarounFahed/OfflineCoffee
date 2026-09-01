@@ -1,0 +1,49 @@
+{%- comment -%}
+  Full Set promo band (image + copy + price + CTA).
+  Params: product_handle, eyebrow, heading, body, show_price, cta_text
+{%- endcomment -%}
+{%- liquid
+  assign sampler_product = blank
+  if product_handle != blank
+    assign sampler_product = all_products[product_handle]
+  endif
+-%}
+<div class="sampler-band-img">
+  {%- if sampler_product and sampler_product.featured_image -%}
+    {% render 'responsive-image',
+      image: sampler_product.featured_image,
+      sizes: '(min-width: 800px) 40vw, 100vw',
+      widths: '400, 600, 900, 1200',
+      alt: sampler_product.title %}
+  {%- endif -%}
+</div>
+<div class="sampler-band-body">
+  {%- if eyebrow != blank -%}
+    <div class="lbl">{{ eyebrow }}</div>
+  {%- endif -%}
+  <h2>{{ heading | newline_to_br }}</h2>
+  {%- if body != blank -%}
+    <p>{{ body }}</p>
+  {%- endif -%}
+  {%- if sampler_product and show_price -%}
+    <div class="sampler-band-price">
+      {%- if sampler_product.compare_at_price > sampler_product.price -%}
+        <span class="compare-price">{{ sampler_product.compare_at_price | money }}</span>
+      {%- endif -%}
+      {{ sampler_product.price | money }}
+    </div>
+  {%- endif -%}
+  {%- if sampler_product -%}
+    {%- if sampler_product.available -%}
+      <button type="button" class="btn" data-quick-add
+        data-variant-id="{{ sampler_product.selected_or_first_available_variant.id }}"
+        data-product-title="{{ sampler_product.title | escape }}"
+        data-label-adding="{{ 'products.product.adding' | t }}"
+        data-label-added="{{ 'products.product.added' | t }}">
+        <span data-quick-add-label>{{ cta_text | default: 'Add to cart' }}</span>
+      </button>
+    {%- else -%}
+      <span class="btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+    {%- endif -%}
+  {%- endif -%}
+</div>

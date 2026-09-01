@@ -44,6 +44,7 @@
 {%- endif -%}
 
 {%- if vcount > 0 -%}
+  <div class="hero-split">
   {%- for block in variants -%}
     {%- liquid
       assign mood = block.settings.mood_color | default: '--pine'
@@ -62,28 +63,51 @@
         </div>
       {%- endif -%}
 
-      {%- if section.settings.stamp_text != blank -%}
-        <div class="hero-stamp">{{ section.settings.stamp_text | newline_to_br }}</div>
-      {%- endif -%}
-
+      {%- liquid
+        assign stamp_coord = block.settings.stamp_coord
+      -%}
       {%- if section.settings.show_character and settings.logo_character != blank -%}
         {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
       {%- endif -%}
 
-      {%- if eyebrow != blank -%}
-        <div class="hero-eyebrow">{{ eyebrow }}</div>
+      {%- if eyebrow != blank or section.settings.stamp_label != blank or stamp_coord != blank -%}
+        <div class="hero-info-row">
+          {%- if eyebrow != blank -%}
+            {%- assign eyebrow_parts = eyebrow | split: ' · ' -%}
+            <div class="hero-eyebrow">
+              {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.stamp_label != blank or stamp_coord != blank -%}
+            <div class="hero-stamp">
+              {%- if section.settings.stamp_label != blank -%}{{ section.settings.stamp_label }}<br>{%- endif -%}
+              {%- if stamp_coord != blank -%}{{ stamp_coord }}<br>{%- endif -%}
+              <span class="hero-clock" data-live-clock>{{ 'now' | date: '%d %b · %H:%M:%S' }}</span>
+            </div>
+          {%- endif -%}
+        </div>
       {%- endif -%}
 
-      <h1>{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+      {%- comment -%}
+        Only the first variant renders as an actual <h1> — all variants are
+        present in the server-rendered markup at once (CSS/JS just toggles
+        which one is visible), so giving every one an <h1> would put multiple
+        duplicate H1s in the page source.
+      {%- endcomment -%}
+      {%- if forloop.first -%}
+        <h1 class="hero-heading">{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+      {%- else -%}
+        <div class="hero-heading">{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</div>
+      {%- endif -%}
 
       {%- if lead != blank -%}
-        <p class="lead">{{ lead }}</p>
+        <p class="lead">{{ lead | newline_to_br }}</p>
       {%- endif -%}
 
       {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
         <div class="hero-ctas">
           {%- if section.settings.cta_primary_text != blank -%}
-            <a class="btn btn-arrow" href="{{ primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
+            <a class="btn" href="{{ primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
           {%- endif -%}
           {%- if section.settings.cta_secondary_text != blank -%}
             <a class="btn btn-secondary" href="{{ section.settings.cta_secondary_link | default: '#' }}">{{ section.settings.cta_secondary_text }}</a>
@@ -95,7 +119,25 @@
         <div class="scroll-cue" aria-hidden="true">{{ section.settings.scroll_cue_text | default: 'Keep reading' }}</div>
       {%- endif -%}
     </section>
+
+    {%- liquid
+      assign showcase_product = blank
+      if mood == '--ember'
+        assign showcase_product = all_products['pine-grove-bag']
+      elsif mood == '--amber'
+        assign showcase_product = all_products['juniper-valley-bag']
+      elsif mood == '--pine'
+        assign showcase_product = all_products['cedar-peak-bag']
+      endif
+    -%}
+    {%- if showcase_product and showcase_product.featured_image -%}
+      {%- assign showcase_alt = showcase_product.featured_image.alt | default: showcase_product.title -%}
+      <div class="hero-showcase" data-hero-variant="{{ forloop.index0 }}" aria-hidden="true">
+        {% render 'responsive-image', image: showcase_product.featured_image, sizes: '(min-width: 900px) 40vw, 100vw', widths: '400, 600, 900, 1200', alt: showcase_alt, class: 'hero-showcase-img' %}
+      </div>
+    {%- endif -%}
   {%- endfor -%}
+  </div>
 {%- else -%}
   {%- assign mood_color = '--pine' -%}
   {%- if section.settings.mood == 'amber' -%}{%- assign mood_color = '--amber' -%}
@@ -109,23 +151,33 @@
         {%- if section.settings.coord_mark_3 != blank -%}<span>{{ section.settings.coord_mark_3 }}</span>{%- endif -%}
       </div>
     {%- endif -%}
-    {%- if section.settings.stamp_text != blank -%}
-      <div class="hero-stamp">{{ section.settings.stamp_text | newline_to_br }}</div>
-    {%- endif -%}
     {%- if section.settings.show_character and settings.logo_character != blank -%}
       {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
     {%- endif -%}
-    {%- if section.settings.eyebrow != blank -%}
-      <div class="hero-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- if section.settings.eyebrow != blank or section.settings.stamp_label != blank -%}
+      <div class="hero-info-row">
+        {%- if section.settings.eyebrow != blank -%}
+          {%- assign eyebrow_parts = section.settings.eyebrow | split: ' · ' -%}
+          <div class="hero-eyebrow">
+            {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stamp_label != blank -%}
+          <div class="hero-stamp">
+            {{ section.settings.stamp_label }}<br>
+            <span class="hero-clock" data-live-clock>{{ 'now' | date: '%d %b · %H:%M:%S' }}</span>
+          </div>
+        {%- endif -%}
+      </div>
     {%- endif -%}
-    <h1>{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+    <h1 class="hero-heading">{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
     {%- if section.settings.lead != blank -%}
       <p class="lead">{{ section.settings.lead }}</p>
     {%- endif -%}
     {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
       <div class="hero-ctas">
         {%- if section.settings.cta_primary_text != blank -%}
-          <a class="btn btn-arrow" href="{{ section.settings.cta_primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
+          <a class="btn" href="{{ section.settings.cta_primary_link | default: '#' }}">{{ section.settings.cta_primary_text }}</a>
         {%- endif -%}
         {%- if section.settings.cta_secondary_text != blank -%}
           <a class="btn btn-secondary" href="{{ section.settings.cta_secondary_link | default: '#' }}">{{ section.settings.cta_secondary_text }}</a>
@@ -147,7 +199,7 @@
     { "type": "select", "id": "mood", "label": "Fallback mood (when no variant blocks)", "options": [ { "value": "amber", "label": "Amber" }, { "value": "ember", "label": "Ember" }, { "value": "pine", "label": "Pine" } ], "default": "pine" },
     { "type": "text", "id": "eyebrow", "label": "Fallback eyebrow", "default": "Blend № 03 · Cedar Peak · Dark roast" },
     { "type": "text", "id": "heading", "label": "Shared headline", "default": "Out of range.\nOn purpose." },
-    { "type": "textarea", "id": "lead", "label": "Shared sub-copy", "default": "Specialty coffee in a compostable filter sachet. Hot water. Four minutes." },
+    { "type": "textarea", "id": "lead", "label": "Shared sub-copy", "default": "Specialty coffee in a compostable filter. Hot water. Five minutes." },
     { "type": "header", "content": "CTAs" },
     { "type": "text", "id": "cta_primary_text", "label": "Primary CTA text", "default": "Shop the blends" },
     { "type": "url", "id": "cta_primary_link", "label": "Primary CTA fallback link" },
@@ -159,14 +211,17 @@
     { "type": "text", "id": "coord_mark_1", "label": "Coord 1", "default": "N 38°51′" },
     { "type": "text", "id": "coord_mark_2", "label": "Coord 2", "default": "W 119°57′" },
     { "type": "text", "id": "coord_mark_3", "label": "Coord 3", "default": "EL 6,224 FT" },
-    { "type": "textarea", "id": "stamp_text", "label": "Stamp (top-right)", "default": "Steeped here\nN 38°51′ / W 119°57′\n14 Aug · 06:42" },
+    { "type": "header", "content": "Stamp (top-right)" },
+    { "type": "text", "id": "stamp_label", "label": "Stamp label", "default": "Steeped here" },
+    { "type": "paragraph", "content": "The line under the label is a live clock (updates every second in the visitor's browser) — not editable here." },
     { "type": "checkbox", "id": "show_scroll_cue", "label": "Show scroll cue", "default": true },
     { "type": "text", "id": "scroll_cue_text", "label": "Scroll cue text", "default": "Keep reading" }
   ],
   "blocks": [
     { "type": "variant", "name": "Blend variant", "settings": [
-      { "type": "select", "id": "mood_color", "label": "Mood color", "options": [ { "value": "--amber", "label": "Amber" }, { "value": "--ember", "label": "Ember" }, { "value": "--pine", "label": "Pine" } ], "default": "--pine" },
+      { "type": "select", "id": "mood_color", "label": "Mood color", "options": [ { "value": "--ember", "label": "Ember (light roast)" }, { "value": "--amber", "label": "Amber (medium roast)" }, { "value": "--pine", "label": "Pine (dark roast)" } ], "default": "--pine" },
       { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Blend № 01 · Pine Grove · Light roast" },
+      { "type": "text", "id": "stamp_coord", "label": "Stamp coordinates", "default": "N 38°51′ / W 119°57′" },
       { "type": "text", "id": "heading", "label": "Heading override" },
       { "type": "textarea", "id": "lead", "label": "Sub-copy override" },
       { "type": "url", "id": "cta_primary_link", "label": "Primary CTA link override" }
@@ -175,9 +230,9 @@
   "max_blocks": 4,
   "presets": [
     { "name": "Hero", "blocks": [
-      { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "cta_primary_link": "/products/pine-grove-bag" } },
-      { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "cta_primary_link": "/products/juniper-valley-bag" } },
-      { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "cta_primary_link": "/products/cedar-peak-bag" } }
+      { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "stamp_coord": "N 33°34′ / E 35°34′", "cta_primary_link": "/products/pine-grove-bag" } },
+      { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "stamp_coord": "N 34°17′ / E 35°38′", "cta_primary_link": "/products/juniper-valley-bag" } },
+      { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "stamp_coord": "N 34°14′ / E 36°02′", "cta_primary_link": "/products/cedar-peak-bag" } }
     ] }
   ]
 }

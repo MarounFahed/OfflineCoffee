@@ -1,0 +1,27 @@
+<section class="sampler-band" aria-label="{{ section.settings.heading | default: 'The Full Set' | strip_html }}">
+  {% render 'sampler-band',
+    product_handle: section.settings.product,
+    eyebrow: section.settings.eyebrow,
+    heading: section.settings.heading,
+    body: section.settings.body,
+    show_price: section.settings.show_price,
+    cta_text: section.settings.cta_text %}
+</section>
+
+{% schema %}
+{
+  "name": "The Full Set strip",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ Bonus round" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Can't decide?\nTry all three." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "One full bag of each roast. The easiest way to find out which one's yours." },
+    { "type": "checkbox", "id": "show_price", "label": "Show price", "default": true },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Add to cart" }
+  ],
+  "presets": [
+    { "name": "The Full Set strip" }
+  ]
+}
+{% endschema %}

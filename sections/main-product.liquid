@@ -3,14 +3,14 @@
   assign mood_color = '--pine'
   assign roast = product.metafields.offline.roast.value | downcase | default: section.settings.fallback_mood
   if roast == 'light'
-    assign mood_color = '--amber'
-    assign bars = 1
-  elsif roast == 'medium'
     assign mood_color = '--ember'
     assign bars = 2
+  elsif roast == 'medium'
+    assign mood_color = '--amber'
+    assign bars = 3
   elsif roast == 'dark'
     assign mood_color = '--pine'
-    assign bars = 3
+    assign bars = 4
   elsif roast == 'decaf'
     assign mood_color = '--paper-2'
     assign bars = 0
@@ -93,11 +93,6 @@
         <input type="hidden" name="id" value="{{ current_variant.id }}">
       {%- endunless -%}
 
-      <div class="pdp-toggle" data-pdp-toggle role="group" aria-label="{{ 'products.product.purchase_type.label' | t }}">
-        <button type="button" aria-pressed="true">{{ 'products.product.purchase_type.one_time' | t }}</button>
-        <button type="button" aria-pressed="false">{{ 'products.product.purchase_type.subscription' | t }}</button>
-      </div>
-
       <div class="pdp-quantity">
         <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
         <div class="qty-stepper" data-qty>
@@ -107,13 +102,16 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-full" {% unless current_variant.available %}disabled{% endunless %}>
-        {%- if current_variant.available -%}
-          {{ 'products.product.add_to_cart' | t }}
-        {%- else -%}
-          {{ 'products.product.sold_out' | t }}
-        {%- endif -%}
-      </button>
+      <div class="pdp-cta-row">
+        <button type="submit" class="btn" data-add-to-cart {% unless current_variant.available %}disabled{% endunless %}>
+          {%- if current_variant.available -%}
+            {{ 'products.product.add_to_cart' | t }}
+          {%- else -%}
+            {{ 'products.product.sold_out' | t }}
+          {%- endif -%}
+        </button>
+        <a href="{{ routes.cart_url }}" class="btn btn-secondary" data-pdp-go-to-cart data-cart-open hidden>{{ 'products.product.go_to_cart' | t }}</a>
+      </div>
     {%- endform -%}
 
     <div class="accordion">
@@ -229,8 +227,8 @@
     {
       "name": "Product info",
       "blocks": [
-        { "type": "accordion", "settings": { "label": "Brew perfectly", "body": "<p>200°F water, 4-minute steep, gentle stir at 2:30. Don't squeeze the sachet — let it drip dry over the cup before composting.</p>" } },
-        { "type": "accordion", "settings": { "label": "What's inside", "body": "<p>Single-origin beans, roasted in small batches, ground the same week. Plant-fiber filter sachet, plant-based corn-starch wrapper.</p>" } },
+        { "type": "accordion", "settings": { "label": "Brew perfectly", "body": "<p>93°C water, 5-minute steep, gentle stir at 2:30. Don't squeeze the filter — let it drip dry over the cup before composting.</p>" } },
+        { "type": "accordion", "settings": { "label": "What's inside", "body": "<p>Single-origin beans, roasted in small batches, ground the same week. Plant-fiber filter, plant-based corn-starch wrapper.</p>" } },
         { "type": "accordion", "settings": { "label": "Ships when", "body": "<p>Orders out the door in 2 business days. Flat $5 shipping; free over $40.</p>" } },
         { "type": "tasting_col", "settings": { "label": "Aroma", "tags": "Honey, Floral, Citrus", "body": "Light and floral up front. Like opening a window." } },
         { "type": "tasting_col", "settings": { "label": "Palate", "tags": "Stone fruit, Tea, Lemon zest", "body": "Bright, juicy, easy to drink without milk." } },
