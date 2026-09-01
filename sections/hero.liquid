@@ -66,22 +66,25 @@
       {%- liquid
         assign stamp_coord = block.settings.stamp_coord
       -%}
-      {%- if section.settings.stamp_label != blank or stamp_coord != blank -%}
-        <div class="hero-stamp">
-          {%- if section.settings.stamp_label != blank -%}{{ section.settings.stamp_label }}<br>{%- endif -%}
-          {%- if stamp_coord != blank -%}{{ stamp_coord }}<br>{%- endif -%}
-          <span class="hero-clock" data-live-clock>{{ 'now' | date: '%d %b · %H:%M:%S' }}</span>
-        </div>
-      {%- endif -%}
-
       {%- if section.settings.show_character and settings.logo_character != blank -%}
         {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
       {%- endif -%}
 
-      {%- if eyebrow != blank -%}
-        {%- assign eyebrow_parts = eyebrow | split: ' · ' -%}
-        <div class="hero-eyebrow">
-          {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
+      {%- if eyebrow != blank or section.settings.stamp_label != blank or stamp_coord != blank -%}
+        <div class="hero-info-row">
+          {%- if eyebrow != blank -%}
+            {%- assign eyebrow_parts = eyebrow | split: ' · ' -%}
+            <div class="hero-eyebrow">
+              {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
+            </div>
+          {%- endif -%}
+          {%- if section.settings.stamp_label != blank or stamp_coord != blank -%}
+            <div class="hero-stamp">
+              {%- if section.settings.stamp_label != blank -%}{{ section.settings.stamp_label }}<br>{%- endif -%}
+              {%- if stamp_coord != blank -%}{{ stamp_coord }}<br>{%- endif -%}
+              <span class="hero-clock" data-live-clock>{{ 'now' | date: '%d %b · %H:%M:%S' }}</span>
+            </div>
+          {%- endif -%}
         </div>
       {%- endif -%}
 
@@ -148,19 +151,23 @@
         {%- if section.settings.coord_mark_3 != blank -%}<span>{{ section.settings.coord_mark_3 }}</span>{%- endif -%}
       </div>
     {%- endif -%}
-    {%- if section.settings.stamp_label != blank -%}
-      <div class="hero-stamp">
-        {{ section.settings.stamp_label }}<br>
-        <span class="hero-clock" data-live-clock>{{ 'now' | date: '%d %b · %H:%M:%S' }}</span>
-      </div>
-    {%- endif -%}
     {%- if section.settings.show_character and settings.logo_character != blank -%}
       {{ settings.logo_character | image_url: width: 1200 | image_tag: loading: 'eager', widths: '600, 900, 1200', sizes: '50vw', alt: '', class: 'hero-character' }}
     {%- endif -%}
-    {%- if section.settings.eyebrow != blank -%}
-      {%- assign eyebrow_parts = section.settings.eyebrow | split: ' · ' -%}
-      <div class="hero-eyebrow">
-        {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
+    {%- if section.settings.eyebrow != blank or section.settings.stamp_label != blank -%}
+      <div class="hero-info-row">
+        {%- if section.settings.eyebrow != blank -%}
+          {%- assign eyebrow_parts = section.settings.eyebrow | split: ' · ' -%}
+          <div class="hero-eyebrow">
+            {%- for part in eyebrow_parts -%}<span>{{ part }}</span>{%- endfor -%}
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stamp_label != blank -%}
+          <div class="hero-stamp">
+            {{ section.settings.stamp_label }}<br>
+            <span class="hero-clock" data-live-clock>{{ 'now' | date: '%d %b · %H:%M:%S' }}</span>
+          </div>
+        {%- endif -%}
       </div>
     {%- endif -%}
     <h1 class="hero-heading">{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
