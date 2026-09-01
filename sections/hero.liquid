@@ -101,7 +101,16 @@
       {%- endif -%}
 
       {%- if lead != blank -%}
-        <p class="lead">{{ lead }}</p>
+        {%- assign lead_sentences = lead | split: '. ' -%}
+        <p class="lead">
+          {%- if lead_sentences.size > 1 -%}
+            {%- for sentence in lead_sentences -%}
+              {%- if forloop.last -%}<span class="lead-mobile-hide"> {{ sentence }}</span>{%- else -%}{{ sentence }}.{%- endif -%}
+            {%- endfor -%}
+          {%- else -%}
+            {{ lead }}
+          {%- endif -%}
+        </p>
       {%- endif -%}
 
       {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
