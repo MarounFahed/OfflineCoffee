@@ -70,6 +70,12 @@
       {%- endif -%}
     </div>
 
+    {%- if product.handle == 'try-all-three' -%}
+      <div class="pdp-format">3 bags · One of each blend · 10 individually wrapped sachets per bag</div>
+    {%- else -%}
+      <div class="pdp-format">Bag of 10 · Individually wrapped sachets · 14g each</div>
+    {%- endif -%}
+
     {%- form 'product', product, class: 'product-form' -%}
       {%- comment -%}
         Stub variant selector: a no-frills <select> per option until

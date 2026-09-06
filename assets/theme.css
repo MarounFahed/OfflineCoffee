@@ -203,6 +203,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
    ------------------------------------------------------------ */
 .wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gutter); width: 100%; }
 .section { padding-block: clamp(64px, 10vw, 128px); position: relative; }
+.stat-band-section { padding-block: clamp(32px, 5vw, 64px); }
 .blends-section { padding-top: clamp(32px, 5vw, 64px); padding-bottom: 0; }
 .brew-strip-section { padding-top: clamp(32px, 5vw, 64px); padding-bottom: 0; }
 .places-section { padding-top: clamp(32px, 5vw, 64px); padding-bottom: clamp(16px, 2.5vw, 32px); }
@@ -287,7 +288,14 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .header-right a, .header-right button { min-height: 44px; display: inline-flex; align-items: center; }
 .cart-pill {
-  display: inline-flex; align-items: center; gap: 4px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.cart-icon { flex: none; }
+.cart-count-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 17px; height: 17px; padding: 0 4px;
+  border-radius: 999px; background: var(--ink); color: var(--paper);
+  font-size: 10px; line-height: 1; letter-spacing: 0;
 }
 .menu-btn {
   display: none;
@@ -297,7 +305,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   .header-inner { grid-template-columns: 1fr auto; }
   .nav { display: none; }
   .header-right .ghost { display: none; }
-  .header-right .cart-pill:not(.menu-btn) { display: none; }
+  .header-right .cart-pill:not(.menu-btn) .cart-label { display: none; }
   .menu-btn { display: inline-flex; }
   .brand-text { font-size: 18px; }
   .brand img { height: 48px; }
@@ -821,7 +829,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 @media (max-width: 900px) { .places { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .places { grid-template-columns: 1fr; } }
-.place-card { display: flex; flex-direction: column; gap: var(--s-4); }
+.place-card { display: flex; flex-direction: column; gap: var(--s-2); }
 .place-art {
   aspect-ratio: 4 / 3;
   position: relative;
@@ -831,24 +839,17 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
       rgba(15,15,15,0.05) 14px 15px),
     var(--paper-2);
   border: 1px solid var(--rule);
-  display: flex; align-items: end; justify-content: space-between;
-  padding: var(--s-4);
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-soft);
   overflow: hidden;
 }
 .place-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.place-art > * { position: relative; z-index: 1; }
-.place-art .stamp {
-  align-self: start;
-  border: 1px solid var(--ink); padding: 4px 8px;
-  background: var(--paper);
+.place-title { font-family: var(--serif); font-weight: 600; font-size: 20px; line-height: 1.25; margin-top: var(--s-1); }
+.place-location {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6;
 }
-.place-title { font-family: var(--serif); font-weight: 600; font-size: 20px; }
 .place-meta {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7;
   display: flex; justify-content: space-between;
-  padding-top: var(--s-3); border-top: 1px solid var(--rule);
+  padding-top: var(--s-2); margin-top: var(--s-1); border-top: 1px solid var(--rule);
 }
 
 /* ------------------------------------------------------------
@@ -1246,6 +1247,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .pdp-title { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 5vw, 72px); letter-spacing: -0.02em; line-height: 0.95; text-transform: uppercase; }
 .pdp-desc { font-family: var(--serif); font-size: 18px; line-height: 1.55; max-width: 44ch; }
 .pdp-price-row { display: flex; align-items: center; justify-content: space-between; padding-block: var(--s-4); border-block: 1px solid var(--rule); }
+.pdp-format { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.75; }
 .pdp-price { font-family: var(--display); font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: -0.01em; }
 .pdp-variants { display: flex; flex-direction: column; gap: var(--s-3); }
 .pdp-variants legend { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; padding: 0; margin-bottom: var(--s-2); }
@@ -1641,7 +1643,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   max-width: 52ch; margin: var(--s-7) auto 0; opacity: 0.85;
 }
 
-.origin-story { padding: var(--s-5) var(--gutter) clamp(64px, 10vw, 128px); max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8); align-items: center; }
+.origin-story { padding: var(--s-5) var(--gutter) clamp(32px, 5vw, 64px); max-width: var(--maxw); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-8); align-items: center; }
 @media (max-width: 800px) { .origin-story { grid-template-columns: 1fr; } }
 
 /* ------------------------------------------------------------
@@ -1657,7 +1659,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
   opacity: 0.55; margin-top: var(--s-6);
 }
-.origin-story .img { aspect-ratio: 4/5; background: var(--paper-2); position: relative; overflow: hidden; }
+.origin-story .img { aspect-ratio: 4/3; background: var(--paper-2); position: relative; overflow: hidden; }
 .origin-story .img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .origin-story .img .stamp { position: absolute; top: var(--s-4); left: var(--s-4); border: 1px solid var(--ink); padding: 4px 8px; background: var(--paper); font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; z-index: 1; }
 .origin-story h2 { font-family: var(--display); font-weight: 400; font-size: clamp(40px, 6vw, 80px); letter-spacing: -0.02em; line-height: 0.95; text-transform: uppercase; margin-bottom: var(--s-5); }

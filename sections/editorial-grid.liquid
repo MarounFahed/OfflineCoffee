@@ -24,14 +24,11 @@
                 alt="{{ block.settings.title | escape }}"
                 loading="lazy">
             {%- endif -%}
-            {%- if block.settings.stamp != blank -%}
-              <div class="stamp">{{ block.settings.stamp }}</div>
-            {%- endif -%}
-            {%- if block.settings.label != blank -%}
-              <span>{{ block.settings.label }}</span>
-            {%- endif -%}
           </div>
           <div class="place-title">{{ block.settings.title }}</div>
+          {%- if block.settings.location != blank -%}
+            <div class="place-location">{{ block.settings.location }}</div>
+          {%- endif -%}
           <div class="place-meta">
             <span>{{ block.settings.meta_left }}</span>
             <span>{{ block.settings.meta_right }}</span>
@@ -58,9 +55,8 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
         { "type": "text", "id": "image_url", "label": "Image URL (fallback, advanced)" },
-        { "type": "text", "id": "stamp", "label": "Coordinate stamp", "default": "N 44°25′ / W 110°35′" },
-        { "type": "text", "id": "label", "label": "Bottom-right label", "default": "[ TENT · 06:14 AM ]" },
         { "type": "text", "id": "title", "label": "Title", "default": "Two-person tent, Yellowstone backcountry." },
+        { "type": "text", "id": "location", "label": "Location", "default": "Yellowstone National Park, Wyoming" },
         { "type": "text", "id": "meta_left", "label": "Meta — left", "default": "Site #14" },
         { "type": "text", "id": "meta_right", "label": "Meta — right", "default": "Aug" }
       ]
@@ -71,9 +67,9 @@
     {
       "name": "Editorial grid",
       "blocks": [
-        { "type": "card", "settings": { "stamp": "N 44°25′ / W 110°35′", "label": "[ TENT · 06:14 AM ]", "title": "Two-person tent, Yellowstone backcountry.", "meta_left": "Site #14", "meta_right": "Aug" } },
-        { "type": "card", "settings": { "stamp": "N 40°45′ / W 73°59′", "label": "[ TRAIN · 07:02 AM ]", "title": "Northbound Amtrak, somewhere past Poughkeepsie.", "meta_left": "Car 7", "meta_right": "Sept" } },
-        { "type": "card", "settings": { "stamp": "N 35°41′ / E 139°41′", "label": "[ HOTEL · 05:48 AM ]", "title": "Business hotel, Shibuya. Kettle in the closet.", "meta_left": "Room 1402", "meta_right": "Oct" } }
+        { "type": "card", "settings": { "title": "Two-person tent, Yellowstone backcountry.", "location": "Yellowstone National Park, Wyoming", "meta_left": "Site #14", "meta_right": "Aug" } },
+        { "type": "card", "settings": { "title": "Northbound Amtrak, somewhere past Poughkeepsie.", "location": "Hudson Valley, New York", "meta_left": "Car 7", "meta_right": "Sept" } },
+        { "type": "card", "settings": { "title": "Business hotel, Shibuya. Kettle in the closet.", "location": "Shibuya, Tokyo", "meta_left": "Room 1402", "meta_right": "Oct" } }
       ]
     }
   ]
