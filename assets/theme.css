@@ -481,7 +481,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     background: linear-gradient(180deg, rgba(15, 15, 15, 0.1) 0%, rgba(15, 15, 15, 0.65) 55%, rgba(15, 15, 15, 0.92) 100%);
   }
   .hero-split .hero-showcase { grid-column: 1; grid-row: 1; z-index: 0; }
-  .hero-split .hero-showcase-img { object-position: 50% 22%; }
   .hero-split .hero-heading { white-space: nowrap; }
 }
 

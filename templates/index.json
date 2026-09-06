@@ -19,7 +19,8 @@
         "stamp_label": "Steeped here",
         "show_scroll_cue": false,
         "scroll_cue_text": "Keep reading",
-        "showcase_image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/hero-lifestyle-three-bags.jpg?v=1788724210"
+        "showcase_image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/hero-lifestyle-three-bags.jpg?v=1788724210",
+        "showcase_image_mobile_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/hero-lifestyle-three-bags-mobile.jpg?v=1788725073"
       },
       "blocks": {
         "v1": { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "stamp_coord": "N 33°34′ / E 35°34′" } },

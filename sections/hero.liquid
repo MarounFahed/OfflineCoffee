@@ -130,13 +130,18 @@
     </div>
   {%- elsif section.settings.showcase_image_url != blank -%}
     <div class="hero-showcase" aria-hidden="true">
-      <img
-        src="{{ section.settings.showcase_image_url }}&width=900"
-        srcset="{{ section.settings.showcase_image_url }}&width=400 400w, {{ section.settings.showcase_image_url }}&width=600 600w, {{ section.settings.showcase_image_url }}&width=900 900w, {{ section.settings.showcase_image_url }}&width=1200 1200w"
-        sizes="(min-width: 900px) 40vw, 100vw"
-        alt=""
-        loading="eager"
-        class="hero-showcase-img">
+      <picture>
+        {%- if section.settings.showcase_image_mobile_url != blank -%}
+          <source media="(max-width: 600px)" srcset="{{ section.settings.showcase_image_mobile_url }}&width=600 600w, {{ section.settings.showcase_image_mobile_url }}&width=900 900w, {{ section.settings.showcase_image_mobile_url }}&width=1200 1200w">
+        {%- endif -%}
+        <img
+          src="{{ section.settings.showcase_image_url }}&width=900"
+          srcset="{{ section.settings.showcase_image_url }}&width=400 400w, {{ section.settings.showcase_image_url }}&width=600 600w, {{ section.settings.showcase_image_url }}&width=900 900w, {{ section.settings.showcase_image_url }}&width=1200 1200w"
+          sizes="(min-width: 900px) 40vw, 100vw"
+          alt=""
+          loading="eager"
+          class="hero-showcase-img">
+      </picture>
     </div>
   {%- elsif showcase_product and showcase_product.featured_image -%}
     {%- assign showcase_alt = showcase_product.featured_image.alt | default: showcase_product.title -%}
@@ -226,7 +231,8 @@
     { "type": "header", "content": "Showcase photo (right side)" },
     { "type": "paragraph", "content": "Overrides the Full Set product photo. Leave both blank to fall back to the product photo." },
     { "type": "image_picker", "id": "showcase_image", "label": "Showcase image" },
-    { "type": "text", "id": "showcase_image_url", "label": "Showcase image URL (fallback, advanced)" }
+    { "type": "text", "id": "showcase_image_url", "label": "Showcase image URL (fallback, advanced)" },
+    { "type": "text", "id": "showcase_image_mobile_url", "label": "Showcase image URL — mobile only (advanced)" }
   ],
   "blocks": [
     { "type": "variant", "name": "Blend variant", "settings": [
