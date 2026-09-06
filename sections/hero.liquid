@@ -120,23 +120,16 @@
       {%- endif -%}
     </section>
 
-    {%- liquid
-      assign showcase_product = blank
-      if mood == '--ember'
-        assign showcase_product = all_products['pine-grove-bag']
-      elsif mood == '--amber'
-        assign showcase_product = all_products['juniper-valley-bag']
-      elsif mood == '--pine'
-        assign showcase_product = all_products['cedar-peak-bag']
-      endif
-    -%}
-    {%- if showcase_product and showcase_product.featured_image -%}
-      {%- assign showcase_alt = showcase_product.featured_image.alt | default: showcase_product.title -%}
-      <div class="hero-showcase" data-hero-variant="{{ forloop.index0 }}" aria-hidden="true">
-        {% render 'responsive-image', image: showcase_product.featured_image, sizes: '(min-width: 900px) 40vw, 100vw', widths: '400, 600, 900, 1200', alt: showcase_alt, class: 'hero-showcase-img' %}
-      </div>
-    {%- endif -%}
   {%- endfor -%}
+  {%- liquid
+    assign showcase_product = all_products['try-all-three']
+  -%}
+  {%- if showcase_product and showcase_product.featured_image -%}
+    {%- assign showcase_alt = showcase_product.featured_image.alt | default: showcase_product.title -%}
+    <div class="hero-showcase" aria-hidden="true">
+      {% render 'responsive-image', image: showcase_product.featured_image, sizes: '(min-width: 900px) 40vw, 100vw', widths: '400, 600, 900, 1200', alt: showcase_alt, class: 'hero-showcase-img' %}
+    </div>
+  {%- endif -%}
   </div>
 {%- else -%}
   {%- assign mood_color = '--pine' -%}
