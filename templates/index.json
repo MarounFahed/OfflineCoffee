@@ -18,7 +18,8 @@
         "coord_mark_3": "EL 6,224 FT",
         "stamp_label": "Steeped here",
         "show_scroll_cue": false,
-        "scroll_cue_text": "Keep reading"
+        "scroll_cue_text": "Keep reading",
+        "showcase_image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/hero-lifestyle-three-bags.jpg?v=1788724210"
       },
       "blocks": {
         "v1": { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "stamp_coord": "N 33°34′ / E 35°34′" } },
@@ -49,7 +50,7 @@
       },
       "block_order": ["aspen", "ember", "pine"]
     },
-    "sampler-strip": { "type": "sampler-strip", "settings": { "product": "try-all-three", "eyebrow": "§ Bonus round", "heading": "Start here\nif you can't decide.", "body": "One full bag of each roast — 10 sachets apiece, 30 total. The easiest way to find out which one's yours.", "show_price": true, "cta_text": "Add to cart" } },
+    "sampler-strip": { "type": "sampler-strip", "settings": { "product": "try-all-three", "eyebrow": "§ Bonus round", "heading": "Start here\nif you can't decide.", "body": "One full bag of each roast — 10 sachets apiece, 30 total. The easiest way to find out which one's yours.", "show_price": true, "cta_text": "Add to cart", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/sampler-lineup-all-blends.jpg?v=1788724210" } },
     "brew-strip": {
       "type": "brew-strip",
       "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
