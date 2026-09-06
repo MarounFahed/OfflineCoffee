@@ -184,6 +184,7 @@
         {%- if product.images.size > 1 -%}
           <div class="qv-thumbs" data-qv-thumbs>
             {%- for img in product.images -%}
+              {%- assign thumb_alt = img.alt | default: p_name -%}
               <button type="button" class="qv-thumb{% if forloop.first %} is-active{% endif %}" data-qv-thumb
                 data-full="{{ img | image_url: width: 1600 }}"
                 aria-label="{{ p_name }} — image {{ forloop.index }}">
@@ -191,7 +192,7 @@
                   image: img,
                   sizes: '72px',
                   widths: '72, 144',
-                  alt: img.alt | default: p_name,
+                  alt: thumb_alt,
                   class: 'qv-thumb-img' %}
               </button>
             {%- endfor -%}
