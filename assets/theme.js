@@ -313,7 +313,7 @@
     document.querySelectorAll('[data-qv-thumbs]').forEach((wrap) => {
       if (wrap.dataset.bound) return;
       wrap.dataset.bound = '1';
-      const media = wrap.previousElementSibling;
+      const media = wrap.parentElement;
       const mainImg = media ? media.querySelector('.qv-photo') : null;
       if (!mainImg) return;
       wrap.querySelectorAll('[data-qv-thumb]').forEach((btn) => {

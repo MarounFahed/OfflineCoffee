@@ -164,23 +164,21 @@
   </div>
   {%- if product -%}
     <template data-quick-view-template="{{ product.id }}">
-      <div class="qv-gallery">
-        <div class="qv-media" style="background: var({{ p_roast_color }});">
-          {%- if p_image != blank -%}
-            {% render 'responsive-image',
-              image: p_image,
-              sizes: '(min-width: 700px) 40vw, 100vw',
-              widths: '400, 600, 800, 1200',
-              alt: p_alt,
-              class: 'qv-photo' %}
-          {%- else -%}
-            {% render 'bag-mockup',
-              blend_name: p_name,
-              blend_number: p_blend_number,
-              bars: p_bars,
-              region: p_region_short %}
-          {%- endif -%}
-        </div>
+      <div class="qv-media" style="background: var({{ p_roast_color }});">
+        {%- if p_image != blank -%}
+          {% render 'responsive-image',
+            image: p_image,
+            sizes: '(min-width: 700px) 40vw, 100vw',
+            widths: '400, 600, 800, 1200',
+            alt: p_alt,
+            class: 'qv-photo' %}
+        {%- else -%}
+          {% render 'bag-mockup',
+            blend_name: p_name,
+            blend_number: p_blend_number,
+            bars: p_bars,
+            region: p_region_short %}
+        {%- endif -%}
         {%- if product.images.size > 1 -%}
           <div class="qv-thumbs" data-qv-thumbs>
             {%- for img in product.images -%}
@@ -190,8 +188,8 @@
                 aria-label="{{ p_name }} — image {{ forloop.index }}">
                 {% render 'responsive-image',
                   image: img,
-                  sizes: '72px',
-                  widths: '72, 144',
+                  sizes: '44px',
+                  widths: '44, 88',
                   alt: thumb_alt,
                   class: 'qv-thumb-img' %}
               </button>
