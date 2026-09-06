@@ -1,6 +1,6 @@
 {%- comment -%}
   Full Set promo band (image + copy + price + CTA).
-  Params: product_handle, eyebrow, heading, body, show_price, cta_text
+  Params: product_handle, eyebrow, heading, body, show_price, cta_text, image_url
 {%- endcomment -%}
 {%- liquid
   assign sampler_product = blank
@@ -9,7 +9,14 @@
   endif
 -%}
 <div class="sampler-band-img">
-  {%- if sampler_product and sampler_product.featured_image -%}
+  {%- if image_url != blank -%}
+    <img
+      src="{{ image_url }}&width=900"
+      srcset="{{ image_url }}&width=400 400w, {{ image_url }}&width=600 600w, {{ image_url }}&width=900 900w, {{ image_url }}&width=1200 1200w"
+      sizes="(min-width: 800px) 40vw, 100vw"
+      alt="{{ sampler_product.title | default: 'The Full Set' }}"
+      loading="lazy">
+  {%- elsif sampler_product and sampler_product.featured_image -%}
     {% render 'responsive-image',
       image: sampler_product.featured_image,
       sizes: '(min-width: 800px) 40vw, 100vw',

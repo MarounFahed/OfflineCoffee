@@ -124,7 +124,21 @@
   {%- liquid
     assign showcase_product = all_products['try-all-three']
   -%}
-  {%- if showcase_product and showcase_product.featured_image -%}
+  {%- if section.settings.showcase_image != blank -%}
+    <div class="hero-showcase" aria-hidden="true">
+      {% render 'responsive-image', image: section.settings.showcase_image, sizes: '(min-width: 900px) 40vw, 100vw', widths: '400, 600, 900, 1200', alt: '', class: 'hero-showcase-img' %}
+    </div>
+  {%- elsif section.settings.showcase_image_url != blank -%}
+    <div class="hero-showcase" aria-hidden="true">
+      <img
+        src="{{ section.settings.showcase_image_url }}&width=900"
+        srcset="{{ section.settings.showcase_image_url }}&width=400 400w, {{ section.settings.showcase_image_url }}&width=600 600w, {{ section.settings.showcase_image_url }}&width=900 900w, {{ section.settings.showcase_image_url }}&width=1200 1200w"
+        sizes="(min-width: 900px) 40vw, 100vw"
+        alt=""
+        loading="eager"
+        class="hero-showcase-img">
+    </div>
+  {%- elsif showcase_product and showcase_product.featured_image -%}
     {%- assign showcase_alt = showcase_product.featured_image.alt | default: showcase_product.title -%}
     <div class="hero-showcase" aria-hidden="true">
       {% render 'responsive-image', image: showcase_product.featured_image, sizes: '(min-width: 900px) 40vw, 100vw', widths: '400, 600, 900, 1200', alt: showcase_alt, class: 'hero-showcase-img' %}
@@ -208,7 +222,11 @@
     { "type": "text", "id": "stamp_label", "label": "Stamp label", "default": "Steeped here" },
     { "type": "paragraph", "content": "The line under the label is a live clock (updates every second in the visitor's browser) — not editable here." },
     { "type": "checkbox", "id": "show_scroll_cue", "label": "Show scroll cue", "default": true },
-    { "type": "text", "id": "scroll_cue_text", "label": "Scroll cue text", "default": "Keep reading" }
+    { "type": "text", "id": "scroll_cue_text", "label": "Scroll cue text", "default": "Keep reading" },
+    { "type": "header", "content": "Showcase photo (right side)" },
+    { "type": "paragraph", "content": "Overrides the Full Set product photo. Leave both blank to fall back to the product photo." },
+    { "type": "image_picker", "id": "showcase_image", "label": "Showcase image" },
+    { "type": "text", "id": "showcase_image_url", "label": "Showcase image URL (fallback, advanced)" }
   ],
   "blocks": [
     { "type": "variant", "name": "Blend variant", "settings": [
