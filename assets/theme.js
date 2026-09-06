@@ -309,6 +309,26 @@
     return { open, close, refresh };
   })();
 
+  function qvGallery() {
+    document.querySelectorAll('[data-qv-thumbs]').forEach((wrap) => {
+      if (wrap.dataset.bound) return;
+      wrap.dataset.bound = '1';
+      const media = wrap.previousElementSibling;
+      const mainImg = media ? media.querySelector('.qv-photo') : null;
+      if (!mainImg) return;
+      wrap.querySelectorAll('[data-qv-thumb]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const full = btn.dataset.full;
+          if (!full) return;
+          mainImg.srcset = '';
+          mainImg.src = full;
+          wrap.querySelectorAll('[data-qv-thumb]').forEach((b) => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+        });
+      });
+    });
+  }
+
   function cartOpeners() {
     document.querySelectorAll('[data-cart-open]').forEach((el) => {
       if (el.dataset.bound) return;
@@ -401,6 +421,7 @@
       qtyStepper();
       quickAdd();
       cartOpeners();
+      qvGallery();
       lastFocused = document.activeElement;
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';

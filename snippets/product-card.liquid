@@ -164,20 +164,38 @@
   </div>
   {%- if product -%}
     <template data-quick-view-template="{{ product.id }}">
-      <div class="qv-media" style="background: var({{ p_roast_color }});">
-        {%- if p_image != blank -%}
-          {% render 'responsive-image',
-            image: p_image,
-            sizes: '(min-width: 700px) 40vw, 100vw',
-            widths: '400, 600, 800, 1200',
-            alt: p_alt,
-            class: 'qv-photo' %}
-        {%- else -%}
-          {% render 'bag-mockup',
-            blend_name: p_name,
-            blend_number: p_blend_number,
-            bars: p_bars,
-            region: p_region_short %}
+      <div class="qv-gallery">
+        <div class="qv-media" style="background: var({{ p_roast_color }});">
+          {%- if p_image != blank -%}
+            {% render 'responsive-image',
+              image: p_image,
+              sizes: '(min-width: 700px) 40vw, 100vw',
+              widths: '400, 600, 800, 1200',
+              alt: p_alt,
+              class: 'qv-photo' %}
+          {%- else -%}
+            {% render 'bag-mockup',
+              blend_name: p_name,
+              blend_number: p_blend_number,
+              bars: p_bars,
+              region: p_region_short %}
+          {%- endif -%}
+        </div>
+        {%- if product.images.size > 1 -%}
+          <div class="qv-thumbs" data-qv-thumbs>
+            {%- for img in product.images -%}
+              <button type="button" class="qv-thumb{% if forloop.first %} is-active{% endif %}" data-qv-thumb
+                data-full="{{ img | image_url: width: 1600 }}"
+                aria-label="{{ p_name }} — image {{ forloop.index }}">
+                {% render 'responsive-image',
+                  image: img,
+                  sizes: '72px',
+                  widths: '72, 144',
+                  alt: img.alt | default: p_name,
+                  class: 'qv-thumb-img' %}
+              </button>
+            {%- endfor -%}
+          </div>
         {%- endif -%}
       </div>
       <div class="qv-body">
