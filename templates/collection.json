@@ -22,8 +22,21 @@
         "foot_link_text": "How to brew",
         "foot_link_url": "/pages/the-brew"
       },
-      "blocks": {},
-      "block_order": []
+      "blocks": {
+        "field1": {
+          "type": "editorial_break",
+          "settings": {
+            "after_product_n": 3,
+            "eyebrow": "§ In the wild",
+            "quote": "\"Tear, soak, wait, lift. Works the same on a stone step as it does in a kitchen.\"",
+            "attribution": "— Offline Coffee",
+            "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/editorial-pine-grove-flatlay.jpg?v=1788754031",
+            "stamp": "",
+            "label": ""
+          }
+        }
+      },
+      "block_order": ["field1"]
     }
   },
   "order": ["main"]

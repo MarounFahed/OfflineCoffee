@@ -54,7 +54,7 @@
     "sampler-strip": { "type": "sampler-strip", "settings": { "product": "try-all-three", "eyebrow": "§ Bonus round", "heading": "Start here\nif you can't decide.", "body": "One full bag of each roast — 10 sachets apiece, 30 total. The easiest way to find out which one's yours.", "show_price": true, "cta_text": "Add to cart", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/sampler-lineup-all-blends.jpg?v=1788724210" } },
     "brew-strip": {
       "type": "brew-strip",
-      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
+      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/brew-strip-juniper-process.jpg?v=1788754031" },
       "blocks": {
         "s0": { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Open the notch and tear straight across. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
         "s1": { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Hang the tab over the rim of your mug and pour hot water through the filter until it's fully submerged.", "footnote": "93° C" } },
@@ -74,8 +74,18 @@
       },
       "block_order": ["tent", "train", "hotel"]
     },
+    "journal-preview": {
+      "type": "journal-preview",
+      "settings": { "eyebrow": "§ 04 — The Journal", "heading": "Field notes.\nBrew logs.", "meta": "Small stuff\nworth writing down" },
+      "blocks": {
+        "p1": { "type": "post", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/about-porch-morning.jpg?v=1788724210", "meta": "Slow mornings", "title": "The whole point of a slow morning.", "dek": "No errands, no props — just a mug, a book, and however long the coffee takes to steep. Turns out that's the whole recipe." } },
+        "p2": { "type": "post", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/journal-desk-books-brownies.jpg?v=1788754031", "meta": "Desk breaks", "title": "A coffee break, properly taken.", "dek": "Two brownies, a half-finished to-do list, and a filter steeping while you pretend the list can wait five more minutes." } },
+        "p3": { "type": "post", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/journal-steps-mug.jpg?v=1788754031", "meta": "Ritual", "title": "Five minutes on the steps, then back to it.", "dek": "You don't need a kitchen table for a coffee break. A stoop works. So does a curb, if we're honest." } }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
     "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/compost-soil-seedlings.jpg?v=1786738003", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring.", "cta_text": "Shop the blends — 15% off your first order", "cta_url": "/collections/all-blends" } },
     "final-cta": { "type": "cta-band", "settings": { "eyebrow": "§ Ready when you are", "heading": "Stop thinking about it.\nStart drinking it.", "body": "Three roasts, one compostable filter, five minutes flat. Try all three or pick your favorite — either way it ships in 2 days.", "full_set_product": "try-all-three", "primary_text": "Add the Full Set to cart", "secondary_text": "Shop all blends", "secondary_url": "/collections/all-blends" } }
   },
-  "order": ["hero", "tagline-ticker", "featured-blends", "sampler-strip", "brew-strip", "pull-quote", "places", "compost", "final-cta"]
+  "order": ["hero", "tagline-ticker", "featured-blends", "sampler-strip", "brew-strip", "pull-quote", "places", "journal-preview", "compost", "final-cta"]
 }
