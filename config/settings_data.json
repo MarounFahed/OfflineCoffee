@@ -18,8 +18,33 @@
     "lazy_load_images": true,
     "preload_hero": true,
     "social_handle": "@offlinecoffee",
+    "sections": {
+      "email-popup": {
+        "type": "email-popup",
+        "settings": {
+          "enabled": true,
+          "eyebrow": "§ Before you go offline",
+          "heading": "Get 15% off\nyour first order.",
+          "body": "Sign up and we'll send you the code — plus coffee tips and the occasional opinion about kettles.",
+          "submit_text": "Send it →",
+          "success_text": "You're in — use code OFFLINE15 at checkout.",
+          "fine_print": "One letter a month. Unsubscribe anytime.",
+          "delay_seconds": 4,
+          "cooldown_days": 7
+        }
+      }
+    },
     "content_for_index": [],
     "blocks": {
+      "7004296043718640066": {
+        "type": "shopify://apps/bklug-whatsapp-button/blocks/whatsapp-button/019ef6ac-8682-7f64-8e81-5919129f7412",
+        "disabled": false,
+        "settings": {
+          "config_json": "",
+          "show_desktop": true,
+          "show_mobile": true
+        }
+      },
       "14060646107696862457": {
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
