@@ -38,7 +38,14 @@
         {%- for block in section.blocks -%}
           <a class="journal-card" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
             <div class="journal-art">
-              {%- if block.settings.image != blank -%}
+              {%- if block.settings.image_url != blank -%}
+                <img
+                  src="{{ block.settings.image_url }}&width=600"
+                  srcset="{{ block.settings.image_url }}&width=400 400w, {{ block.settings.image_url }}&width=600 600w, {{ block.settings.image_url }}&width=900 900w, {{ block.settings.image_url }}&width=1200 1200w"
+                  sizes="(min-width: 990px) 33vw, 100vw"
+                  alt="{{ block.settings.title }}"
+                  loading="lazy">
+              {%- elsif block.settings.image != blank -%}
                 {% render 'responsive-image',
                   image: block.settings.image,
                   sizes: '(min-width: 990px) 33vw, 100vw',
@@ -76,6 +83,7 @@
       "name": "Placeholder post",
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_url", "label": "Image URL (overrides Image above, advanced)" },
         { "type": "text", "id": "image_label", "label": "Image label (when no image)", "default": "[ EDITORIAL · 1600 × 1000 ]" },
         { "type": "text", "id": "meta", "label": "Meta (date · read · tag)", "default": "14 Aug · 6 min · Brewing" },
         { "type": "text", "id": "title", "label": "Title", "default": "A kettle is the only thing you need." },

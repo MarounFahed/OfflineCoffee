@@ -58,7 +58,14 @@
                 {%- endif -%}
               </div>
               <div class="editorial-img">
-                {%- if ed.settings.image != blank -%}
+                {%- if ed.settings.image_url != blank -%}
+                  <img
+                    src="{{ ed.settings.image_url }}&width=900"
+                    srcset="{{ ed.settings.image_url }}&width=600 600w, {{ ed.settings.image_url }}&width=900 900w, {{ ed.settings.image_url }}&width=1200 1200w, {{ ed.settings.image_url }}&width=1600 1600w"
+                    sizes="50vw"
+                    alt="{{ ed.settings.attribution }}"
+                    loading="lazy">
+                {%- elsif ed.settings.image != blank -%}
                   {% render 'responsive-image',
                     image: ed.settings.image,
                     sizes: '50vw',
@@ -137,6 +144,7 @@
         { "type": "textarea", "id": "quote", "label": "Quote", "default": "\"The best coffee on a four-day backpacking trip is the one you don't have to think about. Steep. Wait. Drink. Pack out the filter.\"" },
         { "type": "text", "id": "attribution", "label": "Attribution", "default": "— From the journal · Vol. 03" },
         { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_url", "label": "Image URL (overrides Image above, advanced)" },
         { "type": "text", "id": "stamp", "label": "Stamp", "default": "N 44°25′ / W 110°35′" },
         { "type": "text", "id": "label", "label": "Bottom-right label", "default": "[ EDITORIAL · 1200 × 1200 ]" }
       ]
