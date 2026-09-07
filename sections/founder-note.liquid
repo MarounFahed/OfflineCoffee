@@ -1,0 +1,25 @@
+<section class="founder-note">
+  <div class="founder-note-inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="coll-eyebrow">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    <div class="founder-note-body">{{ section.settings.body }}</div>
+    {%- if section.settings.sign_off != blank -%}
+      <p class="founder-note-sign">{{ section.settings.sign_off }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Founder note",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ A note, not a name" },
+    { "type": "richtext", "id": "body", "label": "Note" },
+    { "type": "text", "id": "sign_off", "label": "Sign-off line", "default": "— Not signed. That's kind of the point." }
+  ],
+  "presets": [
+    { "name": "Founder note" }
+  ]
+}
+{% endschema %}

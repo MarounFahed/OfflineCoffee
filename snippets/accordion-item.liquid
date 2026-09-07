@@ -1,5 +1,8 @@
 {%- comment -%}
   Accordion item. Params: label (required), body (required, can be HTML), open (bool).
+  Mutual exclusivity (when wanted) is handled entirely in JS, scoped to the
+  containing .accordion — not via the native <details name> group, which fights
+  with a scripted open/close animation on the same element.
 {%- endcomment -%}
 <details{% if open %} open{% endif %}>
   <summary>{{ label }}</summary>

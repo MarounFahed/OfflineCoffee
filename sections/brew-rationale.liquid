@@ -1,0 +1,26 @@
+<section class="section brew-rationale" aria-label="{{ section.settings.heading | default: 'Why paper' | strip_html }}">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="lbl">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+    </div>
+    {%- if section.settings.body != blank -%}
+      <p class="brew-rationale-body">{{ section.settings.body }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brew rationale",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ Why paper" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Not a metal mesh. Not a pod." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Metal filters need washing you won't do in a tent. Pods need a machine you can't pack. A paper filter needs five minutes and a mug — then it's gone, not something you're scrubbing at a campsite sink or storing in a drawer with the others you keep meaning to clean." }
+  ],
+  "presets": [
+    { "name": "Brew rationale" }
+  ]
+}
+{% endschema %}

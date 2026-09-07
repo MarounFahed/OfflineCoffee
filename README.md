@@ -96,9 +96,7 @@ shopify theme check
 3. **Configure storefront filters** in Admin > Online Store > Navigation > Collections.
    The filter pills on `/collections/*` will use whatever filters you define;
    visual fallback renders if none configured.
-4. **Set up native Shopify Subscriptions** (free first-party app) and wire selling
-   plans to the Resupply section CTA.
-5. **Add real product photography** later — every image component swaps via a
+4. **Add real product photography** later — every image component swaps via a
    single field update, no code change needed.
 
 ## Known TODOs flagged in code

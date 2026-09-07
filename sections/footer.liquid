@@ -14,11 +14,6 @@
   <div class="spectrum" aria-hidden="true">
     <i></i><i></i><i></i>
   </div>
-  <div class="spectrum-labels" aria-hidden="true">
-    <span>{{ section.settings.spectrum_label_1 }}</span>
-    <span>{{ section.settings.spectrum_label_2 }}</span>
-    <span>{{ section.settings.spectrum_label_3 }}</span>
-  </div>
 {%- endif -%}
 
 <footer class="footer" role="contentinfo">
@@ -55,7 +50,6 @@
 
     <div class="footer-fine">
       <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}.</span>
-      <span>{{ settings.default_coord_stamp }}</span>
       <span>{{ settings.footer_fine_print }}</span>
     </div>
   </div>
@@ -112,24 +106,6 @@
       "id": "show_spectrum",
       "label": "Show roast spectrum strip above footer",
       "default": true
-    },
-    {
-      "type": "text",
-      "id": "spectrum_label_1",
-      "label": "Label — light",
-      "default": "Light · Amber"
-    },
-    {
-      "type": "text",
-      "id": "spectrum_label_2",
-      "label": "Label — medium",
-      "default": "Medium · Ember"
-    },
-    {
-      "type": "text",
-      "id": "spectrum_label_3",
-      "label": "Label — dark",
-      "default": "Dark · Pine"
     }
   ],
   "blocks": [

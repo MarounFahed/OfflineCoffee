@@ -1,12 +1,16 @@
 <section class="manifesto" aria-label="Manifesto">
   <h1>{{ section.settings.heading | newline_to_br | default: "We made coffee for the places we'd rather be." }}</h1>
+  {%- if section.settings.body != blank -%}
+    <p class="manifesto-body">{{ section.settings.body }}</p>
+  {%- endif -%}
 </section>
 
 {% schema %}
 {
   "name": "Manifesto",
   "settings": [
-    { "type": "textarea", "id": "heading", "label": "Manifesto heading", "default": "We made coffee for the places we'd rather be." }
+    { "type": "textarea", "id": "heading", "label": "Manifesto heading", "default": "We made coffee for the places we'd rather be." },
+    { "type": "textarea", "id": "body", "label": "Body (optional bridge to the next section)" }
   ],
   "presets": [
     { "name": "Manifesto" }

@@ -6,13 +6,10 @@
       "type": "footer",
       "settings": {
         "newsletter_heading": "Notes from offline.",
-        "newsletter_body": "One letter a month. No urgency. Coffee tips, a place to be, occasional opinions about kettles.",
+        "newsletter_body": "Get 15% off your first order for signing up — code OFFLINE15 at checkout. Plus coffee tips, a place to be, and occasional opinions about kettles.",
         "wordmark": "OFFLINE",
         "wordmark_size": "l",
-        "show_spectrum": true,
-        "spectrum_label_1": "Light · Amber",
-        "spectrum_label_2": "Medium · Ember",
-        "spectrum_label_3": "Dark · Pine"
+        "show_spectrum": true
       },
       "blocks": {
         "shop": { "type": "menu_column", "settings": { "heading": "Shop", "menu": "footer-shop" } },
