@@ -54,7 +54,7 @@
     "sampler-strip": { "type": "sampler-strip", "settings": { "product": "try-all-three", "eyebrow": "§ Bonus round", "heading": "Start here\nif you can't decide.", "body": "One full bag of each roast — 10 sachets apiece, 30 total. The easiest way to find out which one's yours.", "show_price": true, "cta_text": "Add to cart", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/sampler-lineup-all-blends.jpg?v=1788724210" } },
     "brew-strip": {
       "type": "brew-strip",
-      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/brew-strip-juniper-hands-tearing.jpg?v=1788755260" },
+      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
       "blocks": {
         "s0": { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Open the notch and tear straight across. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
         "s1": { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Hang the tab over the rim of your mug and pour hot water through the filter until it's fully submerged.", "footnote": "93° C" } },
