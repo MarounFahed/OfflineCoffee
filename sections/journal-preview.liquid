@@ -16,7 +16,7 @@
       {%- if source_blog and source_blog.articles.size > 0 -%}
         {%- for article in source_blog.articles limit: post_count -%}
           <a class="journal-card" href="{{ article.url }}">
-            <div class="journal-art">
+            <div class="journal-art{% if article.image != blank %} journal-art--has-image{% endif %}">
               {%- if article.image != blank -%}
                 {%- assign img_alt = article.image.alt | default: article.title -%}
                 {% render 'responsive-image',
@@ -37,7 +37,7 @@
         {%- comment -%} Placeholder posts when no blog content yet {%- endcomment -%}
         {%- for block in section.blocks -%}
           <a class="journal-card" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
-            <div class="journal-art">
+            <div class="journal-art{% if block.settings.image_url != blank or block.settings.image != blank %} journal-art--has-image{% endif %}">
               {%- if block.settings.image_url != blank -%}
                 <img
                   src="{{ block.settings.image_url }}&width=600"

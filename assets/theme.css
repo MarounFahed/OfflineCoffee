@@ -472,6 +472,9 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   min-width: 0;
 }
 .hero-showcase-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (min-width: 601px) {
+  .hero-showcase-img { object-position: 50% 65%; }
+}
 @media (max-width: 900px) {
   .hero-split .hero { padding-top: 28px; }
   .hero-split .hero-info-row { display: none; }
@@ -888,6 +891,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   transition: background 200ms ease;
 }
 .journal-card:hover .journal-art { background: var(--paper-2); border-top-width: 2px; padding-top: calc(var(--s-4) - 1px); }
+.journal-art--has-image { border-top: 0; border-bottom: 0; background: var(--paper-2); padding: 0; }
+.journal-card:hover .journal-art--has-image { border-top-width: 0; padding-top: 0; }
 .journal-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .journal-art > * { position: relative; z-index: 1; }
 .journal-art .lbl { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.6; }
