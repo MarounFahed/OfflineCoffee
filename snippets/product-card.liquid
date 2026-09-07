@@ -211,6 +211,7 @@
           <span>{{ p_format }}</span>
         </div>
         <h2 class="qv-name">{{ p_name }}</h2>
+        <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}" style="margin-bottom: var(--s-3);">{{ product.metafields.judgeme.badge }}</div>
         <div class="qv-price">
           {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
           {{ p_price }}
