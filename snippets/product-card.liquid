@@ -139,6 +139,9 @@
         {{ p_price }}
       </div>
     </div>
+    {%- if product -%}
+      <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">{{ product.metafields.judgeme.badge }}</div>
+    {%- endif -%}
     {%- if product or show_tags -%}
       <div class="card-actions">
         {%- if show_tags -%}

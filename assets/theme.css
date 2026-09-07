@@ -545,6 +545,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .blend-card:hover, .pcard:hover { background: var(--paper-2); }
 .card-body { display: flex; flex-direction: column; }
+.card-body .jdgm-widget.jdgm-preview-badge { padding-inline: var(--s-5); }
 .card-actions {
   display: flex; align-items: center; gap: var(--s-3);
   padding: var(--s-4) var(--s-5) var(--s-5);

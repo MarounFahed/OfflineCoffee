@@ -55,6 +55,7 @@
   <div class="pdp-info">
     <div class="pdp-eyebrow">{{ product.metafields.offline.eyebrow.value | default: product.type | default: section.settings.fallback_eyebrow }}</div>
     <h1 class="pdp-title" itemprop="name">{{ product.title }}</h1>
+    <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}" style="margin-bottom: var(--s-4);">{{ product.metafields.judgeme.badge }}</div>
 
     {%- if product.description != blank -%}
       <div class="pdp-desc" itemprop="description">{{ product.description }}</div>
@@ -133,6 +134,15 @@
   </div>
 </article>
 
+{%- if section.settings.show_reviews -%}
+  <section class="section" style="padding-block: clamp(32px, 5vw, 64px);">
+    <div class="wrap">
+      <div style="clear: both;"></div>
+      <div id="judgeme_product_reviews" class="jdgm-widget jdgm-review-widget" data-product-title="{{ product.title | escape }}" data-id="{{ product.id }}" data-auto-install="false">{{ product.metafields.judgeme.widget }}</div>
+    </div>
+  </section>
+{%- endif -%}
+
 {%- comment -%}
   Brew strip on PDP is added as a separate section in product.json
   so the merchant edits one record. (Earlier draft used a static
@@ -206,7 +216,8 @@
     },
     { "type": "text", "id": "fallback_eyebrow", "label": "Fallback eyebrow", "default": "Specialty steeped coffee" },
     { "type": "checkbox", "id": "show_tasting", "label": "Show tasting card", "default": true },
-    { "type": "checkbox", "id": "show_related", "label": "Show related products", "default": true }
+    { "type": "checkbox", "id": "show_related", "label": "Show related products", "default": true },
+    { "type": "checkbox", "id": "show_reviews", "label": "Show Judge.me reviews widget", "default": true }
   ],
   "blocks": [
     {
