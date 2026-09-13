@@ -195,24 +195,33 @@
     function rowHtml(item) {
       const img = item.image ? item.image.replace(/(\.[a-zA-Z0-9]+)(\?|$)/, '_160x$1$2') : '';
       const hasVariant = item.variant_title && item.variant_title !== 'Default Title';
+      const isFree = item.final_line_price === 0 && item.original_line_price > 0;
+      const qtyControls = isFree
+        ? ''
+        : '<div class="qty-stepper" data-qty>' +
+            '<button type="button" data-qty-minus aria-label="' + escapeHtml(root.dataset.labelDecrease) + '">−</button>' +
+            '<input type="number" min="0" value="' + item.quantity + '" inputmode="numeric" aria-label="' + escapeHtml(root.dataset.labelQuantity) + '">' +
+            '<button type="button" data-qty-plus aria-label="' + escapeHtml(root.dataset.labelIncrease) + '">+</button>' +
+          '</div>';
+      const priceHtml = isFree
+        ? '<span class="cart-drawer-row-price-was">' + formatMoney(item.original_line_price) + '</span>' +
+          '<span class="cart-drawer-row-price-free">Free</span>'
+        : formatMoney(item.final_line_price);
       return (
-        '<div class="cart-drawer-row" data-key="' + escapeHtml(item.key) + '">' +
+        '<div class="cart-drawer-row' + (isFree ? ' cart-drawer-row--free' : '') + '" data-key="' + escapeHtml(item.key) + '">' +
           '<a class="cart-drawer-row-img" href="' + escapeHtml(item.url) + '" tabindex="-1" aria-hidden="true">' +
             (img ? '<img src="' + escapeHtml(img) + '" alt="" width="80" height="100" loading="lazy">' : '') +
           '</a>' +
           '<div class="cart-drawer-row-body">' +
             '<a href="' + escapeHtml(item.url) + '" class="cart-drawer-row-title">' + escapeHtml(item.product_title) + '</a>' +
             (hasVariant ? '<div class="cart-drawer-row-meta">' + escapeHtml(item.variant_title) + '</div>' : '') +
+            (isFree ? '<div class="free-gift-tag">Free — Buy 5 Get 1 Free</div>' : '') +
             '<div class="cart-drawer-row-actions">' +
-              '<div class="qty-stepper" data-qty>' +
-                '<button type="button" data-qty-minus aria-label="' + escapeHtml(root.dataset.labelDecrease) + '">−</button>' +
-                '<input type="number" min="0" value="' + item.quantity + '" inputmode="numeric" aria-label="' + escapeHtml(root.dataset.labelQuantity) + '">' +
-                '<button type="button" data-qty-plus aria-label="' + escapeHtml(root.dataset.labelIncrease) + '">+</button>' +
-              '</div>' +
+              qtyControls +
               '<button type="button" class="cart-drawer-row-remove" data-cart-drawer-remove>' + escapeHtml(root.dataset.labelRemove) + '</button>' +
             '</div>' +
           '</div>' +
-          '<div class="cart-drawer-row-price">' + formatMoney(item.final_line_price) + '</div>' +
+          '<div class="cart-drawer-row-price">' + priceHtml + '</div>' +
         '</div>'
       );
     }

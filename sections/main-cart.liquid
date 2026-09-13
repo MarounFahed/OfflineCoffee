@@ -9,7 +9,11 @@
       <div class="cart-grid">
         <div class="cart-items">
           {%- for item in cart.items -%}
-            <div class="cart-row">
+            {%- assign is_free_item = false -%}
+            {%- if item.final_line_price == 0 and item.original_line_price > 0 -%}
+              {%- assign is_free_item = true -%}
+            {%- endif -%}
+            <div class="cart-row{% if is_free_item %} cart-row--free{% endif %}">
               <a class="cart-row-img" href="{{ item.product.url }}" aria-hidden="true" tabindex="-1">
                 {%- if item.image != blank -%}
                   {{ item.image | image_url: width: 200 | image_tag: loading: 'lazy', widths: '100, 200, 300', sizes: '100px', alt: item.title }}
@@ -25,14 +29,26 @@
                 {%- if item.selling_plan_allocation -%}
                   <div class="cart-row-meta">{{ item.selling_plan_allocation.selling_plan.name }}</div>
                 {%- endif -%}
+                {%- if is_free_item -%}
+                  <div class="free-gift-tag">Free — Buy 5 Get 1 Free</div>
+                {%- endif -%}
                 <a href="{{ item.url_to_remove }}" class="cart-row-remove">{{ 'cart.general.remove' | t }}</a>
               </div>
-              <div class="qty-stepper" data-qty>
-                <button type="button" data-qty-minus aria-label="{{ 'products.product.decrease_quantity' | t }}">−</button>
-                <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}">
-                <button type="button" data-qty-plus aria-label="{{ 'products.product.increase_quantity' | t }}">+</button>
+              {%- unless is_free_item -%}
+                <div class="qty-stepper" data-qty>
+                  <button type="button" data-qty-minus aria-label="{{ 'products.product.decrease_quantity' | t }}">−</button>
+                  <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}">
+                  <button type="button" data-qty-plus aria-label="{{ 'products.product.increase_quantity' | t }}">+</button>
+                </div>
+              {%- endunless -%}
+              <div class="cart-row-price">
+                {%- if is_free_item -%}
+                  <span class="cart-row-price-was">{{ item.original_line_price | money }}</span>
+                  <span class="cart-row-price-free">Free</span>
+                {%- else -%}
+                  {{ item.final_line_price | money }}
+                {%- endif -%}
               </div>
-              <div class="cart-row-price">{{ item.final_line_price | money }}</div>
             </div>
           {%- endfor -%}
         </div>
