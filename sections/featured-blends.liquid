@@ -1,4 +1,4 @@
-<section class="section" aria-label="{{ section.settings.heading | default: 'Blends' | strip_html }}">
+<section class="section blends-section" aria-label="{{ section.settings.heading | default: 'Blends' | strip_html }}">
   <div class="wrap">
     <div class="section-head">
       <div class="lbl">{{ section.settings.eyebrow }}</div>
@@ -29,6 +29,7 @@
         ph_bars: block.settings.placeholder_bars,
         ph_tags: block.settings.placeholder_tags,
         ph_footnote: block.settings.placeholder_footnote,
+        ph_format: block.settings.placeholder_format,
         ph_url: block.settings.placeholder_link %}
     {%- endfor -%}
   </div>
@@ -72,6 +73,7 @@
         { "type": "range", "id": "placeholder_bars", "label": "Signal bars", "min": 0, "max": 4, "step": 1, "default": 1 },
         { "type": "text", "id": "placeholder_tags", "label": "Tasting tags (comma-separated)", "default": "Honey, Stone fruit, Citrus" },
         { "type": "text", "id": "placeholder_footnote", "label": "Footnote", "default": "Yirgacheffe · 1,950m" },
+        { "type": "text", "id": "placeholder_format", "label": "Format (overrides default bag count)", "default": "10 × 14g · Coffee bags" },
         { "type": "url", "id": "placeholder_link", "label": "Card link" }
       ]
     }

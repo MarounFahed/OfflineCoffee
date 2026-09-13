@@ -1,0 +1,50 @@
+{%- if section.settings.enabled -%}
+  <div class="email-popup" id="emailPopup" aria-hidden="true"
+    data-delay="{{ section.settings.delay_seconds }}"
+    data-cooldown-days="{{ section.settings.cooldown_days }}">
+    <div class="email-popup-overlay" data-ep-close></div>
+    <div class="email-popup-panel" role="dialog" aria-modal="true" aria-label="{{ section.settings.heading | strip_html }}">
+      <button type="button" class="email-popup-close" data-ep-close aria-label="{{ 'general.accessibility.close' | t }}">{{ 'general.accessibility.close' | t }}</button>
+      <div class="email-popup-body">
+        {%- if section.settings.eyebrow != blank -%}
+          <div class="lbl">{{ section.settings.eyebrow }}</div>
+        {%- endif -%}
+        <h2>{{ section.settings.heading | newline_to_br }}</h2>
+        {%- form 'customer', class: 'email-popup-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          {%- if form.posted_successfully? -%}
+            <p class="email-popup-success" data-ep-posted>{{ section.settings.success_text }}</p>
+          {%- else -%}
+            {%- if section.settings.body != blank -%}
+              <p class="email-popup-lead">{{ section.settings.body }}</p>
+            {%- endif -%}
+            <div class="email-popup-fields">
+              <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter.placeholder' | t }}" aria-label="{{ 'general.newsletter.placeholder' | t }}" required>
+              <button type="submit">{{ section.settings.submit_text }}</button>
+            </div>
+            {%- if section.settings.fine_print != blank -%}
+              <p class="email-popup-fine">{{ section.settings.fine_print }}</p>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Email signup popup",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Show popup", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ Before you go offline" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Get 15% off\nyour first order." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Sign up and we'll send you the code — plus coffee tips and the occasional opinion about kettles." },
+    { "type": "text", "id": "submit_text", "label": "Submit button text", "default": "Send it →" },
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "You're in — use code OFFLINE15 at checkout." },
+    { "type": "text", "id": "fine_print", "label": "Fine print", "default": "One letter a month. Unsubscribe anytime." },
+    { "type": "range", "id": "delay_seconds", "label": "Delay before showing (seconds)", "min": 0, "max": 20, "step": 1, "default": 4 },
+    { "type": "range", "id": "cooldown_days", "label": "Days before re-showing after dismiss", "min": 1, "max": 60, "step": 1, "default": 7 }
+  ]
+}
+{% endschema %}

@@ -40,34 +40,19 @@
         --ember: {{ settings.color_ember | default: '#B85C38' }};
         --pine: {{ settings.color_pine | default: '#3D5240' }};
       }
-      /* Hero refinements — tighter header→hero gap, coord marks stacked inline above eyebrow with small indent */
-      .hero {
-        min-height: min(560px, 78vh);
-        padding-block: clamp(40px, 7vh, 80px) clamp(40px, 7vh, 80px);
-      }
-      .hero-coord-marks {
-        position: static;
-        display: flex;
-        gap: var(--s-5);
-        font-family: var(--mono);
-        font-size: 10px;
-        letter-spacing: 0.18em;
-        color: var(--paper);
-        opacity: 0.7;
-        margin-bottom: var(--s-3);
-        padding-inline-start: var(--s-4);
-      }
-      .hero-eyebrow {
-        padding-inline-start: var(--s-4);
-      }
     </style>
 
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
+    <script>window.OFFLINE_MONEY_FORMAT = {{ shop.money_format | json }};</script>
 
     {{ content_for_header }}
 
     <title>
-      {{ page_title }}{% if current_tags %} &mdash; {{ 'general.meta.tagged' | t }}: {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &mdash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &mdash; {{ shop.name }}{% endunless %}
+      {%- if request.page_type == 'index' -%}
+        {{ shop.name }}
+      {%- else -%}
+        {{ page_title }}{% if current_tags %} &mdash; {{ 'general.meta.tagged' | t }}: {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &mdash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &mdash; {{ shop.name }}{% endunless %}
+      {%- endif -%}
     </title>
 
     {%- if page_description -%}
@@ -89,6 +74,10 @@
     </main>
 
     {% sections 'footer-group' %}
+
+    {% render 'cart-drawer' %}
+    {% render 'quick-view-modal' %}
+    {% section 'email-popup' %}
 
     <div class="cursor-coord" id="cursorCoord" aria-hidden="true">N 0°00′ / W 0°00′</div>
     <div class="going-offline" id="goingOffline" aria-hidden="true">{{ 'general.transitions.going_offline' | t }}</div>
