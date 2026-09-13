@@ -625,12 +625,19 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   padding-top: 8px;
   display: flex; justify-content: space-between;
 }
-.pcard-art .badge {
+.blend-art .badge, .pcard-art .badge {
   position: absolute; top: 12px; left: 12px; z-index: 2;
   background: var(--paper); color: var(--ink);
   border: 1px solid var(--ink);
   padding: 4px 8px;
   font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.pcard-promo {
+  display: inline-block;
+  margin: var(--s-3) var(--s-5) 0;
+  background: var(--pine); color: var(--paper);
+  padding: 5px 9px;
+  font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
 }
 .blend-meta, .pcard-meta {
   border-top: 1px solid var(--rule);

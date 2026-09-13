@@ -24,6 +24,7 @@
   assign p_bars = 0
   assign p_tags_string = ''
   assign p_badge = ''
+  assign p_show_promo = false
   assign p_image = blank
   assign p_format = 'Bag of 10 sachets · 14g each'
 
@@ -59,6 +60,10 @@
       assign p_tags_string = tag_meta | join: ', '
     endif
     assign p_badge = product.metafields.offline.badge.value
+    assign p_show_promo = false
+    if product.metafields.offline.blend_number.value != blank
+      assign p_show_promo = true
+    endif
   endif
 
   if product == blank
@@ -132,6 +137,9 @@
       </span>
       <span>{{ p_format }}</span>
     </div>
+    {%- if p_show_promo -%}
+      <div class="pcard-promo">Buy 5, get 1 free</div>
+    {%- endif -%}
     <div class="{{ name_row_class }}">
       <div class="{{ name_class }}">{{ p_name }}</div>
       <div class="{{ price_class }}">
