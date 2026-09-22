@@ -457,14 +457,14 @@
 
     document.querySelectorAll('[data-quick-view]').forEach((el) => {
       const trigger = (e) => {
-        if (e.target.closest('[data-quick-add]')) return;
+        if (e.target.closest('[data-quick-add], [data-qty]')) return;
         const id = el.dataset.quickViewId;
         if (id) open(id);
       };
       el.addEventListener('click', trigger);
       el.addEventListener('keydown', (e) => {
         if (e.key !== 'Enter' && e.key !== ' ') return;
-        if (e.target.closest('[data-quick-add]')) return;
+        if (e.target.closest('[data-quick-add], [data-qty]')) return;
         e.preventDefault();
         trigger(e);
       });

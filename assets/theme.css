@@ -522,6 +522,18 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 /* ------------------------------------------------------------
    PRODUCT CARD (home + collection variants)
    ------------------------------------------------------------ */
+.promo-banner {
+  display: flex; align-items: center; justify-content: center; gap: var(--s-3);
+  background: var(--ink); color: var(--paper);
+  padding: var(--s-3) var(--s-5);
+  margin-bottom: 1px;
+  font-family: var(--mono); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  font-size: 13px; text-align: center; flex-wrap: wrap;
+}
+.promo-banner-icon { font-size: 16px; }
+.promo-banner-sep { opacity: 0.5; margin: 0 2px; }
+@media (max-width: 600px) { .promo-banner { font-size: 11px; padding: var(--s-3) var(--s-4); gap: var(--s-2); } }
+
 .blends-row {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px;
@@ -531,14 +543,39 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 @media (max-width: 900px) {
   .blends-row {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
+    gap: 1px;
   }
-  .blends-row > .blend-card, .blends-row > .pcard {
-    flex: 0 0 82%;
-    scroll-snap-align: start;
+  /* Compact horizontal row layout for home-page blend cards on mobile:
+     thumbnail | name+price+roast | qty stepper + buy — so all 3 blends
+     are visible together with no horizontal swipe and minimal vertical scroll. */
+  .blend-card .card-body {
+    flex-direction: row; align-items: center; gap: var(--s-4);
+    padding: var(--s-3) var(--s-4);
   }
+  .blend-card .blend-art {
+    width: 64px; height: 64px; aspect-ratio: 1 / 1; flex-shrink: 0;
+  }
+  .blend-card .blend-art .badge { display: none; }
+  .blend-card .card-info { flex: 1 1 auto; min-width: 0; }
+  .blend-card .blend-meta {
+    border-top: none; padding: 0; margin: 0;
+    flex-direction: row; align-items: center; gap: var(--s-2);
+  }
+  .blend-card .blend-meta span:last-child { display: none; }
+  .blend-card .pcard-promo { display: none; }
+  .blend-card .blend-name-row { padding: 2px 0 0; gap: var(--s-2); }
+  .blend-card .blend-name { font-size: 15px; }
+  .blend-card .blend-price { font-size: 12px; }
+  .blend-card .card-info .jdgm-widget { display: none; }
+  .blend-card .card-actions {
+    flex-direction: column; align-items: stretch; flex-wrap: nowrap;
+    gap: 6px; padding: 0; flex-shrink: 0; width: 84px;
+  }
+  .blend-card .qty-stepper--card { align-self: center; }
+  .blend-card .qty-stepper--card button { padding: 4px 8px; min-width: 26px; min-height: 26px; font-size: 12px; }
+  .blend-card .qty-stepper--card input { width: 24px; min-height: 26px; font-size: 12px; }
+  .blend-card .quick-add-btn--buy { width: 100%; padding: 6px 8px; min-height: 30px; font-size: 10px; }
 }
 
 .blend-card, .pcard {
