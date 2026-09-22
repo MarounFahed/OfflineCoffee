@@ -540,42 +540,36 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   background: var(--rule);
   border-block: 1px solid var(--rule);
 }
+@media (min-width: 901px) {
+  /* Desktop stays exactly as before: 3 blends here, The Full Set stays
+     in its own dedicated strip below (not part of this row). */
+  .blends-row > .blend-card:nth-child(4) { display: none; }
+}
 @media (max-width: 900px) {
+  /* 2-column grid of proper-sized cards (not a cramped list row) so all
+     4 products — 3 blends + The Full Set as the 4th card, matching the
+     same visual style — are visible together with minimal scrolling and
+     no horizontal swipe. The Full Set's own separate strip is hidden
+     below to avoid showing it twice. */
   .blends-row {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
   }
-  /* Compact horizontal row layout for home-page blend cards on mobile:
-     thumbnail | name+price+roast | qty stepper + buy — so all 3 blends
-     are visible together with no horizontal swipe and minimal vertical scroll. */
-  .blend-card .card-body {
-    flex-direction: row; align-items: center; gap: var(--s-4);
-    padding: var(--s-3) var(--s-4);
-  }
-  .blend-card .blend-art {
-    width: 64px; height: 64px; aspect-ratio: 1 / 1; flex-shrink: 0;
-  }
-  .blend-card .blend-art .badge { display: none; }
-  .blend-card .card-info { flex: 1 1 auto; min-width: 0; }
-  .blend-card .blend-meta {
-    border-top: none; padding: 0; margin: 0;
-    flex-direction: row; align-items: center; gap: var(--s-2);
-  }
+  .blend-card .blend-art { aspect-ratio: 1 / 1; }
+  .blend-card .blend-meta { padding-top: var(--s-4); padding-bottom: var(--s-2); }
   .blend-card .blend-meta span:last-child { display: none; }
   .blend-card .pcard-promo { display: none; }
-  .blend-card .blend-name-row { padding: 2px 0 0; gap: var(--s-2); }
-  .blend-card .blend-name { font-size: 15px; }
-  .blend-card .blend-price { font-size: 12px; }
+  .blend-card .blend-name-row { padding-top: var(--s-2); padding-bottom: var(--s-3); flex-wrap: wrap; }
+  .blend-card .blend-name { font-size: 19px; }
   .blend-card .card-info .jdgm-widget { display: none; }
   .blend-card .card-actions {
-    flex-direction: column; align-items: stretch; flex-wrap: nowrap;
-    gap: 6px; padding: 0; flex-shrink: 0; width: 84px;
+    flex-direction: column; align-items: stretch;
+    gap: var(--s-2); padding: 0 var(--s-4) var(--s-4);
   }
   .blend-card .qty-stepper--card { align-self: center; }
-  .blend-card .qty-stepper--card button { padding: 4px 8px; min-width: 26px; min-height: 26px; font-size: 12px; }
-  .blend-card .qty-stepper--card input { width: 24px; min-height: 26px; font-size: 12px; }
-  .blend-card .quick-add-btn--buy { width: 100%; padding: 6px 8px; min-height: 30px; font-size: 10px; }
+  .blend-card .quick-add-btn--buy { width: 100%; }
+  .sampler-band { display: none; }
 }
 
 .blend-card, .pcard {

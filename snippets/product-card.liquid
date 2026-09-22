@@ -64,6 +64,10 @@
     if product.metafields.offline.blend_number.value != blank
       assign p_show_promo = true
     endif
+    if product.handle == 'try-all-three'
+      assign p_roast_label = ''
+      assign p_format = '3 bags · one of each blend'
+    endif
   endif
 
   if product == blank
