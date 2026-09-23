@@ -192,7 +192,7 @@
     const countEl = root.querySelector('[data-cart-drawer-count-label]');
     let lastFocused = null;
 
-    function rowHtml(item) {
+    function rowHtml(item, index) {
       const img = item.image ? item.image.replace(/(\.[a-zA-Z0-9]+)(\?|$)/, '_160x$1$2') : '';
       const hasVariant = item.variant_title && item.variant_title !== 'Default Title';
       const isFree = item.final_line_price === 0 && item.original_line_price > 0;
@@ -208,7 +208,7 @@
           '<span class="cart-drawer-row-price-free">Free</span>'
         : formatMoney(item.final_line_price);
       return (
-        '<div class="cart-drawer-row' + (isFree ? ' cart-drawer-row--free' : '') + '" data-key="' + escapeHtml(item.key) + '">' +
+        '<div class="cart-drawer-row' + (isFree ? ' cart-drawer-row--free' : '') + '" data-line="' + (index + 1) + '">' +
           '<a class="cart-drawer-row-img" href="' + escapeHtml(item.url) + '" tabindex="-1" aria-hidden="true">' +
             (img ? '<img src="' + escapeHtml(img) + '" alt="" width="80" height="100" loading="lazy">' : '') +
           '</a>' +
@@ -236,7 +236,7 @@
     function render(cart) {
       if (!cart) return;
       const empty = cart.item_count === 0;
-      if (itemsEl) { itemsEl.hidden = empty; itemsEl.innerHTML = empty ? '' : cart.items.map(rowHtml).join(''); }
+      if (itemsEl) { itemsEl.hidden = empty; itemsEl.innerHTML = empty ? '' : cart.items.map((item, i) => rowHtml(item, i)).join(''); }
       if (summaryEl) summaryEl.hidden = empty;
       if (emptyEl) emptyEl.hidden = !empty;
       if (subtotalEl) subtotalEl.textContent = formatMoney(cart.total_price);
@@ -282,11 +282,11 @@
     root.querySelectorAll('[data-cart-close]').forEach((el) => el.addEventListener('click', close));
     root.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 
-    function changeLine(key, quantity) {
+    function changeLine(line, quantity) {
       return fetch('/cart/change.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ id: key, quantity: quantity }),
+        body: JSON.stringify({ line: Number(line), quantity: quantity }),
       })
         .then((res) => res.json())
         .then(render)
@@ -295,23 +295,23 @@
 
     if (itemsEl) {
       itemsEl.addEventListener('click', (e) => {
-        const row = e.target.closest('[data-key]');
+        const row = e.target.closest('[data-line]');
         if (!row) return;
-        const key = row.dataset.key;
+        const line = row.dataset.line;
         const input = row.querySelector('input[type="number"]');
         if (e.target.closest('[data-qty-minus]')) {
-          changeLine(key, Math.max(0, Number(input.value || 1) - 1));
+          changeLine(line, Math.max(0, Number(input.value || 1) - 1));
         } else if (e.target.closest('[data-qty-plus]')) {
-          changeLine(key, Number(input.value || 0) + 1);
+          changeLine(line, Number(input.value || 0) + 1);
         } else if (e.target.closest('[data-cart-drawer-remove]')) {
-          changeLine(key, 0);
+          changeLine(line, 0);
         }
       });
       itemsEl.addEventListener('change', (e) => {
         const input = e.target.closest('input[type="number"]');
-        const row = input && input.closest('[data-key]');
+        const row = input && input.closest('[data-line]');
         if (!row) return;
-        changeLine(row.dataset.key, Math.max(0, Number(input.value || 0)));
+        changeLine(row.dataset.line, Math.max(0, Number(input.value || 0)));
       });
     }
 
