@@ -2,24 +2,36 @@
   Open Graph / Twitter / JSON-LD. Shopify auto-injects Product,
   Organization, BreadcrumbList JSON-LD via content_for_header.
   We add Article JSON-LD on article pages.
+
+  share_image resolves in priority order: the specific product/article
+  image, then a merchant-uploaded settings.logo_wordmark, then the
+  bundled og-default.png (logo on --paper) so every page always has
+  a social preview image, never a blank one.
 {%- endcomment -%}
+{%- liquid
+  assign share_image = blank
+  if template.name == 'product' and product and product.featured_image
+    assign share_image = product.featured_image | image_url: width: 1200
+  elsif template.name == 'article' and article and article.image
+    assign share_image = article.image | image_url: width: 1200
+  elsif settings.logo_wordmark != blank
+    assign share_image = settings.logo_wordmark | image_url: width: 1200
+  else
+    assign share_image = 'og-default.png' | asset_url
+  endif
+-%}
 <meta property="og:site_name" content="{{ shop.name }}">
 <meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:title" content="{{ page_title | escape }}">
 {%- if page_description -%}
   <meta property="og:description" content="{{ page_description | escape }}">
 {%- endif -%}
+<meta property="og:image" content="https:{{ share_image }}">
 
 {%- if template.name == 'product' and product -%}
   <meta property="og:type" content="product">
-  {%- if product.featured_image -%}
-    <meta property="og:image" content="https:{{ product.featured_image | image_url: width: 1200 }}">
-  {%- endif -%}
 {%- elsif template.name == 'article' and article -%}
   <meta property="og:type" content="article">
-  {%- if article.image -%}
-    <meta property="og:image" content="https:{{ article.image | image_url: width: 1200 }}">
-  {%- endif -%}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -36,9 +48,6 @@
   </script>
 {%- else -%}
   <meta property="og:type" content="website">
-  {%- if settings.logo_wordmark != blank -%}
-    <meta property="og:image" content="https:{{ settings.logo_wordmark | image_url: width: 1200 }}">
-  {%- endif -%}
 {%- endif -%}
 
 <meta name="twitter:card" content="summary_large_image">
@@ -46,3 +55,4 @@
 {%- if page_description -%}
   <meta name="twitter:description" content="{{ page_description | escape }}">
 {%- endif -%}
+<meta name="twitter:image" content="https:{{ share_image }}">

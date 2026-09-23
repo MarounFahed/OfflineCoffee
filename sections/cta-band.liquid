@@ -1,0 +1,53 @@
+{%- liquid
+  assign full_set = blank
+  if section.settings.full_set_product != blank
+    assign full_set = all_products[section.settings.full_set_product]
+  endif
+-%}
+<section class="cta-band" aria-label="{{ section.settings.heading | strip_html }}">
+  <div class="cta-band-inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="lbl">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+    <h2>{{ section.settings.heading | newline_to_br }}</h2>
+    {%- if section.settings.body != blank -%}
+      <p>{{ section.settings.body }}</p>
+    {%- endif -%}
+    <div class="cta-band-actions">
+      {%- if full_set -%}
+        {%- if full_set.available -%}
+          <button type="button" class="btn" data-quick-add
+            data-variant-id="{{ full_set.selected_or_first_available_variant.id }}"
+            data-product-title="{{ full_set.title | escape }}"
+            data-label-adding="{{ 'products.product.adding' | t }}"
+            data-label-added="{{ 'products.product.added' | t }}">
+            <span data-quick-add-label>{{ section.settings.primary_text }}</span>
+          </button>
+        {%- else -%}
+          <span class="btn quick-add-btn--disabled" aria-disabled="true">{{ 'products.product.sold_out' | t }}</span>
+        {%- endif -%}
+      {%- endif -%}
+      {%- if section.settings.secondary_text != blank -%}
+        <a href="{{ section.settings.secondary_url | default: '/collections/all-blends' }}" class="btn btn-secondary">{{ section.settings.secondary_text }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Big CTA band",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ Ready when you are" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Stop thinking about it.\nStart drinking it." },
+    { "type": "textarea", "id": "body", "label": "Body (optional)", "default": "Three roasts, one compostable filter, five minutes flat. Try all three or pick your favorite — either way it ships in 2 days." },
+    { "type": "product", "id": "full_set_product", "label": "Full Set product (primary button)" },
+    { "type": "text", "id": "primary_text", "label": "Primary button text", "default": "Add the Full Set to cart" },
+    { "type": "text", "id": "secondary_text", "label": "Secondary button text", "default": "Shop all blends" },
+    { "type": "url", "id": "secondary_url", "label": "Secondary button link" }
+  ],
+  "presets": [
+    { "name": "Big CTA band" }
+  ]
+}
+{% endschema %}
