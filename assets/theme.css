@@ -240,7 +240,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .review-cta { text-align: center; margin-top: -24px; padding-bottom: var(--s-4); }
 .review-cta-btn { background: var(--ember); color: var(--paper); border-color: var(--ember); }
 .review-cta-btn:hover { background: var(--paper); color: var(--ember); }
-.review-cta + .cta-band { padding-top: var(--s-7); }
+#shopify-section-review-cta + #shopify-section-final-cta .cta-band { padding-top: var(--s-7); }
 .btn-link {
   font-family: var(--mono); font-size: 12px; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase;
