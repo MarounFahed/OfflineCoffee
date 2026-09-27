@@ -237,8 +237,9 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 .btn:hover { background: var(--paper); color: var(--ink); }
 .btn-secondary { background: transparent; color: var(--ink); }
 .btn-secondary:hover { background: var(--ink); color: var(--paper); }
-.review-cta { text-align: center; padding-block: clamp(24px, 4vw, 40px); }
-.review-cta-btn { padding: 10px 22px; min-height: 36px; font-size: 10px; }
+.review-cta { text-align: center; margin-top: -80px; padding-bottom: var(--s-6); }
+.review-cta-btn { background: var(--ember); color: var(--paper); border-color: var(--ember); }
+.review-cta-btn:hover { background: var(--paper); color: var(--ember); }
 .btn-link {
   font-family: var(--mono); font-size: 12px; font-weight: 500;
   letter-spacing: 0.08em; text-transform: uppercase;
