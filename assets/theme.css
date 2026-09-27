@@ -1086,6 +1086,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 .footer-fine > :nth-child(2) { text-align: center; }
 .footer-fine > :nth-child(3) { text-align: right; }
+.footer-fine a { border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.footer-fine a:hover { opacity: 0.6; }
 @media (max-width: 700px) { .footer-fine { grid-template-columns: 1fr; text-align: left; } .footer-fine > * { text-align: left !important; } }
 
 /* ------------------------------------------------------------
