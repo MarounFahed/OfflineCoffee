@@ -2,10 +2,50 @@
   "sections": {
     "hero": {
       "type": "hero",
+      "blocks": {
+        "v1": {
+          "type": "variant",
+          "settings": {
+            "mood_color": "--ember",
+            "eyebrow": "Blend № 01 · Pine Grove · Light roast",
+            "stamp_coord": "N 33°34′ / E 35°34′",
+            "heading": "",
+            "lead": "",
+            "cta_primary_link": ""
+          }
+        },
+        "v2": {
+          "type": "variant",
+          "settings": {
+            "mood_color": "--amber",
+            "eyebrow": "Blend № 02 · Juniper Valley · Medium roast",
+            "stamp_coord": "N 34°17′ / E 35°38′",
+            "heading": "",
+            "lead": "",
+            "cta_primary_link": ""
+          }
+        },
+        "v3": {
+          "type": "variant",
+          "settings": {
+            "mood_color": "--pine",
+            "eyebrow": "Blend № 03 · Cedar Peak · Dark roast",
+            "stamp_coord": "N 34°14′ / E 36°02′",
+            "heading": "",
+            "lead": "",
+            "cta_primary_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3"
+      ],
       "settings": {
         "mood": "pine",
         "eyebrow": "Blend № 01 · Pine Grove · Light roast",
-        "heading": "Out of range.\nOn purpose.",
+        "heading": "Out of range. On purpose.",
         "lead": "Specialty coffee in a compostable filter.\nHot water. Five minutes.",
         "cta_primary_text": "Shop the blends",
         "cta_primary_link": "/collections/all-blends",
@@ -21,62 +61,386 @@
         "scroll_cue_text": "Keep reading",
         "showcase_image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/hero-lifestyle-three-bags.jpg?v=1788724210",
         "showcase_image_mobile_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/hero-lifestyle-three-bags-mobile.jpg?v=1788725073"
-      },
-      "blocks": {
-        "v1": { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "stamp_coord": "N 33°34′ / E 35°34′" } },
-        "v2": { "type": "variant", "settings": { "mood_color": "--amber", "eyebrow": "Blend № 02 · Juniper Valley · Medium roast", "stamp_coord": "N 34°17′ / E 35°38′" } },
-        "v3": { "type": "variant", "settings": { "mood_color": "--pine", "eyebrow": "Blend № 03 · Cedar Peak · Dark roast", "stamp_coord": "N 34°14′ / E 36°02′" } }
-      },
-      "block_order": ["v1", "v2", "v3"]
+      }
     },
     "tagline-ticker": {
       "type": "tagline-ticker",
       "blocks": {
-        "p1": { "type": "phrase", "settings": { "text": "No machine" } },
-        "p2": { "type": "phrase", "settings": { "text": "No noise" } },
-        "p3": { "type": "phrase", "settings": { "text": "Just coffee" } },
-        "p4": { "type": "phrase", "settings": { "text": "Five minutes to anywhere" } },
-        "p5": { "type": "phrase", "settings": { "text": "The internet can wait" } },
-        "p6": { "type": "phrase", "settings": { "text": "Made for the places without WiFi" } }
+        "p1": {
+          "type": "phrase",
+          "settings": {
+            "text": "No machine"
+          }
+        },
+        "p2": {
+          "type": "phrase",
+          "settings": {
+            "text": "No noise"
+          }
+        },
+        "p3": {
+          "type": "phrase",
+          "settings": {
+            "text": "Just coffee"
+          }
+        },
+        "p4": {
+          "type": "phrase",
+          "settings": {
+            "text": "Five minutes to anywhere"
+          }
+        },
+        "p5": {
+          "type": "phrase",
+          "settings": {
+            "text": "The internet can wait"
+          }
+        },
+        "p6": {
+          "type": "phrase",
+          "settings": {
+            "text": "Made for the places without WiFi"
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"]
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6"
+      ],
+      "settings": {}
     },
     "featured-blends": {
       "type": "featured-blends",
-      "settings": { "eyebrow": "§ 01 — The Pack", "heading": "Three blends.\nPick a mood.", "meta": "Roasted weekly\nShips in 2 days" },
       "blocks": {
-        "aspen": { "type": "blend", "settings": { "product": "pine-grove-bag", "placeholder_name": "Pine Grove", "placeholder_price": "$10", "placeholder_blend_number": "Blend 01", "placeholder_roast_color": "--ember", "placeholder_roast_label": "Light roast", "placeholder_region_short": "Light · Ethiopia", "placeholder_region": "Yirgacheffe · 1,950m", "placeholder_bars": 2, "placeholder_tags": "Honey, Stone fruit, Citrus", "placeholder_footnote": "Yirgacheffe · 1,950m" } },
-        "ember": { "type": "blend", "settings": { "product": "juniper-valley-bag", "placeholder_name": "Juniper Valley", "placeholder_price": "$10", "placeholder_blend_number": "Blend 02", "placeholder_roast_color": "--amber", "placeholder_roast_label": "Medium roast", "placeholder_region_short": "Medium · Colombia", "placeholder_region": "Huila · 1,700m", "placeholder_bars": 3, "placeholder_tags": "Cocoa, Caramel, Plum", "placeholder_footnote": "Huila · 1,700m" } },
-        "pine": { "type": "blend", "settings": { "product": "cedar-peak-bag", "placeholder_name": "Cedar Peak", "placeholder_price": "$10", "placeholder_blend_number": "Blend 03", "placeholder_roast_color": "--pine", "placeholder_roast_label": "Dark roast", "placeholder_region_short": "Dark · Sumatra", "placeholder_region": "Aceh · 1,400m", "placeholder_bars": 4, "placeholder_tags": "Dark cocoa, Cedar, Molasses", "placeholder_footnote": "Aceh · 1,400m" } },
-        "trio": { "type": "blend", "settings": { "product": "try-all-three", "placeholder_name": "The Full Set", "placeholder_price": "$33" } }
+        "aspen": {
+          "type": "blend",
+          "settings": {
+            "product": "pine-grove-bag",
+            "placeholder_name": "Pine Grove",
+            "placeholder_price": "$10",
+            "placeholder_blend_number": "Blend 01",
+            "placeholder_roast_color": "--ember",
+            "placeholder_roast_label": "Light roast",
+            "placeholder_region_short": "Light · Ethiopia",
+            "placeholder_region": "Yirgacheffe · 1,950m",
+            "placeholder_bars": 2,
+            "placeholder_tags": "Honey, Stone fruit, Citrus",
+            "placeholder_footnote": "Yirgacheffe · 1,950m",
+            "placeholder_format": "10 × 14g · Coffee bags",
+            "placeholder_link": ""
+          }
+        },
+        "ember": {
+          "type": "blend",
+          "settings": {
+            "product": "juniper-valley-bag",
+            "placeholder_name": "Juniper Valley",
+            "placeholder_price": "$10",
+            "placeholder_blend_number": "Blend 02",
+            "placeholder_roast_color": "--amber",
+            "placeholder_roast_label": "Medium roast",
+            "placeholder_region_short": "Medium · Colombia",
+            "placeholder_region": "Huila · 1,700m",
+            "placeholder_bars": 3,
+            "placeholder_tags": "Cocoa, Caramel, Plum",
+            "placeholder_footnote": "Huila · 1,700m",
+            "placeholder_format": "10 × 14g · Coffee bags",
+            "placeholder_link": ""
+          }
+        },
+        "pine": {
+          "type": "blend",
+          "settings": {
+            "product": "cedar-peak-bag",
+            "placeholder_name": "Cedar Peak",
+            "placeholder_price": "$10",
+            "placeholder_blend_number": "Blend 03",
+            "placeholder_roast_color": "--pine",
+            "placeholder_roast_label": "Dark roast",
+            "placeholder_region_short": "Dark · Sumatra",
+            "placeholder_region": "Aceh · 1,400m",
+            "placeholder_bars": 4,
+            "placeholder_tags": "Dark cocoa, Cedar, Molasses",
+            "placeholder_footnote": "Aceh · 1,400m",
+            "placeholder_format": "10 × 14g · Coffee bags",
+            "placeholder_link": ""
+          }
+        },
+        "trio": {
+          "type": "blend",
+          "settings": {
+            "product": "try-all-three",
+            "placeholder_name": "The Full Set",
+            "placeholder_price": "$33",
+            "placeholder_blend_number": "Blend 01",
+            "placeholder_roast_color": "--amber",
+            "placeholder_roast_label": "Light roast",
+            "placeholder_region_short": "Light · Ethiopia",
+            "placeholder_region": "Yirgacheffe · 1,950m",
+            "placeholder_bars": 1,
+            "placeholder_tags": "Honey, Stone fruit, Citrus",
+            "placeholder_footnote": "Yirgacheffe · 1,950m",
+            "placeholder_format": "10 × 14g · Coffee bags",
+            "placeholder_link": ""
+          }
+        }
       },
-      "block_order": ["aspen", "ember", "pine", "trio"]
+      "block_order": [
+        "aspen",
+        "ember",
+        "pine",
+        "trio"
+      ],
+      "settings": {
+        "eyebrow": "§ 01 — The Pack",
+        "heading": "Three blends.\nPick a mood.",
+        "meta": "Roasted weekly\nShips in 2 days"
+      }
     },
-    "sampler-strip": { "type": "sampler-strip", "settings": { "product": "try-all-three", "eyebrow": "§ Bonus round", "heading": "Start here\nif you can't decide.", "body": "One full bag of each roast — 10 sachets apiece, 30 total. The easiest way to find out which one's yours.", "show_price": true, "cta_text": "Add to cart", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/sampler-lineup-all-blends.jpg?v=1788724210" } },
+    "sampler-strip": {
+      "type": "sampler-strip",
+      "settings": {
+        "product": "try-all-three",
+        "eyebrow": "§ Bonus round",
+        "heading": "Start here\nif you can't decide.",
+        "body": "One full bag of each roast — 10 sachets apiece, 30 total. The easiest way to find out which one's yours.",
+        "show_price": true,
+        "cta_text": "Add to cart",
+        "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/sampler-lineup-all-blends.jpg?v=1788724210"
+      }
+    },
     "brew-strip": {
       "type": "brew-strip",
-      "settings": { "eyebrow": "§ 02 — The Brew", "heading": "Five minutes.\nThat's it.", "meta": "No machine\nNo grinder" },
       "blocks": {
-        "s0": { "type": "step", "settings": { "number": "01", "title": "Tear.", "body": "Open the notch and tear straight across. No scissors, no mess.", "footnote": "1 bag · 1 mug" } },
-        "s1": { "type": "step", "settings": { "number": "02", "title": "Soak.", "body": "Hang the tab over the rim of your mug and pour hot water through the filter until it's fully submerged.", "footnote": "93° C" } },
-        "s2": { "type": "step", "settings": { "number": "03", "title": "Wait.", "body": "Five minutes. Don't check your phone. We wrote a timer in case you need one.", "footnote": "5 MINUTES", "show_timer": true, "timer_seconds": 300, "timer_label_start": "Start brew", "timer_label_running": "Brewing…", "timer_label_done": "Ready." } },
-        "s3": { "type": "step", "settings": { "number": "04", "title": "Lift.", "body": "Lift the filter out, give it one gentle press against the mug, and sip.", "footnote": "Compostable · Backyard-safe" } }
+        "s0": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "title": "Tear.",
+            "body": "Open the notch and tear straight across. No scissors, no mess.",
+            "footnote": "1 bag · 1 mug",
+            "show_timer": false,
+            "timer_seconds": 300,
+            "timer_label_start": "Start brew",
+            "timer_label_running": "Brewing…",
+            "timer_label_done": "Ready."
+          }
+        },
+        "s1": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "title": "Soak.",
+            "body": "Hang the tab over the rim of your mug and pour hot water through the filter until it's fully submerged.",
+            "footnote": "93° C",
+            "show_timer": false,
+            "timer_seconds": 300,
+            "timer_label_start": "Start brew",
+            "timer_label_running": "Brewing…",
+            "timer_label_done": "Ready."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "title": "Wait.",
+            "body": "Five minutes. Don't check your phone. We wrote a timer in case you need one.",
+            "footnote": "5 MINUTES",
+            "show_timer": true,
+            "timer_seconds": 300,
+            "timer_label_start": "Start brew",
+            "timer_label_running": "Brewing…",
+            "timer_label_done": "Ready."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "number": "04",
+            "title": "Lift.",
+            "body": "Lift the filter out, give it one gentle press against the mug, and sip.",
+            "footnote": "Compostable · Backyard-safe",
+            "show_timer": false,
+            "timer_seconds": 300,
+            "timer_label_start": "Start brew",
+            "timer_label_running": "Brewing…",
+            "timer_label_done": "Ready."
+          }
+        }
       },
-      "block_order": ["s0", "s1", "s2", "s3"]
+      "block_order": [
+        "s0",
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "eyebrow": "§ 02 — The Brew",
+        "heading": "Five minutes.\nThat's it.",
+        "meta": "No machine\nNo grinder",
+        "image_url": ""
+      }
     },
-    "pull-quote": { "type": "pull-quote", "settings": { "quote": "\"You can drink coffee with two bars of signal, or no bars at all. The coffee doesn't care. Maybe you don't either.\"", "attribution": "", "show_topo_above": true, "show_topo_below": true } },
+    "pull-quote": {
+      "type": "pull-quote",
+      "settings": {
+        "quote": "\"You can drink coffee with two bars of signal, or no bars at all. The coffee doesn't care. Maybe you don't either.\"",
+        "attribution": "",
+        "show_topo_above": true,
+        "show_topo_below": true
+      }
+    },
     "journal-preview": {
       "type": "journal-preview",
-      "settings": { "eyebrow": "§ 04 — The Journal", "heading": "Field notes.\nBrew logs.", "meta": "Small stuff\nworth writing down" },
       "blocks": {
-        "p1": { "type": "post", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/about-porch-morning.jpg?v=1788724210", "meta": "Slow mornings", "title": "The whole point of a slow morning.", "dek": "No errands, no props — just a mug, a book, and however long the coffee takes to steep. Turns out that's the whole recipe." } },
-        "p2": { "type": "post", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/journal-desk-books-brownies.jpg?v=1788754031", "meta": "Desk breaks", "title": "A coffee break, properly taken.", "dek": "Two brownies, a half-finished to-do list, and a filter steeping while you pretend the list can wait five more minutes." } },
-        "p3": { "type": "post", "settings": { "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/journal-steps-mug.jpg?v=1788754031", "meta": "Ritual", "title": "Five minutes on the steps, then back to it.", "dek": "You don't need a kitchen table for a coffee break. A stoop works. So does a curb, if we're honest." } }
+        "p1": {
+          "type": "post",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/about-porch-morning.jpg?v=1788724210",
+            "image_label": "[ EDITORIAL · 1600 × 1000 ]",
+            "meta": "Slow mornings",
+            "title": "The whole point of a slow morning.",
+            "dek": "No errands, no props — just a mug, a book, and however long the coffee takes to steep. Turns out that's the whole recipe.",
+            "link": ""
+          }
+        },
+        "p2": {
+          "type": "post",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/journal-desk-books-brownies.jpg?v=1788754031",
+            "image_label": "[ EDITORIAL · 1600 × 1000 ]",
+            "meta": "Desk breaks",
+            "title": "A coffee break, properly taken.",
+            "dek": "Two brownies, a half-finished to-do list, and a filter steeping while you pretend the list can wait five more minutes.",
+            "link": ""
+          }
+        },
+        "p3": {
+          "type": "post",
+          "settings": {
+            "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/journal-steps-mug.jpg?v=1788754031",
+            "image_label": "[ EDITORIAL · 1600 × 1000 ]",
+            "meta": "Ritual",
+            "title": "Five minutes on the steps, then back to it.",
+            "dek": "You don't need a kitchen table for a coffee break. A stoop works. So does a curb, if we're honest.",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3"]
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {
+        "eyebrow": "§ 04 — The Journal",
+        "heading": "Field notes.\nBrew logs.",
+        "meta": "Small stuff\nworth writing down",
+        "blog": "",
+        "posts_count": 3
+      }
     },
-    "compost": { "type": "compost-callout", "settings": { "background": "pine", "heading": "Compostable.\nNot just recyclable.", "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/compost-soil-seedlings.jpg?v=1786738003", "tag": "100% Plant-based filter · OK for your backyard compost", "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring.", "cta_text": "Shop the blends — 15% off your first order", "cta_url": "/collections/all-blends" } },
-    "final-cta": { "type": "cta-band", "settings": { "eyebrow": "§ Ready when you are", "heading": "Stop thinking about it.\nStart drinking it.", "body": "Three roasts, one compostable filter, five minutes flat. Try all three or pick your favorite — either way it ships in 2 days.", "full_set_product": "try-all-three", "primary_text": "Add the Full Set to cart", "secondary_text": "Shop all blends", "secondary_url": "/collections/all-blends" } }
+    "compost": {
+      "type": "compost-callout",
+      "settings": {
+        "background": "pine",
+        "heading": "Compostable. Not just recyclable.",
+        "image_url": "https://cdn.shopify.com/s/files/1/0766/1604/0621/files/compost-soil-seedlings.jpg?v=1786738003",
+        "tag": "100% Plant-based filter · OK for your backyard compost",
+        "body": "The filter is plant fiber and corn starch. The wrapper is uncoated kraft. The box is the box. Bury the whole thing in the garden and it'll be soil by spring.",
+        "cta_text": "Shop the blends — 15% off your first order",
+        "cta_url": "/collections/all-blends"
+      }
+    },
+    "17905027874509fe35": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_cards_carousel_6FK8ca": {
+          "type": "shopify://apps/judge-me-reviews/blocks/cards_carousel/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "show_sample_reviews": true,
+            "reviews_selection": "all",
+            "products": [],
+            "filter_pinned": false,
+            "filter_featured": false,
+            "filter_custom_tags": "",
+            "star_rating": "all",
+            "show_review_media": true,
+            "display_order": "media_first",
+            "no_image_fallback": "product_image",
+            "max_reviews": 20,
+            "review_length": "medium",
+            "text_size": "medium",
+            "image_ratio": "1",
+            "reviews_shown": 4,
+            "show_reviewer_name": true,
+            "show_product_name": true,
+            "hide_arrows_mobile": true,
+            "arrows_position": "sides",
+            "max_width": 1100,
+            "corner_styling": "soft",
+            "header_text_color": "#000000",
+            "text_color": "#000000",
+            "card_color": "#F9F9F9",
+            "stars_color": "#B85C38",
+            "arrows_color": "#000000",
+            "transition_speed": 5,
+            "header_text": "Customers are saying",
+            "show_average_rating": true,
+            "rating_display": "default"
+          }
+        },
+        "judge_me_reviews_review_widget_homepage_GDyXBm": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget_homepage/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "product": "",
+            "review_data": "sample_data",
+            "max_width": 1200
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_cards_carousel_6FK8ca",
+        "judge_me_reviews_review_widget_homepage_GDyXBm"
+      ],
+      "settings": {}
+    },
+    "review-cta": {
+      "type": "review-cta",
+      "settings": {
+        "button_text": "Write a review",
+        "link": "/review"
+      }
+    },
+    "final-cta": {
+      "type": "cta-band",
+      "settings": {
+        "eyebrow": "§ Ready when you are",
+        "heading": "Stop thinking about it.\nStart drinking it.",
+        "body": "Three roasts, one compostable filter, five minutes flat. Try all three or pick your favorite — either way it ships in 2 days.",
+        "full_set_product": "try-all-three",
+        "primary_text": "Add the Full Set to cart",
+        "secondary_text": "Shop all blends",
+        "secondary_url": "/collections/all-blends"
+      }
+    }
   },
-  "order": ["hero", "tagline-ticker", "featured-blends", "sampler-strip", "brew-strip", "pull-quote", "journal-preview", "compost", "final-cta"]
+  "order": [
+    "hero",
+    "tagline-ticker",
+    "featured-blends",
+    "sampler-strip",
+    "brew-strip",
+    "pull-quote",
+    "journal-preview",
+    "compost",
+    "17905027874509fe35",
+    "review-cta",
+    "final-cta"
+  ]
 }
