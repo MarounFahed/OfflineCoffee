@@ -22,7 +22,7 @@
       "email-popup": {
         "type": "email-popup",
         "settings": {
-          "enabled": true,
+          "enabled": false,
           "eyebrow": "§ Before you go offline",
           "heading": "Get 15% off\nyour first order.",
           "body": "Sign up and we'll send you the code — plus coffee tips and the occasional opinion about kettles.",
