@@ -95,9 +95,9 @@
         duplicate H1s in the page source.
       {%- endcomment -%}
       {%- if forloop.first -%}
-        <h1 class="hero-heading">{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+        <h1 class="hero-heading">{{ heading | newline_to_br | default: 'Real coffee. Not instant.' }}</h1>
       {%- else -%}
-        <div class="hero-heading">{{ heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</div>
+        <div class="hero-heading">{{ heading | newline_to_br | default: 'Real coffee. Not instant.' }}</div>
       {%- endif -%}
 
       {%- if lead != blank -%}
@@ -182,7 +182,7 @@
         {%- endif -%}
       </div>
     {%- endif -%}
-    <h1 class="hero-heading">{{ section.settings.heading | newline_to_br | default: 'Out of range.<br>On purpose.' }}</h1>
+    <h1 class="hero-heading">{{ section.settings.heading | newline_to_br | default: 'Real coffee. Not instant.' }}</h1>
     {%- if section.settings.lead != blank -%}
       <p class="lead">{{ section.settings.lead }}</p>
     {%- endif -%}
@@ -210,7 +210,7 @@
     { "type": "paragraph", "content": "Add 'Blend variant' blocks below to rotate mood + eyebrow on each page load." },
     { "type": "select", "id": "mood", "label": "Fallback mood (when no variant blocks)", "options": [ { "value": "amber", "label": "Amber" }, { "value": "ember", "label": "Ember" }, { "value": "pine", "label": "Pine" } ], "default": "pine" },
     { "type": "text", "id": "eyebrow", "label": "Fallback eyebrow", "default": "Blend № 03 · Cedar Peak · Dark roast" },
-    { "type": "text", "id": "heading", "label": "Shared headline", "default": "Out of range.\nOn purpose." },
+    { "type": "text", "id": "heading", "label": "Shared headline", "default": "Real coffee. Not instant." },
     { "type": "textarea", "id": "lead", "label": "Shared sub-copy", "default": "Specialty coffee in a compostable filter. Hot water. Five minutes." },
     { "type": "header", "content": "CTAs" },
     { "type": "text", "id": "cta_primary_text", "label": "Primary CTA text", "default": "Shop the blends" },
