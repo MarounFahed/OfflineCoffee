@@ -664,6 +664,32 @@
     });
   }
 
+  /* ----- Sticky mobile "Shop the blends" bar (homepage only) ----- */
+  function stickyShopBar() {
+    const bar = document.getElementById('stickyShopBar');
+    const hero = document.querySelector('.hero-split, .hero');
+    const target = document.getElementById('shop-blends');
+    if (!bar || !hero) return;
+    let pastHero = false;
+    let inTarget = false;
+    function sync() {
+      bar.classList.toggle('is-visible', pastHero && !inTarget);
+    }
+    const heroObserver = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      pastHero = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+      sync();
+    }, { threshold: 0 });
+    heroObserver.observe(hero);
+    if (target) {
+      const targetObserver = new IntersectionObserver((entries) => {
+        inTarget = entries[0].isIntersecting;
+        sync();
+      }, { threshold: 0.2 });
+      targetObserver.observe(target);
+    }
+  }
+
   /* ----- Init ----- */
   function init() {
     header();
@@ -681,6 +707,7 @@
     animatedAccordions();
     randomCoord();
     heroClock();
+    stickyShopBar();
   }
 
   if (document.readyState === 'loading') {

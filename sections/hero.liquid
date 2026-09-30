@@ -104,6 +104,15 @@
         <p class="lead">{{ lead | newline_to_br }}</p>
       {%- endif -%}
 
+      {%- if forloop.first -%}
+        {%- for app_block in section.blocks -%}
+          {%- case app_block.type -%}
+            {%- when '@app' -%}
+              <div class="hero-rating" {{ app_block.shopify_attributes }}>{% render app_block %}</div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {%- endif -%}
+
       {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
         <div class="hero-ctas">
           {%- if section.settings.cta_primary_text != blank -%}
@@ -186,6 +195,12 @@
     {%- if section.settings.lead != blank -%}
       <p class="lead">{{ section.settings.lead }}</p>
     {%- endif -%}
+    {%- for app_block in section.blocks -%}
+      {%- case app_block.type -%}
+        {%- when '@app' -%}
+          <div class="hero-rating" {{ app_block.shopify_attributes }}>{% render app_block %}</div>
+      {%- endcase -%}
+    {%- endfor -%}
     {%- if section.settings.cta_primary_text != blank or section.settings.cta_secondary_text != blank -%}
       <div class="hero-ctas">
         {%- if section.settings.cta_primary_text != blank -%}
@@ -242,9 +257,10 @@
       { "type": "text", "id": "heading", "label": "Heading override" },
       { "type": "textarea", "id": "lead", "label": "Sub-copy override" },
       { "type": "url", "id": "cta_primary_link", "label": "Primary CTA link override" }
-    ] }
+    ] },
+    { "type": "@app" }
   ],
-  "max_blocks": 4,
+  "max_blocks": 6,
   "presets": [
     { "name": "Hero", "blocks": [
       { "type": "variant", "settings": { "mood_color": "--ember", "eyebrow": "Blend № 01 · Pine Grove · Light roast", "stamp_coord": "N 33°34′ / E 35°34′", "cta_primary_link": "/products/pine-grove-bag" } },

@@ -359,6 +359,19 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   .trust-bar-inner span:not(:last-child)::after { right: calc(var(--s-3) / -2 - 3px); }
 }
 
+.sticky-shop-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  padding: var(--s-3) var(--gutter);
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+  box-shadow: 0 -6px 18px rgba(15, 15, 15, 0.1);
+  transform: translateY(100%);
+  transition: transform 220ms ease;
+}
+.sticky-shop-bar.is-visible { transform: translateY(0); }
+.sticky-shop-btn { display: block; width: 100%; text-align: center; }
+@media (min-width: 601px) { .sticky-shop-bar { display: none; } }
+
 /* ------------------------------------------------------------
    HERO
    ------------------------------------------------------------ */
@@ -412,6 +425,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   max-width: 44ch; line-height: 1.5;
   margin-bottom: var(--s-7); opacity: 0.92;
 }
+.hero-rating { margin-bottom: var(--s-4); color: var(--paper); }
 .hero-ctas { display: flex; gap: var(--s-3); flex-wrap: wrap; }
 .hero .btn { background: var(--paper); color: var(--ink); border-color: var(--paper); }
 .hero .btn:hover { background: transparent; color: var(--paper); border-color: var(--paper); }
