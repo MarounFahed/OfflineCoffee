@@ -44,6 +44,16 @@
   </div>
 </header>
 
+{%- if section.settings.show_trust_bar -%}
+  <div class="trust-bar">
+    <div class="wrap trust-bar-inner">
+      {%- if section.settings.trust_item_1 != blank -%}<span>{{ section.settings.trust_item_1 }}</span>{%- endif -%}
+      {%- if section.settings.trust_item_2 != blank -%}<span>{{ section.settings.trust_item_2 }}</span>{%- endif -%}
+      {%- if section.settings.trust_item_3 != blank -%}<span>{{ section.settings.trust_item_3 }}</span>{%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-head">
     <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
@@ -84,6 +94,34 @@
       "type": "url",
       "id": "announcement_link",
       "label": "Link (optional)"
+    },
+    {
+      "type": "header",
+      "content": "Trust bar (under header)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_trust_bar",
+      "label": "Show trust bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "trust_item_1",
+      "label": "Item 1",
+      "default": "🌱 Compostable filters"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_2",
+      "label": "Item 2",
+      "default": "📦 Ships in 2 days"
+    },
+    {
+      "type": "text",
+      "id": "trust_item_3",
+      "label": "Item 3",
+      "default": "🔒 Secure checkout"
     },
     {
       "type": "header",
