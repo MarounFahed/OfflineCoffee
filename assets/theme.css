@@ -386,7 +386,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   text-transform: uppercase; text-wrap: balance;
   margin-bottom: var(--s-6);
 }
-.hero-split .hero-heading { font-size: clamp(36px, 7.5vw, 92px); white-space: nowrap; margin-bottom: var(--s-5); }
+.hero-split .hero-heading { font-size: clamp(36px, 7.5vw, 92px); white-space: normal; margin-bottom: var(--s-5); }
 .hero-split .hero { padding-block: clamp(24px, 4vh, 48px) clamp(32px, 5vh, 64px); }
 .hero-split .hero p.lead { margin-bottom: var(--s-6); }
 .hero p.lead {
