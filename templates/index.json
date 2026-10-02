@@ -170,24 +170,6 @@
             "placeholder_link": ""
           }
         },
-        "trio": {
-          "type": "blend",
-          "settings": {
-            "product": "try-all-three",
-            "placeholder_name": "The Full Set",
-            "placeholder_price": "$33",
-            "placeholder_blend_number": "Blend 01",
-            "placeholder_roast_color": "--amber",
-            "placeholder_roast_label": "Light roast",
-            "placeholder_region_short": "Light · Ethiopia",
-            "placeholder_region": "Yirgacheffe · 1,950m",
-            "placeholder_bars": 1,
-            "placeholder_tags": "Honey, Stone fruit, Citrus",
-            "placeholder_footnote": "Yirgacheffe · 1,950m",
-            "placeholder_format": "10 × 14g · Coffee bags",
-            "placeholder_link": ""
-          }
-        },
         "pinkoct": {
           "type": "blend",
           "settings": {
@@ -209,10 +191,9 @@
       },
       "block_order": [
         "aspen",
+        "pinkoct",
         "ember",
-        "pine",
-        "trio",
-        "pinkoct"
+        "pine"
       ],
       "settings": {
         "eyebrow": "§ 01 — The Pack",

@@ -581,23 +581,16 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 
 .blends-row {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 1px;
   background: var(--rule);
   border-block: 1px solid var(--rule);
 }
-@media (min-width: 901px) {
-  /* Desktop stays exactly as before: 3 blends here, The Full Set stays
-     in its own dedicated strip below (not part of this row). */
-  .blends-row > .blend-card:nth-child(4),
-  .blends-row > .blend-card:nth-child(5) { display: none; }
-}
 @media (max-width: 900px) {
-  /* 2-column grid of proper-sized cards (not a cramped list row) so all
-     4 products — 3 blends + The Full Set as the 4th card, matching the
-     same visual style — are visible together with minimal scrolling and
-     no horizontal swipe. The Full Set's own separate strip is hidden
-     below to avoid showing it twice. */
+  /* 2-column grid (2 full rows of 2) so Pine Grove, Pink October,
+     Juniper Valley and Cedar Peak are all visible with minimal
+     scrolling. The Full Set lives in its own strip below on every
+     viewport now, so it's not duplicated in this row. */
   .blends-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -617,7 +610,6 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   }
   .blend-card .qty-stepper--card { align-self: center; }
   .blend-card .quick-add-btn--buy { width: 100%; }
-  .sampler-band { display: none; }
 }
 
 .blend-card, .pcard {
