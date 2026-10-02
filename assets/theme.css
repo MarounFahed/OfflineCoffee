@@ -610,6 +610,10 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   }
   .blend-card .qty-stepper--card { align-self: center; }
   .blend-card .quick-add-btn--buy { width: 100%; }
+  .blend-card .blend-price {
+    display: flex; flex-direction: column-reverse; align-items: flex-end; gap: 2px;
+  }
+  .blend-card .compare-price { margin-right: 0; font-size: 11px; }
 }
 
 .blend-card, .pcard {
