@@ -68,10 +68,13 @@
       assign p_roast_label = ''
       assign p_format = '3 bags · one of each blend'
     endif
+    if product.handle == 'pink-october-3-pine-grove-bags'
+      assign p_format = '3 bags · Pine Grove'
+    endif
   endif
 
   assign p_show_pink_promo = false
-  if product.handle == 'pine-grove-bag'
+  if product.handle == 'pine-grove-bag' or product.handle == 'pink-october-3-pine-grove-bags'
     assign current_month = 'now' | date: '%m'
     if current_month == '10'
       assign p_show_pink_promo = true

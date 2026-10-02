@@ -187,13 +187,32 @@
             "placeholder_format": "10 × 14g · Coffee bags",
             "placeholder_link": ""
           }
+        },
+        "pinkoct": {
+          "type": "blend",
+          "settings": {
+            "product": "pink-october-3-pine-grove-bags",
+            "placeholder_name": "Pink October — 3 Pine Grove Bags",
+            "placeholder_price": "$33",
+            "placeholder_blend_number": "",
+            "placeholder_roast_color": "--ember",
+            "placeholder_roast_label": "Light roast",
+            "placeholder_region_short": "Light · Ethiopia",
+            "placeholder_region": "Yirgacheffe · 1,950m",
+            "placeholder_bars": 2,
+            "placeholder_tags": "Hazelnut, Caramel",
+            "placeholder_footnote": "Yirgacheffe · 1,950m",
+            "placeholder_format": "3 bags · Pine Grove",
+            "placeholder_link": ""
+          }
         }
       },
       "block_order": [
         "aspen",
         "ember",
         "pine",
-        "trio"
+        "trio",
+        "pinkoct"
       ],
       "settings": {
         "eyebrow": "§ 01 — The Pack",
