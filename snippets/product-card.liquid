@@ -70,6 +70,14 @@
     endif
   endif
 
+  assign p_show_pink_promo = false
+  if product.handle == 'pine-grove-bag'
+    assign current_month = 'now' | date: '%m'
+    if current_month == '10'
+      assign p_show_pink_promo = true
+    endif
+  endif
+
   if product == blank
     assign p_name = ph_name | default: p_name
     assign p_price = ph_price | default: p_price
@@ -142,7 +150,9 @@
         </span>
         <span>{{ p_format }}</span>
       </div>
-      {%- if p_show_promo -%}
+      {%- if p_show_pink_promo -%}
+        <div class="pcard-promo pcard-promo--pink">🎗️ Pink October — 3 for $33</div>
+      {%- elsif p_show_promo -%}
         <div class="pcard-promo">Buy 5, get 1 free (add 6) · Mix &amp; match</div>
       {%- endif -%}
       <div class="{{ name_row_class }}">
@@ -233,6 +243,9 @@
           {%- if p_compare_price != blank -%}<span class="compare-price">{{ p_compare_price }}</span>{%- endif -%}
           {{ p_price }}
         </div>
+        {%- if p_show_pink_promo -%}
+          <div class="pcard-promo pcard-promo--pink">🎗️ Pink October — 3 for $33</div>
+        {%- endif -%}
         {%- if show_tags -%}
           <div class="{{ tags_class }} qv-tags">
             {%- for tag in tag_list limit: settings.max_tasting_tags -%}<span>{{ tag | strip }}</span>{%- endfor -%}

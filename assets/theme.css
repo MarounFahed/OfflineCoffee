@@ -606,6 +606,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   .blend-card .blend-meta { padding-top: var(--s-4); padding-bottom: var(--s-2); }
   .blend-card .blend-meta span:last-child { display: none; }
   .blend-card .pcard-promo { display: none; }
+  .blend-card .pcard-promo--pink { display: inline-block; }
   .blend-card .blend-name-row { padding-top: var(--s-2); padding-bottom: var(--s-3); flex-wrap: wrap; }
   .blend-card .blend-name { font-size: 19px; }
   .blend-card .card-info .jdgm-widget { display: none; }
@@ -717,6 +718,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   padding: 5px 9px;
   font-family: var(--mono); font-weight: 700; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
 }
+.pcard-promo--pink { background: #D94F8C; color: #FFF; }
 .blend-meta:has(+ .pcard-promo), .pcard-meta:has(+ .pcard-promo) { padding-bottom: var(--s-2); }
 .pcard-promo + .blend-name-row, .pcard-promo + .pcard-name-row { padding-top: var(--s-2); }
 .blend-meta, .pcard-meta {
