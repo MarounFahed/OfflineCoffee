@@ -1,0 +1,17 @@
+<div class="wrap review-cta">
+  <a href="{{ section.settings.link | default: '/review' }}" class="btn review-cta-btn">{{ section.settings.button_text | default: 'Write a review' }}</a>
+</div>
+
+{% schema %}
+{
+  "name": "Write a review button",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Write a review" },
+    { "type": "url", "id": "link", "label": "Link (defaults to /review)" }
+  ],
+  "presets": [
+    { "name": "Write a review button" }
+  ]
+}
+{% endschema %}

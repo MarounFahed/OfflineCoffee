@@ -5,15 +5,15 @@
     blend_number (required) — e.g. "Blend 01"
     bars (1–4) — signal-bar count
     region — e.g. "Light · Ethiopia · Yirgacheffe"
-    sachets — e.g. "12 sachets"
-    brew — e.g. "200°F · 4 min"
+    filters — e.g. "10 filters"
+    brew — e.g. "93°C · 5 min"
     paper (bool) — invert bars for dark backgrounds
 {%- endcomment -%}
 {%- liquid
   assign bars = bars | default: 0
   assign region = region | default: ''
-  assign sachets = sachets | default: '12 sachets'
-  assign brew = brew | default: '200°F · 4 min'
+  assign filters = filters | default: '10 filters'
+  assign brew = brew | default: '93°C · 5 min'
   assign blend_number = blend_number | default: ''
 -%}
 <div class="bag">
@@ -28,7 +28,7 @@
     {%- endif -%}
   </div>
   <div class="bag-bottom">
-    <span>{{ sachets }}</span>
+    <span>{{ filters }}</span>
     <span>{{ brew }}</span>
   </div>
 </div>

@@ -1,7 +1,13 @@
-<div class="tagline-strip" aria-hidden="true">
-  {%- for block in section.blocks -%}
-    <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
-  {%- endfor -%}
+<div class="tagline-strip">
+  <div class="tagline-track">
+    {%- for i in (1..2) -%}
+      <div class="tagline-set" aria-hidden="{% if i == 2 %}true{% else %}false{% endif %}">
+        {%- for block in section.blocks -%}
+          <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+        {%- endfor -%}
+      </div>
+    {%- endfor -%}
+  </div>
 </div>
 
 {% schema %}
@@ -30,10 +36,9 @@
         { "type": "phrase", "settings": { "text": "No machine" } },
         { "type": "phrase", "settings": { "text": "No noise" } },
         { "type": "phrase", "settings": { "text": "Just coffee" } },
-        { "type": "phrase", "settings": { "text": "Four minutes to anywhere" } },
+        { "type": "phrase", "settings": { "text": "Five minutes to anywhere" } },
         { "type": "phrase", "settings": { "text": "The internet can wait" } },
-        { "type": "phrase", "settings": { "text": "Made for the places without WiFi" } },
-        { "type": "phrase", "settings": { "text": "Out of range. On purpose." } }
+        { "type": "phrase", "settings": { "text": "Made for the places without WiFi" } }
       ]
     }
   ]
