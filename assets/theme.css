@@ -266,6 +266,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
 }
 .announce a { border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.announce--sale { color: var(--amber); font-weight: 700; }
 
 .header {
   background: var(--paper);
@@ -343,6 +344,9 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 
 .trust-bar { background: var(--paper-2); border-bottom: 1px solid var(--rule); }
+.trust-bar--sale { background: var(--ink); border-bottom-color: var(--ink); }
+.trust-bar--sale .trust-bar-inner { color: var(--amber); }
+.trust-bar--sale .trust-bar-inner span:not(:last-child)::after { color: var(--amber); opacity: 0.6; }
 .trust-bar-inner {
   display: flex; justify-content: center; align-items: center;
   flex-wrap: wrap; gap: var(--s-2) var(--s-5);
@@ -569,6 +573,8 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
   font-size: 16px;
   line-height: 1;
 }
+.promo-banner--sale { color: var(--amber); }
+.promo-banner--sale::before, .promo-banner--sale::after { content: "🛍️"; }
 @media (max-width: 600px) {
   .promo-banner { font-size: 11px; padding: var(--s-3) var(--s-4); gap: var(--s-2); }
   .promo-banner::before {
@@ -578,6 +584,7 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
     font-size: 18px;
   }
   .promo-banner::after { content: none; }
+  .promo-banner--sale::before { content: "🛍️ 🛍️ 🛍️ 🛍️ 🛍️"; }
 }
 
 .blends-row {

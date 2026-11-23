@@ -70,6 +70,11 @@
     endif
   endif
 
+  assign today_str = 'now' | date: '%Y-%m-%d'
+  if today_str >= '2026-11-27' and today_str <= '2026-11-30'
+    assign p_show_promo = false
+  endif
+
   if product == blank
     assign p_name = ph_name | default: p_name
     assign p_price = ph_price | default: p_price

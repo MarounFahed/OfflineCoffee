@@ -1,4 +1,11 @@
 <section id="shop-blends" class="section blends-section" aria-label="{{ section.settings.heading | default: 'Blends' | strip_html }}">
+  {%- liquid
+    assign today_str = 'now' | date: '%Y-%m-%d'
+    assign bf_active = false
+    if today_str >= '2026-11-27' and today_str <= '2026-11-30'
+      assign bf_active = true
+    endif
+  -%}
   <div class="wrap">
     <div class="section-head">
       <div class="lbl">{{ section.settings.eyebrow }}</div>
@@ -8,8 +15,12 @@
   </div>
 
   <div class="wrap">
-    <div class="promo-banner">
-      <span class="promo-banner-text">Buy 5, get 1 free — add 6 to cart <span class="promo-banner-sep">·</span> Mix &amp; match any blend</span>
+    <div class="promo-banner{% if bf_active %} promo-banner--sale{% endif %}">
+      {%- if bf_active -%}
+        <span class="promo-banner-text">Black Friday — 40% off everything <span class="promo-banner-sep">·</span> Automatic at checkout, ends Nov 30</span>
+      {%- else -%}
+        <span class="promo-banner-text">Buy 5, get 1 free — add 6 to cart <span class="promo-banner-sep">·</span> Mix &amp; match any blend</span>
+      {%- endif -%}
     </div>
   </div>
 

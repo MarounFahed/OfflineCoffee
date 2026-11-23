@@ -1,5 +1,15 @@
-<div class="announce">
-  {%- if section.settings.announcement_link != blank -%}
+{%- liquid
+  assign today_str = 'now' | date: '%Y-%m-%d'
+  assign bf_active = false
+  if today_str >= '2026-11-27' and today_str <= '2026-11-30'
+    assign bf_active = true
+  endif
+-%}
+
+<div class="announce{% if bf_active %} announce--sale{% endif %}">
+  {%- if bf_active -%}
+    Black Friday — 40% off everything · Automatic at checkout · Ends Nov 30
+  {%- elsif section.settings.announcement_link != blank -%}
     <a href="{{ section.settings.announcement_link }}">{{ section.settings.announcement_text }}</a>
   {%- else -%}
     {{ section.settings.announcement_text }}
@@ -45,11 +55,17 @@
 </header>
 
 {%- if section.settings.show_trust_bar -%}
-  <div class="trust-bar">
+  <div class="trust-bar{% if bf_active %} trust-bar--sale{% endif %}">
     <div class="wrap trust-bar-inner">
-      {%- if section.settings.trust_item_1 != blank -%}<span>{{ section.settings.trust_item_1 }}</span>{%- endif -%}
-      {%- if section.settings.trust_item_2 != blank -%}<span>{{ section.settings.trust_item_2 }}</span>{%- endif -%}
-      {%- if section.settings.trust_item_3 != blank -%}<span>{{ section.settings.trust_item_3 }}</span>{%- endif -%}
+      {%- if bf_active -%}
+        <span>🖤 Black Friday</span>
+        <span>40% off everything</span>
+        <span>Thru Nov 30</span>
+      {%- else -%}
+        {%- if section.settings.trust_item_1 != blank -%}<span>{{ section.settings.trust_item_1 }}</span>{%- endif -%}
+        {%- if section.settings.trust_item_2 != blank -%}<span>{{ section.settings.trust_item_2 }}</span>{%- endif -%}
+        {%- if section.settings.trust_item_3 != blank -%}<span>{{ section.settings.trust_item_3 }}</span>{%- endif -%}
+      {%- endif -%}
     </div>
   </div>
 {%- endif -%}
