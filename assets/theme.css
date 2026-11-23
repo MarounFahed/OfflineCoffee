@@ -581,21 +581,20 @@ hr { border: 0; border-top: 1px solid var(--rule); margin: 0; }
 }
 
 .blends-row {
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--rule);
   border-block: 1px solid var(--rule);
 }
 @media (max-width: 900px) {
-  /* 2-column grid (2 full rows of 2) so Pine Grove, Pink October,
-     Juniper Valley and Cedar Peak are all visible with minimal
-     scrolling. The Full Set lives in its own strip below on every
-     viewport now, so it's not duplicated in this row. */
+  /* 2-column grid; the 3rd (last) card spans both columns so the row
+     fills cleanly instead of leaving one card stranded alone. */
   .blends-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1px;
   }
+  .blends-row > .blend-card:nth-child(3):last-child { grid-column: 1 / -1; }
   .blend-card .blend-art { aspect-ratio: 1 / 1; }
   .blend-card .blend-meta { padding-top: var(--s-4); padding-bottom: var(--s-2); }
   .blend-card .blend-meta span:last-child { display: none; }
