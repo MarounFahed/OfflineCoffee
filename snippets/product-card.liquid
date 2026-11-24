@@ -28,12 +28,23 @@
   assign p_image = blank
   assign p_format = 'Bag of 10 sachets · 14g each'
 
+  assign today_str = 'now' | date: '%Y-%m-%d'
+  assign bf_active = false
+  if today_str >= '2026-11-23' and today_str <= '2026-11-30'
+    assign bf_active = true
+  endif
+
   if product
     assign p_name = product.title
-    assign p_price = product.price | money
+    assign p_price_cents = product.price
     if product.compare_at_price > product.price
       assign p_compare_price = product.compare_at_price | money
     endif
+    if bf_active and p_compare_price == blank
+      assign p_compare_price = p_price_cents | money
+      assign p_price_cents = p_price_cents | times: 0.6 | round
+    endif
+    assign p_price = p_price_cents | money
     assign p_image = product.featured_image
     assign p_blend_number = product.metafields.offline.blend_number.value | default: ''
     assign roast_meta = product.metafields.offline.roast.value | downcase
@@ -68,11 +79,9 @@
       assign p_roast_label = ''
       assign p_format = '3 bags · one of each blend'
     endif
-  endif
-
-  assign today_str = 'now' | date: '%Y-%m-%d'
-  if today_str >= '2026-11-23' and today_str <= '2026-11-30'
-    assign p_show_promo = false
+    if bf_active
+      assign p_show_promo = false
+    endif
   endif
 
   if product == blank
