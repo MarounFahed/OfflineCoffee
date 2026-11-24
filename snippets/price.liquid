@@ -11,6 +11,13 @@
   if compare_at and compare_at > price
     assign on_sale = true
   endif
+
+  assign today_str = 'now' | date: '%Y-%m-%d'
+  if today_str >= '2026-11-23' and today_str <= '2026-11-30' and on_sale == false
+    assign compare_at = price
+    assign price = price | times: 0.6 | round
+    assign on_sale = true
+  endif
 -%}
 <span class="price">
   {%- if on_sale -%}

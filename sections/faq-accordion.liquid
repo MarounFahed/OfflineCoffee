@@ -1,0 +1,54 @@
+<section class="section brew-faq" aria-label="{{ section.settings.heading | default: 'Troubleshooting' | strip_html }}">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="lbl">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading | newline_to_br }}</h2>
+      <div class="meta">{{ section.settings.meta | newline_to_br }}</div>
+    </div>
+    <div class="accordion" data-exclusive>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'item' -%}
+          {% render 'accordion-item', label: block.settings.question, body: block.settings.answer, open: block.settings.open %}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.fallback_text != blank -%}
+      <p class="faq-fallback">
+        {{ section.settings.fallback_text }}
+        {%- if section.settings.fallback_email != blank -%}
+          <a href="mailto:{{ section.settings.fallback_email }}">{{ section.settings.fallback_email }}</a>
+        {%- endif -%}
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ accordion",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "§ If it's not right" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Fix the cup." },
+    { "type": "text", "id": "meta", "label": "Meta (right)", "default": "Common problems" },
+    { "type": "header", "content": "Fallback (optional)" },
+    { "type": "text", "id": "fallback_text", "label": "Fallback text", "default": "Still stuck? Email us at" },
+    { "type": "text", "id": "fallback_email", "label": "Fallback email", "default": "info@offline-coffee.com" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "It tastes weak" },
+        { "type": "richtext", "id": "answer", "label": "Answer" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    { "name": "FAQ accordion" }
+  ]
+}
+{% endschema %}
